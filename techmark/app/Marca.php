@@ -14,24 +14,25 @@ class Marca extends Model
 
     protected $fillable=[
     	'Descripcion',
-    	'FechaModificacion',
     	'IdUsuario',
     	'Activo'
     ];
-
-    protected $guarded =[];
-
-    function scopeDescripcion($query,$name){
+    function scopename($query,$name){
         if(trim($name) != ''){
             $query->where('Descripcion','like',"%$name%");
         }
     }
 
-    public function usuario()
-    {
-        return $this->belongsTo('App\User', 'IdUsuario');
+    function usuario(){
+        return $this->belongsTo('App\User','IdUsuario','IdUsuario');
     }
 
+    function activo(){
+        if($this->Activo==1)
+            return ['default','Activo'];
+        else
+            return ['danger','Inactivo'];
+    }
     function  deleteOk(){
         $num = Articulo::where('IdMarca',$this->IdMarca)->count();
         if($num>0)

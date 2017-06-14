@@ -17,37 +17,26 @@ use DB;
 class TipoArticuloController extends Controller
 {
     private $datos=null;
-
-    public function _construct()
-    {
-
-    }
-
     public function index(Request $request)
     {
     	if(Auth::user()->can('allow-read'))
     	{
-	    	if ($request)
-	    	{
 	    		$this->datos['brand'] = Tool::brand('Tipo Articulos',route('admin.tipoarticulo.index'),'Almacen');
-	    		$this->datos['tipoarticulos'] = TipoArticulo::with('usuario')
-                ->where('Activo','1')
-                ->descripcion($request->get('s'))
+	    		$this->datos['tipoarticulos'] = TipoArticulo::name($request->get('s'))
 	    		->orderBy('IdTipoArticulo','desc')
 	    		->paginate();
 	    		return view('cpanel.almacen.tipoarticulo.list')->with($this->datos);
-	    	}
-	    	\Session::flash('message','No existen registros de tipos de articulos');
     	}
-
-    	\Session::flash('message','No tienes Permiso para visualizar informacion ');
+    else {
+        \Session::flash('message', 'No tienes Permiso para visualizar informacion ');
         return redirect('dashboard');
+    }
     }
 
     public function create()
     {
     	if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Crear Tipo de Articulo',route('admin.marca.index'),'Tipo de Articulos');
+            $this->datos['brand'] = Tool::brand('Crear Tipo de Articulo',route('admin.tipoarticulo.index'),'Almacen');
             return view('cpanel.almacen.tipoarticulo.registro',$this->datos);
         }
 
@@ -55,10 +44,9 @@ class TipoArticuloController extends Controller
         return redirect('dashboard');
     }
 
-    public function store(TipoArticuloFormRequest $request)
+    public function store(Request $request)
     {
     	if(Auth::user()->can('allow-insert')){
-            $request['IdUsuario']=Auth::id();
             TipoArticulo::create($request->all());
             return redirect()->route('admin.tipoarticulo.index');
         }
@@ -75,7 +63,7 @@ class TipoArticuloController extends Controller
     public function edit($id)
     {
     	if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Tipo de Articulo',route('admin.tipoarticulo.index'),'Tipos de Articulos');
+            $this->datos['brand'] = Tool::brand('Editar Tipo de Articulo',route('admin.tipoarticulo.index'),'Almacen');
             $this->datos['tipoarticulo'] = TipoArticulo::find($id);
             return view('cpanel.almacen.tipoarticulo.edit',$this->datos);
         }
@@ -84,15 +72,14 @@ class TipoArticuloController extends Controller
         return redirect('dashboard');
     }
 
-    public function update(TipoArticuloFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
     	if(Auth::user()->can('allow-edit')){
             $tipoarticulo = TipoArticulo::find($id);
-            $tipoarticulo['IdUsuario']=Auth::id();
             $tipoarticulo->fill($request->all());
             $tipoarticulo->save();
             \Session::flash('message','Se Actualizo Exitosamente la información');
-            return redirect()->route('almacen.tipoarticulo.index');
+            return redirect()->back();
         }
         \Session::flash('message','No tienes Permisos para editar ');
         return redirect('dashboard');
@@ -102,9 +89,9 @@ class TipoArticuloController extends Controller
     {
     	if(Auth::user()->can('allow-delete')) {
             $tipoarticulo = TipoArticulo::find($id);
-            \Session::flash('user-dead',$tipoarticulo->Descripcion);
+            \Session::flash('tipoarticulo-dead',$tipoarticulo->Descripcion);
             if(!$tipoarticulo->deleteOk()){
-                $tipoarticulo->Activo=chr(0);
+                $tipoarticulo->Activo=0;
                 $tipoarticulo->save();
                 $mensaje = 'El usuario  Tiene algunas Transacciones Registradas.. Imposible Eliminar. Se Inhabilito la Cuenta ';
             }

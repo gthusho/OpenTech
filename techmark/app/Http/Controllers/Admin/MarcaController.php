@@ -20,36 +20,26 @@ class MarcaController extends Controller
 {
     private $datos=null;
 
-    public function _construct()
-    {
-
-    }
-
     public function index(Request $request)
     {
     	if(Auth::user()->can('allow-read'))
     	{
-	    	if ($request)
-	    	{
-	    		$this->datos['brand'] = Tool::brand('Marcas',route('admin.marca.index'),'Almacen');
-	    		$this->datos['marcas'] = Marca::with('usuario')
-                ->where('Activo','1')
-                ->descripcion($request->get('s'))
+	    		$this->datos['brand'] = Tool::brand('Marca',route('admin.marca.index'),'Almacen');
+	    		$this->datos['marcas'] = Marca::name($request->get('s'))
 	    		->orderBy('IdMarca','desc')
 	    		->paginate();
 	    		return view('cpanel.almacen.marca.list')->with($this->datos);
-	    	}
-	    	\Session::flash('message','No existen registros de marcas');
     	}
-
-    	\Session::flash('message','No tienes Permiso para visualizar informacion ');
-        return redirect('dashboard');
+        else {
+            \Session::flash('message', 'No tienes Permiso para visualizar informacion ');
+            return redirect('dashboard');
+        }
     }
 
     public function create()
     {
     	if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Crear Marca',route('admin.marca.index'),'Marcas');
+            $this->datos['brand'] = Tool::brand('Crear Marca',route('admin.marca.index'),'Almacen');
             return view('cpanel.almacen.marca.registro',$this->datos);
         }
 
@@ -57,12 +47,9 @@ class MarcaController extends Controller
         return redirect('dashboard');
     }
 
-    public function store(MarcaFormRequest $request)
+    public function store(Request $request)
     {
     	if(Auth::user()->can('allow-insert')){
-            $tiempo=Carbon::now('America/La_Paz');
-            $request['FechaModificacion']=$tiempo->toDateTimeString();
-            $request['IdUsuario']=Auth::id();
             Marca::create($request->all());
             return redirect()->route('admin.marca.index');
         }
@@ -88,17 +75,14 @@ class MarcaController extends Controller
         return redirect('dashboard');
     }
 
-    public function update(MarcaFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
     	if(Auth::user()->can('allow-edit')){
             $marca = Marca::find($id);
-            $tiempo=Carbon::now('America/La_Paz');
-            $marca['FechaModificacion']=$tiempo->toDateTimeString();
-            $marca['IdUsuario']=Auth::id();
             $marca->fill($request->all());
             $marca->save();
             \Session::flash('message','Se Actualizo Exitosamente la información');
-            return redirect()->route('admin.marca.index');
+            return redirect()->back();
         }
         \Session::flash('message','No tienes Permisos para editar ');
         return redirect('dashboard');
@@ -108,9 +92,9 @@ class MarcaController extends Controller
     {
     	if(Auth::user()->can('allow-delete')) {
             $marca = Marca::find($id);
-            \Session::flash('user-dead',$marca->Descripcion);
+            \Session::flash('marca-dead',$marca->Descripcion);
             if(!$marca->deleteOk()){
-                $marca->Activo=chr(0);
+                $marca->Activo=0;
                 $marca->save();
                 $mensaje = 'El usuario  Tiene algunas Transacciones Registradas.. Imposible Eliminar. Se Inhabilito la Cuenta ';
             }

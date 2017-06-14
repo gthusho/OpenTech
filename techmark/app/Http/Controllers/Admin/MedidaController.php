@@ -20,36 +20,25 @@ class MedidaController extends Controller
 {
     private $datos=null;
 
-    public function _construct()
-    {
-
-    }
-
     public function index(Request $request)
     {
-    	if(Auth::user()->can('allow-read'))
-    	{
-	    	if ($request)
-	    	{
+        if(Auth::user()->can('allow-read')){
 	    		$this->datos['brand'] = Tool::brand('Medidas',route('admin.medida.index'),'Almacen');
-	    		$this->datos['medidas'] = Medida::with('usuario')
-                ->where('Activo','1')
-                ->descripcion($request->get('s'))
+	    		$this->datos['medidas'] = Medida::name($request->get('s'))
 	    		->orderBy('IdMedida','desc')
 	    		->paginate();
 	    		return view('cpanel.almacen.medida.list')->with($this->datos);
-	    	}
-	    	\Session::flash('message','No existen registros de medidas');
     	}
-
-    	\Session::flash('message','No tienes Permiso para visualizar informacion ');
-        return redirect('dashboard');
+        else {
+            \Session::flash('message', 'No tienes Permiso para visualizar informacion ');
+            return redirect('dashboard');
+        }
     }
 
     public function create()
     {
     	if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Crear Medidas',route('admin.medida.index'),'Medidas');
+            $this->datos['brand'] = Tool::brand('Crear Medidas',route('admin.medida.index'),'Almacen');
             return view('cpanel.almacen.medida.registro',$this->datos);
         }
 
@@ -57,12 +46,9 @@ class MedidaController extends Controller
         return redirect('dashboard');
     }
 
-    public function store(MedidaFormRequest $request)
+    public function store(Request $request)
     {
     	if(Auth::user()->can('allow-insert')){
-            $tiempo=Carbon::now('America/La_Paz');
-            $request['FechaModificacion']=$tiempo->toDateTimeString();
-            $request['IdUsuario']=Auth::id();
             Medida::create($request->all());
             return redirect()->route('admin.medida.index');
         }
@@ -79,7 +65,7 @@ class MedidaController extends Controller
     public function edit($id)
     {
     	if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Medida',route('admin.medida.index'),'Medidas');
+            $this->datos['brand'] = Tool::brand('Editar Medida',route('admin.medida.index'),'Almacen');
             $this->datos['medida'] = Medida::find($id);
             return view('cpanel.almacen.medida.edit',$this->datos);
         }
@@ -92,13 +78,10 @@ class MedidaController extends Controller
     {
     	if(Auth::user()->can('allow-edit')){
             $medida = Medida::find($id);
-            $tiempo=Carbon::now('America/La_Paz');
-            $medida['FechaModificacion']=$tiempo->toDateTimeString();
-            $medida['IdUsuario']=Auth::id();
             $medida->fill($request->all());
             $medida->save();
             \Session::flash('message','Se Actualizo Exitosamente la información');
-            return redirect()->route('admin.medida.index');
+            return redirect()->back();
         }
         \Session::flash('message','No tienes Permisos para editar ');
         return redirect('dashboard');
@@ -108,9 +91,9 @@ class MedidaController extends Controller
     {
     	if(Auth::user()->can('allow-delete')) {
             $medida = Medida::find($id);
-            \Session::flash('user-dead',$medida->Descripcion);
+            \Session::flash('medida-dead',$medida->Descripcion);
             if(!$medida->deleteOk()){
-                $medida->Activo=chr(0);
+                $medida->Activo=0;
                 $medida->save();
                 $mensaje = 'El usuario  Tiene algunas Transacciones Registradas.. Imposible Eliminar. Se Inhabilito la Cuenta ';
             }

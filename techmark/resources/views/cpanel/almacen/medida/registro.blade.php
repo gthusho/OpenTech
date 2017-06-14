@@ -9,7 +9,7 @@
                     * Los campos con (*) son obligatorios
                 </p>
                 @include('cpanel.partials.errors')
-                {!! Form::open(['route'=>'almacen.medida.store','method'=>'POST','files'=>true,'id'=>'form-marca']) !!}
+                {!! Form::open(['route'=>'admin.medida.store','method'=>'POST','files'=>true,'id'=>'form-medida']) !!}
                     @include('cpanel.almacen.medida.partials.fields')
                     <div class="form-group text-right m-b-0">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">

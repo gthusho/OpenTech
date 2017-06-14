@@ -44,7 +44,7 @@
         <script>
             $(window).load(function(){
                 swal({
-                    title: "{{Session::get('user-dead')}}",
+                    title: "{{Session::get('familia-dead')}}",
                     text: "{{Session::get('message')}}",
                     type: "info",
                     showCancelButton: false,

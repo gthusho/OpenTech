@@ -24,7 +24,7 @@ class FamiliaFormRequest extends Request
     public function rules()
     {
         return [
-            'Descripcion'=>'max:300',
+            'Descripcion'=>'required|max:300',
             'FechaModificacion'=>'date',
             'IdUsuario'=>'',
             'Activo'=>''        ];

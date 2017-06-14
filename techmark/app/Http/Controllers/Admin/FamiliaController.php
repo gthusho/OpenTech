@@ -20,56 +20,45 @@ class FamiliaController extends Controller
 {
     private $datos=null;
 
-    public function _construct()
-    {
-
-    }
-
     public function index(Request $request)
     {
-    	if(Auth::user()->can('allow-read'))
-    	{
-	    	if ($request)
-	    	{
-	    		$this->datos['brand'] = Tool::brand('Familias',route('admin.familia.index'),'Almacen');
-	    		$this->datos['familias'] = Familia::with('usuario')
-                ->where('Activo','1')
-                ->descripcion($request->get('s'))
-	    		->orderBy('IdFamilia','desc')
-	    		->paginate();
-	    		return view('cpanel.almacen.familia.list')->with($this->datos);
-	    	}
-	    	\Session::flash('message','No existen registros de familias');
-    	}
 
-    	\Session::flash('message','No tienes Permiso para visualizar informacion ');
+        if(Auth::user()->can('allow-read')){
+            $this->datos['brand'] = Tool::brand('Familia',route('admin.familia.index'),'Almacen');
+            $this->datos['familias'] =Familia::name($request->get('s'))
+                ->orderBy('IdFamilia','desc')
+                ->paginate();
+            return view('cpanel.almacen.familia.list')->with($this->datos);
+        }
+    else{
+
+        \Session::flash('message','No tienes Permiso para visualizar informacion ');
         return redirect('dashboard');
+    }
+
     }
 
     public function create()
     {
-    	if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Crear Familias',route('admin.familia.index'),'Familias');
+        if(Auth::user()->can('allow-insert')){
+            $this->datos['brand'] = Tool::brand('Crear Familias',route('admin.familia.index'),'Almacen');
             return view('cpanel.almacen.familia.registro',$this->datos);
         }
-
         \Session::flash('message','No tienes Permisos para agregar registros ');
         return redirect('dashboard');
     }
 
-    public function store(FamiliaFormRequest $request)
+    public function store(Request $request)
     {
-    	if(Auth::user()->can('allow-insert')){
-            $tiempo=Carbon::now('America/La_Paz');
-            $request['FechaModificacion']=$tiempo->toDateTimeString();
-            $request['IdUsuario']=Auth::id();
-            Familia::create($request->all());
+        if(Auth::user()->can('allow-insert')){
+            familia::create($request->all());
             return redirect()->route('admin.familia.index');
         }
 
         \Session::flash('message','No tienes Permisos para agregar registros ');
         return redirect('dashboard');
     }
+
 
     public function show($id)
     {
@@ -79,7 +68,7 @@ class FamiliaController extends Controller
     public function edit($id)
     {
     	if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Familia',route('admin.familia.index'),'Familias');
+            $this->datos['brand'] = Tool::brand('Editar Familia',route('admin.familia.index'),'Almacen');
             $this->datos['familia'] = Familia::find($id);
             return view('cpanel.almacen.familia.edit',$this->datos);
         }
@@ -88,29 +77,27 @@ class FamiliaController extends Controller
         return redirect('dashboard');
     }
 
-    public function update(FamiliaFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
     	if(Auth::user()->can('allow-edit')){
             $familia = Familia::find($id);
-            $tiempo=Carbon::now('America/La_Paz');
-            $familia['FechaModificacion']=$tiempo->toDateTimeString();
-            $familia['IdUsuario']=Auth::id();
             $familia->fill($request->all());
             $familia->save();
             \Session::flash('message','Se Actualizo Exitosamente la información');
-            return redirect()->route('admin.familia.index');
+            return redirect()->back();
         }
         \Session::flash('message','No tienes Permisos para editar ');
         return redirect('dashboard');
     }
 
+
     public function destroy($id)
     {
     	if(Auth::user()->can('allow-delete')) {
             $familia = Familia::find($id);
-            \Session::flash('user-dead',$familia->Descripcion);
+            \Session::flash('familia-dead',$familia->Descripcion);
             if(!$familia->deleteOk()){
-                $familia->Activo=chr(0);
+                $familia->Activo=0;
                 $familia->save();
                 $mensaje = 'La familia que intenta eliminar tiene algunas Transacciones Registradas.. Imposible Eliminar. Se Inhabilito la Familia ';
             }
@@ -125,4 +112,6 @@ class FamiliaController extends Controller
         \Session::flash('message','No tienes Permisos para Borrar informacion');
         return redirect('dashboard');
     }
+
+
 }
