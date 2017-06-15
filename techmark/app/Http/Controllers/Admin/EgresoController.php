@@ -26,17 +26,12 @@ class EgresoController extends Controller
     {
     	if(Auth::user()->can('allow-read'))
     	{
-	    	if ($request)
-	    	{
 	    		$this->datos['brand'] = Tool::brand('Egresos',route('admin.egreso.index'),'Almacen');
 	    		$this->datos['egresos'] = Egreso::with('articulo','almacen','usuario')
-	    		->where('Eliminado',true)
                 ->observacion($request->get('s'))
                 ->orderBy('IdEgreso','desc')
 	    		->paginate();
 	    		return view('cpanel.almacen.egreso.list')->with($this->datos);
-	    	}
-	    	\Session::flash('message','No existen registros de egresos');
     	}
 
     	\Session::flash('message','No tienes Permiso para visualizar informacion ');
@@ -59,10 +54,7 @@ class EgresoController extends Controller
     public function store(EgresoFormRequest $request)
     {
     	if(Auth::user()->can('allow-insert')){
-            $tiempo=Carbon::now('America/La_Paz');
-            $request['FechaEgreso']=$tiempo->toDateTimeString();
             $request['IdUsuario']=Auth::id();
-            $request['Eliminado']=true;
             Egreso::create($request->all());
             return redirect()->route('admin.egreso.index');
         }
@@ -94,8 +86,6 @@ class EgresoController extends Controller
     {
     	if(Auth::user()->can('allow-edit')){
             $egreso = Egreso::find($id);
-            $tiempo=Carbon::now('America/La_Paz');
-            $egreso['FechaEgreso']=$tiempo->toDateTimeString();
             $egreso['IdUsuario']=Auth::id();
             $egreso->fill($request->all());
             $egreso->save();

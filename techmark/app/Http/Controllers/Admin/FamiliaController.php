@@ -64,7 +64,6 @@ class FamiliaController extends Controller
     {
     	//
     }
-
     public function edit($id)
     {
     	if(Auth::user()->can('allow-edit')){

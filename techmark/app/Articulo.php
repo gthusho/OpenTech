@@ -20,7 +20,6 @@ class Articulo extends Model
     	'IdMedida',
     	'IdMarca',
     	'IdTipoArticulo',
-    	'FechaModificacion',
     	'IdUsuario',
     	'Codigo'
     ];

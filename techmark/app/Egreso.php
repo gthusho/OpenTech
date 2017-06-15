@@ -18,7 +18,7 @@ class Egreso extends Model
     	'Cantidad',
     	'Observacion',
     	'FechaEgreso',
-    	'Eliminado',
+    	'registro',
     	'IdUsuario'
     ];
 

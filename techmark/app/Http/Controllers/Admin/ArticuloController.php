@@ -30,20 +30,16 @@ class ArticuloController extends Controller
     {
     	if(Auth::user()->can('allow-read'))
     	{
-	    	if ($request)
-	    	{
 	    		$this->datos['brand'] = Tool::brand('Articulos',route('admin.articulo.index'),'Almacen');
-	    		$this->datos['articulos'] = Articulo::with('familia','medida','marca','tipoarticulo','usuario')
-                ->descripcion($request->get('s'))
+	    		$this->datos['articulos'] = Articulo::descripcion($request->get('s'))
                 ->orderBy('IdArticulo','desc')
 	    		->paginate();
 	    		return view('cpanel.almacen.articulo.list')->with($this->datos);
-	    	}
-	    	\Session::flash('message','No existen registros de articulos');
     	}
-
-    	\Session::flash('message','No tienes Permiso para visualizar informacion ');
-        return redirect('dashboard');
+        else {
+            \Session::flash('message', 'No tienes Permiso para visualizar informacion ');
+            return redirect('dashboard');
+        }
     }
 
     public function create()
@@ -64,8 +60,6 @@ class ArticuloController extends Controller
     public function store(ArticuloFormRequest $request)
     {
     	if(Auth::user()->can('allow-insert')){
-            $tiempo=Carbon::now('America/La_Paz');
-            $request['FechaModificacion']=$tiempo->toDateTimeString();
             $request['IdUsuario']=Auth::id();
             Articulo::create($request->all());
             return redirect()->route('admin.articulo.index');
@@ -100,8 +94,6 @@ class ArticuloController extends Controller
     {
     	if(Auth::user()->can('allow-edit')){
             $articulo = Articulo::find($id);
-            $tiempo=Carbon::now('America/La_Paz');
-            $articulo['FechaModificacion']=$tiempo->toDateTimeString();
             $articulo['IdUsuario']=Auth::id();
             $articulo->fill($request->all());
             $articulo->save();

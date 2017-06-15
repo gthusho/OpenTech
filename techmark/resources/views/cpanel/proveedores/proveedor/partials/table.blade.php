@@ -24,7 +24,7 @@
             <td>{{$row->Foto}}</td>
             <td>{{$row->FechaModificacion}}</td>
             <td>
-                <a href="{{route('admin.proveedor.edit',$row->IdProveedor)}}">Ver & Editar <i class="fa fa-edit"></i> </a>
+                <a href="{{route('admin.proveedor.edit',$row->IdProveedor)}}"><i class="icon-pencil"> Editar </i></i> </a>
             </td>
         </tr>
     @endforeach

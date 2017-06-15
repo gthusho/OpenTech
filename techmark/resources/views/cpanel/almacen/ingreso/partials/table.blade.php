@@ -1,20 +1,18 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>IdIngreso</th>
-        <th>Articulo</th>
-        <th>Almacen</th>
-        <th>Cantidad</th>
-        <th>Observaciones</th>
-        <th>Fecha Ingreso</th>
-        <th>Usuario</th>
-        <th>Acciones</th>
+        <th>ARTICULO</th>
+        <th>ALMACEN</th>
+        <th>CANTIDAD</th>
+        <th>OBSERVACIONES</th>
+        <th>FECHA INGRESO</th>
+        <th>USUARIO</th>
+        <th>ACCIONES</th>
     </tr>
     </thead>
     <tbody>
     @foreach($ingresos as $row)
         <tr>
-            <td>{{$row->IdIngreso}}</td>
             <td>{{$row->articulo->Descripcion}}</td>
             <td>{{$row->almacen->Descripcion}}</td>
             <td>{{$row->Cantidad}}</td>

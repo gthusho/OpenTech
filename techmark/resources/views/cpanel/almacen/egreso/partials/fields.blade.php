@@ -1,11 +1,11 @@
 <div>
 	{!! Form::label('Articulo (*) ')!!}
-	{!! Form::select('IdArticulo',$articulos,null,['class'=>'selectpicker','required'])!!}
+	{!! Form::select('IdArticulo',$articulos,null,['class'=>'form-control select2','required','placeholder'=>'Articulo'])!!}
 </div>
 
 <div>
 	{!! Form::label('Almacen (*)')!!}
-	{!! Form::select('IdAlmacen',$almacenes,null,['class'=>'selectpicker','required'])!!}
+	{!! Form::select('IdAlmacen',$almacenes,null,['class'=>'form-control select2','required','placeholder'=>'Almacen'])!!}
 </div>
 
 <div class="form-group col-lg-12">

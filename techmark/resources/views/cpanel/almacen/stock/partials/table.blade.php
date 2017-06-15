@@ -27,7 +27,7 @@
             </td>
             <td>
                 @foreach($row->stock as $stock)
-                <a href="{{route('admin.stock.edit',$stock->IdExistencia)}}">Ver & Editar <i class="fa fa-edit"></i> </a>
+                <a href="{{route('admin.stock.edit',$stock->IdExistencia)}}"><i class="icon-pencil"> Editar </i></i> </a>
                 <br>
                 @endforeach
             </td>
