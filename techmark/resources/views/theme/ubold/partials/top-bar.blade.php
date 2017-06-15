@@ -29,7 +29,7 @@
                         <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="icon-size-fullscreen"></i></a>
                     </li>
                     <li class="dropdown top-menu-item-xs">
-                        <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><span>{{Auth::user()->NombreUsuario}}</span> <i class="caret"></i> </a>
+                        <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><span>{{Auth::user()->Nombre}}</span> <i class="caret"></i> </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{route('perfil.index')}}"><i class="ti-user m-r-10 text-custom"></i> Perfil</a></li>
                             <li class="divider"></li>
