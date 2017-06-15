@@ -60,10 +60,9 @@ class AlmacenController extends Controller
     public function store(AlmacenFormRequest $request)
     {
     	if(Auth::user()->can('allow-insert')){
-            $tiempo=Carbon::now('America/La_Paz');
-            $request['FechaModificacion']=$tiempo->toDateTimeString();
-            $request['IdUsuario']=Auth::id();
-            Almacen::create($request->all());
+            $almacen = new  Almacen($request->all());
+            $almacen->IdUsuario = Auth::user()->IdUsuario;
+            $almacen->save();
             return redirect()->route('admin.almacen.index');
         }
 
@@ -92,9 +91,6 @@ class AlmacenController extends Controller
     {
     	if(Auth::user()->can('allow-edit')){
             $almacen = Almacen::find($id);
-            $tiempo=Carbon::now('America/La_Paz');
-            $almacen['FechaModificacion']=$tiempo->toDateTimeString();
-            $almacen['IdUsuario']=Auth::id();
             $almacen->fill($request->all());
             $almacen->save();
             \Session::flash('message','Se Actualizo Exitosamente la información');
@@ -110,7 +106,7 @@ class AlmacenController extends Controller
             $almacen = Almacen::find($id);
             \Session::flash('user-dead',$almacen->Descripcion);
             if(!$almacen->deleteOk()){
-                $almacen->Activo=chr(0);
+                $almacen->Activo=0;
                 $almacen->save();
                 $mensaje = 'El almacen  Tiene algunas Transacciones Registradas.. Imposible Eliminar. Se Inhabilito la Cuenta ';
             }

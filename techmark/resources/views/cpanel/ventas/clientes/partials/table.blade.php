@@ -21,7 +21,7 @@
             <td>{{($row->Telefono)}}</td>
             <td>{{$row->Direccion}}</td>
             <td>{{($row->CorreoElectronico)}}</td>
-            <td>{{($row->usuario->NombreUsuario)}}</td>
+            <td>{{($row->usuario->Nombre)}}</td>
             <td>
                 <img src="{{asset('imagenes/clientes/'.$row->Foto)}}" alt="{{$row->Foto}}" height="100px" width="100px" class="img-thumbnail">
 

@@ -64,18 +64,9 @@ class ClienteController extends Controller
     public function store(ClienteFormRequest $request)
     {
         if(Auth::user()->can('allow-insert')){
-            $usu=Auth::user();
-            $request['IdUsuario']=$usu->can('allow-read');
-            $tiempo=Carbon::now('America/La_Paz');
-            $request['FechaModificacion']=$tiempo->toDateTimeString();
-            if(Input::hasFile('Foto'))
-            {
-                $file=Input::file('Foto');
-                $file->move(public_path().'/imagenes/clientes/',$file->getClientOriginalName());
-                $request['Foto']=$file->getClientOriginalName();
-
-            }
-            Cliente::create($request->all());
+            $cliente = new  Cliente($request->all());
+            $cliente->IdUsuario = Auth::user()->IdUsuario;
+            $cliente->save();
             return redirect()->route('admin.cliente.index');
         }
 
@@ -114,18 +105,6 @@ class ClienteController extends Controller
     {
         if(Auth::user()->can('allow-edit')){
             $cliente = Cliente::find($id);
-            $tiempo=Carbon::now('America/La_Paz');
-            $cliente['FechaModificacion']=$tiempo->toDateTimeString();
-            $usu=Auth::user();
-            $cliente['IdUsuario']=$usu->can('allow-read');
-
-            if(Input::hasFile('Foto'))
-            {
-                $file=Input::file('Foto');
-                $file->move(public_path().'/imagenes/clientes/',$file->getClientOriginalName());
-                $cliente['Foto']=$file->getClientOriginalName();
-
-            }
             $cliente->fill($request->all());
             $cliente->save();
             \Session::flash('message','Se Actualizo Exitosamente la información');
