@@ -60,8 +60,9 @@ class ArticuloController extends Controller
     public function store(ArticuloFormRequest $request)
     {
     	if(Auth::user()->can('allow-insert')){
-            $request['IdUsuario']=Auth::id();
-            Articulo::create($request->all());
+            $articulo= new  Articulo($request->all());
+            $articulo->IdUsuario = Auth::user()->IdUsuario;
+            $articulo->save();
             return redirect()->route('admin.articulo.index');
         }
 
@@ -94,7 +95,6 @@ class ArticuloController extends Controller
     {
     	if(Auth::user()->can('allow-edit')){
             $articulo = Articulo::find($id);
-            $articulo['IdUsuario']=Auth::id();
             $articulo->fill($request->all());
             $articulo->save();
             \Session::flash('message','Se Actualizo Exitosamente la información');

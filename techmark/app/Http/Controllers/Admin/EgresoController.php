@@ -54,8 +54,9 @@ class EgresoController extends Controller
     public function store(EgresoFormRequest $request)
     {
     	if(Auth::user()->can('allow-insert')){
-            $request['IdUsuario']=Auth::id();
-            Egreso::create($request->all());
+            $egreso= new  Egreso($request->all());
+            $egreso->IdUsuario = Auth::user()->IdUsuario;
+            $egreso->save();
             return redirect()->route('admin.egreso.index');
         }
 
@@ -86,7 +87,6 @@ class EgresoController extends Controller
     {
     	if(Auth::user()->can('allow-edit')){
             $egreso = Egreso::find($id);
-            $egreso['IdUsuario']=Auth::id();
             $egreso->fill($request->all());
             $egreso->save();
             \Session::flash('message','Se Actualizo Exitosamente la información');
