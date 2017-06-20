@@ -11,14 +11,19 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $table = 'usuario';
-    protected $primaryKey = 'IdUsuario';
+    protected $table = 'usuarios';
     protected $fillable = [
-        'NombreUsuario', 'email', 'password','IdRol','Nombre',
+        'username',
+        'estado',
+        'email',
+        'password',
+        'rol_id',
+        'nombre',
+        'telefono','celular','direccion',
         'read',
         'insert',
         'delete',
-        'edit',//aqui se pone todos tus campos en array
+        'edit',
     ];
 
     /**
@@ -36,12 +41,12 @@ class User extends Authenticatable
 
     }
     function rol(){
-        return $this->belongsTo('App\Rol','IdRol','IdRol');
+        return $this->belongsTo('App\Rol','rol_id','id');
     }
 
     function scopeName($query,$name){
         if(trim($name) != ''){
-            $query->where('NombreUsuario','like',"%$name%");
+            $query->where('nombre','like',"%$name%");
         }
     }
     function allowEdit(){
@@ -75,7 +80,7 @@ class User extends Authenticatable
     }
 
     function activo(){
-        if($this->Activo==1)
+        if($this->estado==1)
             return ['default','Activo'];
         else
             return ['danger','Inactivo'];

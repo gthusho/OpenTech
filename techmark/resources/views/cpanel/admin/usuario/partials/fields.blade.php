@@ -7,15 +7,27 @@
 
 <div class="form-group col-lg-12">
     {!! Form::label('Nombre de Usuario* ')!!}
-    {!! Form::text('NombreUsuario',null,['class'=>'form-control','required'])!!}
+    {!! Form::text('username',null,['class'=>'form-control','required'])!!}
 </div>
 <div class="form-group col-lg-12">
     {!! Form::label('Nombre Completo * ')!!}
-    {!! Form::text('Nombre',null,['class'=>'form-control','required'])!!}
+    {!! Form::text('nombre',null,['class'=>'form-control','required'])!!}
+</div>
+<div class="form-group col-lg-6">
+    {!! Form::label('Telefono  ')!!}
+    {!! Form::text('telefono',null,['class'=>'form-control',''])!!}
+</div>
+<div class="form-group col-lg-6">
+    {!! Form::label('Celular ')!!}
+    {!! Form::text('celular',null,['class'=>'form-control',''])!!}
+</div>
+<div class="form-group col-lg-12">
+    {!! Form::label('Dirección (*)')!!}
+    {!! Form::text('direccion',null,['class'=>'form-control','required'])!!}
 </div>
 <div class="form-group col-lg-12" >
     {!! Form::label('Rol (*) ')!!}
-    {!! Form::select('IdRol',$roles,null,['class'=>'form-control select2','required'])!!}
+    {!! Form::select('rol_id',$roles,null,['class'=>'form-control select2','required'])!!}
 </div>
 <div class="form-group col-lg-6">
     {!! Form::label('Contraseña (*)')!!}

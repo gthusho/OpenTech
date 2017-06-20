@@ -6,22 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rol extends Model
 {
-    protected $table = 'rol';
-    protected $primaryKey = 'IdRol';
-    protected $fillable = ['Descripcion','IdUsuario','Activo'];
+    protected $table = 'roles';
+    protected $fillable = ['nombre','estado'];
     function scopeName($query,$name){
         if(trim($name) != ''){
-            $query->where('Descripcion','like',"%$name%");
+            $query->where('nombre','like',"%$name%");
         }
     }
     function activo(){
-        if($this->Activo==1)
+        if($this->estado==1)
             return ['default','Activo'];
         else
             return ['danger','Inactivo'];
     }
     function  deleteOk(){
-        $num = User::where('IdRol',$this->IdRol)->count();
+        $num = User::where('rol_id',$this->id)->count();
         if($num>0)
             return false;
         else

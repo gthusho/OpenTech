@@ -18,7 +18,7 @@
                         <li><a href="{{route('admin.rol.index')}}">Rol</a></li>
                     </ul>
                 </li>
-
+                {{--
                 <li>
                     <a href="javascript:void(0);" class="waves-effect"><i class="icon-basket"></i><span class="label label-primary pull-right">7</span> <span> Almacen </span>  </a>
                     <ul class="list-unstyled">
@@ -47,7 +47,7 @@
                         <li><a href="{{route('admin.visita.index')}}">Visitas</a></li>
                     </ul>
                 </li>
-
+--}}
             </ul>
             <div class="clearfix"></div>
         </div>

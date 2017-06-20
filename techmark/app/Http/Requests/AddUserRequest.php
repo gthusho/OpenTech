@@ -24,8 +24,9 @@ class AddUserRequest extends Request
     public function rules()
     {
         return  [
-            'NombreUsuario' => 'required|unique:usuario,NombreUsuario|min:4',
-            'IdRol' => 'integer|required',
+            'username' => 'required|unique:usuarios,username|min:4',
+            'rol_id' => 'integer|required',
+            'direccion'=>'required',
             'password' => 'required|confirmed|min:6'
         ];
     }

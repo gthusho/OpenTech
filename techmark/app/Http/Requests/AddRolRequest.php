@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class EditUserRequest extends Request
+class AddRolRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,8 @@ class EditUserRequest extends Request
      */
     public function rules()
     {
-
-
-
         return  [
-            'username' => 'required|min:4|unique:usuarios,username,'.$this->route()->getParameter('usuario'),
-            'rol_id' => 'integer|required',
-            'direccion'=>'required',
-            'password' => 'confirmed|min:6'
+            'nombre' => 'required|unique:roles,nombre',
         ];
     }
 }

@@ -6,7 +6,7 @@
     @endif
     <div class="panel-body">
         @if($errors->has())
-            <div class="alert alert-warning" role="alert">
+            <div class="alert alert-danger" role="alert">
                 @foreach ($errors->all() as $error)
                     <div>{{ $error }}</div>
                 @endforeach
@@ -17,7 +17,7 @@
             {{ csrf_field() }}
             <div class="form-group ">
                 <div class="col-xs-12">
-                    <input class="form-control" type="text" required="" placeholder="Usuario" name="NombreUsuario" value="{{ old('NombreUsuario') }}">
+                    <input class="form-control" type="text" required="" placeholder="Usuario" name="username" value="{{ old('username') }}">
                 </div>
             </div>
 

@@ -4,19 +4,15 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card-box">
-                <div class="pull-right">
-                    {!! Form::open(['route'=>['admin.rol.destroy',$rol->id],'method'=>'delete','id'=>'form-delete']) !!}
-                    <a class="btn btn-danger" id="btn-delete"> <i class="fa fa-trash"></i> Eliminar</a>
-                    {!! Form::close() !!}
-                </div>
+
                 <h4 class="m-t-0 header-title"><b>Formulario para Actualizacion de Datos</b></h4>
                 <p class="text-danger font-13 m-b-30">
                     * Los campos con (*) son obligatorios
                 </p>
 
                 @include('cpanel.partials.errors')
-                {!! Form::model($rol,['route'=>['admin.rol.update',$rol->id],'method'=>'PUT','files'=>true,'id'=>'form-usuario']) !!}
-                    @include('cpanel.admin.rol.partials.fields')
+                {!! Form::model($user,['route'=>['perfil.update',$user->id],'method'=>'PUT','files'=>true,'id'=>'form-usuario']) !!}
+                    @include('cpanel.perfil.partials.fields')
                     <div class="form-group text-right m-b-0">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">
                             Actualizar
@@ -32,8 +28,8 @@
 @endsection
 
 @section('css')
-    @include('cpanel.admin.rol.addons.css')
+    @include('cpanel.perfil.addons.css')
 @endsection
 @section('js')
-    @include('cpanel.admin.rol.addons.js')
+    @include('cpanel.perfil.addons.js')
 @endsection

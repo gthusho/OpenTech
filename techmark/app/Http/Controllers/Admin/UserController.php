@@ -19,15 +19,15 @@ class UserController extends Controller
 
         if(Auth::user()->can('allow-read')){
             $this->datos['brand'] = Tool::brand('Usuarios',route('admin.usuario.index'),'Usuarios & Cargos');
-            $this->datos['usuarios'] = User::where('Activo',1)
-                ->name($request->get('s'))
-                ->orderBy('IdUsuario','desc')
+            $this->datos['usuarios'] = User::name($request->get('s'))
+                ->orderBy('id','desc')
                 ->paginate();
             return view('cpanel.admin.usuario.list')->with($this->datos);
+        }else{
+            \Session::flash('message','No tienes Permiso para visualizar informacion ');
+            return redirect('dashboard');
         }
 
-        \Session::flash('message','No tienes Permiso para visualizar informacion ');
-        return redirect('dashboard');
 
     }
 
@@ -40,12 +40,14 @@ class UserController extends Controller
     {
         if(Auth::user()->can('allow-insert')){
             $this->datos['brand'] = Tool::brand('Editar usuario',route('admin.usuario.index'),'Usuarios');
-            $this->datos['roles'] = Rol::where('Activo',1)->get()->lists('Descripcion','IdRol');
+            $this->datos['roles'] = Rol::where('estado',1)->get()->lists('nombre','id');
             return view('cpanel.admin.usuario.registro',$this->datos);
+        }else{
+            \Session::flash('message','No tienes Permisos para agregar registros ');
+            return redirect('dashboard');
         }
 
-        \Session::flash('message','No tienes Permisos para agregar registros ');
-        return redirect('dashboard');
+
 
 
     }
@@ -57,10 +59,12 @@ class UserController extends Controller
         if(Auth::user()->can('allow-insert')){
             User::create($request->all());
             return redirect()->route('admin.usuario.index');
+        }else{
+            \Session::flash('message','No tienes Permisos para agregar registros ');
+            return redirect('dashboard');
         }
 
-        \Session::flash('message','No tienes Permisos para agregar registros ');
-        return redirect('dashboard');
+
 
     }
 
@@ -87,12 +91,14 @@ class UserController extends Controller
         if(Auth::user()->can('allow-edit')){
             $this->datos['brand'] = Tool::brand('Editar usuario',route('admin.usuario.index'),'Usuarios');
             $this->datos['user'] = User::find($id);
-            $this->datos['roles'] = Rol::where('Activo',1)->get()->lists('Descripcion','IdRol');
+            $this->datos['roles'] = Rol::where('estado',1)->get()->lists('nombre','id');
             return view('cpanel.admin.usuario.edit',$this->datos);
+        }else{
+            \Session::flash('message','No tienes Permisos para editar ');
+            return redirect('dashboard');
         }
 
-        \Session::flash('message','No tienes Permisos para editar ');
-        return redirect('dashboard');
+
 
     }
 
@@ -105,9 +111,11 @@ class UserController extends Controller
             $user->save();
             \Session::flash('message','Se Actualizo Exitosamente la información');
             return redirect()->back();
+        }else{
+            \Session::flash('message','No tienes Permisos para editar ');
+            return redirect('dashboard');
         }
-        \Session::flash('message','No tienes Permisos para editar ');
-        return redirect('dashboard');
+
 
     }
 
@@ -122,7 +130,7 @@ class UserController extends Controller
 
         if(Auth::user()->can('allow-delete')) {
             $user = User::find($id);
-            \Session::flash('user-dead',$user->NombreUsuario);
+            \Session::flash('user-dead',$user->nombre);
             if(!$user->deleteOk()){
                 $user->estado=0;
                 $user->save();
@@ -135,9 +143,11 @@ class UserController extends Controller
             }
             \Session::flash('message',$mensaje);
             return redirect()->route('admin.usuario.index');
+        }else{
+            \Session::flash('message','No tienes Permisos para Borrar informacion');
+            return redirect('dashboard');
         }
-        \Session::flash('message','No tienes Permisos para Borrar informacion');
-        return redirect('dashboard');
+
 
     }
 }

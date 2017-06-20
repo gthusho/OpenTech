@@ -47,5 +47,12 @@ class AuthServiceProvider extends ServiceProvider
         $gate->define('allow-read',function($user){
             return $user->allowRead();
         });
+        /*
+      * para controlar edicion perfil
+      */
+        $gate->define('update-perfil',function($user,$u){
+
+            return $user->id==$u->id;
+        });
     }
 }

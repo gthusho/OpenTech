@@ -15,40 +15,22 @@ Route::get('/', 'HomeController@index');
 Route::auth();
 
 Route::get('/dashboard', 'HomeController@index');
-Route::resource('perfil','HomeController');
+Route::resource('perfil','PerfilController');
 
 Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], function(){
-
-
-    /* todo  referente a almacen */
-    Route::resource('almacen','AlmacenController');
-    Route::resource('articulo','ArticuloController');
-    Route::resource('egreso','EgresoController');
-    Route::resource('ingreso','IngresoController');
-    Route::resource('familia','FamiliaController');
-    Route::resource('marca','MarcaController');
-    Route::resource('medida','MedidaController');
-    Route::resource('stock','StockController');
-    Route::resource('tipoarticulo','TipoArticuloController');
-
     /*
      * rutas usuarios
      */
     Route::resource('rol','RolController');
     Route::resource('usuario','UserController');
 
+});
+Route::group(['prefix'=>'sucursal','middleware'=>['auth'],'namespace'=>'BranchOffice'], function(){
 
-    /*
-     * rutas ventas
-     */
-    Route::resource('cliente','ClienteController');
-    Route::resource('visita','VisitaController');
+});
+Route::group(['prefix'=>'produccion','middleware'=>['auth'],'namespace'=>'Production'], function(){
 
-    /*
-     * rutas proveedores
-     */
-
-    Route::resource('proveedor','ProveedorController');
-
+});
+Route::group(['prefix'=>'ventas','middleware'=>['auth'],'namespace'=>'Sales'], function(){
 
 });

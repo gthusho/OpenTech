@@ -20,7 +20,7 @@ class RolController extends Controller
         if(Auth::user()->can('allow-read')){
             $this->datos['brand'] = Tool::brand('Rol ',route('admin.usuario.index'),'Usuarios & Roles');
             $this->datos['roles'] = Rol::name($request->get('s'))
-                ->orderBy('IdRol','desc')
+                ->orderBy('id','desc')
                 ->paginate();
             return view('cpanel.admin.rol.list')->with($this->datos);
         }
@@ -48,7 +48,7 @@ class RolController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(Requests\AddRolRequest $request)
     {
         if(Auth::user()->can('allow-insert')){
             Rol::create($request->all());
@@ -92,7 +92,7 @@ class RolController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Requests\EditRolRequest $request, $id)
     {
         if(Auth::user()->can('allow-edit')){
             $rol = Rol::find($id);
@@ -117,7 +117,7 @@ class RolController extends Controller
 
         if(Auth::user()->can('allow-delete')) {
             $rol = Rol::find($id);
-            \Session::flash('user-dead',$rol->Descripcion);
+            \Session::flash('user-dead',$rol->nombre);
             if(!$rol->deleteOk()){
                 $rol->Activo=0;
                 $rol->save();
