@@ -24,6 +24,12 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
     Route::resource('rol','RolController');
     Route::resource('usuario','UserController');
 
+    /*
+     * rutas agenda
+     */
+    Route::resource('agenda','AgendaController');
+
+
 });
 Route::group(['prefix'=>'sucursal','middleware'=>['auth'],'namespace'=>'BranchOffice'], function(){
 
