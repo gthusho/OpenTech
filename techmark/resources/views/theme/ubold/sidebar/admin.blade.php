@@ -10,7 +10,10 @@
                     <a href="{{url('dashboard')}}" class="waves-effect"><i class="ti-home"></i> <span> Inicio </span> </a>
 
                 </li>
+                <li class="has_sub">
+                    <a href="{{route('admin.agenda.index')}}" class="waves-effect"><i class=" icon-notebook"></i> <span> Agenda </span> </a>
 
+                </li>
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="icon-people"></i><span class="label label-primary pull-right">2</span> <span> Usuarios & Roles </span>  </a>
                     <ul class="list-unstyled">
