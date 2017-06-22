@@ -13,3 +13,4 @@
 @if(Request::segment(4)=='edit')
 <link href="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.css')}}" rel="stylesheet" type="text/css">
 @endif
+<link href="{{url('assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css')}}" rel="stylesheet" />

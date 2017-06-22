@@ -59,3 +59,4 @@
     });
 </script>
 <script src="{{url('assets/plugins/bootstrap-filestyle/js/bootstrap-filestyle.js')}}" type="text/javascript"></script>
+<script src="{{url('assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.min.js')}}"></script>

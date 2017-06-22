@@ -42,8 +42,9 @@
 
                 <div class="form-group">
                     {!! Form::label('Contacto / Planificado con ')!!}
-
-                    {!! Form::text('planificado',null,['class'=>'  form-control'])!!}
+                    <div class="tags-default">
+                        {!! Form::text('planificado',null,['class'=>'  form-control','data-role'=>'tagsinput','placeholder'=>'Agregar Información'])!!}
+                    </div>
                 </div>
                 <div class="form-group">
                     {!! Form::label('ubicacion ')!!}
