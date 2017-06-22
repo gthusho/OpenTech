@@ -1,5 +1,5 @@
 
-{!! Form::model(Request::all(), ['route' => ['admin.cliente.index'],'method'=>'GET']) !!}
+{!! Form::model(Request::all(), ['route' => ['admin.proveedor.index'],'method'=>'GET']) !!}
         <div class="form-group">
             <div class="input-group">
                 {!!  Form::text('s',null,['class'=>"form-control" ,'placeholder'=>"Buscar por nombre"]) !!}
