@@ -21,8 +21,8 @@ class Clientes extends Model
     ];
     function scopeName($query,$name){
         if(trim($name) != ''){
-            $query->where('RazonSocial','like',"%$name%")
-                ->orwhere('Nit','like',"%$name%");
+            $query->where('razon_social','like',"%$name%")
+                ->orwhere('nit','like',"%$name%");
         }
     }
     function  deleteOk(){
