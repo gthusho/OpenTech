@@ -90,28 +90,28 @@
       <file leaf-file-name="diego.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/theme/ubold/sidebar/diego.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+            <state relative-caret-position="68">
+              <caret line="4" column="72" lean-forward="false" selection-start-line="4" selection-start-column="72" selection-end-line="4" selection-end-column="72" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="admin.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/theme/ubold/sidebar/admin.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="51" lean-forward="false" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+            <state relative-caret-position="374">
+              <caret line="22" column="21" lean-forward="false" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="liss.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="liss.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/theme/ubold/sidebar/liss.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="12" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="85">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -175,9 +175,9 @@
         <option value="$PROJECT_DIR$/resources/views/cpanel/admin/agenda/partials/fields.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/cpanel/admin/agenda/partials/table.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/cpanel/admin/agenda/addons/js.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/theme/ubold/sidebar/liss.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/theme/ubold/sidebar/diego.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/theme/ubold/sidebar/admin.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/theme/ubold/sidebar/diego.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/theme/ubold/sidebar/liss.blade.php" />
       </list>
     </option>
   </component>
@@ -689,12 +689,12 @@
       <workItem from="1497971243689" duration="807000" />
       <workItem from="1497984264351" duration="4154000" />
       <workItem from="1498070132148" duration="4005000" />
-      <workItem from="1498132742474" duration="856000" />
+      <workItem from="1498132742474" duration="1054000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29414000" />
+    <option name="totallyTimeSpent" value="29612000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -1074,26 +1074,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/theme/ubold/sidebar/liss.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/theme/ubold/sidebar/admin.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="12" lean-forward="false" selection-start-line="1" selection-start-column="12" selection-end-line="8" selection-end-column="0" />
+        <state relative-caret-position="374">
+          <caret line="22" column="21" lean-forward="false" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/theme/ubold/sidebar/diego.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+        <state relative-caret-position="68">
+          <caret line="4" column="72" lean-forward="false" selection-start-line="4" selection-start-column="72" selection-end-line="4" selection-end-column="72" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/theme/ubold/sidebar/admin.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/theme/ubold/sidebar/liss.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="51" lean-forward="false" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
