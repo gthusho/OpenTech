@@ -23,6 +23,8 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
      */
     Route::resource('rol','RolController');
     Route::resource('usuario','UserController');
+    Route::resource('cliente','ClienteController');
+    Route::resource('proveedor','ProveedorController');
 
     /*
      * rutas agenda
