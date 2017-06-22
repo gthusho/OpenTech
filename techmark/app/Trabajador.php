@@ -11,7 +11,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Trabajadores extends Model
+class Trabajador extends Model
 {
     protected $table = 'trabajadores';
     protected $fillable = [
