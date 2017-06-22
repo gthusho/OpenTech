@@ -37,6 +37,14 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
      * rutas agenda
      */
     Route::resource('agenda','AgendaController');
+    /*
+     * rutas articulo
+     */
+    Route::resource('categoria','CategoriaArticuloController');
+    Route::resource('marca','MarcaController');
+    Route::resource('material','MaterialController');
+    Route::resource('medida','MedidaController');
+    Route::resource('articulo','ArticuloController');
 
 
 });
