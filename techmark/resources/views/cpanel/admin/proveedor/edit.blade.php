@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card-box">
                 <div class="pull-right">
-                    {!! Form::open(['route'=>['admin.cliente.destroy',$cliente->id],'method'=>'delete','id'=>'form-delete']) !!}
+                    {!! Form::open(['route'=>['admin.proveedor.destroy',$proveedor->id],'method'=>'delete','id'=>'form-delete']) !!}
                     <a class="btn btn-danger" id="btn-delete"> <i class="fa fa-trash"></i> Eliminar</a>
                     {!! Form::close() !!}
                 </div>
@@ -15,8 +15,8 @@
                 </p>
 
                 @include('cpanel.partials.errors')
-                {!! Form::model($cliente,['route'=>['admin.cliente.update',$cliente->id],'method'=>'PUT','files'=>true,'id'=>'form-articulo']) !!}
-                    @include('cpanel.admin.cliente.partials.fields')
+                {!! Form::model($proveedor,['route'=>['admin.proveedor.update',$proveedor->id],'method'=>'PUT','files'=>true,'id'=>'form-articulo']) !!}
+                    @include('cpanel.admin.proveedor.partials.fields')
                     <div class="form-group text-right m-b-0">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">
                             Actualizar
@@ -32,8 +32,8 @@
 @endsection
 
 @section('css')
-    @include('cpanel.admin.cliente.addons.css')
+    @include('cpanel.admin.proveedor.addons.css')
 @endsection
 @section('js')
-    @include('cpanel.admin.cliente.addons.js')
+    @include('cpanel.admin.proveedor.addons.js')
 @endsection

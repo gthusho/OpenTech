@@ -23,26 +23,15 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
      */
     Route::resource('rol','RolController');
     Route::resource('usuario','UserController');
-    /*
-     * rutas Cliente y Proveedor
-     */
-    Route::resource('cliente','ClienteController');
-    Route::resource('proveedor','ProveedorController');
-    /*
-     * rutas Almacen y ciudades
-     */
-    Route::resource('almacen','AlmacenController');
-    Route::resource('ciudad','CiudadController');
+
     /*
      * rutas agenda
      */
     Route::resource('agenda','AgendaController');
-    /*
-     * rutas sucursales
-     */
-    Route::resource('sucursal','SucursalesController');
+   
 
-
+    require __DIR__ . '/routes/diego.php';
+    require __DIR__ . '/routes/liss.php';
 });
 Route::group(['prefix'=>'sucursal','middleware'=>['auth'],'namespace'=>'BranchOffice'], function(){
 

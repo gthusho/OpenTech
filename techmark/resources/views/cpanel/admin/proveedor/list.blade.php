@@ -3,14 +3,14 @@
     @include('cpanel.partials.brand')
     <div class="row">
         <div class="col-sm-12">
-            @include('cpanel.admin.cliente.partials.report')
+            @include('cpanel.admin.proveedor.partials.report')
 
         </div>
     </div> 
     <br>
     <div class="row">
       <div class="col-sm-12">
-          @include('cpanel.admin.cliente.partials.search')
+          @include('cpanel.admin.proveedor.partials.search')
       </div>
     </div>
     <div class="row">
@@ -18,7 +18,7 @@
             <div class="card-box">
                 <div class="table-rep-plugin">
                     <div class="table-responsive" data-pattern="priority-columns">
-                        @include('cpanel.admin.cliente.partials.table')
+                        @include('cpanel.admin.proveedor.partials.table')
                     </div>
 
                 </div>
@@ -29,7 +29,7 @@
 
     <div class="col-lg-12">
         <div class="pull-left">
-            {{$clientes->appends(Request::only(['s']))->render()}}
+            {{$proveedores->appends(Request::only(['s']))->render()}}
         </div>
     </div>
 @endsection
