@@ -52,7 +52,7 @@ class ProveedorController extends Controller
         \Session::flash('message','No tienes Permisos para agregar registros ');
         return redirect('dashboard');
     }
-    public function store(ClienteRequest $request)
+    public function store(ProveedorRequest $request)
     {
         if(Auth::user()->can('allow-insert')){
             $proveedor = new  Proveedor($request->all());

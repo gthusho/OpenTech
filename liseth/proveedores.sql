@@ -1,0 +1,16 @@
+/*
+-- Query: select razon_social,nit,telefono,celular,email,fax,direccion,registro,created_at,updated_at from proveedores
+LIMIT 0, 1000
+
+-- Date: 2017-06-23 15:04
+*/
+INSERT INTO `proveedores` (`razon_social`,`nit`,`telefono`,`celular`,`email`,`fax`,`direccion`,`registro`,`created_at`,`updated_at`) VALUES ('Telas Chinas SRL','1212123653','64-69825','78968525','telaschinas@gmail.com','0000','La paz. calle sucre #4585','2017-06-22 16:34:47','2017-06-22 20:34:47','2017-06-22 20:34:47');
+INSERT INTO `proveedores` (`razon_social`,`nit`,`telefono`,`celular`,`email`,`fax`,`direccion`,`registro`,`created_at`,`updated_at`) VALUES ('Importadora TexBol ','12452456633','64-69874','78968523','texbol@gmail.com','000','calle TexBol #7895','2017-06-22 16:53:19','2017-06-22 20:53:19','2017-06-22 20:53:19');
+INSERT INTO `proveedores` (`razon_social`,`nit`,`telefono`,`celular`,`email`,`fax`,`direccion`,`registro`,`created_at`,`updated_at`) VALUES ('Import Bol','69868658666','600-87964565','78969696','bol@gmail.com','0000','dir #789654','2017-06-22 16:54:49','2017-06-22 20:54:49','2017-06-22 20:59:09');
+INSERT INTO `proveedores` (`razon_social`,`nit`,`telefono`,`celular`,`email`,`fax`,`direccion`,`registro`,`created_at`,`updated_at`) VALUES ('Textil Chile','978465134','000-78665','78965441','texChile@gmail.com','796565','arica, calles arica #7896','2017-06-22 17:05:49','2017-06-22 21:05:49','2017-06-22 21:05:49');
+INSERT INTO `proveedores` (`razon_social`,`nit`,`telefono`,`celular`,`email`,`fax`,`direccion`,`registro`,`created_at`,`updated_at`) VALUES ('Facexco','6585','000-789682','77777777','facexco@gmail.com','00000','calle loa #785','2017-06-22 17:07:16','2017-06-22 21:07:16','2017-06-22 21:07:16');
+INSERT INTO `proveedores` (`razon_social`,`nit`,`telefono`,`celular`,`email`,`fax`,`direccion`,`registro`,`created_at`,`updated_at`) VALUES ('Telas del Rio','77789665','000-78965','88888888','delRio@gmail.com','00000','peru. calle bolivia #7893','2017-06-22 17:08:45','2017-06-22 21:08:45','2017-06-22 21:09:18');
+INSERT INTO `proveedores` (`razon_social`,`nit`,`telefono`,`celular`,`email`,`fax`,`direccion`,`registro`,`created_at`,`updated_at`) VALUES ('Hilaturas Aguilar','3131321312','64-00252','78787878','aguilar@gmail.com','8787878','calle calle #798797','2017-06-22 17:27:06','2017-06-22 21:27:06','2017-06-22 21:27:06');
+INSERT INTO `proveedores` (`razon_social`,`nit`,`telefono`,`celular`,`email`,`fax`,`direccion`,`registro`,`created_at`,`updated_at`) VALUES ('Distribuidora de Hilos','5555555','69-252532','54545454','email@gmail.com','545454','direccion calle #88888','2017-06-22 17:33:55','2017-06-22 21:33:55','2017-06-22 21:33:55');
+INSERT INTO `proveedores` (`razon_social`,`nit`,`telefono`,`celular`,`email`,`fax`,`direccion`,`registro`,`created_at`,`updated_at`) VALUES ('insumos Textiles SRL','2242424','96-2424242','878979879','insumos@gmail.com','3123131','S/N','2017-06-22 17:35:12','2017-06-22 21:35:12','2017-06-22 21:35:12');
+INSERT INTO `proveedores` (`razon_social`,`nit`,`telefono`,`celular`,`email`,`fax`,`direccion`,`registro`,`created_at`,`updated_at`) VALUES ('Insumos Telas','242424222','69-242424242','099898877','insumos2@gmail.com','22222','S/N','2017-06-22 17:36:21','2017-06-22 21:36:21','2017-06-22 21:36:21');
