@@ -45,10 +45,34 @@ class Articulo extends Model
     	return $this->belongsTo('App\Medida','medida_id','id');
     }
 
-    function scopeArticulo($query,$name){
+    function scopeArticulo($query,$name,$buscar){
         if(trim($name) != ''){
-            $query->where('nombre','like',"%$name%")
-            ->orWhere('codigo','like',"%$name%");
+            if($buscar==1) {
+                $query->where('nombre', 'like', "%$name%")
+                    ->orWhere('codigo', 'like', "%$name%");
+            }
+            else{
+                if($buscar==2){
+                    $id=CategoriaArticulo::categoria($name)->pluck('id');
+                    $query->whereIn('categoria_articulo_id',$id);
+                }
+                else{
+                    if($buscar==3){
+                        $id=Marca::marca($name)->pluck('id');
+                        $query->whereIn('marca_id',$id);
+                    }
+                    else{
+                        if($buscar==4){
+                            $id=Material::material($name)->pluck('id');
+                            $query->whereIn('material_id',$id);
+                        }
+                        else{
+                            $id=Medida::medida($name)->pluck('id');
+                            $query->whereIn('medida_id',$id);
+                        }
+                    }
+                }
+            }
         }
     }
     function  deleteOk(){

@@ -34,7 +34,7 @@ class AddArticuloRequest extends Request
             'precio1'=>'required|numeric',
             'precio2'=>'numeric',
             'precio3'=>'numeric',
-            'codigobarra'=>'max:45',
+            'codigobarra'=>'max:45|unique:articulos,codigobarra',
             'stock_min'=>'integer'
         ];
     }
