@@ -26,7 +26,7 @@ class ArticuloController extends Controller
         {
             $this->datos['brand'] = Tool::brand('Articulos',route('admin.articulo.index'),'Almacen');
             $this->datos['articulos'] = Articulo::with('categoria','marca','material','medida')
-                ->articulo($request->get('s'))
+                ->articulo($request->get('s'),$request->get('buscar'))
                 ->orderBy('estado','desc')
                 ->orderBy('nombre','asc')
                 ->paginate();

@@ -25,7 +25,7 @@ class AddArticuloRequest extends Request
     {
         return [
             'nombre' => 'required|unique:articulos,nombre|min:4',
-            'codigo'=>'required|min:4|max:45',
+            'codigo'=>'required|min:4|max:45|unique:articulos,codigo',
             'categoria_articulo_id' => 'integer|required',
             'marca_id'=>'integer|required',
             'material_id'=>'integer|required',
@@ -34,7 +34,7 @@ class AddArticuloRequest extends Request
             'precio1'=>'required|numeric',
             'precio2'=>'numeric',
             'precio3'=>'numeric',
-            'codigobarra'=>'max:45',
+            'codigobarra'=>'max:45|unique:articulos,codigobarra',
             'stock_min'=>'integer'
         ];
     }

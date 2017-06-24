@@ -25,7 +25,7 @@ class EditArticuloRequest extends Request
     {
         return [
             'nombre' => 'required|unique:articulos,nombre,'.$this->route()->getParameter('articulo').'|min:4',
-            'codigo'=>'required|min:4|max:45',
+            'codigo'=>'required|unique:articulos,codigo,'.$this->route()->getParameter('articulo').'|min:4|max:45',
             'categoria_articulo_id' => 'integer|required',
             'marca_id'=>'integer|required',
             'material_id'=>'integer|required',
@@ -34,7 +34,7 @@ class EditArticuloRequest extends Request
             'precio1'=>'required|numeric',
             'precio2'=>'numeric',
             'precio3'=>'numeric',
-            'codigobarra'=>'max:45',
+            'codigobarra'=>'max:45unique:articulos,codigobarra,'.$this->route()->getParameter('articulo'),
             'stock_min'=>'integer'
         ];
     }
