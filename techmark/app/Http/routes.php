@@ -28,7 +28,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
      * rutas agenda
      */
     Route::resource('agenda','AgendaController');
-   
+
 
     require __DIR__ . '/routes/diego.php';
     require __DIR__ . '/routes/liss.php';

@@ -18,11 +18,11 @@ class SucursalesController extends Controller
     {
 
         if(Auth::user()->can('allow-read')){
-            $this->datos['brand'] = Tool::brand('Rol ',route('admin.usuario.index'),'Usuarios & Roles');
+            $this->datos['brand'] = Tool::brand('Listado de Sucursales ',route('admin.sucursal.index'),'Sucursales');
             $this->datos['roles'] = Rol::name($request->get('s'))
                 ->orderBy('id','desc')
                 ->paginate();
-            return view('cpanel.admin.rol.list')->with($this->datos);
+            return view('cpanel.admin.sucursal.list')->with($this->datos);
         }
 
         \Session::flash('message','No tienes Permiso para visualizar informacion ');
@@ -38,7 +38,7 @@ class SucursalesController extends Controller
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Editar Rol',route('admin.rol.index'),'Usuarios & Roles');
+            $this->datos['brand'] = Tool::brand('Agregar Sucursal ',route('admin.sucursal.index'),'Sucursales');
             return view('cpanel.admin.rol.registro',$this->datos);
         }
         \Session::flash('message','No tienes Permisos para agregar registros ');
@@ -81,7 +81,7 @@ class SucursalesController extends Controller
     {
        // dd(User::find($id));
         if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Rol',route('admin.rol.index'),'Usuarios & Roles');
+            $this->datos['brand'] = Tool::brand('Editar Sucursal ',route('admin.sucursal.index'),'Sucursales');
             $this->datos['rol'] = Rol::find($id);
             return view('cpanel.admin.rol.edit',$this->datos);
         }

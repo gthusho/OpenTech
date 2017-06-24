@@ -21,6 +21,10 @@
                         <li><a href="{{route('admin.rol.index')}}">Rol</a></li>
                     </ul>
                 </li>
+                <li class="has_sub">
+                    <a href="{{route('admin.sucursal.index')}}" class="waves-effect"><i class=" ti-direction"></i> <span> Sucursales </span> </a>
+
+                </li>
                 @include('theme.ubold.sidebar.liss')
                 @include('theme.ubold.sidebar.diego')
                 {{--
