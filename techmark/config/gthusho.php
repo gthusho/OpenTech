@@ -11,21 +11,20 @@ return [
         'Otros'=>'Otros'],
 
     'colores_categorias_agenda'=>[
-        'Llamada telefonica'=>'info',
+        'Llamada telefonica'=>'success',
         'Reunión'=>'primary',
         'Tarea a realizar'=>'danger',
-        'Personal'=>'success',
+        'Personal'=>'inverse',
         'Visita'=>'purple',
         'Otros'=>'warning'],
 
     'colores_calendario'=>[
-        '0'=>'bg-danger',
-        '1'=>'bg-success',
-        '2'=>'bg-purple',
-        '3'=>'bg-primary',
-        '4'=>'bg-pink',
-        '5'=>'bg-info',
-        '6'=>'bg-warning'],
+        'Llamada telefonica'=>'bg-success',
+        'Reunión'=>'bg-primary',
+        'Tarea a realizar'=>'bg-danger',
+        'Personal'=>'bg-inverse',
+        'Visita'=>'bg-purple',
+        'Otros'=>'bg-warning'],
 
 
     'estados_visita' => [

@@ -148,5 +148,10 @@ namespace App;
 
          }
      }
-
+     public static function getArrayDate($fecha){
+         $vector = $fin = explode(' ',$fecha);
+         $fechaInicio = implode('-', array_reverse(explode('/', $vector[0])));
+         $fechafinal = implode('-', array_reverse(explode('/', $vector[2])));
+         return [$fechaInicio,$fechafinal];
+     }
  }
