@@ -30,10 +30,10 @@
 
     <div class="form-group col-lg-5">
         {!! Form::label('Categoria  Articulo (*) ')!!}
-        {!! Form::select('categoria_articulo_id',$categorias,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione una Categoria'])!!}
+        {!! Form::select('categoria_articulo_id',$categorias,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione una Categoria','id'=>'categoria'])!!}
     </div >
     <div class="form-group col-lg-1">
-        <span class="btn btn-primary waves-effect waves-light m-t-30 btn-sm" ><i class="icon-plus"></i> Categoria</span>
+        <span class="btn btn-primary waves-effect waves-light m-t-30 btn-sm" id="addCategoria" ><i class="icon-plus"></i> Categoria</span>
     </div >
     <div class="form-group col-lg-5">
         {!! Form::label('Marca  Articulo (*)')!!}
@@ -66,7 +66,7 @@
 
     <div class="form-group col-lg-6">
         {!! Form::label('Stock Minimo Necesario del Articulo (*) ')!!}
-        {!! Form::number('stock_min',null,['class'=>'form-control','required'])!!}
+        {!! Form::text('stock_min',null,['class'=>'form-control autonumber','required','data-a-sep'=>"." ,'data-a-dec'=>","])!!}
     </div>
     <div class="form-group col-lg-4">
         {!! Form::label('Precio #1  (*) ')!!}

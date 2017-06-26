@@ -7,45 +7,6 @@
     $(".select2").select2();
     $('.selectpicker').selectpicker();
     //validation
-    $(document).ready(function(){
-
-
-        $("#form-articulo").attr('autocomplete', 'off');
-        $('#articulo').bind("input",function(){
-            @if(Request::segment(3)!='edit')
-            var url = '{{url('validation/username')}}';
-            @else
-            var _id = '{{$art->id}}';
-            var url = '{{url('validation/usernameUp')}}';
-            @endif
-            var user = $('#articulo').val();
-            $.ajax({
-                url: url,
-                type: 'POST',
-                @if(Request::segment(3)!='edit')
-                data: { username: user} ,
-                @else
-                 data: { username: user,id:_id} ,
-                @endif
-                success: function (json) {
-                    $('#Message').removeClass(' text-danger');
-                    $('#Message').addClass(' text-success')
-                    $('#Message').html(json);
-                },
-                error: function (data) {
-                    var errors = '';
-                    for(datos in data.responseJSON){
-                        errors += data.responseJSON[datos] + '<br>';
-                    }
-                    $('#Message').removeClass(' text-success');
-                    $('#Message').addClass(' text-danger');
-                    $('#Message').show().html(errors); //this is my div with messages
-                }
-            });
-        });
-
-
-    });
 
 </script>
 @if(Request::segment(4)=='edit')
@@ -88,4 +49,55 @@
     jQuery(function($) {
         $('.autonumber').autoNumeric('init');
     });
+</script>
+
+<script>
+    $(window).load(function(){
+
+        $('#addCategoria').click(function () {
+            $('#modal_categoria').modal('show');
+        });
+        $('#categoria_registrar').click(function () {
+            $(this).attr("disabled", true);
+            var url = "{{route('admin.categoria.store')}}";
+            var nombre = $('#categoria_nombre').val();
+            var combo = $('#categoria');
+            var input= $('#categoria_nombre');
+            registrar(url,nombre,combo,this,input);
+        });
+
+
+
+
+        function registrar(_url,_name,_combo,_boton,_input) {
+            $.ajax({
+                url: _url,
+                type: 'POST',
+                data: { nombre: _name} ,
+                success: function (json) {
+                    $('#mAlert').html("");
+                    $('#mAlert').removeClass('alert alert-danger');
+                    $(_combo).html('');
+                    $(_combo).html(json);
+                    $(_combo).trigger('change');
+                    $('#mAlert').addClass('alert alert-success');
+                    $('#mAlert').html("Registro Exitoso");
+                    $(_input).val('');
+                },
+                error: function (data) {
+                    var errors = '';
+                    for(datos in data.responseJSON){
+                        errors += data.responseJSON[datos] + '<br>';
+                    }
+                    $('#mAlert').addClass('alert alert-danger');
+                    $('#mAlert').html(errors);
+                    $(_boton).removeAttr("disabled");
+
+                }
+            });
+
+        }
+
+    });
+
 </script>

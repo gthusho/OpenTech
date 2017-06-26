@@ -20,10 +20,9 @@ class CategoriaArticuloController extends Controller
     {
 
         if(Auth::user()->can('allow-read')){
-            $this->datos['brand'] = Tool::brand('Categorias Articulos',route('admin.categoria.index'),'Almacen');
+            $this->datos['brand'] = Tool::brand('Categorias Articulos',route('admin.categoria.index'),'Categorias Articulos');
             $this->datos['categorias'] = CategoriaArticulo::categoria($request->get('s'))
-                ->orderBy('estado','desc')
-                ->orderBy('nombre','asc')
+                ->orderBy('id','desc')
                 ->paginate();
             return view('cpanel.admin.categoria.list')->with($this->datos);
         }else{
@@ -55,9 +54,24 @@ class CategoriaArticuloController extends Controller
     public function store(AddCategoriaArticuloRequest $request)
     {
 
+
         if(Auth::user()->can('allow-insert')){
-            CategoriaArticulo::create($request->all());
-            return redirect()->route('admin.categoria.index');
+            if($request->ajax()){
+                $combo = "";
+                foreach (CategoriaArticulo::where('estado',1)->get() as $row)
+                {
+                    $combo.="<option value='{$row->id}'>{$row->nombre}</option>";
+                }
+                $categoria = new  CategoriaArticulo($request->all());
+                $categoria->save();
+                $combo.="<option value='{$categoria->id}' selected>{$categoria->nombre}</option>";
+                echo $combo;
+                exit;
+            }else{
+                CategoriaArticulo::create($request->all());
+                return redirect()->route('admin.categoria.index');
+            }
+
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
             return redirect('dashboard');
@@ -99,6 +113,11 @@ class CategoriaArticuloController extends Controller
 
     public function update(EditCategoriaArticuloRequest $request, $id)
     {
+
+
+
+
+
 
         if(Auth::user()->can('allow-edit')){
             $categoria = CategoriaArticulo::find($id);
