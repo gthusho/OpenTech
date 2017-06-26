@@ -38,6 +38,19 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
     require __DIR__ . '/routes/diego.php';
     require __DIR__ . '/routes/liss.php';
 });
+
+Route::group(['prefix'=>'reportes','middleware'=>['auth'],'namespace'=>'Report'], function(){
+
+    // todo usuarios
+    Route::get('usuarios','UserReport@index');
+    Route::get('usuarios/excel','UserReport@excel');
+
+    require __DIR__ . '/routes/reportdiego.php';
+    require __DIR__ . '/routes/reportliss.php';
+});
+
+
+
 Route::group(['prefix'=>'sucursal','middleware'=>['auth'],'namespace'=>'BranchOffice'], function(){
 
 });

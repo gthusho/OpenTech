@@ -154,4 +154,7 @@ namespace App;
          $fechafinal = implode('-', array_reverse(explode('/', $vector[2])));
          return [$fechaInicio,$fechafinal];
      }
+     public static function getDataReportQuery(){
+        return str_replace(\Request::url(), '', \Request::fullUrl());
+     }
  }
