@@ -23,9 +23,8 @@
                 {!! Form::close() !!}
             </div>
         </div>
-
     </div>
-
+    @include('cpanel.admin.articulo.partials.modals')
 @endsection
 
 @section('css')

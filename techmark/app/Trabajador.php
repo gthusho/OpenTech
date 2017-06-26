@@ -20,4 +20,5 @@ class Trabajador extends Model
         'sueldo','usuario_id','sucursal_id'
     ];
 
+
 }

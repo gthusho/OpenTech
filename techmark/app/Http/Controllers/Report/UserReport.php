@@ -15,7 +15,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class UserReport extends Controller
 {
     private $datos = null;
-    private $horientacion = 'p';
+    private $horientacion = 'p';//'l';
     private $titulo = "REPORTE USUARIOS";
     private $request =  null;
     function __construct(Request $request)
@@ -36,7 +36,7 @@ class UserReport extends Controller
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
             $pdf->SetFont('helvetica', '', 10);
             $pdf->writeHTML(view('cpanel.report.usuarios.tabla',$this->datos)->render(), true, false, true, false, '');
-            $pdf->Output('usuarios.pdf', 'I');
+            $pdf->Output('usuarios.pdf', 'i');
         }else{
         \Session::flash('message','No tienes Permiso para visualizar informacion ');
         return redirect('dashboard');
@@ -46,7 +46,7 @@ class UserReport extends Controller
         $this->request = $request;
         if(Auth::user()->can('allow-read')) {
             Excel::create($this->titulo, function ($excel) {
-                $excel->sheet('Contactos By Gthusho', function ($sheet) {
+                $excel->sheet('usuario', function ($sheet) {
                     $sheet->row(1, array($this->titulo));
                     $sheet->loadView('cpanel.report.usuarios.tabla', $this->datos);
                 });

@@ -80,21 +80,12 @@
 </script>
 @endif
 
-<script>
+<script src="{{url('assets/plugins/bootstrap-inputmask/bootstrap-inputmask.min.js')}}" type="text/javascript"></script>
+<script src="{{url('assets/plugins/autoNumeric/autoNumeric.js')}}" type="text/javascript"></script>
 
-    $('#cargo').on('change', function() {
-        if( this.value =="Afiliado" || this.value =="2" ){
-            $('#empresa').prop("disabled", false);
-        }else{
-            $('#empresa').prop("disabled", true);
-        }
-    });
-    $(document).ready(function(){
-        var x = $("#cargo").val();
-        if( x =="Afiliado" || x =="2" ){
-            $('#empresa').prop("disabled", false);
-        }else{
-            $('#empresa').prop("disabled", true);
-        }
+<script type="text/javascript">
+
+    jQuery(function($) {
+        $('.autonumber').autoNumeric('init');
     });
 </script>

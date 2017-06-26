@@ -9,5 +9,6 @@ return [
      * ruta archivos agendas
      */
     'archivos'=>'system/archivos/',
+    'trabajadores'=>'system/trabajadores/',
 
 ];
