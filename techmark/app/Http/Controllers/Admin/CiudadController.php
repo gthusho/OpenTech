@@ -8,7 +8,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\AddCiudadRequest;
 use App\Http\Requests\CiudadRequest;
+use App\Http\Requests\EditCiudadRequest;
 use Illuminate\Http\Request;
 use App\Tool;
 use Illuminate\Support\Facades\Auth;
@@ -50,7 +52,7 @@ class CiudadController extends Controller
         \Session::flash('message','No tienes Permisos para agregar registros ');
         return redirect('dashboard');
     }
-    public function store(CiudadRequest $request)
+    public function store(AddCiudadRequest $request)
     {
         if(Auth::user()->can('allow-insert')){
             $ciudad = new  Ciudad($request->all());
@@ -79,7 +81,7 @@ class CiudadController extends Controller
         }
 
     }
-    public function update(CiudadRequest $request, $id)
+    public function update(EditCiudadRequest $request, $id)
     {
         if(Auth::user()->can('allow-edit')){
             $ciudad = Ciudad::find($id);

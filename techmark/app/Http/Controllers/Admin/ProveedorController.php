@@ -10,7 +10,9 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddProveedorRequest;
 use App\Http\Requests\ClienteRequest;
+use App\Http\Requests\EditProveedorRequest;
 use App\Http\Requests\ProveedorRequest;
 use App\Proveedor;
 use Illuminate\Http\Request;
@@ -52,7 +54,7 @@ class ProveedorController extends Controller
         \Session::flash('message','No tienes Permisos para agregar registros ');
         return redirect('dashboard');
     }
-    public function store(ProveedorRequest $request)
+    public function store(AddProveedorRequest $request)
     {
         if(Auth::user()->can('allow-insert')){
             $proveedor = new  Proveedor($request->all());
@@ -81,7 +83,7 @@ class ProveedorController extends Controller
         }
 
     }
-    public function update(ProveedorRequest $request, $id)
+    public function update(EditProveedorRequest $request, $id)
     {
         if(Auth::user()->can('allow-edit')){
             $proveedor = Proveedor::find($id);

@@ -10,11 +10,11 @@
     {!! Form::text('nombre',null,['class'=>'form-control','required'])!!}
 </div>
 
-<div class="form-group col-lg-12">
+<div class="form-group col-lg-6">
     {!! Form::label('Direccion (*)')!!}
     {!! Form::text('direccion',null,['class'=>'form-control','required'])!!}
 </div>
-<div class="form-group col-lg-12">
+<div class="form-group col-lg-6">
     {!! Form::label('Ciudad (*) ')!!}
     {!! Form::select('ciudad_id',$ciudades,null,['class'=>'form-control select2','required','placeholder'=>'Ciudad'])!!}
 </div>

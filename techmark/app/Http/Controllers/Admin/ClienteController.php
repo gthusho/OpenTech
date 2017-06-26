@@ -11,7 +11,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Clientes;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddClienteRequest;
 use App\Http\Requests\ClienteRequest;
+use App\Http\Requests\EditCiudadRequest;
 use Illuminate\Http\Request;
 use App\Tool;
 use Illuminate\Support\Facades\Auth;
@@ -51,7 +53,7 @@ class ClienteController extends Controller
         \Session::flash('message','No tienes Permisos para agregar registros ');
         return redirect('dashboard');
     }
-    public function store(ClienteRequest $request)
+    public function store(AddClienteRequest $request)
     {
         if(Auth::user()->can('allow-insert')){
             $cliente = new  Clientes($request->all());
@@ -80,7 +82,7 @@ class ClienteController extends Controller
         }
 
     }
-    public function update(ClienteRequest $request, $id)
+    public function update(EditCiudadRequest $request, $id)
     {
         if(Auth::user()->can('allow-edit')){
             $cliente = Clientes::find($id);

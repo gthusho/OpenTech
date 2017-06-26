@@ -19,5 +19,27 @@ class Trabajador extends Model
         'email','fecha_ingreso','cargo','foto','ci','estado','referencia','tel_referencia',
         'sueldo','usuario_id','sucursal_id'
     ];
-
+    function scopeName($query,$name){
+        if(trim($name) != ''){
+            $query->where('nombre','like',"%$name%")
+                ->orwhere('ci','like',"%$name%");
+        }
+    }
+    function sucursal(){
+        return $this->belongsTo('App\Sucursal','sucursal_id','id');
+    }
+    function activo(){
+        switch ($this->estado){
+            case '1':{
+                return ['default','Activo'];
+            }
+            case '0' :{
+                return ['danger','Inactivo'];
+            }
+            default: return ['inverse','error'];
+        }
+    }
+    function usuario(){
+        return $this->belongsTo('App\User','usuario_id','id');
+    }
 }
