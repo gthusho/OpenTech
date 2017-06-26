@@ -3,13 +3,13 @@
  * Created by PhpStorm.
  * User: LisCL
  * Date: 22/06/2017
- * Time: 04:13 PM
+ * Time: 02:47 PM
  */
 
 namespace App\Http\Requests;
 
 
-class ProveedorRequest extends Request
+class AddCiudadRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.

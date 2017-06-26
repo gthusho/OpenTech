@@ -4,6 +4,8 @@
     */
 Route::resource('cliente','ClienteController');
 Route::resource('proveedor','ProveedorController');
+Route::resource('trabajador','TrabajadorController');
+
 /*
  * rutas Almacen y ciudades
  */

@@ -3,13 +3,13 @@
  * Created by PhpStorm.
  * User: LisCL
  * Date: 22/06/2017
- * Time: 02:48 PM
+ * Time: 04:13 PM
  */
 
 namespace App\Http\Requests;
 
 
-class AlmacenRequest extends Request
+class AddTrabajadorRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
