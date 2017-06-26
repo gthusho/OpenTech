@@ -128,25 +128,7 @@ namespace App;
          }
          return $text;
      }
-     public static function getRotulo(){
-         $x = Enviados::where(\DB::raw("month(fecha)"),date("m"))->count();
-         $last = Enviados::where(\DB::raw("month(fecha)"),date("m"))->max('index');
-         if($x>$last)
-            return "CAINCO-CH(".($x+1).") ".date("m")."/".date('Y');
-         else
-             return "CAINCO-CH(".($last+1).") ".date("m")."/".date('Y');
-     }
-     public static function getRotuloIndex(){
-         $x = Enviados::where(\DB::raw("month(fecha)"),date("m"))->count();
-         $last = Enviados::where(\DB::raw("month(fecha)"),date("m"))->max('index');
-         if($x>$last)
-             return $x+1;
-         else
-             return $last+1;
-     }
-     public static function setRotulo($index,$fecha){
-         return "CAINCO-CH(".$index.") ".date("m",strtotime($fecha))."/".date('Y',strtotime($fecha));
-     }
+
      public static function convertMoney($money){
          return number_format ( $money , 2 , "." , "," ).' Bs.';
      }
@@ -154,6 +136,17 @@ namespace App;
          $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
          return $meses[$mes-1];
      }
+     public static function activo($estado){
+         switch ($estado){
+             case '1':{
+                 return ['default','Activo'];
+             }
+             case '0' :{
+                 return ['danger','Inactivo'];
+             }
+             default: return ['inverse','error'];
 
+         }
+     }
 
  }

@@ -119,7 +119,7 @@ class RolController extends Controller
             $rol = Rol::find($id);
             \Session::flash('user-dead',$rol->nombre);
             if(!$rol->deleteOk()){
-                $rol->Activo=0;
+                $rol->estado=0;
                 $rol->save();
                 $mensaje = 'El Rol  Tiene algunas Transacciones Registradas.. Imposible Eliminar. Se Inhabilito  ';
             }

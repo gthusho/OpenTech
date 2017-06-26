@@ -1,5 +1,4 @@
 <?php
-Route::resource('sucursal','SucursalesController');
 
 Route::resource('categoria','CategoriaArticuloController');
 Route::resource('marca','MarcaController');

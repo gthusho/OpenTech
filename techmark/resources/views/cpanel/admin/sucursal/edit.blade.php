@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card-box">
                 <div class="pull-right">
-                    {!! Form::open(['route'=>['admin.usuario.destroy',$user->id],'method'=>'delete','id'=>'form-delete']) !!}
+                    {!! Form::open(['route'=>['admin.sucursal.destroy',$sucursal->id],'method'=>'delete','id'=>'form-delete']) !!}
                     <a class="btn btn-danger" id="btn-delete"> <i class="fa fa-trash"></i> Eliminar</a>
                     {!! Form::close() !!}
                 </div>
@@ -15,8 +15,8 @@
                 </p>
 
                 @include('cpanel.partials.errors')
-                {!! Form::model($user,['route'=>['admin.usuario.update',$user->id],'method'=>'PUT','files'=>true,'id'=>'form-usuario']) !!}
-                    @include('cpanel.admin.usuario.partials.fields')
+                {!! Form::model($sucursal,['route'=>['admin.sucursal.update',$sucursal->id],'method'=>'PUT','files'=>true,'id'=>'form-usuario']) !!}
+                    @include('cpanel.admin.sucursal.partials.fields')
                     <div class="form-group text-right m-b-0">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">
                             Actualizar
@@ -32,8 +32,8 @@
 @endsection
 
 @section('css')
-    @include('cpanel.admin.usuario.addons.css')
+    @include('cpanel.admin.sucursal.addons.css')
 @endsection
 @section('js')
-    @include('cpanel.admin.usuario.addons.js')
+    @include('cpanel.admin.sucursal.addons.js')
 @endsection

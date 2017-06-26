@@ -2,23 +2,27 @@
     <thead>
     <tr>
         <th>ESTADO</th>
-        <th>NOMBRE USUARIO</th>
-        <th>ROL</th>
-        <th>NOMBRE COMPLETO</th>
+        <th>NOMBRE SUCURSAL</th>
+        <th>CIUDAD</th>
         <th>TELEFONO / CELULAR</th>
         <th>DIRECCION</th>
+        <th>ALMACENES ASIGNADOS</th>
         <th>ACCIONES</th>
     </tr>
     </thead>
     <tbody>
-    @foreach($usuarios as $row)
+    @foreach($sucursales as $row)
         <tr>
-            <td><span class="label label-{{$row->activo()[0]}}">{{$row->activo()[1]}}</span></td>
+            <td><span class="label label-{{\App\Tool::activo($row->estado)[0]}}">{{\App\Tool::activo($row->estado)[1]}}</span></td>
             <td >
-                {{($row->username)}}
+                {{($row->nombre)}}
+                <br>
+                <span class="text-primary">NIT: {{($row->nit)}}</span>
             </td>
-            <td>{{$row->rol->nombre}}</td>
-            <td>{{$row->nombre}}</td>
+            <td>
+                {{$row->ciudad->nombre}}
+
+            </td>
             <td>
                 <i class=" icon-phone"></i> {{$row->telefono}}
                 <br>
@@ -26,7 +30,14 @@
             </td>
             <td>{{$row->direccion}}</td>
             <td>
-                <a href="{{route('admin.usuario.edit',$row->id)}}"><i class=" icon-pencil"></i> Editar</a>
+                <ul class="list-unstyled">
+                @foreach($row->depositos as $data)
+                    <li><h5 class="text-dark">{{$data->almacen->nombre}}</h5></li>
+                @endforeach
+                </ul>
+            </td>
+            <td>
+                <a href="{{route('admin.sucursal.edit',$row->id)}}"><i class=" icon-pencil"></i> Editar</a>
             </td>
         </tr>
     @endforeach

@@ -9,8 +9,8 @@
                     * Los campos con (*) son obligatorios
                 </p>
                 @include('cpanel.partials.errors')
-                {!! Form::open(['route'=>'admin.usuario.store','method'=>'POST','files'=>true,'id'=>'form-usuario']) !!}
-                    @include('cpanel.admin.usuario.partials.fields')
+                {!! Form::open(['route'=>'admin.sucursal.store','method'=>'POST','files'=>true,'id'=>'form-sucursal']) !!}
+                    @include('cpanel.admin.sucursal.partials.fields')
                     <div class="form-group text-right m-b-0">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">
                             Registrar
@@ -29,8 +29,8 @@
 @endsection
 
 @section('css')
-    @include('cpanel.admin.usuario.addons.css')
+    @include('cpanel.admin.sucursal.addons.css')
 @endsection
 @section('js')
-    @include('cpanel.admin.usuario.addons.js')
+    @include('cpanel.admin.sucursal.addons.js')
 @endsection

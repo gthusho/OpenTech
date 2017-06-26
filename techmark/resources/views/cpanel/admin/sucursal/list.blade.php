@@ -3,14 +3,14 @@
     @include('cpanel.partials.brand')
     <div class="row">
         <div class="col-sm-12">
-            @include('cpanel.admin.usuario.partials.report')
+            @include('cpanel.admin.sucursal.partials.report')
 
         </div>
     </div>
     <br>
     <div class="row">
       <div class="col-sm-12">
-          @include('cpanel.admin.usuario.partials.search')
+          @include('cpanel.admin.sucursal.partials.search')
       </div>
     </div>
     <div class="row">
@@ -18,7 +18,7 @@
             <div class="card-box">
                 <div class="table-rep-plugin">
                     <div class="table-responsive" data-pattern="priority-columns">
-                        @include('cpanel.admin.usuario.partials.table')
+                        @include('cpanel.admin.sucursal.partials.table')
                     </div>
 
                 </div>
@@ -29,7 +29,7 @@
 
     <div class="col-lg-12">
         <div class="pull-left">
-            {{$usuarios->appends(Request::only(['s']))->render()}}
+            {{$sucursales->appends(Request::only(['s']))->render()}}
         </div>
     </div>
 @endsection
@@ -44,7 +44,7 @@
         <script>
             $(window).load(function(){
                 swal({
-                    title: "{{Session::get('user-dead')}}",
+                    title: "{{Session::get('sucursal-dead')}}",
                     text: "{{Session::get('message')}}",
                     type: "info",
                     showCancelButton: false,

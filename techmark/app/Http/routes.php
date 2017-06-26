@@ -29,6 +29,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
      */
     Route::resource('agenda','AgendaController');
 
+    /*
+     * todo sucursal
+     */
+    Route::resource('sucursal','SucursalesController');
+    Route::get('getAlmacenes',['as' => 'almacenes_disponibles', 'uses' => 'SucursalesController@getAlmacenes']);
 
     require __DIR__ . '/routes/diego.php';
     require __DIR__ . '/routes/liss.php';
