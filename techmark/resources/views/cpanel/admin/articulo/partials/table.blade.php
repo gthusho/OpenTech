@@ -25,10 +25,10 @@
             <td>{{$row->marca->nombre}}</td>
             <td>{{$row->material->nombre}}</td>
             <td>{{$row->medida->nombre}}</td>
-            <td>{{$row->costo}}</td>
-            <td>{{$row->precio1}}</td>
-            <td>{{$row->precio2}}</td>
-            <td>{{$row->precio3}}</td>
+            <td>{{\App\Tool::convertMoney($row->costo)}}</td>
+            <td>{{\App\Tool::convertMoney($row->precio1)}}</td>
+            <td>{{\App\Tool::convertMoney($row->precio2)}}</td>
+            <td>{{\App\Tool::convertMoney($row->precio3)}}</td>
             <td>
                 <a href="{{route('admin.articulo.edit',$row->id)}}">Ver & Editar <i class="fa fa-edit"></i> </a>
             </td>
