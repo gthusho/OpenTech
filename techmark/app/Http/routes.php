@@ -10,7 +10,12 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('test',function (){
+        // first strip any formatting;
+        $n = str_replace(",","",'1,000,000.50');
 
+        echo $n;
+});
 Route::get('/', 'HomeController@index');
 Route::auth();
 

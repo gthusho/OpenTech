@@ -28,7 +28,36 @@ class Articulo extends Model
         'codigobarra',
         'stockmin'
     ];
+    public  function  setCostoAttribute($value){
+        if(!empty($value)){
+            $this->attributes['costo']=\str_replace(",","",$value);
+        }
 
+    }
+    public  function  setPrecio1Attribute($value){
+        if(!empty($value)){
+            $this->attributes['precio1']=\str_replace(",","",$value);
+        }
+
+    }
+    public  function  setPrecio2Attribute($value){
+        if(!empty($value)){
+            $this->attributes['precio2']=\str_replace(",","",$value);
+        }
+
+    }
+    public  function  setPrecio3Attribute($value){
+        if(!empty($value)){
+            $this->attributes['precio3']=\str_replace(",","",$value);
+        }
+
+    }
+    public  function  setStockminAttribute($value){
+        if(!empty($value)){
+            $this->attributes['stockmin']=\str_replace(",","",$value);
+        }
+
+    }
     function categoria(){
     	return $this->belongsTo('App\CategoriaArticulo','categoria_articulo_id','id');
     }

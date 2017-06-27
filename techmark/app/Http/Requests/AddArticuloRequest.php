@@ -30,12 +30,12 @@ class AddArticuloRequest extends Request
             'marca_id'=>'integer|required',
             'material_id'=>'integer|required',
             'medida_id'=>'integer|required',
-            'costo'=>'required|numeric',
-            'precio1'=>'required|numeric',
-            'precio2'=>'numeric',
-            'precio3'=>'numeric',
+            'costo'=>'required',
+            'precio1'=>'required',
+            'precio2'=>'required',
+            'precio3'=>'required',
             'codigobarra'=>'max:45|unique:articulos,codigobarra',
-            'stock_min'=>'integer'
+            'stock_min'=>'required'
         ];
     }
 }

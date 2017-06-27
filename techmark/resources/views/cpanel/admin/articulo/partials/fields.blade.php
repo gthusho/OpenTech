@@ -15,17 +15,19 @@
         </div>
     @endif
 
-
-
-    <div class="form-group col-lg-6">
-        {!! Form::label('Codigo Articulo (*) ')!!}
-        {!! Form::text('codigo',null,['class'=>'form-control','required'])!!}
-    </div>
-    <div class="form-group col-lg-6">
-        {!! Form::label('Codigo de Barras ')!!}
-        {!! Form::text('codigobarra',null,['class'=>'form-control'])!!}
-    </div>
 </div>
+    <div class="row">
+
+
+        <div class="form-group col-lg-6">
+            {!! Form::label('Codigo Articulo (*) ')!!}
+            {!! Form::text('codigo',null,['class'=>'form-control','required'])!!}
+        </div>
+        <div class="form-group col-lg-6">
+            {!! Form::label('Codigo de Barras ')!!}
+            {!! Form::text('codigobarra',null,['class'=>'form-control'])!!}
+        </div>
+    </div>
 <div class="row">
 
     <div class="form-group col-lg-5">
@@ -61,25 +63,25 @@
 <div class="row">
     <div class="form-group col-lg-6">
         {!! Form::label('Costo  Articulo (*)')!!}
-        {!! Form::text('costo',null,['class'=>'form-control autonumber','required','data-a-sign'=>"Bs. "])!!}
+        {!! Form::text('costo',null,['class'=>'form-control autonumber','required'])!!}
     </div>
 
     <div class="form-group col-lg-6">
         {!! Form::label('Stock Minimo Necesario del Articulo (*) ')!!}
-        {!! Form::text('stock_min',null,['class'=>'form-control autonumber','required','data-a-sep'=>"." ,'data-a-dec'=>","])!!}
+        {!! Form::text('stock_min',null,['class'=>'form-control autonumber','required','data-a-sep'=>"," ,'data-a-dec'=>"."])!!}
     </div>
     <div class="form-group col-lg-4">
         {!! Form::label('Precio #1  (*) ')!!}
-        {!! Form::text('precio1',null,['class'=>'form-control autonumber','required','data-a-sign'=>"Bs. "])!!}
+        {!! Form::text('precio1',null,['class'=>'form-control autonumber','required'])!!}
     </div>
 
     <div class="form-group col-lg-4">
         {!! Form::label('Precio #2  (*)')!!}
-        {!! Form::text('precio2',null,['class'=>'form-control autonumber','required','data-a-sign'=>"Bs. "])!!}
+        {!! Form::text('precio2',null,['class'=>'form-control autonumber','required'])!!}
     </div>
 
     <div class="form-group col-lg-4">
         {!! Form::label('Precio #3  (*)')!!}
-        {!! Form::text('precio3',null,['class'=>'form-control autonumber','required','data-a-sign'=>"Bs. "])!!}
+        {!! Form::text('precio3',null,['class'=>'form-control autonumber','required'])!!}
     </div>
 </div>

@@ -83,6 +83,7 @@
                     $('#mAlert').addClass('alert alert-success');
                     $('#mAlert').html("Registro Exitoso");
                     $(_input).val('');
+                    $(_boton).removeAttr("disabled");
                 },
                 error: function (data) {
                     var errors = '';

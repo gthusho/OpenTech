@@ -21,6 +21,7 @@ class EditArticuloRequest extends Request
      *
      * @return array
      */
+
     public function rules()
     {
         return [
@@ -30,12 +31,12 @@ class EditArticuloRequest extends Request
             'marca_id'=>'integer|required',
             'material_id'=>'integer|required',
             'medida_id'=>'integer|required',
-            'costo'=>'required|numeric',
-            'precio1'=>'required|numeric',
-            'precio2'=>'numeric',
-            'precio3'=>'numeric',
-            'codigobarra'=>'max:45unique:articulos,codigobarra,'.$this->route()->getParameter('articulo'),
-            'stock_min'=>'integer'
+            'costo'=>'required',
+            'precio1'=>'required',
+            'precio2'=>'required',
+            'precio3'=>'required',
+            'codigobarra'=>'unique:articulos,codigobarra,'.$this->route()->getParameter('articulo'),
+            'stock_min'=>'required'
         ];
     }
 }
