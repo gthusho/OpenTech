@@ -30,7 +30,7 @@
             <td>{{\App\Tool::convertMoney($row->precio2)}}</td>
             <td>{{\App\Tool::convertMoney($row->precio3)}}</td>
             <td>
-                <a href="{{route('admin.articulo.edit',$row->id)}}">Ver & Editar <i class="fa fa-edit"></i> </a>
+                <a href="{{route('admin.articulo.edit',$row->id)}}"> <i class=" icon-pencil"></i> Editar </a>
             </td>
         </tr>
     @endforeach
