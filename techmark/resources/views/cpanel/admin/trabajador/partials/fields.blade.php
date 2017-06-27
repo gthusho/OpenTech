@@ -1,9 +1,3 @@
-@if(Request::segment(4)=='edit')
-    <div class="form-group col-lg-12" >
-        {!! Form::label('Estado del Trabajaor (*) ')!!}
-        {!! Form::select('estado',[1=>'Activo',0=>'Inactiva'],null,['class'=>'selectpicker','required'])!!}
-    </div>
-@endif
 <div class="row">
     <div class="col-lg-6">
         <div class="card-box">
@@ -12,6 +6,12 @@
                 * Los campos con (*) son obligatorios
             </p>
             <div class="row">
+                @if(Request::segment(4)=='edit')
+                    <div class="form-group col-lg-12" >
+                        {!! Form::label('Estado de la Cuenta (*) ')!!}
+                        {!! Form::select('estado',['1'=>'Activa','0'=>'Inhabilitado'],null,['class'=>'selectpicker','required'])!!}
+                    </div>
+                @endif
                 <div class="form-group col-lg-12">
                     {!! Form::label('Nombre Trabajador (*) ')!!}
                     {!! Form::text('nombre',null,['class'=>'form-control','required'])!!}
@@ -29,7 +29,7 @@
                     {!! Form::text('telefono',null,['class'=>'form-control','required'])!!}
                 </div>
                 <div class="form-group col-lg-6">
-                    {!! Form::label('Email (*)')!!}
+                    {!! Form::label('Email')!!}
                     {!! Form::text('email',null,['class'=>'form-control','required'])!!}
                 </div>
 
@@ -60,9 +60,15 @@
                     {!! Form::label('Sueldo (*)')!!}
                     {!! Form::text('sueldo',null,['class'=>'form-control','required'])!!}
                 </div>
+
                 <div class="form-group col-lg-6">
-                    {!! Form::label('Fecha Ingreso (*)')!!}
-                    {!! Form::text('fecha_ingreso',null,['class'=>'form-control'])!!}
+                    {!! Form::label('Fecha de Ingreso * ')!!}
+
+                    <div class="input-group">
+                        {!! Form::text('fecha_ingreso',null,['class'=>'form-control','required','autocomplete'=>"off",'id'=>"datepicker-autoclose",'data-date-format'=>'yyyy/mm/dd'])!!}
+                        <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
+                    </div><!-- input-group -->
+
                 </div>
                 <div class="form-group col-lg-6">
                     {!! Form::label('Referencia (*)')!!}
