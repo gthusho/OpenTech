@@ -23,6 +23,10 @@ class Material extends Model
     	return $this->hasMany('App\Articulo','id','material_id');
     }
 
+    function detprodbase(){
+        return $this->hasMany('App\DetalleProductoBase','id','material_id');
+    }
+
     function scopeMaterial($query,$name){
         if(trim($name) != ''){
             $query->where('nombre','like',"%$name%")
@@ -31,6 +35,7 @@ class Material extends Model
     }
     function  deleteOk(){
         $num = Articulo::where('material_id',$this->id)->count();
+        $num += DetalleProductoBase::where('material_id',$this->id)->count();
         if($num>0)
             return false;
         else
