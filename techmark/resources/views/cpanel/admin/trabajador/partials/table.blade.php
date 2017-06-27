@@ -17,6 +17,7 @@
     @foreach($trabajadores as $row)
         <tr>
             <td><span class="label label-{{$row->activo()[0]}}">{{$row->activo()[1]}}</span></td>
+
             <td>
                 {{($row->nombre)}}
                 <br><b class="text-primary">CI:{{$row->ci}}</b>

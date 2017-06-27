@@ -1,15 +1,15 @@
 
     <table  cellspacing="5"  >
         <tr>
-            <th width="5%" ><strong>#</strong></th>
-            <th width="20%" ><strong>PROVEEDOR</strong></th>
+            <th width="2%" ><strong>#</strong></th>
+            <th width="15%" ><strong>PROVEEDOR</strong></th>
             <th width="10%" ><strong>NIT</strong></th>
             <th width="10%"><strong>TELEFONO</strong></th>
             <th width="10%"><strong>CELULAR</strong></th>
             <th width="15%"><strong>EMAIL</strong></th>
-            <th width="10%"><strong>FAX</strong></th>
+            <th width="8%"><strong>FAX</strong></th>
             <th width="15%"><strong>DIRECCION</strong></th>
-            <th width="20%"><strong>REGISTRO</strong></th>
+            <th width="15%"><strong>REGISTRO</strong></th>
         </tr>
         <?php
         $i=1;

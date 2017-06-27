@@ -29,7 +29,8 @@ class AddCiudadRequest extends Request
     public function rules()
     {
         return [
-
+            'nombre' => 'required|unique:ciudades,nombre|min:4',
+            'departamento'=>'required|min:4',
         ];
     }
 }

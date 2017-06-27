@@ -29,7 +29,9 @@ class AddAlmacenRequest extends Request
     public function rules()
     {
         return [
-
+            'nombre' => 'required|unique:almacenes,nombre|min:4',
+            'direccion'=>'required|min:4',
+            'ciudad_id'=>'required'
         ];
     }
 }

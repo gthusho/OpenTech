@@ -29,7 +29,16 @@ class EditTrabajadorRequest extends Request
     public function rules()
     {
         return [
-
+            'nombre' => 'required|unique:trabajadores,nombre,'.$this->route()->getParameter('trabajador').'|min:4',
+            'ci'=>'required|unique:trabajadores,ci,'.$this->route()->getParameter('trabajador').'|min:6|max:15',
+            'direccion' => 'max:150|required',
+            'telefono'=>'integer|required',
+            'fecha_ingreso'=>'required',
+            'cargo'=>'required',
+            'referencia'=>'required',
+            'sueldo'=>'required',
+            'tel_referencia'=>'integer|required',
+            'sucursal'=>'required'
         ];
     }
 }

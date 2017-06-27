@@ -29,7 +29,8 @@ class EditCiudadRequest extends Request
     public function rules()
     {
         return [
-
+            'nombre' => 'required|unique:ciudades,nombre,'.$this->route()->getParameter('ciudad').'|min:4',
+            'departamento'=>'required|min:4',
         ];
     }
 }
