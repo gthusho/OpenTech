@@ -56,8 +56,20 @@ class MedidaController extends Controller
     {
 
         if(Auth::user()->can('allow-insert')){
-            Medida::create($request->all());
-            return redirect()->route('admin.medida.index');
+            if($request->ajax()) {
+                $combo = "";
+                foreach (Medida::where('estado', 1)->get() as $row) {
+                    $combo .= "<option value='{$row->id}'>{$row->nombre}</option>";
+                }
+                $medida = new  Medida($request->all());
+                $medida->save();
+                $combo .= "<option value='{$medida->id}' selected>{$medida->nombre}</option>";
+                echo $combo;
+                exit;
+            }else {
+                Medida::create($request->all());
+                return redirect()->route('admin.medida.index');
+            }
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
             return redirect('dashboard');

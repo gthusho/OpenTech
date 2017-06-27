@@ -26,23 +26,30 @@ class ArticuloController extends Controller
         {
             $this->datos['brand'] = Tool::brand('Articulos',route('admin.articulo.index'),'Almacen');
             $this->datos['articulos'] = Articulo::with('categoria','marca','material','medida')
-                ->articulo($request->get('s'),$request->get('buscar'))
-                ->orderBy('estado','desc')
+                ->marca($request->get('marca'))
+                ->medida($request->get('medida'))
+                ->material($request->get('material'))
+                ->categoria($request->get('categoria'))
+                ->tipo($request->get('type'),$request->get('s'))
                 ->orderBy('nombre','asc')
                 ->paginate();
+            $this->genDatos();
             return view('cpanel.admin.articulo.list')->with($this->datos);
         }
         \Session::flash('message','No tienes Permiso para visualizar informacion ');
         return redirect('dashboard');
     }
 
+    function genDatos(){
+        $this->datos['categorias']=CategoriaArticulo::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+        $this->datos['marcas']=Marca::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+        $this->datos['materiales']=Material::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+        $this->datos['medidas']=Medida::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+    }
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['categorias']=CategoriaArticulo::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
-            $this->datos['marcas']=Marca::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
-            $this->datos['materiales']=Material::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
-            $this->datos['medidas']=Medida::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+            $this->genDatos();
             $this->datos['brand'] = Tool::brand('Agragar Nuevo Articulo',route('admin.articulo.index'),'Articulos');
             return view('cpanel.admin.articulo.registro',$this->datos);
         }else{
@@ -70,10 +77,7 @@ class ArticuloController extends Controller
     public function edit($id)
     {
         if(Auth::user()->can('allow-edit')){
-            $this->datos['categorias']=CategoriaArticulo::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
-            $this->datos['marcas']=Marca::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
-            $this->datos['materiales']=Material::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
-            $this->datos['medidas']=Medida::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+            $this->genDatos();
             $this->datos['brand'] = Tool::brand('Editar Articulo',route('admin.articulo.index'),'Articulos');
             $this->datos['articulo'] = Articulo::find($id);
             return view('cpanel.admin.articulo.edit',$this->datos);

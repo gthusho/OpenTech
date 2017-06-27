@@ -34,11 +34,21 @@
     </div>
 @endsection
 @section('css')
+    <link href="{{url('assets/plugins/bootstrap-select/css/bootstrap-select.min.css')}}" rel="stylesheet" />
+    <link href="{{url('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
     @if(Session::has('message'))
         <link href="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.css')}}" rel="stylesheet" type="text/css">
     @endif
 @endsection
 @section('js')
+    <script src="{{url('assets/plugins/bootstrap-select/js/bootstrap-select.min.js')}}" type="text/javascript"></script>
+
+    <script src="{{url('assets/plugins/select2/js/select2.min.js')}}" type="text/javascript"></script>
+
+    <script>
+        $(".select2").select2();
+    </script>
+
     @if(Session::has('message'))
         <script src="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.min.js')}}"></script>
         <script>

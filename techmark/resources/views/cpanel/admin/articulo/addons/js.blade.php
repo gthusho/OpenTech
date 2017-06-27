@@ -53,7 +53,9 @@
 
 <script>
     $(window).load(function(){
-
+        /*
+        Todo para Categoria
+         */
         $('#addCategoria').click(function () {
             $('#modal_categoria').modal('show');
         });
@@ -65,23 +67,64 @@
             var input= $('#categoria_nombre');
             registrar(url,nombre,combo,this,input);
         });
-
-
-
-
+        /*
+        Todo para Material
+         */
+        $('#addMaterial').click(function () {
+            $('#modal_material').modal('show');
+        });
+        $('#material_registrar').click(function () {
+            $(this).attr("disabled", true);
+            var url = "{{route('admin.material.store')}}";
+            var nombre = $('#material_nombre').val();
+            var combo = $('#material');
+            var input= $('#material_nombre');
+            registrar(url,nombre,combo,this,input);
+        });
+        /*
+        todo para Marca
+        */
+        $('#addMarca').click(function () {
+            $('#modal_marca').modal('show');
+        });
+        $('#marca_registrar').click(function () {
+            $(this).attr("disabled", true);
+            var url = "{{route('admin.marca.store')}}";
+            var nombre = $('#marca_nombre').val();
+            var combo = $('#marca');
+            var input= $('#marca_nombre');
+            registrar(url,nombre,combo,this,input);
+        });
+        /*
+         todo para Medida
+         */
+        $('#addMedida').click(function () {
+            $('#modal_medida').modal('show');
+        });
+        $('#medida_registrar').click(function () {
+            $(this).attr("disabled", true);
+            var url = "{{route('admin.medida.store')}}";
+            var nombre = $('#medida_nombre').val();
+            var combo = $('#medida');
+            var input= $('#medida_nombre');
+            registrar(url,nombre,combo,this,input);
+        });
+        /*
+        Super Metodo ajax
+         */
         function registrar(_url,_name,_combo,_boton,_input) {
             $.ajax({
                 url: _url,
                 type: 'POST',
                 data: { nombre: _name} ,
                 success: function (json) {
-                    $('#mAlert').html("");
-                    $('#mAlert').removeClass('alert alert-danger');
+                    $('.mAlert').html("");
+                    $('.mAlert').removeClass('alert alert-danger');
                     $(_combo).html('');
                     $(_combo).html(json);
                     $(_combo).trigger('change');
-                    $('#mAlert').addClass('alert alert-success');
-                    $('#mAlert').html("Registro Exitoso");
+                    $('.mAlert').addClass('alert alert-success');
+                    $('.mAlert').html("Registro Exitoso");
                     $(_input).val('');
                     $(_boton).removeAttr("disabled");
                 },
@@ -90,8 +133,8 @@
                     for(datos in data.responseJSON){
                         errors += data.responseJSON[datos] + '<br>';
                     }
-                    $('#mAlert').addClass('alert alert-danger');
-                    $('#mAlert').html(errors);
+                    $('.mAlert').addClass('alert alert-danger');
+                    $('.mAlert').html(errors);
                     $(_boton).removeAttr("disabled");
 
                 }

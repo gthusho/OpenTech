@@ -39,25 +39,25 @@
     </div >
     <div class="form-group col-lg-5">
         {!! Form::label('Marca  Articulo (*)')!!}
-        {!! Form::select('marca_id',$marcas,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione una Marca'])!!}
+        {!! Form::select('marca_id',$marcas,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione una Marca','id'=>'marca'])!!}
     </div>
     <div class="form-group col-lg-1">
-        <span class="btn btn-primary waves-effect waves-light m-t-30 btn-sm" ><i class="icon-plus"></i> Marca</span>
+        <span class="btn btn-primary waves-effect waves-light m-t-30 btn-sm" id="addMarca"><i class="icon-plus"></i> Marca</span>
     </div >
 
     <div class="form-group col-lg-5">
         {!! Form::label('Material  Articulo (*)')!!}
-        {!! Form::select('material_id',$materiales,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione un Material'])!!}
+        {!! Form::select('material_id',$materiales,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione un Material','id'=>'material'])!!}
     </div>
     <div class="form-group col-lg-1">
-        <span class="btn btn-primary waves-effect waves-light m-t-30 btn-sm" ><i class="icon-plus"></i> Material</span>
+        <span class="btn btn-primary waves-effect waves-light m-t-30 btn-sm"  id="addMaterial"><i class="icon-plus"></i> Material</span>
     </div >
     <div class="form-group col-lg-5">
         {!! Form::label('Medida  Articulo (*)')!!}
-        {!! Form::select('medida_id',$medidas,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione una Medida'])!!}
+        {!! Form::select('medida_id',$medidas,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione una Medida','id'=>'medida'])!!}
     </div>
     <div class="form-group col-lg-1">
-        <span class="btn btn-primary waves-effect waves-light m-t-30 btn-sm" ><i class="icon-plus"></i> Medida</span>
+        <span class="btn btn-primary waves-effect waves-light m-t-30 btn-sm" id="addMedida"><i class="icon-plus"></i> Medida</span>
     </div >
 </div>
 <div class="row">

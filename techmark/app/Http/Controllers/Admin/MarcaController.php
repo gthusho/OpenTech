@@ -56,8 +56,20 @@ class MarcaController extends Controller
     {
 
         if(Auth::user()->can('allow-insert')){
-            Marca::create($request->all());
-            return redirect()->route('admin.marca.index');
+            if($request->ajax()) {
+                $combo = "";
+                foreach (Marca::where('estado', 1)->get() as $row) {
+                    $combo .= "<option value='{$row->id}'>{$row->nombre}</option>";
+                }
+                $marca = new  Marca($request->all());
+                $marca->save();
+                $combo .= "<option value='{$marca->id}' selected>{$marca->nombre}</option>";
+                echo $combo;
+                exit;
+            }else {
+                Marca::create($request->all());
+                return redirect()->route('admin.marca.index');
+            }
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
             return redirect('dashboard');

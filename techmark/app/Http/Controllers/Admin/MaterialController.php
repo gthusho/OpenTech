@@ -56,8 +56,21 @@ class MaterialController extends Controller
     {
 
         if(Auth::user()->can('allow-insert')){
-            Material::create($request->all());
-            return redirect()->route('admin.material.index');
+            if($request->ajax()) {
+                $combo = "";
+                foreach (Material::where('estado', 1)->get() as $row) {
+                    $combo .= "<option value='{$row->id}'>{$row->nombre}</option>";
+                }
+                $material = new  Material($request->all());
+                $material->save();
+                $combo .= "<option value='{$material->id}' selected>{$material->nombre}</option>";
+                echo $combo;
+                exit;
+            }else{
+                Material::create($request->all());
+                return redirect()->route('admin.material.index');
+            }
+
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
             return redirect('dashboard');
