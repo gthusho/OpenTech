@@ -14,6 +14,7 @@ use App\Http\Requests\AddTrabajadorRequest;
 use App\Http\Requests\EditTrabajadorRequest;
 use App\Sucursal;
 use App\Trabajador;
+use App\Uploader;
 use Illuminate\Http\Request;
 use App\Tool;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,26 @@ class TrabajadorController extends Controller
         if(Auth::user()->can('allow-insert')){
             $trabajador = new  Trabajador($request->all());
             $trabajador->usuario_id = Auth::user()->id;
+            if($request->file("foto")) {
+                $uploader = new Uploader();
+                $data = $uploader->upload($_FILES['foto'], array(
+                    'limit' => 10, //Maximum Limit of files. {null, Number}
+                    'maxSize' => 10, //Maximum Size of files {null, Number(in MB's)}
+                    'required' => false, //Minimum one file is required for upload {Boolean}
+                    'uploadDir' => \Config::get('upload.trabajadores'), //Upload directory {String}
+                ));
+
+                if ($data['isComplete']) {
+                    $files = $data['data'];
+                    $trabajador->foto = $files['metas'][0]['name'];
+                    echo json_encode($files['metas'][0]['name']);
+                }
+
+                if ($data['hasErrors']) {
+                    $errors = $data['errors'];
+                    echo json_encode($errors);
+                }
+            }
             $trabajador->save();
             return redirect()->route('admin.trabajador.index');
         }
@@ -89,7 +110,31 @@ class TrabajadorController extends Controller
     {
         if(Auth::user()->can('allow-edit')){
             $trabajador = Trabajador::find($id);
+            $old = $trabajador->foto;
             $trabajador->fill($request->all());
+
+            if($request->file("foto")){
+                if($old!='')
+                    \File::Delete(\Config::get('upload.trabajadores').$old);
+                $uploader = new Uploader();
+                $data = $uploader->upload($_FILES['foto'], array(
+                    'limit' => 10, //Maximum Limit of files. {null, Number}
+                    'maxSize' => 10, //Maximum Size of files {null, Number(in MB's)}
+                    'required' => false, //Minimum one file is required for upload {Boolean}
+                    'uploadDir' => \Config::get('upload.trabajadores'), //Upload directory {String}
+                ));
+
+                if($data['isComplete']){
+                    $files = $data['data'];
+                    $trabajador->foto = $files['metas'][0]['name'];
+                    echo json_encode($files['metas'][0]['name']);
+                }
+
+                if($data['hasErrors']){
+                    $errors = $data['errors'];
+                    echo json_encode($errors);
+                }
+            }
             $trabajador->save();
             \Session::flash('message','Se Actualizo Exitosamente la información');
             return redirect()->back();
@@ -104,6 +149,7 @@ class TrabajadorController extends Controller
         if(Auth::user()->can('allow-delete')) {
             $trabajador = Trabajador::find($id);
             \Session::flash('user-dead',$trabajador->ci);
+            \File::Delete(\Config::get('upload.trabajadores').$trabajador->foto);
             if(!$trabajador->deleteOk()){
                 $mensaje = 'El Almacen  Tiene algunas Transacciones Registradas.. Imposible Eliminar. Se Inhabilito la Cuenta ';
             }
