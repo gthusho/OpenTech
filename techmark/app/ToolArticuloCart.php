@@ -30,7 +30,7 @@ namespace App;
                return self::genNombre($query);
            }
            case 'unidad':{
-               $query = Medida::where('id',$id)->get();
+               $query = Unidad::where('id',$id)->get();
                return self::genNombre($query);
            }
            default: break;
