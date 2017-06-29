@@ -24,7 +24,7 @@ class EditMedidaRequest extends Request
     public function rules()
     {
         return [
-            'nombre'=>'unique:medidas,nombre,'.$this->route()->getParameter('medida').'|min:4'
+            'nombre'=>'unique:unidades,nombre,'.$this->route()->getParameter('unidad').'|min:4'
         ];
     }
 }

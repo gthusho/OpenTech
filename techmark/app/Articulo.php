@@ -20,7 +20,7 @@ class Articulo extends Model
         'categoria_articulo_id',
         'marca_id',
         'material_id',
-        'medida_id',
+        'unidad_id',
         'costo',
         'precio1',
         'precio2',
@@ -71,7 +71,7 @@ class Articulo extends Model
     }
 
     function medida(){
-    	return $this->belongsTo('App\Medida','medida_id','id');
+    	return $this->belongsTo('App\Unidad','unidad_id','id');
     }
 
     function scopeCategoria($query,$x){

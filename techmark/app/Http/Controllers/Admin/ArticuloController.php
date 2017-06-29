@@ -8,8 +8,8 @@ use App\Http\Requests\AddArticuloRequest;
 use App\Http\Requests\EditArticuloRequest;
 use App\Marca;
 use App\Material;
-use App\Medida;
 use App\Tool;
+use App\Unidad;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -44,7 +44,7 @@ class ArticuloController extends Controller
         $this->datos['categorias']=CategoriaArticulo::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
         $this->datos['marcas']=Marca::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
         $this->datos['materiales']=Material::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
-        $this->datos['medidas']=Medida::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+        $this->datos['medidas']=Unidad::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
     }
     public function create()
     {

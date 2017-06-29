@@ -1,5 +1,5 @@
 
-{!! Form::model(Request::all(), ['route' => ['admin.medida.index'],'method'=>'GET']) !!}
+{!! Form::model(Request::all(), ['route' => ['admin.unidad.index'],'method'=>'GET']) !!}
         <div class="form-group">
             <div class="input-group">
                 {!!  Form::text('s',null,['class'=>"form-control" ,'placeholder'=>"Buscar "]) !!}

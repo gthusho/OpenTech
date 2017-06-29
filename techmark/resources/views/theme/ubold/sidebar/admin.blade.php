@@ -25,6 +25,10 @@
                     <a href="{{route('admin.sucursal.index')}}" class="waves-effect"><i class=" ti-direction"></i> <span> Sucursales </span> </a>
 
                 </li>
+                <li class="has_sub">
+                    <a href="{{route('admin.compra.index')}}" class="waves-effect"><i class=" ti-truck"></i> <span> Compras </span> </a>
+
+                </li>
                 @include('theme.ubold.sidebar.liss')
                 @include('theme.ubold.sidebar.diego')
                 {{--

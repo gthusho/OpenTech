@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Medida extends Model
+class Unidad extends Model
 {
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $table = 'medidas';
+    protected $table = 'unidades';
     protected $fillable = [
         'nombre',
         'registro',
@@ -19,7 +19,7 @@ class Medida extends Model
     ];
 
     function articulo(){
-    	return $this->hasMany('App\Articulo','id','medida_id');
+    	return $this->hasMany('App\Articulo','id','unidad_id');
     }
 
     function scopeMedida($query,$name){
@@ -28,7 +28,7 @@ class Medida extends Model
         }
     }
     function  deleteOk(){
-        $num = Articulo::where('medida_id',$this->id)->count();
+        $num = Articulo::where('unidad_id',$this->id)->count();
         if($num>0)
             return false;
         else

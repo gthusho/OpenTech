@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card-box">
                 <div class="pull-right">
-                    {!! Form::open(['route'=>['admin.medida.destroy',$medida->id],'method'=>'delete','id'=>'form-delete']) !!}
+                    {!! Form::open(['route'=>['admin.unidad.destroy',$medida->id],'method'=>'delete','id'=>'form-delete']) !!}
                     <a class="btn btn-danger" id="btn-delete"> <i class="fa fa-trash"></i> Eliminar</a>
                     {!! Form::close() !!}
                 </div>
@@ -15,8 +15,8 @@
                 </p>
 
                 @include('cpanel.partials.errors')
-                {!! Form::model($medida,['route'=>['admin.medida.update',$medida->id],'method'=>'PUT','files'=>true,'id'=>'form-medida']) !!}
-                    @include('cpanel.admin.medida.partials.fields')
+                {!! Form::model($medida,['route'=>['admin.unidad.update',$medida->id],'method'=>'PUT','files'=>true,'id'=>'form-medida']) !!}
+                    @include('cpanel.admin.unidad.partials.fields')
                     <div class="form-group text-right m-b-0">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">
                             Actualizar
@@ -32,8 +32,8 @@
 @endsection
 
 @section('css')
-    @include('cpanel.admin.medida.addons.css')
+    @include('cpanel.admin.unidad.addons.css')
 @endsection
 @section('js')
-    @include('cpanel.admin.medida.addons.js')
+    @include('cpanel.admin.unidad.addons.js')
 @endsection

@@ -12,7 +12,7 @@
             <td><span class="label label-{{$row->activo()[0]}}">{{$row->activo()[1]}}</span></td>
             <td>{{($row->nombre)}}</td>
             <td>
-                <a href="{{route('admin.medida.edit',$row->id)}}"><i class=" icon-pencil"></i> Editar</a>
+                <a href="{{route('admin.unidad.edit',$row->id)}}"><i class=" icon-pencil"></i> Editar</a>
             </td>
         </tr>
     @endforeach

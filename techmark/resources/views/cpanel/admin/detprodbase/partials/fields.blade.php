@@ -21,11 +21,11 @@
     <div class="form-group col-lg-1">
         <span class="btn btn-primary waves-effect waves-light m-t-30 btn-sm" id="addMaterial"><i class="icon-plus"></i> Material</span>
     </div >
-    <div class="form-group col-lg-2">
+    <div class="form-group col-lg-3">
         {!! Form::label('Precio (*)')!!}
         {!! Form::text('precio',null,['class'=>'form-control autonumber','required'])!!}
     </div>
-    <div class="form-group col-lg-2">
+    <div class="form-group col-lg-3">
         {!! Form::label('Costo (*)')!!}
         {!! Form::text('costo',null,['class'=>'form-control autonumber','required'])!!}
     </div>

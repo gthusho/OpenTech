@@ -53,8 +53,8 @@
         <span class="btn btn-primary waves-effect waves-light m-t-30 btn-sm"  id="addMaterial"><i class="icon-plus"></i> Material</span>
     </div >
     <div class="form-group col-lg-5">
-        {!! Form::label('Medida  Articulo (*)')!!}
-        {!! Form::select('medida_id',$medidas,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione una Medida','id'=>'medida'])!!}
+        {!! Form::label('Unidad  Articulo (*)')!!}
+        {!! Form::select('unidad_id',$medidas,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione una Medida','id'=>'medida'])!!}
     </div>
     <div class="form-group col-lg-1">
         <span class="btn btn-primary waves-effect waves-light m-t-30 btn-sm" id="addMedida"><i class="icon-plus"></i> Medida</span>

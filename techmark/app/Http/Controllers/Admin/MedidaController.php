@@ -6,6 +6,7 @@ use App\Http\Requests\AddMedidaRequest;
 use App\Http\Requests\EditMedidaRequest;
 use App\Medida;
 use App\Tool;
+use App\Unidad;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -20,12 +21,12 @@ class MedidaController extends Controller
     {
 
         if(Auth::user()->can('allow-read')){
-            $this->datos['brand'] = Tool::brand('Medidas',route('admin.medida.index'),'Almacen');
-            $this->datos['medidas'] = Medida::medida($request->get('s'))
+            $this->datos['brand'] = Tool::brand('Unidades Registradas',route('admin.unidad.index'),'Unidades');
+            $this->datos['medidas'] = Unidad::medida($request->get('s'))
                 ->orderBy('estado','desc')
                 ->orderBy('nombre','asc')
                 ->paginate();
-            return view('cpanel.admin.medida.list')->with($this->datos);
+            return view('cpanel.admin.unidad.list')->with($this->datos);
         }else{
             \Session::flash('message','No tienes Permiso para visualizar informacion ');
             return redirect('dashboard');
@@ -42,8 +43,8 @@ class MedidaController extends Controller
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Agregar Nueva Medida',route('admin.medida.index'),'Medidas');
-            return view('cpanel.admin.medida.registro',$this->datos);
+            $this->datos['brand'] = Tool::brand('Agregar Nueva Unidad',route('admin.unidad.index'),'Unidades');
+            return view('cpanel.admin.unidad.registro',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
             return redirect('dashboard');
@@ -58,17 +59,17 @@ class MedidaController extends Controller
         if(Auth::user()->can('allow-insert')){
             if($request->ajax()) {
                 $combo = "";
-                foreach (Medida::where('estado', 1)->get() as $row) {
+                foreach (Unidad::where('estado', 1)->get() as $row) {
                     $combo .= "<option value='{$row->id}'>{$row->nombre}</option>";
                 }
-                $medida = new  Medida($request->all());
+                $medida = new  Unidad($request->all());
                 $medida->save();
                 $combo .= "<option value='{$medida->id}' selected>{$medida->nombre}</option>";
                 echo $combo;
                 exit;
             }else {
                 Medida::create($request->all());
-                return redirect()->route('admin.medida.index');
+                return redirect()->route('admin.unidad.index');
             }
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
@@ -98,9 +99,9 @@ class MedidaController extends Controller
     {
 
         if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Medida',route('admin.medida.index'),'Medidas');
-            $this->datos['medida'] = Medida::find($id);
-            return view('cpanel.admin.medida.edit',$this->datos);
+            $this->datos['brand'] = Tool::brand('Editar Unidad',route('admin.unidad.index'),'Unidades');
+            $this->datos['medida'] = Unidad::find($id);
+            return view('cpanel.admin.unidad.edit',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para editar ');
             return redirect('dashboard');
@@ -113,7 +114,7 @@ class MedidaController extends Controller
     {
 
         if(Auth::user()->can('allow-edit')){
-            $medida = Medida::find($id);
+            $medida = Unidad::find($id);
             $medida->fill($request->all());
             $medida->save();
             \Session::flash('message','Se Actualizo Exitosamente la información');
@@ -135,7 +136,7 @@ class MedidaController extends Controller
     {
 
         if(Auth::user()->can('allow-delete')) {
-            $medida = Medida::find($id);
+            $medida = Unidad::find($id);
             \Session::flash('user-dead',$medida->nombre);
             if(!$medida->deleteOk()){
                 $medida->estado=0;
@@ -143,12 +144,12 @@ class MedidaController extends Controller
                 $mensaje = 'La Medida Tiene algunas Transacciones Registradas.. Imposible Eliminar. Se Inhabilito la Cuenta ';
             }
             else{
-                Medida::destroy($id);
+                Unidad::destroy($id);
                 $mensaje = 'La Medida fue eliminada ';
 
             }
             \Session::flash('message',$mensaje);
-            return redirect()->route('admin.medida.index');
+            return redirect()->route('admin.unidad.index');
         }else{
             \Session::flash('message','No tienes Permisos para Borrar informacion');
             return redirect('dashboard');

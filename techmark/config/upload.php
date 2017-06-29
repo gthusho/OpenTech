@@ -10,5 +10,6 @@ return [
      */
     'archivos'=>'system/archivos/',
     'trabajadores'=>'system/trabajadores/',
+    'productos'=>'system/productos/',
 
 ];

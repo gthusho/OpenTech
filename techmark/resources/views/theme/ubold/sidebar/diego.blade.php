@@ -6,7 +6,7 @@
         <li><a href="{{route('admin.categoria.index')}}">Categorias Articulos</a></li>
         <li><a href="{{route('admin.marca.index')}}">Marcas</a></li>
         <li><a href="{{route('admin.material.index')}}">Materiales</a></li>
-        <li><a href="{{route('admin.medida.index')}}">Medidas</a></li>
+        <li><a href="{{route('admin.unidad.index')}}">Medidas</a></li>
     </ul>
 </li>
 <li class="has_sub">

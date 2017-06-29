@@ -9,8 +9,8 @@
                     * Los campos con (*) son obligatorios
                 </p>
                 @include('cpanel.partials.errors')
-                {!! Form::open(['route'=>'admin.medida.store','method'=>'POST','files'=>true]) !!}
-                    @include('cpanel.admin.medida.partials.fields')
+                {!! Form::open(['route'=>'admin.unidad.store','method'=>'POST','files'=>true]) !!}
+                    @include('cpanel.admin.unidad.partials.fields')
                     <div class="form-group text-right m-b-0">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">
                             Registrar
@@ -29,8 +29,8 @@
 @endsection
 
 @section('css')
-    @include('cpanel.admin.medida.addons.css')
+    @include('cpanel.admin.unidad.addons.css')
 @endsection
 @section('js')
-    @include('cpanel.admin.medida.addons.js')
+    @include('cpanel.admin.unidad.addons.js')
 @endsection

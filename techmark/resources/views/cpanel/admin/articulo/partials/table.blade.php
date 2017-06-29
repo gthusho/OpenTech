@@ -7,7 +7,7 @@
         <th>CATEGORIA</th>
         <th>MARCA</th>
         <th>MATERIAL</th>
-        <th>MEDIDA</th>
+        <th>UNIDAD</th>
         <th>COSTO</th>
         <th>PRECIO #1</th>
         <th>PRECIO #2</th>

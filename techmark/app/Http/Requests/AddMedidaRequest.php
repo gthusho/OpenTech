@@ -24,7 +24,7 @@ class AddMedidaRequest extends Request
     public function rules()
     {
         return [
-            'nombre'=>'unique:medidas,nombre|min:4'
+            'nombre'=>'unique:unidades,nombre|min:4'
         ];
     }
 }

@@ -40,6 +40,13 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
     Route::resource('sucursal','SucursalesController');
     Route::get('getAlmacenes',['as' => 'almacenes_disponibles', 'uses' => 'SucursalesController@getAlmacenes']);
 
+    /*
+     * todo compras
+     */
+
+    Route::resource('compra','ComprasController');
+    Route::get('addItemsCompra',['as' => 'addItemsCompra', 'uses' => 'ComprasController@addItemsCompra']);
+
     require __DIR__ . '/routes/diego.php';
     require __DIR__ . '/routes/liss.php';
 });
