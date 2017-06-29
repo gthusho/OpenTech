@@ -29,7 +29,16 @@ class AddTrabajadorRequest extends Request
     public function rules()
     {
         return [
-
+            'nombre' => 'required|unique:trabajadores,nombre|min:4',
+            'ci'=>'required|min:6|max:15|unique:trabajadores,ci',
+            'direccion' => 'max:150|required',
+            'telefono'=>'integer|required',
+            'fecha_ingreso'=>'required',
+            'cargo'=>'required',
+            'referencia'=>'required',
+            'sueldo'=>'required',
+            'tel_referencia'=>'integer|required',
+            'sucursal'=>'required'
         ];
     }
 }

@@ -22,7 +22,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class ClienteReport extends Controller
 {
     private $datos = null;
-    private $horientacion = 'p';//'l';
+    private $horientacion = 'l';//'l'p;
     private $titulo = "REPORTE CLIENTES";
     private $request =  null;
     function __construct(Request $request)

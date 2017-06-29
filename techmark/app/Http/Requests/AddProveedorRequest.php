@@ -29,7 +29,12 @@ class AddProveedorRequest extends Request
     public function rules()
     {
         return [
-
+            'razon_social' => 'required|unique:proveedores,razon_social|min:4',
+            'nit'=>'required|min:7|max:15|unique:proveedores,nit',
+            'telefono' => 'integer',
+            'celular'=>'integer',
+            'fax'=>'integer',
+            'direccion'=>'max:150'
         ];
     }
 }

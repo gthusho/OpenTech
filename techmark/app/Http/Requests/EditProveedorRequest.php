@@ -29,7 +29,12 @@ class EditProveedorRequest extends Request
     public function rules()
     {
         return [
-
+            'razon_social' => 'required|unique:proveedores,razon_social,'.$this->route()->getParameter('proveedor').'|min:4',
+            'nit'=>'required|unique:proveedores,nit,'.$this->route()->getParameter('proveedor').'|min:7|max:15',
+            'telefono' => 'integer',
+            'celular'=>'integer',
+            'fax'=>'integer',
+            'direccion'=>'max:150'
         ];
     }
 }

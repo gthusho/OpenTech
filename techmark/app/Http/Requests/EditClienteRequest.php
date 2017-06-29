@@ -29,7 +29,10 @@ class EditClienteRequest extends Request
     public function rules()
     {
         return [
-
+            'razon_social' => 'required|unique:clientes,razon_social,'.$this->route()->getParameter('cliente').'|min:4',
+            'nit'=>'required|unique:clientes,nit,'.$this->route()->getParameter('cliente').'|min:7|max:15',
+            'telefono' => 'integer',
+            'direccion'=>'max:100'
         ];
     }
 }
