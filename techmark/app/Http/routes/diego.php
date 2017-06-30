@@ -8,5 +8,6 @@ Route::resource('articulo','ArticuloController');
 Route::resource('talla','TallaController');
 Route::resource('detprodbase','DetalleProductoBaseController');
 Route::resource('prodbase','ProductoBaseController');
+Route::resource('producto','ProductoController');
 
 
