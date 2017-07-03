@@ -45,8 +45,12 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
      */
 
     Route::resource('compra','ComprasController');
-    Route::get('addItemsCompra',['as' => 'addItemsCompra', 'uses' => 'ComprasController@addItemsCompra']);
-
+   // Route::get('addItemsCompra',['as' => 'addItemsCompra', 'uses' => 'ComprasController@addItemsCompra']);
+    Route::post('deleteItemsCompra/{id}',['as' => 'deleteItemsCompra', 'uses' => 'IngresosController@deleteItemsCompra']);
+    Route::post('confirmCompra/{id}',['as' => 'confirmCompra', 'uses' => 'ComprasController@confirmCompra']);
+    Route::get('service/getArticuloByCodigo',['as' => 'getArticuloByCodigo', 'uses' => 'ComprasController@getArticuloByCodigo']);
+    Route::get('service/getListArticulos',['as' => 'getListArticulos', 'uses' => 'ComprasController@getListArticulos']);
+    Route::get('service/showArticle',['as' => 'showArticle', 'uses' => 'ArticuloController@showArticle']);
     require __DIR__ . '/routes/diego.php';
     require __DIR__ . '/routes/liss.php';
 });

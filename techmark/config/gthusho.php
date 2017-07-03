@@ -32,6 +32,11 @@ return [
         's'=>'Suspendida',
         'c'=>'Cancelada'],
 
+    'tipo_compra' => [
+        'Contado'=>'Contado',
+        'Credito'=>'Credito',
+        'Cheque'=>'Cheque'
+    ],
 
 
 ];

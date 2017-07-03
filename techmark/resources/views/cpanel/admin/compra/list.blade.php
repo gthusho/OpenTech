@@ -18,9 +18,9 @@
             <div class="card-box">
                 <div class="table-rep-plugin">
                     <div class="table-responsive" data-pattern="priority-columns">
-                       {{--
-                       @include('cpanel.admin.compra.partials.table')
-                       --}}
+
+                       @include('cpanel.admin.compra.partials.tablelist')
+
                     </div>
 
                 </div>
@@ -41,6 +41,8 @@
     @if(Session::has('message'))
         <link href="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.css')}}" rel="stylesheet" type="text/css">
     @endif
+    <link href="{{url('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
+
 @endsection
 @section('js')
     <script src="{{url('assets/plugins/bootstrap-select/js/bootstrap-select.min.js')}}" type="text/javascript"></script>
@@ -68,4 +70,14 @@
 
         </script>
     @endif
+
+    <script src="{{url('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{url('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.es.js')}}"></script>
+    <script>
+        jQuery('#datepicker-autoclose').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            language: 'es'
+        });
+    </script>
 @endsection

@@ -1,6 +1,6 @@
 <div class="table-rep-plugin">
-    <div class="table-responsive" data-pattern="priority-columns">
-        <table class="table table-hover">
+    <div class="table-responsive custList" data-pattern="priority-columns">
+        <table class="table table-hover" id="tabla">
             <thead>
             <tr>
                 <th>#</th>
@@ -11,37 +11,38 @@
                 <th>CANTIDAD</th>
                 <th>UNIDAD</th>
                 <th>COSTO</th>
-                <th>TOTAL</th>
+                <th>REMOVER</th>
             </tr>
             </thead>
 
             <tbody>
-            @if(Session::has('cart'))
                 <?php $i=1; ?>
-                @foreach($articulos as $articulo)
-                    <tr>
+                @foreach($compra->articulos as $row)
+                    <tr class="rows" data-id="{{$row->id}}">
                         <td>{{$i++}}</td>
                         <td>
-                            {{$articulo['item']['nombre']}}
+                            {{$row->articulo->nombre}}
                         </td>
                         <td>
-                            {{\App\ToolArticuloCart::getNombreById($articulo['item']['categoria_articulo_id'],'categoria')}}
+                            {{\App\ToolArticuloCart::getNombreById($row->articulo->categoria_articulo_id,'categoria')}}
                         </td>
                         <td>
-                            {{\App\ToolArticuloCart::getNombreById($articulo['item']['marca_id'],"marca")}}
+                            {{\App\ToolArticuloCart::getNombreById($row->articulo->marca_id,"marca")}}
                         </td>
-                        <td> {{\App\ToolArticuloCart::getNombreById($articulo['item']['material_id'],"material")}}</td>
-                        <td>{{$articulo['qty']}}</td>
-                        <td>{{\App\ToolArticuloCart::getNombreById($articulo['item']['medida_id'],"unidad")}}</td>
+                        <td> {{\App\ToolArticuloCart::getNombreById($row->articulo->material_id,"material")}}</td>
+                        <td>{{number_format((float)$row->cantidad, 2, '.', '')}}</td>
+                        <td>{{\App\ToolArticuloCart::getNombreById($row->articulo->unidad_id,"unidad")}}</td>
                         <td>
-                            {{\App\Tool::convertMoney($articulo['price'])}}
+                            {{\App\Tool::convertMoney($row->costo)}}
                         </td>
                         <td>
-                            {{\App\Tool::convertMoney(($articulo['qty']*$articulo['price']))}}
+                            {!! Form::open(['route'=>['deleteItemsCompra',$row->id],'method'=>'post']) !!}
+                            <button class="btn btn-danger btn-sm" ><i class=" icon-trash"></i> Remover</button>
+                            {!! Form::close() !!}
+
                         </td>
                     </tr>
                 @endforeach
-            @endif
             </tbody>
         </table>
     </div>

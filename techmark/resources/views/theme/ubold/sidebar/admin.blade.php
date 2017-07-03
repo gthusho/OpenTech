@@ -29,6 +29,10 @@
                     <a href="{{route('admin.compra.index')}}" class="waves-effect"><i class=" ti-truck"></i> <span> Compras </span> </a>
 
                 </li>
+                <li class="has_sub">
+                    <a href="{{route('admin.compra.index')}}" class="waves-effect"><i class=" ti-truck"></i> <span> Compras al  Credito</span> </a>
+
+                </li>
                 @include('theme.ubold.sidebar.liss')
                 @include('theme.ubold.sidebar.diego')
                 {{--

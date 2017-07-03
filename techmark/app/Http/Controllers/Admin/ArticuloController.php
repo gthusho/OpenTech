@@ -6,6 +6,7 @@ use App\Articulo;
 use App\CategoriaArticulo;
 use App\Http\Requests\AddArticuloRequest;
 use App\Http\Requests\EditArticuloRequest;
+use App\Ingresos;
 use App\Marca;
 use App\Material;
 use App\Tool;
@@ -71,7 +72,42 @@ class ArticuloController extends Controller
 
     public function show($id)
     {
-        //
+        $ingreso = Ingresos::find($id);
+        $item = Articulo::find($ingreso->articulo_id);
+        $data = [
+            'id'=>$item->id,
+            'nombre'=>$item->nombre,
+            'unidad'=>$item->medida->nombre,
+            'categoria'=>$item->categoria->nombre,
+            'material'=>$item->material->nombre,
+            'marca'=>$item->marca->nombre,
+            'costo'=>Tool::convertMoney($item->costo),
+            'precio'=>Tool::convertMoney($item->precio1),
+            'xcantidad'=>number_format((float)$ingreso->cantidad, 2, '.', ''),
+            'xcosto'=>number_format((float)$ingreso->costo, 2, '.', ''),
+            'stockIventario'=>$item->getStockAll(),
+
+        ];
+        return $data;
+    }
+    public function showArticle(Request $request)
+    {
+        $item = Articulo::find($request->get('data'));
+        $data = [
+            'id'=>$item->id,
+            'nombre'=>$item->nombre,
+            'unidad'=>$item->medida->nombre,
+            'categoria'=>$item->categoria->nombre,
+            'material'=>$item->material->nombre,
+            'marca'=>$item->marca->nombre,
+            'costo'=>Tool::convertMoney($item->costo),
+            'precio'=>Tool::convertMoney($item->precio1),
+            'xcantidad'=>'',
+            'xcosto'=>'',
+            'stockIventario'=>$item->getStockAll(),
+
+        ];
+        return $data;
     }
 
     public function edit($id)

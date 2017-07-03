@@ -103,7 +103,7 @@
         });
         $('#medida_registrar').click(function () {
             $(this).attr("disabled", true);
-            var url = "{{route('admin.medida.store')}}";
+            var url = "{{route('admin.unidad.store')}}";
             var nombre = $('#medida_nombre').val();
             var combo = $('#medida');
             var input= $('#medida_nombre');

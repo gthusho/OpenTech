@@ -132,7 +132,9 @@ class Articulo extends Model
         else*/
             return true;
     }
-
+    function getStockAll(){
+        return InventarioArticulo::where('articulo_id',$this->id)->count();
+    }
     function activo(){
         if($this->estado==1)
             return ['default','Activo'];

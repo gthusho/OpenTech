@@ -2,39 +2,35 @@
     <legend class="scheduler-border">DATOS ARTICULO</legend>
 
     <div class="form-group col-lg-12">
-        {!! Form::label('Articulo ')!!}
-        {!! Form::text('articulo',null,['class'=>'form-control','disabled'])!!}
-    </div>
-    <div class="form-group col-lg-3">
-        {!! Form::label('Categoria ')!!}
-        {!! Form::text('categoria',null,['class'=>'form-control','disabled'])!!}
-    </div>
-    <div class="form-group col-lg-3">
-        {!! Form::label('Marca  ')!!}
-        {!! Form::text('marca',null,['class'=>'form-control','disabled'])!!}
-    </div>
-    <div class="form-group col-lg-3">
-        {!! Form::label('material ')!!}
-        {!! Form::text('material',null,['class'=>'form-control','disabled'])!!}
-    </div>
-    <div class="form-group col-lg-3">
-        {!! Form::label('Unidad ')!!}
-        {!! Form::text('Unidad',null,['class'=>'form-control','disabled'])!!}
+        {!! Form::text('articulo',null,['class'=>'form-control cleanclean','readonly'=>true,'id'=>'anombre'])!!}
     </div>
     <div class="form-group col-lg-4">
+        {!! Form::label('Categoria ')!!}
+        {!! Form::text('categoria',null,['class'=>'form-control cleanclean','disabled','id'=>'acategoria'])!!}
+    </div>
+    <div class="form-group col-lg-4">
+        {!! Form::label('Marca  ')!!}
+        {!! Form::text('marca',null,['class'=>'form-control cleanclean','disabled','id'=>'amarca'])!!}
+    </div>
+    <div class="form-group col-lg-4">
+        {!! Form::label('material ')!!}
+        {!! Form::text('material',null,['class'=>'form-control cleanclean','disabled','id'=>'amaterial'])!!}
+    </div>
+
+    <div class="form-group col-lg-4">
         {!! Form::label('Costo ')!!}
-        {!! Form::text('costo',null,['class'=>'form-control','disabled'])!!}
+        {!! Form::text('costo',null,['class'=>'form-control cleanclean','disabled','id'=>'acosto'])!!}
     </div>
     <div class="form-group col-lg-4">
         {!! Form::label('Precio ')!!}
-        {!! Form::text('precio',null,['class'=>'form-control','disabled'])!!}
+        {!! Form::text('precio',null,['class'=>'form-control cleanclean','disabled','id'=>'aprecio'])!!}
     </div>
     <div class="form-group col-lg-4">
         {!! Form::label('Stock Actual ')!!}
-        {!! Form::text('stock',null,['class'=>'form-control','disabled'])!!}
+        {!! Form::text('stock',null,['class'=>'form-control cleanclean','disabled','id'=>'astock'])!!}
     </div>
     <div class="form-group col-lg-4">
-        {!! Form::text('articulo_id',1,['class'=>'form-control'])!!}
+        {!! Form::hidden('articulo_id',null,['class'=>'form-control cleanclean','id'=>'aid'])!!}
 
     </div>
 </fieldset>

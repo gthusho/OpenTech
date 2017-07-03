@@ -29,7 +29,7 @@ class AddArticuloRequest extends Request
             'categoria_articulo_id' => 'integer|required',
             'marca_id'=>'integer|required',
             'material_id'=>'integer|required',
-            'medida_id'=>'integer|required',
+            'unidad_id'=>'integer|required',
             'costo'=>'required',
             'precio1'=>'required',
             'precio2'=>'required',

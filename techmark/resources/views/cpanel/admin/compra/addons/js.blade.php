@@ -51,64 +51,128 @@
 </script>
 <script src="{{url('assets/plugins/bootstrap-inputmask/bootstrap-inputmask.min.js')}}" type="text/javascript"></script>
 <script src="{{url('assets/plugins/autoNumeric/autoNumeric.js')}}" type="text/javascript"></script>
-
 <script type="text/javascript">
 
     jQuery(function($) {
-        $('.autonumber').autoNumeric('init');
+        $('#xcantidad').autoNumeric('init');
+        $('#xcosto').autoNumeric('init');
     });
 </script>
 
+<script type="text/javascript">
+    window.addEventListener('keydown',function(e){if(e.keyIdentifier=='U+000A'||e.keyIdentifier=='Enter'||e.keyCode==13){if(e.target.nodeName=='INPUT'&&e.target.type=='text'){e.preventDefault();return false;}}},true);
+</script>
+
 <script>
-    $(window).load(function(){
-        /*
-        Todo para Categoria
-         */
-        $('#addCategoria').click(function () {
-            $('#modal_categoria').modal('show');
+    function genItem(item) {
+        $('#anombre').val(item['nombre']);
+        $('#acategoria').val(item['categoria']);
+        $('#amarca').val(item['marca']);
+        $('#amaterial').val(item['material']);
+        $('#acosto').val(item['costo']);
+        $('#aprecio').val(item['precio']);
+        $('#astock').val(item['stockIventario']);
+        $('#aid').val(item['id']);
+        $('#amedida').val(item['unidad']);
+        $('#xcantidad').val(item['xcantidad']);
+        $('#xcosto').val(item['xcosto']);
+    }
+    function clean() {
+        $('.cleanclean').val("");
+    }
+    function workAjax(_url,_data,_type) {
+        $.ajax({
+            url: _url,
+            type: 'GET',
+            data: { data: _data,type:_type} ,
+            success: function (json) {
+                genItem(json);
+                onOffBtnCart(true);
+            },
+            error: function (data) {
+                clean();
+                onOffBtnCart(false);
+                alert("El codigo no Existe!!");
+            }
         });
-        $('#categoria_registrar').click(function () {
-            $(this).attr("disabled", true);
-            var url = "{{route('admin.categoria.store')}}";
-            var nombre = $('#categoria_nombre').val();
-            var combo = $('#categoria');
-            var input= $('#categoria_nombre');
-            registrar(url,nombre,combo,this,input);
-        });
-
-        /*
-        Super Metodo ajax
-         */
-        function registrar(_url,_name,_combo,_boton,_input) {
-            $.ajax({
-                url: _url,
-                type: 'POST',
-                data: { nombre: _name} ,
-                success: function (json) {
-                    $('.mAlert').html("");
-                    $('.mAlert').removeClass('alert alert-danger');
-                    $(_combo).html('');
-                    $(_combo).html(json);
-                    $(_combo).trigger('change');
-                    $('.mAlert').addClass('alert alert-success');
-                    $('.mAlert').html("Registro Exitoso");
-                    $(_input).val('');
-                    $(_boton).removeAttr("disabled");
-                },
-                error: function (data) {
-                    var errors = '';
-                    for(datos in data.responseJSON){
-                        errors += data.responseJSON[datos] + '<br>';
-                    }
-                    $('.mAlert').addClass('alert alert-danger');
-                    $('.mAlert').html(errors);
-                    $(_boton).removeAttr("disabled");
-
-                }
-            });
-
+    }
+    function onOffBtnCart($xx) {
+        if(!$xx){
+            $('#AddItemCart').attr('disabled', true);
+        }else {
+            $('#AddItemCart').removeAttr('disabled');
         }
-
+    }
+    $('#ClearItemCart').click(function () {
+        onOffBtnCart(false);
+        clean();
+    });
+    $(window).load(function(){
+        $('#AddItemCart').attr('disabled', true);
     });
 
+    $("#xcodigo").on('keyup', function (e) {
+        var codigo = $(this).val();
+        var url = "{{route('getArticuloByCodigo')}}";
+        if (e.keyCode == 13) {
+            workAjax(url,codigo,"codigo")
+        }
+    });
+    $("#xcodigobarra").on('keyup', function (e) {
+        var codigo = $(this).val();
+        var url = "{{route('getArticuloByCodigo')}}";
+        if (e.keyCode == 13) {
+            workAjax(url,codigo,"barra")
+        }
+    });
+
+
+    $('td').css('cursor','crosshair');
+    $(".rows").click(function (){
+        var codigo = $(this).attr('data-id');
+        var url = "{{url('admin/articulo')}}/"+codigo;
+        workAjax(url,codigo,"id")
+    });
+
+    $('#btnConfirmar').click(function () {
+        var isGood=confirm('Esta Seguro de Continuar?');
+        if (isGood) {
+            $('#confirmar').submit();
+        }
+    });
+    $('#btnActualizar').click(function () {
+        clean();
+        $('#form-compra').submit();
+    });
+
+    $('#Search').click(function () {
+        $('#modal_search').modal('show');
+    });
+    function workAjaxListItems(_url,_data) {
+        $.ajax({
+            url: _url,
+            type: 'GET',
+            data: { data: _data} ,
+            success: function (json) {
+                $("#tablaRows").find("tr").remove();
+                $("#tablaRows").append(json);
+            },
+            error: function (data) {
+                $("#tablaRows").find("tr").remove();
+                alert("No se Encontraron articulos!!");
+            }
+        });
+    }
+    $('#xkeySearch').on('keyup',function (e) {
+        var key = $(this).val();
+        var url = "{{route('getListArticulos')}}";
+        if (e.keyCode == 13) {
+            workAjaxListItems(url,key);
+        }
+    });
+  function genListSubData(key) {
+      var codigo = key;
+      var url = "{{route('showArticle')}}";
+      workAjax(url,codigo,"id");
+  }
 </script>
