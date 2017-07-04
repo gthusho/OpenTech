@@ -26,12 +26,11 @@
 
                 </li>
                 <li class="has_sub">
-                    <a href="{{route('admin.compra.index')}}" class="waves-effect"><i class=" ti-truck"></i> <span> Compras </span> </a>
-
-                </li>
-                <li class="has_sub">
-                    <a href="{{route('admin.compra.index')}}" class="waves-effect"><i class=" ti-truck"></i> <span> Compras al  Credito</span> </a>
-
+                    <a href="javascript:void(0);" class="waves-effect"><i class="ti-truck"></i><span class="label label-primary pull-right">2</span> <span> Compras </span>  </a>
+                    <ul class="list-unstyled">
+                        <a href="{{route('admin.compra.index')}}">Registrar Compra</a>
+                        <a href="{{route('admin.compra-credito.index')}}">Compras al Credito</a>
+                    </ul>
                 </li>
                 @include('theme.ubold.sidebar.liss')
                 @include('theme.ubold.sidebar.diego')

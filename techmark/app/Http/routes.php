@@ -51,6 +51,10 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
     Route::get('service/getArticuloByCodigo',['as' => 'getArticuloByCodigo', 'uses' => 'ComprasController@getArticuloByCodigo']);
     Route::get('service/getListArticulos',['as' => 'getListArticulos', 'uses' => 'ComprasController@getListArticulos']);
     Route::get('service/showArticle',['as' => 'showArticle', 'uses' => 'ArticuloController@showArticle']);
+
+    Route::resource('compra-credito','ComprasCreditoController');
+
+
     require __DIR__ . '/routes/diego.php';
     require __DIR__ . '/routes/liss.php';
 });
