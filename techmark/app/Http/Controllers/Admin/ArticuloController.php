@@ -105,7 +105,9 @@ class ArticuloController extends Controller
             'xcantidad'=>'',
             'xcosto'=>'',
             'stockIventario'=>$item->getStockAll(),
-
+            'precio1'=>Tool::convertMoney($item->precio1),
+            'precio2'=>Tool::convertMoney($item->precio2),
+            'precio3'=>Tool::convertMoney($item->precio3),
         ];
         return $data;
     }

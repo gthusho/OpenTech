@@ -10,4 +10,12 @@ Route::resource('detprodbase','DetalleProductoBaseController');
 Route::resource('prodbase','ProductoBaseController');
 Route::resource('producto','ProductoController');
 
+Route::resource('venta_art','VentaArticuloController');
+
+Route::post('deleteItemsVentaArticulo/{id}',['as' => 'deleteItemsVentaArticulo', 'uses' => 'DetalleVentaArticuloController@deleteItemsVentaArticulo']);
+Route::post('confirmVentaArticulo/{id}',['as' => 'confirmVentaArticulo', 'uses' => 'VentaArticuloController@confirmVenta']);
+Route::get('service/getArticuloForVenta',['as' => 'getArticuloForVenta', 'uses' => 'VentaArticuloController@getArticuloForVenta']);
+Route::get('service/getClienteForVenta',['as' => 'getClienteForVenta', 'uses' => 'VentaArticuloController@getClienteForVenta']);
+//Route::get('service/getListArticulos',['as' => 'getListArticulos', 'uses' => 'ComprasController@getListArticulos']);
+
 
