@@ -4,39 +4,29 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>ARTICULO</th>
-                <th>CATEGORIA</th>
-                <th>MARCA</th>
-                <th>MATERIAL</th>
-                <th>CANTIDAD</th>
-                <th>UNIDAD</th>
-                <th>COSTO</th>
-                <th>REMOVER</th>
+                <th>FECHA</th>
+                <th>MONTO</th>
+                <th>REGISTRO</th>
+                <th>ACCION</th>
             </tr>
             </thead>
 
             <tbody>
                 <?php $i=1; ?>
-                @foreach($compra->articulos as $row)
+                @foreach($compra->pagos as $row)
                     <tr class="rows" data-id="{{$row->id}}">
                         <td>{{$i++}}</td>
                         <td>
-                            {{$row->articulo->nombre}}
+                            {{date('d-m-Y',strtotime($row->fecha))}}
                         </td>
                         <td>
-                            {{\App\ToolArticuloCart::getNombreById($row->articulo->categoria_articulo_id,'categoria')}}
+                            {{\App\Tool::convertMoney($row->abono)}}
                         </td>
                         <td>
-                            {{\App\ToolArticuloCart::getNombreById($row->articulo->marca_id,"marca")}}
-                        </td>
-                        <td> {{\App\ToolArticuloCart::getNombreById($row->articulo->material_id,"material")}}</td>
-                        <td>{{number_format((float)$row->cantidad, 2, '.', '')}}</td>
-                        <td>{{\App\ToolArticuloCart::getNombreById($row->articulo->unidad_id,"unidad")}}</td>
-                        <td>
-                            {{\App\Tool::convertMoney($row->costo)}}
+                            {{$row->usuario->nombre}}
                         </td>
                         <td>
-                            {!! Form::open(['route'=>['deleteItemsCompra',$row->id],'method'=>'post']) !!}
+                            {!! Form::open(['route'=>['admin.compra-credito.destroy',$row->id],'method'=>'delete']) !!}
                             <button class="btn btn-danger btn-sm" ><i class=" icon-trash"></i> Remover</button>
                             {!! Form::close() !!}
 

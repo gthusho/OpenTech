@@ -24,10 +24,10 @@
     }
 </style>
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-6">
         @include('cpanel.admin.compra.partials.infoCompra')
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-6">
         <div class="panel panel-border panel-custom">
             <div class="panel-heading">
 
@@ -54,7 +54,5 @@
             </div>
         </div>
     </div>
-</div>
-
 </div>
 

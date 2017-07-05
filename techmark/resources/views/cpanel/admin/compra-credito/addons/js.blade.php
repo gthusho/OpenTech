@@ -54,125 +54,28 @@
 <script type="text/javascript">
 
     jQuery(function($) {
-        $('#xcantidad').autoNumeric('init');
-        $('#xcosto').autoNumeric('init');
+        $('#abono').autoNumeric('init');
+        $('#saldo').autoNumeric('init');
     });
 </script>
 
-<script type="text/javascript">
-    window.addEventListener('keydown',function(e){if(e.keyIdentifier=='U+000A'||e.keyIdentifier=='Enter'||e.keyCode==13){if(e.target.nodeName=='INPUT'&&e.target.type=='text'){e.preventDefault();return false;}}},true);
-</script>
 
 <script>
-    function genItem(item) {
-        $('#anombre').val(item['nombre']);
-        $('#acategoria').val(item['categoria']);
-        $('#amarca').val(item['marca']);
-        $('#amaterial').val(item['material']);
-        $('#acosto').val(item['costo']);
-        $('#aprecio').val(item['precio']);
-        $('#astock').val(item['stockIventario']);
-        $('#aid').val(item['id']);
-        $('#amedida').val(item['unidad']);
-        $('#xcantidad').val(item['xcantidad']);
-        $('#xcosto').val(item['xcosto']);
+    function parseCurrency( num ) {
+        return parseFloat( num.replace( /,/g, '') );
     }
-    function clean() {
-        $('.cleanclean').val("");
-    }
-    function workAjax(_url,_data,_type) {
-        $.ajax({
-            url: _url,
-            type: 'GET',
-            data: { data: _data,type:_type} ,
-            success: function (json) {
-                genItem(json);
-                onOffBtnCart(true);
-            },
-            error: function (data) {
-                clean();
-                onOffBtnCart(false);
-                alert("El codigo no Existe!!");
-            }
-        });
-    }
-    function onOffBtnCart($xx) {
-        if(!$xx){
-            $('#AddItemCart').attr('disabled', true);
-        }else {
-            $('#AddItemCart').removeAttr('disabled');
-        }
-    }
-    $('#ClearItemCart').click(function () {
-        onOffBtnCart(false);
-        clean();
-    });
-    $(window).load(function(){
-        $('#AddItemCart').attr('disabled', true);
-    });
 
-    $("#xcodigo").on('keyup', function (e) {
-        var codigo = $(this).val();
-        var url = "{{route('getArticuloByCodigo')}}";
-        if (e.keyCode == 13) {
-            workAjax(url,codigo,"codigo")
-        }
-    });
-    $("#xcodigobarra").on('keyup', function (e) {
-        var codigo = $(this).val();
-        var url = "{{route('getArticuloByCodigo')}}";
-        if (e.keyCode == 13) {
-            workAjax(url,codigo,"barra")
-        }
-    });
+        $("#abono").on("keyup keypress change paste", function(){
+           var saldo = "{{$compra->getTotalDeuda()}}";
+            var ret = parseCurrency(saldo) - parseCurrency(($(this).val()));
+            $("#saldo").val(ret);
+        })
+</script>
+<script type="text/javascript" src="{{url('assets/plugins/parsleyjs/parsley.min.js')}}"></script>
 
 
-    $('td').css('cursor','crosshair');
-    $(".rows").click(function (){
-        var codigo = $(this).attr('data-id');
-        var url = "{{url('admin/articulo')}}/"+codigo;
-        workAjax(url,codigo,"id")
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('form').parsley();
     });
-
-    $('#btnConfirmar').click(function () {
-        var isGood=confirm('Esta Seguro de Continuar?');
-        if (isGood) {
-            $('#confirmar').submit();
-        }
-    });
-    $('#btnActualizar').click(function () {
-        clean();
-        $('#form-compra').submit();
-    });
-
-    $('#Search').click(function () {
-        $('#modal_search').modal('show');
-    });
-    function workAjaxListItems(_url,_data) {
-        $.ajax({
-            url: _url,
-            type: 'GET',
-            data: { data: _data} ,
-            success: function (json) {
-                $("#tablaRows").find("tr").remove();
-                $("#tablaRows").append(json);
-            },
-            error: function (data) {
-                $("#tablaRows").find("tr").remove();
-                alert("No se Encontraron articulos!!");
-            }
-        });
-    }
-    $('#xkeySearch').on('keyup',function (e) {
-        var key = $(this).val();
-        var url = "{{route('getListArticulos')}}";
-        if (e.keyCode == 13) {
-            workAjaxListItems(url,key);
-        }
-    });
-  function genListSubData(key) {
-      var codigo = key;
-      var url = "{{route('showArticle')}}";
-      workAjax(url,codigo,"id");
-  }
 </script>

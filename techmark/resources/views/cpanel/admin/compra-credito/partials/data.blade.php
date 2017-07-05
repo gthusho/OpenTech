@@ -1,3 +1,4 @@
+
 <style>
 
     fieldset{
@@ -25,36 +26,20 @@
 </style>
 <div class="row">
     <div class="col-lg-5">
-        @include('cpanel.admin.compra.partials.infoCompra')
+        @include('cpanel.admin.compra-credito.partials.infoCompra')
     </div>
     <div class="col-lg-7">
         <div class="panel panel-border panel-custom">
             <div class="panel-heading">
 
-                <h3 class="panel-title">INFORMACION ARTICULOS</h3>
+                <h3 class="panel-title">PAGOS REALIZADOS</h3>
 
             </div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-12">
-                        @include('cpanel.admin.compra.partials.buscarArticulo')
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-7">
-                        @include('cpanel.admin.compra.partials.infoArticulo')
-                    </div>
-                    <div class="col-lg-3">
-                        @include('cpanel.admin.compra.partials.infoCostos')
-                    </div>
-                    <div class="col-lg-2">
-                        @include('cpanel.admin.compra.partials.operaciones')
-                    </div>
-                </div>
+                @include('cpanel.admin.compra-credito.partials.table')
             </div>
         </div>
     </div>
 </div>
 
-</div>
 

@@ -1,74 +1,47 @@
+
+
 <div class="panel panel-border panel-custom">
     <div class="panel-heading">
         <h3 class="panel-title">COMPRA {{$compra->getCode()}}</h3>
     </div>
     <div class="panel-body">
-        <div class="row">
-            <div class="col-lg-6">
-                <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">SUCURSAL QUE REALIZA LA COMPRA</legend>
-                    {!! Form::select('sucursal_id',$sucursales,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione una sucursal'])!!}
+        <ul class="list-unstyled">
+            <li><span class="text-custom">Sucursal: </span>{{$compra->sucursal->nombre}}</li>
+            <li><span class="text-custom">Almacen: </span>{{$compra->almacen->nombre}}</li>
+            <li><span class="text-custom">Cantidad Articulos: </span>{{$compra->totalCantidad()}}</li>
+            <li><span class="text-custom">Costo Compra: </span>{{\App\Tool::convertMoney($compra->totalCosto())}}</li>
+            <li><span class="text-custom">Saldo Compra: </span>{{\App\Tool::convertMoney($compra->getTotalDeuda())}}</li>
+            <li><span class="text-custom">Fecha Compra: </span>{{date('d-m-Y',strtotime($compra->fecha))}}</li>
+            <li><span class="text-custom">Registro la Compra: </span>{{$compra->usuario->nombre}}</li>
+        </ul>
+    </div>
+</div>
+<div class="panel panel-border panel-custom">
+    <div class="panel-heading">
+        <h3 class="panel-title">ABONAR CUOTAS</h3>
+    </div>
+    <div class="panel-body">
+        {!! Form::open(['route'=>'admin.compra-credito.store','method'=>'post']) !!}
+        <div class="input-group">
+            {!! Form::text('fecha',null,['class'=>'form-control','required','autocomplete'=>"off",'id'=>"datepicker-autoclose",'data-date-format'=>'yyyy/mm/dd'])!!}
+            <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
+        </div>
+        <div class="form-group">
+            {!! Form::label('Monto a Abonar ')!!}
+            <input name="abono" type="text" class="form-control autonumber cleanclean" autocomplete="off" id="abono" data-parsley-max="{{$compra->getTotalDeuda()}}" required>
+        </div>
+        <div class="form-group">
+            {!! Form::label('Saldo  ')!!}
+            <input name="saldo" type="text" class="form-control autonumber cleanclean" value="{{$compra->getTotalDeuda()}}" autocomplete="off" id="saldo" disabled>
 
-                </fieldset>
-            </div>
-            <div class="col-lg-6">
-                <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">TIPO COMPRA</legend>
-                    {!! Form::select('tipo_compra',Config::get('gthusho.tipo_compra'),null,['class'=>'form-control select2','required'])!!}
+        </div>
+        <input name="compra_id" type="hidden" value="{{$compra->id}}">
+      <div class="form-group  m-t-15">
+          <button  class="btn btn-primary waves-effect waves-light m-l-5" onclick="return confirm('Esta Seguro de Continuar?')">
+              Registrar
+          </button>
+      </div>
+        {!! Form::close() !!}
 
-                </fieldset>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">FECHA DE COMPRA</legend>
-                    <div class="input-group">
-                        {!! Form::text('fecha',null,['class'=>'form-control','required','autocomplete'=>"off",'id'=>"datepicker-autoclose",'data-date-format'=>'yyyy/mm/dd'])!!}
-                        <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
-                    </div>
-                </fieldset>
-            </div>
-            <div class="col-lg-6">
-                <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">ALMACEN</legend>
-                    {!! Form::select('almacen_id',$almacenes,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione un almacen'])!!}
-                </fieldset>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">DATOS PROVEEDOR</legend>
-                    <div class="form-group col-lg-8">
-                        {!! Form::label('Proveedor ')!!}
-                        {!! Form::select('proveedor_id',$proveedores,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione un Proveedor'])!!}
-                    </div>
-                    <div class="form-group col-lg-4">
-                        {!! Form::label('# Factura ')!!}
-                        {!! Form::text('nfactura',null,['class'=>'form-control','autocomplete'=>'off'])!!}
-                    </div>
-                </fieldset>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">COSTOS Y CANTIDAD</legend>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            {!! Form::label('Total Costos ')!!}
-                            {!! Form::text('totalcosto',\App\Tool::convertMoney($compra->totalCosto()),['class'=>'form-control autonumber','disabled'])!!}
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="form-group">
-                            {!! Form::label('Cantidad Articulos  ')!!}
-                            {!! Form::text('totalcantidad',$compra->totalCantidad(),['class'=>'form-control ','disabled'])!!}
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
-        </div>
     </div>
 </div>

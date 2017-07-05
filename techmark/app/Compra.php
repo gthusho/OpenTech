@@ -35,6 +35,9 @@ class Compra extends Model
         else
             return $total;
     }
+    function pagos(){
+        return $this->hasMany('App\CompraCredito','compra_id','id');
+    }
     function totalCantidad(){
         $total =  Ingresos::where('compra_id',$this->id)->count();
         return $total;
@@ -54,4 +57,19 @@ class Compra extends Model
         }
     }
 
+    /*
+     * MEtodos para compra al credito
+     */
+    function  getTotalAbonos(){
+       $total = CompraCredito::where('compra_id',$this->id)->sum('abono');
+       if($total == '' || $total ==null){
+           return 0;
+       }else{
+           return $total;
+
+       }
+    }
+    function getTotalDeuda(){
+       return $this->totalCosto() - $this->getTotalAbonos();
+    }
 }

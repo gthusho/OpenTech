@@ -54,6 +54,13 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
 
     Route::resource('compra-credito','ComprasCreditoController');
 
+/*
+ * todo ingresos egresos e inventario
+ */
+
+    Route::get('ingresos/articulos',['as' => 'ingresos.articulos.index', 'uses' => 'IngresosController@index']);
+
+
 
     require __DIR__ . '/routes/diego.php';
     require __DIR__ . '/routes/liss.php';

@@ -23,4 +23,16 @@ class Ingresos extends Model
         }
 
     }
+    function usuario(){
+    return $this->belongsTo('App\User','usuario_id','id');
+}
+    function sucursal(){
+        return $this->belongsTo('App\Sucursal','sucursal_id','id');
+    }
+    function almacen(){
+        return $this->belongsTo('App\Almacen','almacen_id','id');
+    }
+    function compra(){
+        return $this->belongsTo('App\Compra','compra_id','id');
+    }
 }

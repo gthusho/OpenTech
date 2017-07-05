@@ -1,6 +1,6 @@
 <div class="table-rep-plugin">
     <div class="table-responsive custList" data-pattern="priority-columns">
-        <table class="table table-hover" id="tabla">
+        <table class="table " id="tabla">
             <thead>
             <tr>
                 <th>CODIGO</th>
@@ -20,7 +20,7 @@
                     <?php
                     $cl = '';
                     if($row->tipo_compra == "Credito")
-                        $cl="class='bg-warning'" ;
+                        $cl="class='bg-custom text-white'" ;
                     ?>
                     <tr {!! $cl !!}>
 

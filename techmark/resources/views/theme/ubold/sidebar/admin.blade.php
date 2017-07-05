@@ -15,6 +15,17 @@
 
                 </li>
                 <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class=" ti-notepad"></i><span class="label label-primary pull-right">4</span> <span> Inventario </span>  </a>
+                    <ul class="list-unstyled">
+                        <li><a href="{{route('admin.usuario.index')}}">Articulos</a></li>
+                        <li><a href="{{route('admin.usuario.index')}}">Productos</a></li>
+                        <li><a href="{{route('ingresos.articulos.index')}}">Ingresos Articulos</a></li>
+                        <li><a href="{{route('admin.rol.index')}}">Ingresos Productos</a></li>
+                        <li><a href="{{route('admin.rol.index')}}">Egresos Articulos</a></li>
+                        <li><a href="{{route('admin.rol.index')}}">Egresos Productos</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="icon-people"></i><span class="label label-primary pull-right">2</span> <span> Usuarios & Roles </span>  </a>
                     <ul class="list-unstyled">
                         <li><a href="{{route('admin.usuario.index')}}">Usuarios</a></li>

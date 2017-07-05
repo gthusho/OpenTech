@@ -1,6 +1,6 @@
 
 <div class=" m-b-30 pull-right">
-    {!! Form::model(Request::all(), ['route' => ['admin.compra.index'],'method'=>'GET','class'=>'form-inline']) !!}
+    {!! Form::model(Request::all(), ['route' => ['admin.compra-credito.index'],'method'=>'GET','class'=>'form-inline']) !!}
 
     <div class="form-group">
         <div class="input-group">
