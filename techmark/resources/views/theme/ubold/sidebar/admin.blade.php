@@ -40,7 +40,7 @@
                         <li><a href="{{route('admin.usuario.index')}}">Productos</a></li>
                         <li><a href="{{route('ingresos.articulos.index')}}">Ingresos Articulos</a></li>
                         <li><a href="{{route('admin.rol.index')}}">Ingresos Productos</a></li>
-                        <li><a href="{{route('admin.rol.index')}}">Egresos Articulos</a></li>
+                        <li><a href="{{route('egresos.articulos.index')}}">Egresos Articulos</a></li>
                         <li><a href="{{route('admin.rol.index')}}">Egresos Productos</a></li>
                     </ul>
                 </li>

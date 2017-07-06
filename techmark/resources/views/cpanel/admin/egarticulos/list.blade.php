@@ -3,14 +3,14 @@
     @include('cpanel.partials.brand')
     <div class="row">
         <div class="col-sm-12">
-            @include('cpanel.admin.inarticulos.partials.report')
+            @include('cpanel.admin.egarticulos.partials.report')
 
         </div>
     </div>
     <br>
     <div class="row">
       <div class="col-sm-12">
-       {{--   @include('cpanel.admin.inarticulos.partials.search')--}}
+       {{--   @include('cpanel.admin.egarticulos.partials.search') --}}
       </div>
     </div>
     <div class="row">
@@ -18,7 +18,7 @@
             <div class="card-box">
                 <div class="table-rep-plugin">
                     <div class="table-responsive" data-pattern="priority-columns">
-                        @include('cpanel.admin.inarticulos.partials.table')
+                        @include('cpanel.admin.egarticulos.partials.table')
                     </div>
 
                 </div>
@@ -29,7 +29,7 @@
 
     <div class="col-lg-12">
         <div class="pull-left">
-            {{$ingresos->appends(Request::only(['s']))->render()}}
+            {{$egresos->appends(Request::only(['s']))->render()}}
         </div>
     </div>
 @endsection

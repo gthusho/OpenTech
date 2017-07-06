@@ -9,11 +9,11 @@
                     <legend class="scheduler-border">DATOS CLIENTE</legend>
                     <div class="form-group col-lg-6">
                         {!! Form::label('NIT ')!!}
-                        {!! Form::text('nit',null,['class'=>'form-control','autocomplete'=>'of','id'=>'xnit'])!!}
+                        {!! Form::text('nit',$nit,['class'=>'form-control','autocomplete'=>'of','id'=>'xnit'])!!}
                     </div>
                     <div class="form-group col-lg-6">
                         {!! Form::label('Cliente ')!!}
-                        {!! Form::text('razon_social',null,['class'=>'form-control','disabled','id'=>'crazon'])!!}
+                        {!! Form::text('razon_social',$razon_social,['class'=>'form-control','disabled','id'=>'crazon'])!!}
                     </div>
                     <div class="form-group col-lg-4">
                         {!! Form::hidden('cliente_id',null,['class'=>'form-control','id'=>'cid'])!!}
@@ -33,15 +33,11 @@
                     {!! Form::select('tipo_pago',Config::get('gthusho.tipo_compra'),null,['class'=>'form-control select2','required'])!!}
 
                 </fieldset>
-                <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">ALMACEN</legend>
-                    {!! Form::select('almacen_id',$almacenes,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione un almacen'])!!}
-                </fieldset>
             </div>
             <div class="col-lg-6">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">OBSERVACIONES</legend>
-                    {!! Form::textarea('observaciones',null,['class'=>'form-control','rows'=>'7'])!!}
+                    {!! Form::textarea('observaciones',null,['class'=>'form-control','rows'=>'4'])!!}
                 </fieldset>
             </div>
         </div>

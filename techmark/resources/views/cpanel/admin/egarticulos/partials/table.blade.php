@@ -14,10 +14,10 @@
     </tr>
     </thead>
     <tbody>
-    @foreach($ingresos as $row)
+    @foreach($egresos as $row)
         <tr>
-            <td>{{$row->compra->getCode()}}</td>
-            <td>{{date('d-m-Y',strtotime($row->compra->fecha))}}</td>
+            <td>{{$row->ventaarticulo->getCode()}}</td>
+            <td>{{date('d-m-Y',strtotime($row->registro))}}</td>
             <td>{{$row->articulo->nombre}}</td>
             <td>{{$row->articulo->categoria->nombre}}</td>
             <td>{{$row->articulo->marca->nombre}}</td>

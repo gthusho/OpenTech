@@ -36,7 +36,6 @@ class VentaArticuloController extends Controller
         }else{
             $this->venta = new  VentaArticulo();
             $this->venta->usuario_id = Auth::user()->id;
-            $this->venta->cliente_id = 1;
             $this->venta->save();
         }
     }
@@ -56,66 +55,7 @@ class VentaArticuloController extends Controller
      * @param Request $request
      * @return array
      */
-    public function getArticuloForVenta(Request $request){
-        $query = null;
-        switch ($request->get('type')){
-            case "codigo":{
-                $query = Articulo::where('codigo',$request->get('data'))->get();
-                break;
-            }
-            case "barra":{
-                $query = Articulo::where('codigobarra',$request->get('data'))->get();
-                break;
-            }
-            default: abort(1000);
-        }
 
-        if(Tool::existe($query)){
-            $item =  $query->first();
-
-            $data = [
-                'id'=>$item->id,
-                'nombre'=>$item->nombre,
-                'unidad'=>$item->medida->nombre,
-                'categoria'=>$item->categoria->nombre,
-                'material'=>$item->material->nombre,
-                'marca'=>$item->marca->nombre,
-                'precio1'=>Tool::convertMoney($item->precio1),
-                'precio2'=>Tool::convertMoney($item->precio2),
-                'precio3'=>Tool::convertMoney($item->precio3),
-                'stockIventario'=>$item->getStockAll(),
-                'xcantidad'=>'',
-                'xprecio'=>''
-
-            ];
-
-            return $data;
-        }else{
-            abort(1000);
-        }
-
-
-    }
-
-    public function getClienteForVenta(Request $request){
-        $query = Clientes::where('nit',$request->get('data'))->get();
-
-        if(Tool::existe($query)){
-            $item =  $query->first();
-
-            $data = [
-                'id'=>$item->id,
-                'razon_social'=>$item->razon_social
-
-            ];
-
-            return $data;
-        }else{
-            abort(1000);
-        }
-
-
-    }
 
     /**
      * @param $articulo
@@ -176,27 +116,6 @@ class VentaArticuloController extends Controller
             ->update(['sucursal_id' => $this->venta->sucursal_id,'almacen_id'=>$this->venta->almacen_id]);
     }
 
-    /*function getListArticulos(Request $request){
-        $query = Articulo::tipo(0,$request->get('data'))->get();
-        if(Tool::existe($query)){
-            $data = "";
-            foreach ($query as $row){
-                $data .= "
-                    <tr data-id='{$row->id}'>
-                    <td>{$row->nombre}</td>
-                    <td>{$row->categoria->nombre}</td>
-                    <td>{$row->marca->nombre}</td>
-                    <td>{$row->material->nombre}</td>
-                    <td><button class='btn btn-primary btn-sm' onclick='genListSubData({$row->id})'><i class=' icon-action-redo'></i></button></td>
-                    </tr>
-                ";
-            }
-            echo $data;
-        }else{
-            abort(1000);
-        }
-
-    }*/
 
     public function index(Request $request)
     {
@@ -226,6 +145,14 @@ class VentaArticuloController extends Controller
             $this->genDataIni();
             //mando la compra pre-registrada y/o obtenida en el constructor
 
+            $this->datos['razon_social'] = null;
+            $this->datos['nit'] = null;
+            if($this->venta->cliente_id!='' || $this->venta->cliente_id!=0){
+                $this->datos['razon_social'] = $this->venta->cliente->razon_social;
+                $this->datos['nit'] = $this->venta->cliente->nit;
+            }
+
+
             $this->datos['venta'] = $this->venta;
 
             return view('cpanel.admin.venta_art.registro',$this->datos);
@@ -250,6 +177,9 @@ class VentaArticuloController extends Controller
 
             //actualizo la compra de ser necesario
             $this->venta->fill($request->all());
+            $this->venta->sucursal_id = $request->get('sucursal_id');
+            $this->venta->save();
+            $this->venta->almacen_id = $this->venta->sucursal->almacen->id;
             $this->venta->save();
 
 
@@ -284,6 +214,8 @@ class VentaArticuloController extends Controller
             $this->datos['brand'] = Tool::brand('Editar Venta',route('admin.venta_art.index'),'Venta de Articulos');
             $this->genDataIni();
             $this->datos['venta'] = VentaArticulo::find($id);
+            $this->datos['razon_social'] = $this->datos['venta']->cliente->razon_social;
+            $this->datos['nit'] = $this->datos['venta']->cliente->nit;
             return view('cpanel.admin.venta_art.edit',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para editar ');
@@ -298,6 +230,9 @@ class VentaArticuloController extends Controller
             //actualizo la compra de ser necesario
             $this->venta = VentaArticulo::find($id);
             $this->venta->fill($request->all());
+            $this->venta->sucursal_id = $request->get('sucursal_id');
+            $this->venta->save();
+            $this->venta->almacen_id = $this->venta->sucursal->almacen->id;
             $this->venta->save();
 
 

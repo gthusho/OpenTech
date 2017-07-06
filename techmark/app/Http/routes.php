@@ -56,7 +56,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
  */
 
     Route::get('ingresos/articulos',['as' => 'ingresos.articulos.index', 'uses' => 'IngresosController@index']);
-
+    Route::get('egresos/articulos',['as' => 'egresos.articulos.index', 'uses' => 'DetalleVentaArticuloController@index']);
 
 
     require __DIR__ . '/routes/diego.php';
@@ -91,3 +91,10 @@ Route::get('service/getArticuloByCodigo',['as' => 'getArticuloByCodigo', 'uses' 
 Route::get('service/getListArticulos',['as' => 'getListArticulos', 'uses' => 'ServiceArticulosController@getListArticulos']);
 Route::get('service/showArticle',['as' => 'showArticle', 'uses' => 'ServiceArticulosController@showArticle']);
 Route::get('service/showArticleByIngresoId/{id}',['as' => 'showArticleByIngresoId', 'uses' => 'ServiceArticulosController@showArticleByIngresoId']);
+
+/*
+ * servicios venta articulos
+ */
+Route::get('service/getArticuloForVenta',['as' => 'getArticuloForVenta', 'uses' => 'ServiceVentaArticulosController@getArticuloForVenta']);
+Route::get('service/getClienteForVenta',['as' => 'getClienteForVenta', 'uses' => 'ServiceVentaArticulosController@getClienteForVenta']);
+Route::get('service/showArticleByEgresoId/{id}',['as' => 'showArticleByEgresoId', 'uses' => 'ServiceVentaArticulosController@showArticleByEgresoId']);

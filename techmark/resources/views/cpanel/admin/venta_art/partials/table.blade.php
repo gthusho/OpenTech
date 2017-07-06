@@ -22,6 +22,7 @@
                         <td>{{$i++}}</td>
                         <td>
                             {{$row->articulo->nombre}}
+
                         </td>
                         <td>
                             {{\App\ToolArticuloCart::getNombreById($row->articulo->categoria_articulo_id,'categoria')}}

@@ -24,6 +24,9 @@ class DetalleVentaArticulo extends Model
     function ventaarticulo(){
         return $this->belongsTo('App\VentaArticulo','venta_articulo_id','id');
     }
+    function almacen(){
+        return $this->belongsTo('App\Almacen','almacen_id','id');
+    }
     public  function  setPrecioAttribute($value){
         if(!empty($value)){
             $this->attributes['precio']=\str_replace(",","",$value);

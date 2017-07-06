@@ -3,7 +3,7 @@
         <table class="table table-hover" id="tabla">
             <thead>
             <tr>
-                <th>CODIGO</th>
+                <th class='bg-primary'>CODIGO</th>
                 <th>FECHA</th>
                 <th>TIPO PAGO</th>
                 <th>SUCURSAL</th>
@@ -20,15 +20,20 @@
                     <?php
                     $cl = '';
                     if($row->tipo_pago == "Credito")
-                        $cl="class='bg-warning'" ;
+                        $cl="class='bg-primary'" ;
                     ?>
-                    <tr {!! $cl !!}>
+                    <tr >
+                        <td {!! $cl !!}>
+                            {{$row->tipo_pago}}
+                            @if($row->tipo_pago == "Credito")
+                                <a href="{{route('admin.compra-credito.show',$row->id)}}" class="btn btn-xs btn-white" target="_blank"> <i class="fa fa-money"></i> Pagar</a>
+                            @endif
+                        </td>
 
                         <td  >{{$row->getCode()}}</td>
                         <td>
                             {{date('d/m/Y',strtotime($row->registro))}}
                         </td>
-                        <td>{{$row->tipo_pago}}</td>
                         <td>{{$row->sucursal->nombre}}</td>
                         <td>{{$row->almacen->nombre}}</td>
                         <td>{{$row->cliente->razon_social}}</td>

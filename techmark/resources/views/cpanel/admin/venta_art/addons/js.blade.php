@@ -75,6 +75,12 @@
         $('#aid').val(item['id']);
         $('#amedida').val(item['unidad']);
         $('#xcantidad').val(item['xcantidad']);
+
+        if(item['dp']!='' || item['dp']!= null){
+            $('.cRemove').attr('checked', false);
+            $('#'+item['dp']).prop("checked", true);
+        }
+
     }
     function genCliente(item) {
         $('#crazon').val(item['razon_social']);
@@ -154,7 +160,8 @@
     $('td').css('cursor','crosshair');
     $(".rows").click(function (){
         var codigo = $(this).attr('data-id');
-        var url = "{{url('admin/articulo')}}/"+codigo;
+        var url = "{{route('showArticleByEgresoId','GTHUSHO')}}";
+        url = url.replace('GTHUSHO',codigo);
         workAjax(url,codigo,"id")
     });
 

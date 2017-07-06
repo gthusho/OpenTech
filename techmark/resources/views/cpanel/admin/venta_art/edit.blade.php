@@ -8,18 +8,24 @@
         @include('cpanel.admin.venta_art.partials.data')
 
         {!! Form::close() !!}
-        <div class="row m-b-15">
-            <div class="form-group text-left col-lg-2">
-                        <span class="btn btn-primary waves-effect waves-light" id="btnActualizar">
+        <div class="row m-b-15 col-lg-12">
+            <div class="pull-left">
+                        <span class="btn btn-primary waves-effect waves-light m-r-5" id="btnActualizar">
                             <i class="fa fa-check-square-o"></i>
                             Actualizar Venta
                         </span>
             </div>
-            <div class="form-group text-left col-lg-2">
+            <div class="pull-left">
+                        <span class="btn btn-inverse waves-effect waves-light" >
+                            <i class=" icon-printer"></i>
+                            Imprimir
+                        </span>
+            </div>
+            <div class="pull-right">
                 {!! Form::open(['route'=>['admin.venta_art.destroy',$venta->id],'method'=>'delete']) !!}
-                <button  class="btn btn-danger waves-effect waves-light m-l-5" onclick="return confirm('Esta Seguro de Cancelar la Venta?')">
+                <button  class="btn btn-danger waves-effect waves-light" onclick="return confirm('Esta Seguro de Cancelar la Venta?')">
                     <i class="ti-close"></i>
-                    Cancelar Venta
+                    Eliminar Venta
                 </button>
                 {!! Form::close() !!}
             </div>
