@@ -1,6 +1,8 @@
 @extends('theme.ubold.layout_cpanel')
 @section('content')
+
     @include('cpanel.partials.brand')
+
     <div class="row">
 
         @include('cpanel.partials.errors')
@@ -8,21 +10,31 @@
         @include('cpanel.admin.compra.partials.data')
 
         {!! Form::close() !!}
-        <div class="row m-b-15">
-            <div class="form-group text-left col-lg-2">
+        <div class="pull-left m-b-15">
+            <div class="form-group text-left">
                         <span class="btn btn-primary waves-effect waves-light" id="btnActualizar">
                             <i class="fa fa-check-square-o"></i>
                             Actualizar Compra
                         </span>
             </div>
-            <div class="form-group text-left col-lg-2">
-                {!! Form::open(['route'=>['admin.compra.destroy',$compra->id],'method'=>'delete']) !!}
-                <button  class="btn btn-danger waves-effect waves-light m-l-5" onclick="return confirm('Esta Seguro de Cancelar la Compra?')">
-                    <i class="ti-close"></i>
-                    Cancelar Compra
-                </button>
-                {!! Form::close() !!}
+
+        </div>
+        <div class="pull-left m-b-15 m-l-5">
+            <div class="form-group text-left">
+                        <span class="btn btn-inverse waves-effect waves-light" >
+                            <i class=" icon-printer"></i>
+                            Imprimir Compra
+                        </span>
             </div>
+
+        </div>
+        <div class="pull-right ">
+            {!! Form::open(['route'=>['admin.compra.destroy',$compra->id],'method'=>'delete']) !!}
+            <button  class="btn btn-danger waves-effect waves-light m-l-5" onclick="return confirm('Esta Seguro de Cancelar la Compra?')">
+                <i class="ti-close"></i>
+                Eliminar Compra
+            </button>
+            {!! Form::close() !!}
         </div>
         {!! Form::open(['route'=>['confirmCompra',$compra->id],'method'=>'post','id'=>'confirmar']) !!}
         {!! Form::close() !!}

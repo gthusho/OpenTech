@@ -205,6 +205,7 @@ class ComprasController extends Controller
 
             //actualizo la compra de ser necesario
             $this->compra->fill($request->all());
+            $this->compra->almacen_id = $this->compra->almacen->id;
             $this->compra->save();
 
 

@@ -4,11 +4,13 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card-box">
+                {{--
                 <div class="pull-right">
                     {!! Form::open(['route'=>['admin.almacen.destroy',$almacen->id],'method'=>'delete','id'=>'form-delete']) !!}
                     <a class="btn btn-danger" id="btn-delete"> <i class="fa fa-trash"></i> Eliminar</a>
                     {!! Form::close() !!}
                 </div>
+                 --}}
                 <h4 class="m-t-0 header-title"><b>Formulario para Actualizacion de Datos</b></h4>
                 <p class="text-danger font-13 m-b-30">
                     * Los campos con (*) son obligatorios

@@ -27,7 +27,7 @@
                         </td>
                         <td>
                             {!! Form::open(['route'=>['admin.compra-credito.destroy',$row->id],'method'=>'delete']) !!}
-                            <button class="btn btn-danger btn-sm" ><i class=" icon-trash"></i> Remover</button>
+                            <button class="btn btn-danger btn-sm" ><i class=" icon-trash"></i> </button>
                             {!! Form::close() !!}
 
                         </td>
@@ -36,5 +36,20 @@
             </tbody>
         </table>
     </div>
+    <div class="row" style="border-radius: 0px;">
+        <div class="col-md-5 col-md-offset-7">
+            <p class="text-right"><b>Costo Compra :</b> {{\App\Tool::convertMoney($compra->totalCosto())}}</p>
+            <p class="text-right">Total Pagado: {{\App\Tool::convertMoney($compra->totalCosto() - $compra->getTotalDeuda())}}</p>
+            <hr>
+            <h3 class="text-right">Saldo {{\App\Tool::convertMoney($compra->getTotalDeuda())}}</h3>
+        </div>
+    </div>
+    <hr>
+    <div class="hidden-print">
+        <div class="pull-right">
+            <a href="" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i> Imprimir Pagos</a>
+        </div>
+    </div>
+
 
 </div>

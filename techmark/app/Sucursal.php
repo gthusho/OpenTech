@@ -21,11 +21,11 @@ class Sucursal extends Model
             $query->where('nombre','like',"%$name%");
         }
     }
-    function depositos(){
-        return $this->hasMany('App\AlmacenSucursal','sucursal_id','id');
+    function almacen(){
+        return $this->hasOne('App\Almacen','sucursal_id','id');
     }
     function  deleteOk(){
-        $num = AlmacenSucursal::where('sucursal_id',$this->id)->count();
+        $num = Almacen::where('sucursal_id',$this->id)->count();
         $num+= Trabajador::where('sucursal_id',$this->id)->count();
         if($num>0)
             return false;

@@ -32,62 +32,40 @@
     </div>
 
 </div>
-<div class="row m-t-5">
-
-    <div class="col-lg-6">
-        <div class="panel panel-border panel-inverse">
+<div class="row ">
+    @if(Request::segment(4)=='edit')
+    <div class="col-lg-12">
+        <div class="panel panel-border ">
             <div class="panel-heading">
-                <h3 class="panel-title"> ASIGNACION DE ALMACEN</h3>
+                <h3 class="panel-title">INFORMACION DEL ALMACEN</h3>
             </div>
             <div class="panel-body" id="depositos">
-                @if(Request::segment(4)=='edit')
-                    <?php
-                       $ojos = \App\AlmacenSucursal::where('sucursal_id',$sucursal->id)->get()->lists('almacen_id')->toArray();
-                    ?>
-                    @foreach(\App\Almacen::where('ciudad_id',$sucursal->ciudad_id)->get() as $row)
-                        <?php
-                          $chek = '';
-                            if(in_array($row->id,$ojos))
-                                $chek = 'checked';
-                            else
-                                $chek = '';
-
-
-                        ?>
-                    <div class='checkbox checkbox-inverse'>
-                        <input id='{{$row->id}}' type='checkbox' name='depositos[]' {{$chek}} value="{{$row->id}}">
-                        <label for='{{$row->id}}'>
-                            {{$row->nombre}}
-                        </label>
+                <ul class="list-unstyled">
+                    <li><span class="text-custom">Nombre Almacen:</span> {{$sucursal->almacen->nombre}}</li>
+                    <li><span class="text-custom">Direccion:</span> {{$sucursal->almacen->direccion}}</li>
+                    <li class="m-t-15"><a class="btn btn-inverse btn-xs" href="{{route('admin.almacen.edit',$sucursal->almacen->id)}}" target="_blank">Editar Informacion Almacen</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    @else
+        <div class="col-lg-12">
+            <div class="panel panel-border ">
+                <div class="panel-heading">
+                    <h3 class="panel-title">INFORMACION DEL ALMACEN</h3>
+                </div>
+                <div class="panel-body" id="depositos">
+                    <div class="form-group col-lg-6">
+                        {!! Form::label('Nombre Almacen  ')!!}
+                        {!! Form::text('xNombre',null,['class'=>'form-control','required'])!!}
                     </div>
-                    @endforeach
-                @else
-                    <p>Esperando ciudad para generar datos...</p>
-                @endif
+                    <div class="form-group col-lg-6">
+                        {!! Form::label('Dirección Almacen (*)')!!}
+                        {!! Form::text('xDireccion',null,['class'=>'form-control','required'])!!}
+                    </div>
+
+                </div>
             </div>
         </div>
-    </div>
-    @if(Request::segment(4)=='edit')
-    <div class="col-lg-6">
-        <div class="panel panel-border panel-custom">
-            <div class="panel-heading">
-                <h3 class="panel-title"> ALMACENES ASIGNADOS ACTUALMENTE</h3>
-            </div>
-            <div class="panel-body">
-                <table class="table table-hover">
-                    <tr>
-                        <th>ALMACEN</th>
-                        <th>DIRECCION</th>
-                    </tr>
-                    @foreach($sucursal->depositos as $row)
-                    <tr>
-                        <td>{{$row->almacen->nombre}}</td>
-                        <td>{{$row->almacen->direccion}}</td>
-                    </tr>
-                    @endforeach
-                </table>
-            </div>
-        </div>
-    </div>
     @endif
 </div>

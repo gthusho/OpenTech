@@ -34,36 +34,7 @@ class SucursalesController extends Controller
 
     }
 
-    private $listLibres = null;
-    function getAlmacenes(Request $request){
-        $ciudad = $request->get('ciudad');
-        $sucursal = $request->get('sucursal');
-        $this->listLibres = Almacen::where('ciudad_id',$ciudad)->get();
 
-        if(Tool::existe($this->listLibres)){
-            $data = null;
-            $chek = '';
-            foreach ($this->listLibres as $row)
-            {
-
-                if($row->id == $sucursal)
-                    $chek = 'checked';
-                else
-                    $chek = '';
-
-                $data.= "
-                    <div class='checkbox checkbox-inverse'>
-		             <input id='{$row->id}' type='checkbox' name='depositos[]' {$chek} value='{$row->id}'>
-		             <label for='{$row->id}'>
-		               {$row->nombre}
-		             </label>
-		         </div>
-            ";
-            }
-            echo $data;
-        }
-
-    }
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
@@ -84,7 +55,13 @@ class SucursalesController extends Controller
             $sucursal = new Sucursal($request->all());
             $sucursal->usuario_id = Auth::user()->id;
             $sucursal->save();
-            $this->AgregarDepositos($request->get('depositos'),$sucursal->id);
+            $almacen = [
+                'nombre'=>$request->get('xNombre'),
+                'direccion'=>$request->get('xDireccion'),
+                'sucursal_id'=>$sucursal->id,
+                'ciudad_id'=>$sucursal->ciudad->id
+            ];
+            Almacen::create($almacen);
             return redirect()->route('admin.sucursal.index');
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
@@ -93,23 +70,13 @@ class SucursalesController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
        // dd(User::find($id));
@@ -133,25 +100,8 @@ class SucursalesController extends Controller
 
     }
 
-    private $relacion = null;
-    function AgregarDepositos($repositos,$sucursal){
-        if($repositos){
-            $json = json_encode($repositos);
-            $json = json_decode($json,true);
-            foreach ($json as $valu){
-                $this->relacion[] = ['almacen_id'=>$valu,'sucursal_id'=>$sucursal];
-            }
-            if(count($this->relacion)>0)
-            {
-                \DB::table('almacen_sucursal')->insert($this->relacion);
-            }
-        }
-    }
     public function update(Request $request, $id)
     {
-        $relacion=  null;
-
-
 
         if(Auth::user()->can('allow-edit')){
             $sucursal = Sucursal::find($id);
@@ -172,12 +122,7 @@ class SucursalesController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
 

@@ -6,7 +6,7 @@
         <th>CIUDAD</th>
         <th>TELEFONO / CELULAR</th>
         <th>DIRECCION</th>
-        <th>ALMACENES ASIGNADOS</th>
+        <th>ALMACEN </th>
         <th>ACCIONES</th>
     </tr>
     </thead>
@@ -30,11 +30,9 @@
             </td>
             <td>{{$row->direccion}}</td>
             <td>
-                <ul class="list-unstyled">
-                @foreach($row->depositos as $data)
-                    <li><h5 class="text-dark">{{$data->almacen->nombre}}</h5></li>
-                @endforeach
-                </ul>
+                {{$row->almacen->nombre}}
+                <br>
+                {{$row->almacen->direccion}}
             </td>
             <td>
                 <a href="{{route('admin.sucursal.edit',$row->id)}}"><i class=" icon-pencil"></i> Editar</a>

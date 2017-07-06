@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">FECHA DE COMPRA</legend>
                     <div class="input-group">
@@ -29,12 +29,14 @@
                     </div>
                 </fieldset>
             </div>
+            {{--
             <div class="col-lg-6">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">ALMACEN</legend>
                     {!! Form::select('almacen_id',$almacenes,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione un almacen'])!!}
                 </fieldset>
             </div>
+            --}}
         </div>
         <div class="row">
             <div class="col-lg-12">

@@ -17,7 +17,7 @@ class Almacen extends Model
     protected $fillable = [
         'nombre', 'direccion', 'ciudad_id',
         'registro',
-        'estado'
+        'estado','sucursal_id'
     ];
     function scopeName($query,$name){
         if(trim($name) != ''){
@@ -26,6 +26,9 @@ class Almacen extends Model
     }
     function ciudad(){
         return $this->belongsTo('App\Ciudad','ciudad_id','id');
+    }
+    function sucursal(){
+        return $this->belongsTo('App\Sucursal','sucursal_id','id');
     }
     function activo(){
         switch ($this->estado){
