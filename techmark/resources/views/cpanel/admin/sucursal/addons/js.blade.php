@@ -40,26 +40,3 @@
     });
 </script>
 @endif
-<script>
-    $('#ciudad').on('change', function() {
-        var _url = "{{route('almacenes_disponibles')}}";
-        var _ciudad = this.value;
-        var _sucursal = 0;
-        @if(Request::segment(4)=='edit')
-            _sucursal = "{{$sucursal->id}}";
-        @endif
-        $.ajax({
-            url: _url,
-            type: 'GET',
-            data: { ciudad: _ciudad,sucursal:_sucursal} ,
-            success: function (json) {
-                $('#depositos').html()
-                $('#depositos').html(json);
-            },
-            error: function (data) {
-                alert("Opss.. ocurrrio algo inesperado por favor actualiza tu navegador f5");
-            }
-        });
-
-    });
-</script>

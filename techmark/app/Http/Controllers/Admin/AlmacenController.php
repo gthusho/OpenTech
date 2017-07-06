@@ -43,32 +43,32 @@ class AlmacenController extends Controller
         return redirect('dashboard');
 
     }
-    public function create()
-    {
-        if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Crear Almacen',route('admin.almacen.index'),'Almacenes');
-            $this->datos['ciudades'] = Ciudad::where('estado',1)->get()->lists('nombre','id');
-            return view('cpanel.admin.almacen.registro',$this->datos);
-        }
-
-        \Session::flash('message','No tienes Permisos para agregar registros ');
-        return redirect('dashboard');
-    }
-    public function store(AddAlmacenRequest $request)
-    {
-        if(Auth::user()->can('allow-insert')){
-            $almacen = new  Almacen($request->all());
-            $almacen->save();
-            return redirect()->route('admin.almacen.index');
-        }
-
-        \Session::flash('message','No tienes Permisos para agregar registros ');
-        return redirect('dashboard');
-    }
-    public function show($id)
-    {
-        //
-    }
+//    public function create()
+//    {
+//        if(Auth::user()->can('allow-insert')){
+//            $this->datos['brand'] = Tool::brand('Crear Almacen',route('admin.almacen.index'),'Almacenes');
+//            $this->datos['ciudades'] = Ciudad::where('estado',1)->get()->lists('nombre','id');
+//            return view('cpanel.admin.almacen.registro',$this->datos);
+//        }
+//
+//        \Session::flash('message','No tienes Permisos para agregar registros ');
+//        return redirect('dashboard');
+//    }
+//    public function store(AddAlmacenRequest $request)
+//    {
+//        if(Auth::user()->can('allow-insert')){
+//            $almacen = new  Almacen($request->all());
+//            $almacen->save();
+//            return redirect()->route('admin.almacen.index');
+//        }
+//
+//        \Session::flash('message','No tienes Permisos para agregar registros ');
+//        return redirect('dashboard');
+//    }
+//    public function show($id)
+//    {
+//        //
+//    }s
 
 
     public function edit($id)

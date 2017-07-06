@@ -3,9 +3,10 @@
         <table class="table " id="tabla">
             <thead>
             <tr>
+                <th class='bg-primary text-white'>TIPO COMPRA</th>
                 <th>CODIGO</th>
                 <th>FECHA</th>
-                <th>TIPO COMPRA</th>
+
                 <th>SUCURSAL</th>
                 <th>ALMACEN</th>
                 <th>PROVEEDOR</th>
@@ -20,15 +21,20 @@
                     <?php
                     $cl = '';
                     if($row->tipo_compra == "Credito")
-                        $cl="class='bg-custom text-white'" ;
+                        $cl="class='bg-primary text-white'" ;
                     ?>
-                    <tr {!! $cl !!}>
+                    <tr >
+                        <td {!! $cl !!}>
+                            {{$row->tipo_compra}}
+                            @if($row->tipo_compra == "Credito")
+                            <a href="{{route('admin.compra-credito.show',$row->id)}}" class="btn btn-xs btn-white" target="_blank"> <i class="fa fa-money"></i> Abonar</a>
+                            @endif
+                        </td>
 
-                        <td  >{{$row->getCode()}}</td>
+                        <td >{{$row->getCode()}}</td>
                         <td>
                             {{date('d/m/Y',strtotime($row->fecha))}}
                         </td>
-                        <td>{{$row->tipo_compra}}</td>
                         <td>{{$row->sucursal->nombre}}</td>
                         <td>{{$row->almacen->nombre}}</td>
                         <td>{{$row->proveedor->razon_social}}</td>

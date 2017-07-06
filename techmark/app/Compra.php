@@ -12,7 +12,6 @@ class Compra extends Model
     ];
 
 
-
     function articulos(){
         return $this->hasMany('App\Ingresos','compra_id','id');
     }
