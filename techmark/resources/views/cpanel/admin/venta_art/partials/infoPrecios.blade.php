@@ -12,8 +12,17 @@
         {!! Form::label('Precios (*) ')!!}
     </div>
     <div class="form-group">
-        <label class="radio-inline"><input type="radio" name="xPrecio" value="1" required id="P1" class="cRemove">P1</label>
-        <label class="radio-inline"><input type="radio" name="xPrecio" value="2" required id="P2" class="cRemove">P2</label>
-        <label class="radio-inline"><input type="radio" name="xPrecio" value="3" required id="P3" class="cRemove">P3</label>
+        <div class="radio radio-primary radio-inline">
+            <input type="radio" value="1" name="xPrecio" required id="P1" class="cRemove ">
+            <label for="P1"> P1 </label>
+        </div>
+        <div class="radio radio-primary radio-inline">
+            <input type="radio"  value="2" name="xPrecio" required id="P2" class="cRemove ">
+            <label for="P2"> P2 </label>
+        </div>
+        <div class="radio radio-primary radio-inline">
+            <input type="radio"  value="3" name="xPrecio" required id="P3" class="cRemove ">
+            <label for="P3"> P3 </label>
+        </div>
     </div>
 </fieldset>

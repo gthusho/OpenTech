@@ -229,9 +229,10 @@ class VentaArticuloController extends Controller
         if(Auth::user()->can('allow-edit')){
             //actualizo la compra de ser necesario
             $this->venta = VentaArticulo::find($id);
-            $this->venta->fill($request->all());
+            $this->venta->cliente_id = $request->get('cliente_id');
+            $this->venta->tipo_pago = $request->get('tipo_pago');
+            $this->venta->observaciones = $request->get('observaciones');
             $this->venta->sucursal_id = $request->get('sucursal_id');
-            $this->venta->save();
             $this->venta->almacen_id = $this->venta->sucursal->almacen->id;
             $this->venta->save();
 

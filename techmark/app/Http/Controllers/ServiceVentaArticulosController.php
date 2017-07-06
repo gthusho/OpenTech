@@ -73,6 +73,19 @@ class ServiceVentaArticulosController extends Controller
 
 
     }
+
+    function registrarCliente(Requests\AddAjaxClienteRequest $request){
+
+        $cliente = new Clientes();
+        $cliente->razon_social = $request->get('nombre');
+        $cliente->nit = $request->get('nit');
+        $cliente->save();
+
+
+
+        return ['razon_social'=>$cliente->razon_social,'nit'=>$cliente->nit,'id'=>$cliente->id];
+
+    }
     public function showArticleByEgresoId($id)
     {
         $egreso= DetalleVentaArticulo::find($id);

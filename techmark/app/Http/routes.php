@@ -98,3 +98,4 @@ Route::get('service/showArticleByIngresoId/{id}',['as' => 'showArticleByIngresoI
 Route::get('service/getArticuloForVenta',['as' => 'getArticuloForVenta', 'uses' => 'ServiceVentaArticulosController@getArticuloForVenta']);
 Route::get('service/getClienteForVenta',['as' => 'getClienteForVenta', 'uses' => 'ServiceVentaArticulosController@getClienteForVenta']);
 Route::get('service/showArticleByEgresoId/{id}',['as' => 'showArticleByEgresoId', 'uses' => 'ServiceVentaArticulosController@showArticleByEgresoId']);
+Route::post('service/registrarCliente',['as' => 'registrarCliente', 'uses' => 'ServiceVentaArticulosController@registrarCliente']);

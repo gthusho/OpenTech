@@ -105,6 +105,9 @@
             }
         });
     }
+    /*
+    todo para registrar cliente
+     */
     function workAjaxNit(_url,_data) {
         $.ajax({
             url: _url,
@@ -115,9 +118,48 @@
             },
             error: function (data) {
                 clean();
-                alert("El NIT no Existe!!");
+                RegistrarCliente();
             }
         });
+    }
+    function workAjaxCliente(_url,_nit,_nombre) {
+        $.ajax({
+            url: _url,
+            type: 'POST',
+            data: { nit: _nit,nombre:_nombre} ,
+            success: function (json) {
+                $('.mAlert').html("");
+                $('.mAlert').removeClass('alert alert-danger');
+                $('#xnit').val(json['nit']);
+                $('#crazon').val(json['razon_social']);
+                $('#cid').val(json['id']);
+                $('.mAlert').addClass('alert alert-success');
+                $('.mAlert').html("Registro Exitoso");
+                $('.limpiar').val('');
+                $(_boton).removeAttr("disabled");
+            },
+            error: function (data) {
+                var errors = '';
+                for(datos in data.responseJSON){
+                    errors += data.responseJSON[datos] + '<br>';
+                }
+                $('.mAlert').addClass('alert alert-danger');
+                $('.mAlert').html(errors);
+                $(_boton).removeAttr("disabled");
+            }
+        });
+    }
+    $('#cliente_registrar').click(function () {
+        var nit = $('#xxNit').val();
+        var nombre = $('#xxNombreCliente').val();
+        var url = "{{route('registrarCliente')}}";
+        workAjaxCliente(url,nit,nombre);
+    });
+    /*
+    fin registrar cliente
+     */
+    function RegistrarCliente() {
+        $('#modal_cliente').modal('show');
     }
     function onOffBtnCart($xx) {
         if(!$xx){

@@ -39,7 +39,7 @@
         </div>
     </div>
 </div>
-<!--<div id="modal_cliente" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-keyboard="false" data-backdrop="static">
+<div id="modal_cliente" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -53,14 +53,14 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="field-1" class="control-label">Nit del cliente</label>
-                            <input type="text" class="form-control"  name="nit" id="cliente_nit">
+                            <label for="xNit" class="control-label">Nit</label>
+                            <input type="text" class="form-control limpiar"  name="xNit" id='xxNit' required>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="field-1" class="control-label">Razon Social de cliente</label>
-                            <input type="text" class="form-control"  name="razon_social" id="cliente_razon">
+                            <label for="xNombreCliente" class="control-label">Razon Social de cliente</label>
+                            <input type="text" class="form-control limpiar"  name="xNombreCliente" id="xxNombreCliente" required>
                         </div>
                     </div>
                 </div>
@@ -71,4 +71,4 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>

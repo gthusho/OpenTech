@@ -16,7 +16,7 @@
                         {!! Form::text('razon_social',$razon_social,['class'=>'form-control','disabled','id'=>'crazon'])!!}
                     </div>
                     <div class="form-group col-lg-4">
-                        {!! Form::hidden('cliente_id',null,['class'=>'form-control','id'=>'cid'])!!}
+                        {!! Form::hidden('cliente_id',null,['class'=>'form-control ','id'=>'cid'])!!}
                     </div>
                 </fieldset>
             </div>

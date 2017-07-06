@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Articulo;
+use App\Clientes;
 use App\Ingresos;
 use App\Tool;
 use Illuminate\Http\Request;
@@ -77,6 +78,7 @@ class ServiceArticulosController extends Controller
         }
 
     }
+
     public function showArticleByIngresoId($id)
     {
         $ingreso = Ingresos::find($id);
