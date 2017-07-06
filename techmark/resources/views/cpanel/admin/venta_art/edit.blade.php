@@ -16,11 +16,15 @@
                         </span>
             </div>
             <div class="pull-left">
-                        <span class="btn btn-inverse waves-effect waves-light" >
+                <a href="{{url('reportes/venta').\App\Tool::getDataReportQuery()}}">
+                    <span class="btn btn-inverse waves-effect waves-light" >
                             <i class=" icon-printer"></i>
                             Imprimir
                         </span>
+                </a>
             </div>
+
+
             <div class="pull-right">
                 {!! Form::open(['route'=>['admin.venta_art.destroy',$venta->id],'method'=>'delete']) !!}
                 <button  class="btn btn-danger waves-effect waves-light" onclick="return confirm('Esta Seguro de Cancelar la Venta?')">

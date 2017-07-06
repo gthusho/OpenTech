@@ -1,14 +1,12 @@
 /*
--- Query: SELECT cotizacion_id,registro,articulo_id,cantidad,precio,sucursal_id,usuario_id FROM teckmark.detalles_cotizaciones
+-- Query: SELECT cotizacion_id,registro,articulo_id,cantidad,precio,sucursal_id,usuario_id,created_at,updated_at FROM teckmark.detalles_cotizaciones
 LIMIT 0, 1000
 
--- Date: 2017-06-27 14:48
+-- Date: 2017-07-06 01:25
 */
-INSERT INTO `detalles_cotizaciones` (`cotizacion_id`,`registro`,`articulo_id`,`cantidad`,`precio`,`sucursal_id`,`usuario_id`) VALUES (1,'2017-06-27 13:10:52',1,100.0000,1000.0000,1,1);
-INSERT INTO `detalles_cotizaciones` (`cotizacion_id`,`registro`,`articulo_id`,`cantidad`,`precio`,`sucursal_id`,`usuario_id`) VALUES (2,'2017-06-27 13:10:52',2,20.0000,1258.0000,1,1);
-INSERT INTO `detalles_cotizaciones` (`cotizacion_id`,`registro`,`articulo_id`,`cantidad`,`precio`,`sucursal_id`,`usuario_id`) VALUES (3,'2017-06-27 13:10:52',3,45.0000,2000.0000,1,1);
-INSERT INTO `detalles_cotizaciones` (`cotizacion_id`,`registro`,`articulo_id`,`cantidad`,`precio`,`sucursal_id`,`usuario_id`) VALUES (4,'2017-06-27 13:10:52',1,10.0000,3500.0000,2,1);
-INSERT INTO `detalles_cotizaciones` (`cotizacion_id`,`registro`,`articulo_id`,`cantidad`,`precio`,`sucursal_id`,`usuario_id`) VALUES (5,'2017-06-27 13:10:52',2,25.0000,900.0000,2,1);
-INSERT INTO `detalles_cotizaciones` (`cotizacion_id`,`registro`,`articulo_id`,`cantidad`,`precio`,`sucursal_id`,`usuario_id`) VALUES (6,'2017-06-27 13:10:52',4,78.0000,750.0000,2,1);
-INSERT INTO `detalles_cotizaciones` (`cotizacion_id`,`registro`,`articulo_id`,`cantidad`,`precio`,`sucursal_id`,`usuario_id`) VALUES (7,'2017-06-27 13:10:52',5,150.0000,78932.0000,4,1);
-INSERT INTO `detalles_cotizaciones` (`cotizacion_id`,`registro`,`articulo_id`,`cantidad`,`precio`,`sucursal_id`,`usuario_id`) VALUES (8,'2017-06-27 13:10:52',6,300.0000,12478.0000,4,1);
+INSERT INTO `detalles_cotizaciones` (`cotizacion_id`,`registro`,`articulo_id`,`cantidad`,`precio`,`sucursal_id`,`usuario_id`,`created_at`,`updated_at`) VALUES (1,'2017-07-05 23:11:30',1,2.0000,13325.6600,2,3,'2017-07-06 03:11:30','2017-07-06 03:11:30');
+INSERT INTO `detalles_cotizaciones` (`cotizacion_id`,`registro`,`articulo_id`,`cantidad`,`precio`,`sucursal_id`,`usuario_id`,`created_at`,`updated_at`) VALUES (1,'2017-07-05 23:12:06',2,3.0000,500.0000,2,3,'2017-07-06 03:12:06','2017-07-06 03:12:06');
+INSERT INTO `detalles_cotizaciones` (`cotizacion_id`,`registro`,`articulo_id`,`cantidad`,`precio`,`sucursal_id`,`usuario_id`,`created_at`,`updated_at`) VALUES (2,'2017-07-05 23:12:55',3,3.0000,220.0000,1,3,'2017-07-06 03:12:55','2017-07-06 03:12:55');
+INSERT INTO `detalles_cotizaciones` (`cotizacion_id`,`registro`,`articulo_id`,`cantidad`,`precio`,`sucursal_id`,`usuario_id`,`created_at`,`updated_at`) VALUES (3,'2017-07-06 01:23:57',1,10.0000,13325.6600,1,3,NULL,NULL);
+INSERT INTO `detalles_cotizaciones` (`cotizacion_id`,`registro`,`articulo_id`,`cantidad`,`precio`,`sucursal_id`,`usuario_id`,`created_at`,`updated_at`) VALUES (3,'2017-07-06 01:23:57',2,15.0000,500.0000,1,3,NULL,NULL);
+INSERT INTO `detalles_cotizaciones` (`cotizacion_id`,`registro`,`articulo_id`,`cantidad`,`precio`,`sucursal_id`,`usuario_id`,`created_at`,`updated_at`) VALUES (4,'2017-07-06 01:23:57',3,5.0000,220.0000,2,3,NULL,NULL);

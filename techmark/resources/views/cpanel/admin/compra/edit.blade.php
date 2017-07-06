@@ -21,11 +21,16 @@
         </div>
         <div class="pull-left m-b-15 m-l-5">
             <div class="form-group text-left">
-                        <span class="btn btn-inverse waves-effect waves-light" >
+
+                <a href="{{url('reportes/compra').\App\Tool::getDataReportQuery()}}">
+                    <span class="btn btn-inverse waves-effect waves-light" >
                             <i class=" icon-printer"></i>
                             Imprimir Compra
                         </span>
+                </a>
             </div>
+
+
 
         </div>
         <div class="pull-right ">

@@ -35,4 +35,15 @@ class Ingresos extends Model
     function compra(){
         return $this->belongsTo('App\Compra','compra_id','id');
     }
+    function scopeArticulo($query,$name){
+        if(trim($name) != ''){
+            $id=Ingresos::articulo($name)->pluck('id');
+            $query->whereIn('articulo_id',$id);
+        }
+    }
+    function scopeSucursal($query,$x){
+        if(trim($x) != ''){
+            $query->where('sucursal_id', $x);
+        }
+    }
 }

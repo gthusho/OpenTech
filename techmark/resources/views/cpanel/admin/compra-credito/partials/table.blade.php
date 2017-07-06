@@ -47,9 +47,13 @@
     <hr>
     <div class="hidden-print">
         <div class="pull-right">
-            <a href="" class="btn btn-inverse waves-effect waves-light"><i class="fa fa-print"></i> Imprimir Pagos</a>
+            <a href="{{url('reportes/pagos/compra').\App\Tool::getDataReportQuery()}}">
+                    <span class="btn btn-inverse waves-effect waves-light" >
+                            <i class=" icon-printer"></i>
+                            Imprimir Pagos
+                        </span>
+            </a>
         </div>
     </div>
-
 
 </div>
