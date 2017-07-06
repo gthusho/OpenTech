@@ -48,9 +48,6 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
    // Route::get('addItemsCompra',['as' => 'addItemsCompra', 'uses' => 'ComprasController@addItemsCompra']);
     Route::post('deleteItemsCompra/{id}',['as' => 'deleteItemsCompra', 'uses' => 'IngresosController@deleteItemsCompra']);
     Route::post('confirmCompra/{id}',['as' => 'confirmCompra', 'uses' => 'ComprasController@confirmCompra']);
-    Route::get('service/getArticuloByCodigo',['as' => 'getArticuloByCodigo', 'uses' => 'ComprasController@getArticuloByCodigo']);
-    Route::get('service/getListArticulos',['as' => 'getListArticulos', 'uses' => 'ComprasController@getListArticulos']);
-    Route::get('service/showArticle',['as' => 'showArticle', 'uses' => 'ArticuloController@showArticle']);
 
     Route::resource('compra-credito','ComprasCreditoController');
 
@@ -87,3 +84,10 @@ Route::group(['prefix'=>'produccion','middleware'=>['auth'],'namespace'=>'Produc
 Route::group(['prefix'=>'ventas','middleware'=>['auth'],'namespace'=>'Sales'], function(){
 
 });
+/*
+ * servicios para articulos
+ */
+Route::get('service/getArticuloByCodigo',['as' => 'getArticuloByCodigo', 'uses' => 'ServiceArticulosController@getArticuloByCodigo']);
+Route::get('service/getListArticulos',['as' => 'getListArticulos', 'uses' => 'ServiceArticulosController@getListArticulos']);
+Route::get('service/showArticle',['as' => 'showArticle', 'uses' => 'ServiceArticulosController@showArticle']);
+Route::get('service/showArticleByIngresoId/{id}',['as' => 'showArticleByIngresoId', 'uses' => 'ServiceArticulosController@showArticleByIngresoId']);

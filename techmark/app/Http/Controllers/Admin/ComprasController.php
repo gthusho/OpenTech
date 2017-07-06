@@ -54,50 +54,6 @@ class ComprasController extends Controller
         $this->datos['proveedores'] = Proveedor::where('estado',1)->orderBy('razon_social')->get()->lists('razon_social','id');
     }
 
-    /**
-     * metodo para el ajax del buscador codigo o codigo barra
-     * @param Request $request
-     * @return array
-     */
-    public function getArticuloByCodigo(Request $request){
-        $query = null;
-        switch ($request->get('type')){
-            case "codigo":{
-                $query = Articulo::where('codigo',$request->get('data'))->get();
-                break;
-            }
-            case "barra":{
-                $query = Articulo::where('codigobarra',$request->get('data'))->get();
-                break;
-            }
-            default: abort(1000);
-        }
-
-        if(Tool::existe($query)){
-            $item =  $query->first();
-
-            $data = [
-                'id'=>$item->id,
-                'nombre'=>$item->nombre,
-                'unidad'=>$item->medida->nombre,
-                'categoria'=>$item->categoria->nombre,
-                'material'=>$item->material->nombre,
-                'marca'=>$item->marca->nombre,
-                'costo'=>Tool::convertMoney($item->costo),
-                'precio'=>Tool::convertMoney($item->precio1),
-                'stockIventario'=>$item->getStockAll(),
-                'xcantidad'=>'',
-                'xcosto'=>''
-
-            ];
-
-            return $data;
-        }else{
-            abort(1000);
-        }
-
-
-    }
 
     /**
      * @param $articulo
@@ -132,27 +88,7 @@ class ComprasController extends Controller
             ->update(['sucursal_id' => $this->compra->sucursal_id,'almacen_id'=>$this->compra->almacen_id]);
     }
 
-    function getListArticulos(Request $request){
-        $query = Articulo::tipo(0,$request->get('data'))->get();
-        if(Tool::existe($query)){
-            $data = "";
-            foreach ($query as $row){
-                $data .= "
-                    <tr data-id='{$row->id}'>
-                    <td>{$row->nombre}</td>
-                    <td>{$row->categoria->nombre}</td>
-                    <td>{$row->marca->nombre}</td>
-                    <td>{$row->material->nombre}</td>
-                    <td><button class='btn btn-primary btn-sm' onclick='genListSubData({$row->id})'><i class=' icon-action-redo'></i></button></td>
-                    </tr>
-                ";
-            }
-            echo $data;
-        }else{
-            abort(1000);
-        }
 
-    }
 
     public function index(Request $request)
     {

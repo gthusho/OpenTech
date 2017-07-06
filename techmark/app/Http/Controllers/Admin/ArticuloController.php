@@ -90,27 +90,6 @@ class ArticuloController extends Controller
         ];
         return $data;
     }
-    public function showArticle(Request $request)
-    {
-        $item = Articulo::find($request->get('data'));
-        $data = [
-            'id'=>$item->id,
-            'nombre'=>$item->nombre,
-            'unidad'=>$item->medida->nombre,
-            'categoria'=>$item->categoria->nombre,
-            'material'=>$item->material->nombre,
-            'marca'=>$item->marca->nombre,
-            'costo'=>Tool::convertMoney($item->costo),
-            'precio'=>Tool::convertMoney($item->precio1),
-            'xcantidad'=>'',
-            'xcosto'=>'',
-            'stockIventario'=>$item->getStockAll(),
-            'precio1'=>Tool::convertMoney($item->precio1),
-            'precio2'=>Tool::convertMoney($item->precio2),
-            'precio3'=>Tool::convertMoney($item->precio3),
-        ];
-        return $data;
-    }
 
     public function edit($id)
     {

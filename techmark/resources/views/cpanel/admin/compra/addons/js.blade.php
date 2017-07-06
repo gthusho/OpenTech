@@ -130,7 +130,8 @@
     $('td').css('cursor','crosshair');
     $(".rows").click(function (){
         var codigo = $(this).attr('data-id');
-        var url = "{{url('admin/articulo')}}/"+codigo;
+        var url = "{{route('showArticleByIngresoId','GTHUSHO')}}";
+        url = url.replace('GTHUSHO',codigo);
         workAjax(url,codigo,"id")
     });
 
