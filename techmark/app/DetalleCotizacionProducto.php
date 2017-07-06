@@ -9,11 +9,11 @@ class DetalleCotizacionProducto extends Model
     protected $table = 'detalle_cotizaciones_productos';
 
     protected $fillable = [
-        'producto_base_id','cantidad','precio','registro','usuario_id','material_id','sucursal_id','cotizacion_producto_id','talla_id','descripcion'
+        'productos_base_id','cantidad','precio','registro','usuario_id','material_id','sucursal_id','cotizacion_producto_id','talla_id','descripcion'
     ];
 
     function productobase(){
-        return $this->belongsTo('App\ProductoBase','producto_base_id','id');
+        return $this->belongsTo('App\ProductoBase','productos_base_id','id');
     }
     function usuario(){
         return $this->belongsTo('App\User','usuario_id','id');

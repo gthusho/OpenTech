@@ -15,6 +15,9 @@ Route::resource('venta_art','VentaArticuloController');
 Route::post('deleteItemsVentaArticulo/{id}',['as' => 'deleteItemsVentaArticulo', 'uses' => 'DetalleVentaArticuloController@deleteItemsVentaArticulo']);
 Route::post('confirmVentaArticulo/{id}',['as' => 'confirmVentaArticulo', 'uses' => 'VentaArticuloController@confirmVenta']);
 
-//Route::get('service/getListArticulos',['as' => 'getListArticulos', 'uses' => 'ComprasController@getListArticulos']);
+Route::resource('cot_producto','CotizacionProductoController');
+
+Route::post('deleteItemsCotizacionProducto/{id}',['as' => 'deleteItemsCotizacionProducto', 'uses' => 'DetalleCotizacionProductoController@deleteItemsCotizacionProducto']);
+Route::post('confirmCotizacionProducto/{id}',['as' => 'confirmCotizacionProducto', 'uses' => 'CotizacionProductoController@confirmCotizacionProducto']);
 
 

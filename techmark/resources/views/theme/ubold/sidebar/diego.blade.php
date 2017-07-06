@@ -24,6 +24,6 @@
     <a href="javascript:void(0);" class="waves-effect"><i class="icon-credit-card"></i><span class="label label-primary pull-right">2</span> <span> Ventas </span>  </a>
     <ul class="list-unstyled">
         <li><a href="{{route('admin.venta_art.index')}}">Ventas Articulos</a></li>
-        <li><a href="{{url('dashboard')}}">Ventas Productos</a></li>
+        <li><a href="{{route('admin.cot_producto.index')}}">Cotizaciones Productos</a></li>
     </ul>
 </li>

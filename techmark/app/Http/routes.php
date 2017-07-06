@@ -99,3 +99,10 @@ Route::get('service/getArticuloForVenta',['as' => 'getArticuloForVenta', 'uses' 
 Route::get('service/getClienteForVenta',['as' => 'getClienteForVenta', 'uses' => 'ServiceVentaArticulosController@getClienteForVenta']);
 Route::get('service/showArticleByEgresoId/{id}',['as' => 'showArticleByEgresoId', 'uses' => 'ServiceVentaArticulosController@showArticleByEgresoId']);
 Route::post('service/registrarCliente',['as' => 'registrarCliente', 'uses' => 'ServiceVentaArticulosController@registrarCliente']);
+
+/*
+ * servicios cotizacion productos
+ */
+
+Route::get('service/getListProductosBase',['as' => 'getListProductosBase', 'uses' => 'ServiceDetalleProductoBaseController@getListProductosBase']);
+Route::get('service/showDetalleProducto',['as' => 'showDetalleProducto', 'uses' => 'ServiceDetalleProductoBaseController@showDetalleProducto']);
