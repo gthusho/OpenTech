@@ -126,15 +126,15 @@ class CotizacionArticuloController extends Controller
             $articulo = $query->first();
             switch ($precio){
                 case ("1"):
-                    /*$articulo->dp="P1";*/
+                    $articulo->dp="P1";
                     $articulo->precio=$parametro->precio1;
                     break;
                 case ("2"):
-                    /*$articulo->dp="P2";*/
+                    $articulo->dp="P2";
                     $articulo->precio=$parametro->precio2;
                     break;
                 default:
-                    /*$articulo->dp="P3";*/
+                    $articulo->dp="P3";
                     $articulo->precio=$parametro->precio3;
             }
             $articulo->cantidad = $cantidad;
@@ -148,15 +148,15 @@ class CotizacionArticuloController extends Controller
             $articulo->cantidad = $cantidad;
             switch ($precio){
                 case ("1"):
-                   /* $articulo->dp="P1";*/
+                    $articulo->dp="P1";
                     $articulo->precio=$parametro->precio1;
                     break;
                 case ("2"):
-                   /* $articulo->dp="P2";*/
+                    $articulo->dp="P2";
                     $articulo->precio=$parametro->precio2;
                     break;
                 case ("3"):
-                   /* $articulo->dp="P3";*/
+                    $articulo->dp="P3";
                     $articulo->precio=$parametro->precio3;
                     break;
             }
@@ -171,27 +171,6 @@ class CotizacionArticuloController extends Controller
             ->update(['sucursal_id' => $this->venta->sucursal_id]);
     }
 
-    /*function getListArticulos(Request $request){
-        $query = Articulo::tipo(0,$request->get('data'))->get();
-        if(Tool::existe($query)){
-            $data = "";
-            foreach ($query as $row){
-                $data .= "
-                    <tr data-id='{$row->id}'>
-                    <td>{$row->nombre}</td>
-                    <td>{$row->categoria->nombre}</td>
-                    <td>{$row->marca->nombre}</td>
-                    <td>{$row->material->nombre}</td>
-                    <td><button class='btn btn-primary btn-sm' onclick='genListSubData({$row->id})'><i class=' icon-action-redo'></i></button></td>
-                    </tr>
-                ";
-            }
-            echo $data;
-        }else{
-            abort(1000);
-        }
-
-    }*/
 
     public function index(Request $request)
     {

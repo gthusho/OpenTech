@@ -108,3 +108,8 @@ Route::post('service/registrarCliente',['as' => 'registrarCliente', 'uses' => 'S
 
 Route::get('service/getListProductosBase',['as' => 'getListProductosBase', 'uses' => 'ServiceDetalleProductoBaseController@getListProductosBase']);
 Route::get('service/showDetalleProducto',['as' => 'showDetalleProducto', 'uses' => 'ServiceDetalleProductoBaseController@showDetalleProducto']);
+
+/*
+ * cotizacion
+ */
+Route::get('service/showArticleByCotizacionId/{id}',['as' => 'showArticleByCotizacionId', 'uses' => 'ServiceCotizacionArticulosController@showArticleByCotizacionId']);

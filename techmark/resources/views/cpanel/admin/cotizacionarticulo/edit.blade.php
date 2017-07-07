@@ -8,18 +8,27 @@
         @include('cpanel.admin.cotizacionarticulo.partials.data')
 
         {!! Form::close() !!}
-        <div class="row m-b-15">
-            <div class="form-group text-left col-lg-2">
+        <div class="row m-b-15 col-lg-12">
+            <div class="pull-left m-r-5">
                         <span class="btn btn-primary waves-effect waves-light" id="btnActualizar">
                             <i class="fa fa-check-square-o"></i>
                             Actualizar Cotizacion
                         </span>
             </div>
-            <div class="form-group text-left col-lg-2">
+            <div class="pull-left">
+                <a href="{{url('reportes/venta').\App\Tool::getDataReportQuery()}}">
+                    <span class="btn btn-inverse waves-effect waves-light" >
+                            <i class=" icon-printer"></i>
+                            Imprimir
+                        </span>
+                </a>
+            </div>
+
+            <div class="pull-right">
                 {!! Form::open(['route'=>['admin.cotizacion.destroy',$venta->id],'method'=>'delete']) !!}
                 <button  class="btn btn-danger waves-effect waves-light m-l-5" onclick="return confirm('Esta Seguro de Cancelar la Cotizacion?')">
                     <i class="ti-close"></i>
-                    Cancelar Cotizacion
+                    Eliminar Cotizacion
                 </button>
                 {!! Form::close() !!}
             </div>

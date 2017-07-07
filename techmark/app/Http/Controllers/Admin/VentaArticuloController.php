@@ -233,6 +233,7 @@ class VentaArticuloController extends Controller
             $this->venta->tipo_pago = $request->get('tipo_pago');
             $this->venta->observaciones = $request->get('observaciones');
             $this->venta->sucursal_id = $request->get('sucursal_id');
+            $this->venta->save();
             $this->venta->almacen_id = $this->venta->sucursal->almacen->id;
             $this->venta->save();
 
