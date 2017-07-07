@@ -69,7 +69,7 @@ Route::group(['prefix'=>'reportes','middleware'=>['auth'],'namespace'=>'Report']
     Route::get('usuarios','UserReport@index');
     Route::get('usuarios/excel','UserReport@excel');
 
-    
+
     require __DIR__ . '/routes/reportdiego.php';
     require __DIR__ . '/routes/reportliss.php';
 

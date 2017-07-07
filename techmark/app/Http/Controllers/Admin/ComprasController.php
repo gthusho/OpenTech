@@ -141,7 +141,8 @@ class ComprasController extends Controller
 
             //actualizo la compra de ser necesario
             $this->compra->fill($request->all());
-            $this->compra->almacen_id = $this->compra->almacen->id;
+            $this->compra->save();
+            $this->compra->almacen_id = $this->compra->sucursal->almacen->id;
             $this->compra->save();
 
 
@@ -190,6 +191,8 @@ class ComprasController extends Controller
             //actualizo la compra de ser necesario
             $this->compra = Compra::find($id);
             $this->compra->fill($request->all());
+            $this->compra->save();
+            $this->compra->almacen_id = $this->compra->sucursal->almacen->id;
             $this->compra->save();
 
 

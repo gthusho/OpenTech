@@ -224,6 +224,12 @@ class CotizacionArticuloController extends Controller
 
             $this->datos['venta'] = $this->venta;
 
+            $this->datos['razon_social'] = null;
+            $this->datos['nit'] = null;
+            if($this->venta->cliente_id!='' || $this->venta->cliente_id!=0){
+                $this->datos['razon_social'] = $this->venta->cliente->razon_social;
+                $this->datos['nit'] = $this->venta->cliente->nit;
+            }
             return view('cpanel.admin.cotizacionarticulo.registro',$this->datos);
         }
 
@@ -279,6 +285,8 @@ class CotizacionArticuloController extends Controller
             $this->datos['brand'] = Tool::brand('Editar Cotizacion',route('admin.cotizacion.index'),'Cotizacion');
             $this->genDataIni();
             $this->datos['venta'] = CotizacionArticulo::find($id);
+            $this->datos['razon_social'] = $this->datos['venta']->cliente->razon_social;
+            $this->datos['nit'] = $this->datos['venta']->cliente->nit;
             return view('cpanel.admin.cotizacionarticulo.edit',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para editar ');
