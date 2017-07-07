@@ -29,7 +29,7 @@ class AddAjaxClienteRequest extends Request
     public function rules()
     {
         return [
-            'nombre' => 'required|unique:clientes,razon_social',
+            'nombre' => 'required',
             'nit'=>'required|unique:clientes,nit',
         ];
     }

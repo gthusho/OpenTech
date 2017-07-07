@@ -15,7 +15,20 @@
 
                 </li>
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="icon-basket"></i><span class="label label-primary pull-right">5</span> <span> Articulos </span>  </a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="icon-basket"></i><span class="label label-primary pull-right">1</span> <span> Ventas </span>  </a>
+                    <ul class="list-unstyled">
+                        <li><a href="{{route('admin.venta_art.index')}}">Articulos</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class=" icon-note"></i><span class="label label-primary pull-right">2</span> <span> Cotizaciones </span>  </a>
+                    <ul class="list-unstyled">
+                        <li><a href="{{route('admin.cotizacion.index')}}">Articulos</a></li>
+                        <li><a href="{{route('admin.cot_producto.index')}}">Productos</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class=" icon-handbag"></i><span class="label label-primary pull-right">5</span> <span> Articulos </span>  </a>
                     <ul class="list-unstyled">
                         <li><a href="{{route('admin.articulo.index')}}">Articulos</a></li>
                         <li><a href="{{route('admin.categoria.index')}}">Categorias Articulos</a></li>
@@ -25,7 +38,7 @@
                     </ul>
                 </li>
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="icon-basket-loaded"></i><span class="label label-primary pull-right">4</span> <span> Productos </span>  </a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class=" icon-puzzle"></i><span class="label label-primary pull-right">4</span> <span> Productos </span>  </a>
                     <ul class="list-unstyled">
                         <li><a href="{{route('admin.detprodbase.index')}}">Detalle Producto Base</a></li>
                         <li><a href="{{route('admin.prodbase.index')}}">Producto Base</a></li>
@@ -77,10 +90,12 @@
                 <li class="has_sub">
                     <a href="{{route('admin.ciudad.index')}}" class="waves-effect"><i class=" icon-location-pin"></i> <span> Ciudades </span> </a>
                 </li>
+                {{--
                 <li class="text-muted menu-title">Rutas Liss</li>
                 @include('theme.ubold.sidebar.liss')
                 <li class="text-muted menu-title">Rutas Diego</li>
                 @include('theme.ubold.sidebar.diego')
+                --}}
             </ul>
             <div class="clearfix"></div>
         </div>
