@@ -8,7 +8,6 @@
                 <th>CLIENTE</th>
                 <th>SUCURSAL</th>
                 <th>CANTIDAD DE ARTICULOS</th>
-                <th>PERCIO U</th>
                 <th>TOTAL COTIZACION</th>
                 <th>ACCIONES</th>
             </tr>
@@ -27,9 +26,6 @@
                         </td>
                         <td>{{$row->sucursal->nombre}}</td>
                         <td>{{$row->totalCantidad()}}</td>
-                        <td>
-                            {{\App\Tool::convertMoney($row->totalPrecio())}}
-                        </td>
                         <td>
                             {{\App\Tool::convertMoney($row->totalPrecio())}}
                         </td>

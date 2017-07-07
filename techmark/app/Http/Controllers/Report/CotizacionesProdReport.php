@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Report;
 
 
 use App\Compra;
+use App\CotizacionProducto;
 use App\ToolPDF;
 use Elibyy\TCPDF\TCPDF;
 use Illuminate\Http\Request;
@@ -26,12 +27,12 @@ class CotizacionesProdReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['cotizaciones'] = CotizacionesProdReport::with('cliente','usuario','sucursal')
+        $this->datos['cotizaciones'] = CotizacionProducto::with('cliente','usuario','sucursal')
             ->fecha($request->get('fecha'))
             ->where('estado','t')
             ->fecha($request->get('f'))
             ->codigo($request->get('s'))
-            ->orderBy('id','desc');
+            ->orderBy('id','desc')->get();
     }
 
     public function index(Request $request)
@@ -46,8 +47,8 @@ class CotizacionesProdReport extends Controller
             $pdf->SetFont('helvetica', 'B', 25);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
             $pdf->SetFont('helvetica', '', 10);
-            $pdf->writeHTML(view('cpanel.report.comprasregistradas.tabla',$this->datos)->render(), true, false, true, false, '');
-            $pdf->Output('compras.pdf', 'i');
+            $pdf->writeHTML(view('cpanel.report.cotprodregistradas.tabla',$this->datos)->render(), true, false, true, false, '');
+            $pdf->Output('cotizaciones_productos.pdf', 'i');
         }else{
             \Session::flash('message','No tienes Permiso para visualizar informacion ');
             return redirect('dashboard');
@@ -59,7 +60,7 @@ class CotizacionesProdReport extends Controller
             Excel::create($this->titulo, function ($excel) {
                 $excel->sheet('cotizaciones', function ($sheet) {
                     $sheet->row(1, array($this->titulo));
-                    $sheet->loadView('cpanel.report.articulos.tabla', $this->datos);
+                    $sheet->loadView('cpanel.report.cotprodregistradas.tabla', $this->datos);
                 });
             })->export('xls');
         } else{
