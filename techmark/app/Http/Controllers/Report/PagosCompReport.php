@@ -27,44 +27,25 @@ class PagosCompReport extends Controller
 
     function __construct(Request $request)
     {
-        /*$this->datos['compra'] = Compra::find($id);
-        {route('admin.compra-credito.show',$row->id);*/
-            $this->datos['compras'] = Compra::where('estado','t')->where('tipo_compra','Credito')
-                ->orderBy('id','desc')->get();
-
-        dd($this->datos['compras'] );
+        $this->datos['compra'] = Compra::find($request->get('id'));
     }
 
     public function index(Request $request)
     {
-        if(Auth::user()->can('allow-read')){
-            $pdf = new TCPDF('p','mm','Letter', true, 'UTF-8', false);
+        if (Auth::user()->can('allow-read')) {
+            $pdf = new TCPDF('p', 'mm', 'Letter', true, 'UTF-8', false);
             ToolPDF::footerPDF($pdf);
             ToolPDF::headerPDF($pdf);
             ToolPDF::setMargen($pdf);
             $pdf->SetTitle('OpenRed By LDiego');
             $pdf->AddPage($this->horientacion);
-            $pdf->SetFont('helvetica', 'B', 25);
+            $pdf->SetFont('helvetica', 'B', 20);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
-            $pdf->SetFont('helvetica', '', 10);
-            $pdf->writeHTML(view('cpanel.report.pagoscompra.tabla',$this->datos)->render(), true, false, true, false, '');
+            $pdf->SetFont('helvetica', '', 8);
+            $pdf->writeHTML(view('cpanel.report.pagoscompra.tabla', $this->datos)->render(), true, false, true, false, '');
             $pdf->Output('detalles_productos.pdf', 'i');
-        }else{
-            \Session::flash('message','No tienes Permiso para visualizar informacion ');
-            return redirect('dashboard');
-        }
-    }
-    function excel(Request $request){
-        $this->request = $request;
-        if(Auth::user()->can('allow-read')) {
-            Excel::create($this->titulo, function ($excel) {
-                $excel->sheet('compras', function ($sheet) {
-                    $sheet->row(1, array($this->titulo));
-                    $sheet->loadView('cpanel.report.pagoscompra.tabla', $this->datos);
-                });
-            })->export('xls');
-        } else{
-            \Session::flash('message','No tienes Permiso para visualizar informacion ');
+        } else {
+            \Session::flash('message', 'No tienes Permiso para visualizar informacion ');
             return redirect('dashboard');
         }
     }

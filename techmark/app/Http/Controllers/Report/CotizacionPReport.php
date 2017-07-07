@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Report;
 
 
 use App\Compra;
+use App\CotizacionArticulo;
 use App\CotizacionProducto;
 use App\ToolPDF;
 use Elibyy\TCPDF\TCPDF;
@@ -19,20 +20,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
-class CotizacionesProdReport extends Controller
+class CotizacionPReport extends Controller
 {
     private $datos = null;
     private $horientacion = 'l';//'l';
-    private $titulo = "REPORTE COMPRAS REGISTRADAS";
+    private $titulo = "COTIZACION DE PRODUCTOS";
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['cotizaciones'] = CotizacionProducto::with('cliente','usuario','sucursal')
-            ->fecha($request->get('fecha'))
-            ->where('estado','t')
-            ->fecha($request->get('f'))
-            ->codigo($request->get('s'))
-            ->orderBy('id','desc')->get();
+        $this->datos['cotizacion'] = CotizacionProducto::find($request->get('id'));
     }
 
     public function index(Request $request)
@@ -47,7 +43,7 @@ class CotizacionesProdReport extends Controller
             $pdf->SetFont('helvetica', 'B', 25);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
             $pdf->SetFont('helvetica', '', 10);
-            $pdf->writeHTML(view('cpanel.report.cotprodregistradas.tabla',$this->datos)->render(), true, false, true, false, '');
+            $pdf->writeHTML(view('cpanel.report.cotizacionproducto.tabla',$this->datos)->render(), true, false, true, false, '');
             $pdf->Output('compras.pdf', 'i');
         }else{
             \Session::flash('message','No tienes Permiso para visualizar informacion ');
@@ -58,9 +54,9 @@ class CotizacionesProdReport extends Controller
         $this->request = $request;
         if(Auth::user()->can('allow-read')) {
             Excel::create($this->titulo, function ($excel) {
-                $excel->sheet('compras', function ($sheet) {
+                $excel->sheet('ventas', function ($sheet) {
                     $sheet->row(1, array($this->titulo));
-                    $sheet->loadView('cpanel.report.articulos.tabla', $this->datos);
+                    $sheet->loadView('cpanel.report.cotizacionproducto.tabla', $this->datos);
                 });
             })->export('xls');
         } else{

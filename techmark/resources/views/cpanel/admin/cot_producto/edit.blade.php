@@ -16,10 +16,12 @@
                         </span>
             </div>
             <div class="pull-left">
-                        <span class="btn btn-inverse waves-effect waves-light" >
+                <a href="{{url('reportes/cotizacion/producto').'?id='.$cotizacion->id}}">
+                    <span class="btn btn-inverse waves-effect waves-light" >
                             <i class=" icon-printer"></i>
                             Imprimir
                         </span>
+                </a>
             </div>
             <div class="pull-right">
                 {!! Form::open(['route'=>['admin.cot_producto.destroy',$cotizacion->id],'method'=>'delete']) !!}

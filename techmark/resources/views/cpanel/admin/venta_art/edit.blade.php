@@ -16,7 +16,7 @@
                         </span>
             </div>
             <div class="pull-left">
-                <a href="{{url('reportes/venta').\App\Tool::getDataReportQuery()}}">
+                <a href="{{url('reportes/venta').'?id='.$venta->id}}">
                     <span class="btn btn-inverse waves-effect waves-light" >
                             <i class=" icon-printer"></i>
                             Imprimir

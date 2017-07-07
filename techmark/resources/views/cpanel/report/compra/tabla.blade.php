@@ -1,66 +1,78 @@
-<table  cellspacing="5"  >
+<table>
     <tr>
-        <th width="20%" ><strong>FECHA COMPRA</strong></th>
+        <td>FECHA</td>
+        <td>{{$compra->fecha}}</td>
     </tr>
     <tr>
-        <th width="45%" ><strong>PROVEEDOR</strong></th>
-        <th width="30%" ><strong>FACTURA</strong></th>
+        <td>COMPRA</td>
+        <td>{{$compra->getCode()}}</td>
     </tr>
     <tr>
-        <th width="25%" ><strong>SUCURSAL</strong></th>
-        <th width="25%" ><strong>TIPO DE COMPRA</strong></th>
-        <th width="30%"><strong>CANTIDAD ARTICULOS</strong></th>
-        <th width="25%"><strong>TOTAL COSTOS</strong></th>
+        <td>SUCURSAL</td>
+        <td>{{$compra->sucursal->nombre}}</td>
+    </tr>
+    <tr>
+        <td>TIPO DE COMPRA</td>
+        <td>{{$compra->tipo_compra}}</td>
+    </tr>
+    <tr>
+        <td>PROVEEDOR</td>
+        <td>{{$compra->proveedor->razon_social}}</td>
+
+    </tr>
+    <tr>
+        <td>FACTURA</td>
+        <td>{{$compra->nfactura}}</td>
+    </tr>
+    <tr>
+        <td>CANTIDAD</td>
+        <td>{{ucwords($compra->totalCantidad())}}</td>
+    </tr>
+    <tr>
+        <td>COSTOS</td>
+        <td>{{\App\Tool::convertMoney($compra->totalCosto())}}</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+
+
+<table  cellspacing="5">
+    <tr>
+        <th>#</th>
+        <th>ARTICULO</th>
+        <th>CATEGORIA</th>
+        <th>MARCA</th>
+        <th>MATERIAL</th>
+        <th>CANTIDAD</th>
+        <th>UNIDAD</th>
+        <th>COSTO</th>
     </tr>
     <?php
     $i=1;
     ?>
 
-    @foreach($compras as $row)
+    @foreach($compra->articulos as $row)
         <tr >
-            <td style="border-bottom: 1px dashed black;">{{$i++}}</td>
-            <td style="border-bottom: 1px dashed black;">{{ucwords($row->id)}}</td>
-            <td style="border-bottom: 1px dashed black;">{{ucwords($row->id)}}</td>
-            <td style="border-bottom: 1px dashed black;">{{ucwords($row->id)}}</td>
-            <td style="border-bottom: 1px dashed black;">{{$row->id}}</td>
-            <td style="border-bottom: 1px dashed black;">{{$row->id}}</td>
-            <td style="border-bottom: 1px dashed black;">{{$row->id}}</td>
-            <td style="border-bottom: 1px dashed black;">{{$row->id}}</td>
-            <td style="border-bottom: 1px dashed black;">{{$row->sucursal->nombre}}</td>
-            <td style="border-bottom: 1px dashed black;">{{$row->almacen->nombre}}</td>
-            <td style="border-bottom: 1px dashed black;">{{$row->registro}}</td>
+            <td>{{$i++}}</td>
+            <td>{{$row->articulo->nombre}}</td>
+            <td>
+                {{\App\ToolArticuloCart::getNombreById($row->articulo->categoria_articulo_id,'categoria')}}
+            </td>
+            <td>
+                {{\App\ToolArticuloCart::getNombreById($row->articulo->marca_id,"marca")}}
+            </td>
+            <td> {{\App\ToolArticuloCart::getNombreById($row->articulo->material_id,"material")}}</td>
+            <td>{{number_format((float)$row->cantidad, 2, '.', '')}}</td>
+            <td>{{\App\ToolArticuloCart::getNombreById($row->articulo->unidad_id,"unidad")}}</td>
+            <td>
+                {{\App\Tool::convertMoney($row->costo)}}
+            </td>
+            
         </tr>
     @endforeach
 
 </table>
-
-<table  cellspacing="5"  >
-        <tr>
-            <th width="5%" ><strong>#</strong></th>
-            <th width="17%" ><strong>ARTICULO</strong></th>
-            <th width="20%"><strong>CATEGORIA</strong></th>
-            <th width="15%"><strong>MARCA</strong></th>
-            <th width="15%"><strong>MATERIAL</strong></th>
-            <th width="15%"><strong>CANTIDAD</strong></th>
-            <th width="10%"><strong>UNIDAD</strong></th>
-            <th width="10%"><strong>COSTO</strong></th>
-        </tr>
-        <?php
-        $i=1;
-        ?>
-
-        @foreach($compras as $row)
-            <tr >
-                <td style="border-bottom: 1px dashed black;">{{$i++}}</td>
-                <td style="border-bottom: 1px dashed black;">{{ucwords($row->articulo->nombre)}}</td>
-                <td style="border-bottom: 1px dashed black;">{{ucwords($row->articulo->categoria_articulo_id,'categoria')}}</td>
-                <td style="border-bottom: 1px dashed black;">{{ucwords($row->articulo->marca_id,"marca")}}</td>
-                <td style="border-bottom: 1px dashed black;">{{ucwords($row->articulo->material_id,"material")}}</td>
-                <td style="border-bottom: 1px dashed black;">{{$row->cantidad}}</td>
-                <td style="border-bottom: 1px dashed black;">{{ucwords($row->articulo->unidad_id,"unidad")}}</td>
-                <td style="border-bottom: 1px dashed black;">{{$row->costo}}</td>
-
-            </tr>
-        @endforeach
-
-    </table>

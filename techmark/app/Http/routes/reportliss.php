@@ -44,3 +44,9 @@ Route::get('cotizaciones/productos/excel','CotizacionesProdReport@excel');
 
 Route::get('cotizaciones/articulos','CotizacionesArtReport@index');
 Route::get('cotizaciones/articulos/excel','CotizacionesArtReport@excel');
+
+Route::get('cotizacion/producto','CotizacionPReport@index');
+Route::get('cotizacion/producto/excel','CotizacionPReport@excel');
+
+Route::get('cotizacion/articulo','CotizacionAReport@index');
+Route::get('cotizacion/articulo/excel','CotizacionAReport@excel');
