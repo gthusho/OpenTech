@@ -17,6 +17,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+
 class ComprasRegReport extends Controller
 {
     private $datos = null;
@@ -29,9 +30,7 @@ class ComprasRegReport extends Controller
             ->where('estado','t')
             ->fecha($request->get('f'))
             ->codigo($request->get('s'))
-            ->orderBy('id','desc')
-            ->paginate();
-
+            ->orderBy('id','desc');
     }
 
     public function index(Request $request)
@@ -47,7 +46,7 @@ class ComprasRegReport extends Controller
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
             $pdf->SetFont('helvetica', '', 10);
             $pdf->writeHTML(view('cpanel.report.comprasregistradas.tabla',$this->datos)->render(), true, false, true, false, '');
-            $pdf->Output('articulos.pdf', 'i');
+            $pdf->Output('compras.pdf', 'i');
         }else{
             \Session::flash('message','No tienes Permiso para visualizar informacion ');
             return redirect('dashboard');
@@ -57,7 +56,7 @@ class ComprasRegReport extends Controller
         $this->request = $request;
         if(Auth::user()->can('allow-read')) {
             Excel::create($this->titulo, function ($excel) {
-                $excel->sheet('articulo', function ($sheet) {
+                $excel->sheet('compras', function ($sheet) {
                     $sheet->row(1, array($this->titulo));
                     $sheet->loadView('cpanel.report.articulos.tabla', $this->datos);
                 });

@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Report;
 
 
 use App\Compra;
+use App\Ingresos;
 use App\ToolPDF;
 use App\User;
 use Elibyy\TCPDF\TCPDF;
@@ -28,6 +29,7 @@ class CompraReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
+
         $this->datos['compras'] = Compra::fecha($request->get('fecha'))
             ->where('estado','t')
             ->fecha($request->get('f'))

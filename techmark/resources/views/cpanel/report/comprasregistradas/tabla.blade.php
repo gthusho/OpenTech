@@ -19,14 +19,14 @@
         <tr >
             <td style="border-bottom: 1px dashed black;">{{$i++}}</td>
             <td style="border-bottom: 1px dashed black;">{{$row->tipo_compra}}</td>
-            <td style="border-bottom: 1px dashed black;">{{$row->getCode()}}</td>
+            <td style="border-bottom: 1px dashed black;">{{$row->id}}</td>
             <td style="border-bottom: 1px dashed black;">{{$row->fecha}}</td>
 
             <td style="border-bottom: 1px dashed black;">{{ucwords($row->sucursal->nombre)}}</td>
             <td style="border-bottom: 1px dashed black;">{{ucwords($row->almacen->nombre)}}</td>
             <td style="border-bottom: 1px dashed black;">{{ucwords($row->proveedor->razon_social)}}</td>
-            <td style="border-bottom: 1px dashed black;">{{$row->totalCantidad()}}</td>
-            <td style="border-bottom: 1px dashed black;">{{$row->totalCosto()}}</td>
+            <td style="border-bottom: 1px dashed black;">{{ucwords($row->totalCantidad())}}</td>
+            <td style="border-bottom: 1px dashed black;">{{ucwords($row->totalCosto())}}</td>
         </tr>
     @endforeach
 

@@ -10,6 +10,13 @@ namespace App\Http\Controllers\Report;
 
 
 use App\Http\Controllers\Controller;
+use App\ToolPDF;
+use App\User;
+use App\VentaArticulo;
+use Elibyy\TCPDF\TCPDF;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EgresosAReport extends Controller
 {
@@ -19,13 +26,8 @@ class EgresosAReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['egresos']=DetalleProductoBase::with('usuario','prodbase','talla','material')
-            ->talla($request->get('talla'))
-            ->material($request->get('material'))
-            ->detProdBase($request->get('s'))
-            ->orderBy('producto_base_id')
-            ->orderBy('material_id')
-            ->orderBy('talla_id')->get();
+        $this->datos['ventas'] = VentaArticulo::where('estado','t')
+            ->orderBy('id','desc');
     }
 
     public function index(Request $request)
@@ -37,23 +39,24 @@ class EgresosAReport extends Controller
             ToolPDF::setMargen($pdf);
             $pdf->SetTitle('OpenRed By LDiego');
             $pdf->AddPage($this->horientacion);
-            $pdf->SetFont('helvetica', 'B', 25);
+            $pdf->SetFont('helvetica', 'B', 20);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
-            $pdf->SetFont('helvetica', '', 10);
-            $pdf->writeHTML(view('cpanel.report.detprodbases.tabla',$this->datos)->render(), true, false, true, false, '');
+            $pdf->SetFont('helvetica', '', 8);
+            $pdf->writeHTML(view('cpanel.report.egresos.tabla',$this->datos)->render(), true, false, true, false, '');
             $pdf->Output('detalles_productos.pdf', 'i');
         }else{
             \Session::flash('message','No tienes Permiso para visualizar informacion ');
             return redirect('dashboard');
         }
+        dd();
     }
     function excel(Request $request){
         $this->request = $request;
         if(Auth::user()->can('allow-read')) {
             Excel::create($this->titulo, function ($excel) {
-                $excel->sheet('detalle_productos', function ($sheet) {
+                $excel->sheet('ventas', function ($sheet) {
                     $sheet->row(1, array($this->titulo));
-                    $sheet->loadView('cpanel.report.detprodbases.tabla', $this->datos);
+                    $sheet->loadView('cpanel.report.egresos.tabla', $this->datos);
                 });
             })->export('xls');
         } else{

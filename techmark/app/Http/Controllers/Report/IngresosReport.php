@@ -30,12 +30,6 @@ class IngresosReport extends Controller
 
     function __construct(Request $request)
     {
-        /*$this->datos['ingresos'] = Ingresos::with('usuario','articulo','sucursal','almacen','compra')
-        ->sucursal($request->get('sucursal'))
-        ->articulo($request->get('s'))
-        ->orderBy('articulo_id')
-        ->orderBy('sucursal_id');*/
-
         $this->datos['ingresos'] = Ingresos::orderBy('id','desc')->get();
     }
 

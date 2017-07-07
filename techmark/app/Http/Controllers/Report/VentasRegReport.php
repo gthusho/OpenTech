@@ -31,6 +31,7 @@ class VentasRegReport extends Controller
             ->fecha($request->get('f'))
             ->codigo($request->get('s'))
             ->orderBy('id','desc');
+
     }
 
     public function index(Request $request)
