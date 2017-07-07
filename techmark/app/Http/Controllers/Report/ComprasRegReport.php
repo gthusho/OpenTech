@@ -30,7 +30,7 @@ class ComprasRegReport extends Controller
             ->where('estado','t')
             ->fecha($request->get('f'))
             ->codigo($request->get('s'))
-            ->orderBy('id','desc');
+            ->orderBy('id','desc')->get();
     }
 
     public function index(Request $request)

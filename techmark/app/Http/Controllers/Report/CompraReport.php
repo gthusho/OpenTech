@@ -29,7 +29,7 @@ class CompraReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-
+        $this->datos['compra'] = Compra::find($id);
         $this->datos['compras'] = Compra::fecha($request->get('fecha'))
             ->where('estado','t')
             ->fecha($request->get('f'))

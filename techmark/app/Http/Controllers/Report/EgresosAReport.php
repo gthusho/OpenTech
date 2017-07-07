@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Report;
 
 
+use App\DetalleVentaArticulo;
 use App\Http\Controllers\Controller;
 use App\ToolPDF;
 use App\User;
@@ -26,8 +27,13 @@ class EgresosAReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['ventas'] = VentaArticulo::where('estado','t')
-            ->orderBy('id','desc');
+       /* $this->datos['egresos'] = VentaArticulo::with('cliente','usuario','sucursal','almacen')
+            ->where('estado','t')
+            ->where('estado','t')
+            ->orderBy('id','desc')->get();*/
+
+        $this->datos['egresos'] = DetalleVentaArticulo::orderBy('id','desc')->get();
+        /*dd($this->datos['egresos']);*/
     }
 
     public function index(Request $request)

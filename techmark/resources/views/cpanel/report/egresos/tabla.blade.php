@@ -17,13 +17,14 @@
         $i=1;
         ?>
 
-        @foreach($ventas as $row)
+        @foreach($egresos as $row)
             <tr >
                 <td style="border-bottom: 1px dashed black;">{{$i++}}</td>
-                <td style="border-bottom: 1px dashed black;">{{ucwords($row->id)}}</td>
+                <td style="border-bottom: 1px dashed black;">{{ucwords($row->ventaarticulo->getCode())}}</td>
                 <td style="border-bottom: 1px dashed black;">{{$row->registro}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->articulo->nombre)}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->articulo->categoria->nombre)}}</td>
+                <td style="border-bottom: 1px dashed black;">{{ucwords($row->articulo->marca->nombre)}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->articulo->material->nombre)}}</td>
                 <td style="border-bottom: 1px dashed black;">{{$row->cantidad}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->articulo->medida->nombre)}}</td>

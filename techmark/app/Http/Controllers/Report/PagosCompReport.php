@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Report;
 
 use App\Compra;
 use App\Http\Controllers\Controller;
+use App\Tool;
 use App\ToolPDF;
 use Elibyy\TCPDF\TCPDF;
 use Illuminate\Http\Request;
@@ -23,13 +24,15 @@ class PagosCompReport extends Controller
     private $horientacion = 'p';//'l';
     private $titulo = "REPORTE PAGOS";
     private $request =  null;
+
     function __construct(Request $request)
     {
-        $this->datos['compras'] = Compra::fecha($request->get('fecha'))
-            ->where('estado','t')
-            ->fecha($request->get('f'))
-            ->codigo($request->get('s'))
-            ->orderBy('id','desc');
+        /*$this->datos['compra'] = Compra::find($id);
+        {route('admin.compra-credito.show',$row->id);*/
+            $this->datos['compras'] = Compra::where('estado','t')->where('tipo_compra','Credito')
+                ->orderBy('id','desc')->get();
+
+        dd($this->datos['compras'] );
     }
 
     public function index(Request $request)

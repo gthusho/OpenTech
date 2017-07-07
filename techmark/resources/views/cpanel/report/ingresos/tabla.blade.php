@@ -19,7 +19,7 @@
         @foreach($ingresos as $row)
             <tr >
                 <td style="border-bottom: 1px dashed black;">{{$i++}}</td>
-                <td style="border-bottom: 1px dashed black;">{{ucwords($row->id)}}</td>
+                <td style="border-bottom: 1px dashed black;">{{ucwords($row->compra->getcode())}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->compra->fecha)}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->articulo->nombre)}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->articulo->categoria->nombre)}}</td>

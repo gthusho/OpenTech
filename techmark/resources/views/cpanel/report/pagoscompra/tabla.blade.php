@@ -14,9 +14,9 @@
         @foreach($compras as $row)
             <tr >
                 <td style="border-bottom: 1px dashed black;">{{$i++}}</td>
-                <td style="border-bottom: 1px dashed black;">{{ucwords($row->id)}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->fecha)}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->abono)}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->usuario->nombre)}}</td>
+            </tr>
         @endforeach
     </table>

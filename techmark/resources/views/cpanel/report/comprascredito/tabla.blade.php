@@ -16,14 +16,13 @@
     @foreach($compras as $row)
         <tr >
             <td style="border-bottom: 1px dashed black;">{{$i++}}</td>
-            <td style="border-bottom: 1px dashed black;">{{ucwords($row->id)}}</td>
+            <td style="border-bottom: 1px dashed black;">{{ucwords($row->getcode())}}</td>
             <td style="border-bottom: 1px dashed black;">{{ucwords($row->fecha)}}</td>
             <td style="border-bottom: 1px dashed black;">{{ucwords($row->sucursal->nombre)}}</td>
             <td style="border-bottom: 1px dashed black;">{{$row->totalCantidad()}}</td>
-            <td style="border-bottom: 1px dashed black;">{{$row->totalCosto()}}</td>
-            <td style="border-bottom: 1px dashed black;">{{$row->getTotalAbonos()}}</td>
-            <td style="border-bottom: 1px dashed black;">{{$row->getTotalDeuda()}}</td>
-
+            <td style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($row->totalCantidad())}}</td>
+            <td style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($row->totalCosto())}}</td>
+            <td style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($row->getTotalDeuda())}}</td>
         </tr>
     @endforeach
 </table>
