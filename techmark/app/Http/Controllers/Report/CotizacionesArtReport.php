@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Report;
 
 
 use App\Compra;
+use App\CotizacionArticulo;
 use App\ToolPDF;
 use Elibyy\TCPDF\TCPDF;
 use Illuminate\Http\Request;
@@ -26,12 +27,12 @@ class CotizacionesArtReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['ventas'] = CotizacionesArtReport::with('cliente','usuario','sucursal')
+        $this->datos['ventas'] = CotizacionArticulo::with('cliente','usuario','sucursal')
             ->fecha($request->get('fecha'))
             ->where('estado','t')
             ->fecha($request->get('f'))
             ->codigo($request->get('s'))
-            ->orderBy('id','desc');
+            ->orderBy('id','desc')->get();
     }
 
     public function index(Request $request)
@@ -46,7 +47,7 @@ class CotizacionesArtReport extends Controller
             $pdf->SetFont('helvetica', 'B', 25);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
             $pdf->SetFont('helvetica', '', 10);
-            $pdf->writeHTML(view('cpanel.report.comprasregistradas.tabla',$this->datos)->render(), true, false, true, false, '');
+            $pdf->writeHTML(view('cpanel.report.cotartregistradas.tabla',$this->datos)->render(), true, false, true, false, '');
             $pdf->Output('compras.pdf', 'i');
         }else{
             \Session::flash('message','No tienes Permiso para visualizar informacion ');
@@ -59,7 +60,7 @@ class CotizacionesArtReport extends Controller
             Excel::create($this->titulo, function ($excel) {
                 $excel->sheet('ventas', function ($sheet) {
                     $sheet->row(1, array($this->titulo));
-                    $sheet->loadView('cpanel.report.articulos.tabla', $this->datos);
+                    $sheet->loadView('cpanel.report.cotartregistradas.tabla', $this->datos);
                 });
             })->export('xls');
         } else{

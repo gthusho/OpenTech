@@ -2,11 +2,11 @@
     <table  cellspacing="5"  >
         <tr>
             <th width="3%" ><strong>#</strong></th>
-            <th width="20%" ><strong>NOMBRE</strong></th>
-            <th width="8%" ><strong>CI</strong></th>
+            <th width="15%" ><strong>NOMBRE</strong></th>
+            <th width="12%" ><strong>CI</strong></th>
             <th width="12%"><strong>DIRECCION</strong></th>
             <th width="8%"><strong>TELEFONO</strong></th>
-            <th width="10%"><strong>EMAIL</strong></th>
+            <th width="13%"><strong>EMAIL</strong></th>
             <th width="12%"><strong>SUCURSAL</strong></th>
             <th width="10%"><strong>CARGO</strong></th>
             <th width="8%"><strong>SUELDO</strong></th>
