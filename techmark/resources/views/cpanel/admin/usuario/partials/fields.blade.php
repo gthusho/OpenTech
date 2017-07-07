@@ -10,6 +10,22 @@
     {!! Form::text('username',null,['class'=>'form-control','required'])!!}
 </div>
 <div class="form-group col-lg-12">
+    {!! Form::label('Permitir Ver Informacion * ')!!}
+    {!! Form::select('read',[1=>'Si',0=>'No'],null,['class'=>'selectpicker','required','autocomplete'=>"off",'data-style'=>"btn-default btn-custom"])!!}
+</div>
+<div class="form-group col-lg-12">
+    {!! Form::label('Permitir Agregar Registros * ')!!}
+    {!! Form::select('insert',[0=>'No',1=>'Si'],null,['class'=>'selectpicker','required','autocomplete'=>"off",'data-style'=>"btn-default btn-custom"])!!}
+</div>
+<div class="form-group col-lg-12">
+    {!! Form::label('Permitir Editar Informacion * ')!!}
+    {!! Form::select('edit',[0=>'No',1=>'Si'],null,['class'=>'selectpicker','required','autocomplete'=>"off",'data-style'=>"btn-default btn-custom"])!!}
+</div>
+<div class="form-group col-lg-12">
+    {!! Form::label('Permitir Borrar Registros * ')!!}
+    {!! Form::select('delete',[0=>'No',1=>'Si'],null,['class'=>'selectpicker','required','autocomplete'=>"off",'data-style'=>"btn-default btn-custom"])!!}
+</div>
+<div class="form-group col-lg-12">
     {!! Form::label('Nombre Completo * ')!!}
     {!! Form::text('nombre',null,['class'=>'form-control','required'])!!}
 </div>

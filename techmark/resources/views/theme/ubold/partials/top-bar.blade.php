@@ -21,7 +21,7 @@
                     <span class="clearfix"></span>
                 </div>
                 <ul class="nav navbar-nav hidden-xs">
-                    <li><a href="{{url('')}}" class="waves-effect waves-light">SISTEMA DE ADMINISTRACION TECHMARK</a></li>
+                    <li><a href="{{url('')}}" class="waves-effect waves-light">SISTEMA DE ADMINISTRACION TEXMARCK </a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right pull-right">
