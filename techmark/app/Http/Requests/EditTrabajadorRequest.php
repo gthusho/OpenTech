@@ -38,7 +38,7 @@ class EditTrabajadorRequest extends Request
             'referencia'=>'required',
             'sueldo'=>'required',
             'tel_referencia'=>'integer|required',
-            'sucursal'=>'required'
+            'sucursal_id'=>'required'
         ];
     }
 }

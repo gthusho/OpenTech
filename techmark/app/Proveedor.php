@@ -24,5 +24,12 @@ class Proveedor extends Model
             $query->where('razon_social','like',"%$name%")->orwhere('nit','like',"%$name%");
         }
     }
+    function  deleteOk(){
+        $num = Compra::where('proveedor_id',$this->id)->count();
+        if($num>0)
+            return false;
+        else
+        return true;
+    }
 
 }

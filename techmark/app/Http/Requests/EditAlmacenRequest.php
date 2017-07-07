@@ -31,7 +31,6 @@ class EditAlmacenRequest extends Request
         return [
             'nombre' => 'required|unique:almacenes,nombre,'.$this->route()->getParameter('almacen').'|min:4',
             'direccion'=>'required|min:4',
-            'ciudad_id'=>'required'
 
         ];
     }

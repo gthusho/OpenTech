@@ -108,10 +108,6 @@ class SucursalesController extends Controller
             $sucursal->fill($request->all());
             $sucursal->save();
 
-            AlmacenSucursal::where('sucursal_id',$sucursal->id)->delete();
-
-            $this->AgregarDepositos($request->get('depositos'),$sucursal->id);
-
             \Session::flash('message','Se Actualizo Exitosamente la información');
             return redirect()->back();
         }else{

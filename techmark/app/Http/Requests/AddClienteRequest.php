@@ -29,7 +29,6 @@ class AddClienteRequest extends Request
     public function rules()
     {
         return [
-            'razon_social' => 'required|unique:clientes,razon_social|min:4',
             'nit'=>'required|min:7|max:15|unique:clientes,nit',
             'telefono' => 'integer',
             'direccion'=>'max:100'
