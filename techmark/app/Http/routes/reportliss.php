@@ -38,3 +38,9 @@ Route::get('ventas/registradas/excel','VentasRegReport@excel');
 
 Route::get('venta','VentaReport@index');
 Route::get('venta/excel','VentaReport@excel');
+
+Route::get('cotizaciones/productos','CotizacionesProdReport@index');
+Route::get('cotizaciones/productos/excel','CotizacionesProdReport@excel');
+
+Route::get('cotizaciones/articulos','CotizacionesArtReport@index');
+Route::get('cotizaciones/articulos/excel','CotizacionesArtReport@excel');
