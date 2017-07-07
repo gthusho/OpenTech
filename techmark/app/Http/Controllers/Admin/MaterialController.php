@@ -20,7 +20,7 @@ class MaterialController extends Controller
     {
 
         if(Auth::user()->can('allow-read')){
-            $this->datos['brand'] = Tool::brand('Materiales',route('admin.material.index'),'Almacen');
+            $this->datos['brand'] = Tool::brand('Materiales',route('admin.material.index'),'Articulos');
             $this->datos['materiales'] = Material::material($request->get('s'))
                 ->orderBy('estado','desc')
                 ->orderBy('nombre','asc')
@@ -42,7 +42,7 @@ class MaterialController extends Controller
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Agregar Nuevo Material',route('admin.material.index'),'Materiales');
+            $this->datos['brand'] = Tool::brand('Agregar Nuevo Material',route('admin.material.index'),'Articulos');
             return view('cpanel.admin.material.registro',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
@@ -99,7 +99,7 @@ class MaterialController extends Controller
     {
 
         if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Material',route('admin.material.index'),'Materiales');
+            $this->datos['brand'] = Tool::brand('Editar Material',route('admin.material.index'),'Articulos');
             $this->datos['material'] = Material::find($id);
             return view('cpanel.admin.material.edit',$this->datos);
         }else{

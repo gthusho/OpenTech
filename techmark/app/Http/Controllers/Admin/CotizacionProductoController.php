@@ -83,7 +83,7 @@ class CotizacionProductoController extends Controller
     {
 
         if(Auth::user()->can('allow-read')){
-            $this->datos['brand'] = Tool::brand('Cotizacion de Productos Registrados',route('admin.cot_producto.index'),'Cotizacion de Productos');
+            $this->datos['brand'] = Tool::brand('Cotizacion de Productos Registrados',route('admin.cot_producto.index'),'Cotizacion');
             $this->datos['cotizaciones'] = CotizacionProducto::with('cliente','usuario','sucursal')
                 ->fecha($request->get('fecha'))
                 ->where('estado','t')

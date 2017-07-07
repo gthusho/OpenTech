@@ -7,7 +7,7 @@
                 <th>FECHA</th>
                 <th>SUCURSAL</th>
                 <th>CLIENTE</th>
-                <th>CANTIDAD PRODUCTOA</th>
+                <th>CANTIDAD PRODUCTO</th>
                 <th>PRECIO TOTAL</th>
                 <th>ACCIONES</th>
             </tr>

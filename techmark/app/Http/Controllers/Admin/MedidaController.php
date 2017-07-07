@@ -21,7 +21,7 @@ class MedidaController extends Controller
     {
 
         if(Auth::user()->can('allow-read')){
-            $this->datos['brand'] = Tool::brand('Unidades Registradas',route('admin.unidad.index'),'Unidades');
+            $this->datos['brand'] = Tool::brand('Unidades Registradas',route('admin.unidad.index'),'Articulos');
             $this->datos['medidas'] = Unidad::medida($request->get('s'))
                 ->orderBy('estado','desc')
                 ->orderBy('nombre','asc')
@@ -43,7 +43,7 @@ class MedidaController extends Controller
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Agregar Nueva Unidad',route('admin.unidad.index'),'Unidades');
+            $this->datos['brand'] = Tool::brand('Agregar Nueva Unidad',route('admin.unidad.index'),'Articulos');
             return view('cpanel.admin.unidad.registro',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
@@ -99,7 +99,7 @@ class MedidaController extends Controller
     {
 
         if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Unidad',route('admin.unidad.index'),'Unidades');
+            $this->datos['brand'] = Tool::brand('Editar Unidad',route('admin.unidad.index'),'Articulos');
             $this->datos['medida'] = Unidad::find($id);
             return view('cpanel.admin.unidad.edit',$this->datos);
         }else{

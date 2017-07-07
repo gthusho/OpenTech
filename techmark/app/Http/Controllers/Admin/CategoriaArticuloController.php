@@ -20,7 +20,7 @@ class CategoriaArticuloController extends Controller
     {
 
         if(Auth::user()->can('allow-read')){
-            $this->datos['brand'] = Tool::brand('Categorias Articulos',route('admin.categoria.index'),'Categorias Articulos');
+            $this->datos['brand'] = Tool::brand('Categorias Articulos',route('admin.categoria.index'),'Articulos');
             $this->datos['categorias'] = CategoriaArticulo::categoria($request->get('s'))
                 ->orderBy('id','desc')
                 ->paginate();
@@ -41,7 +41,7 @@ class CategoriaArticuloController extends Controller
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Agregar Categorias Articulos',route('admin.categoria.index'),'Categorias Articulos');
+            $this->datos['brand'] = Tool::brand('Agregar Categorias Articulos',route('admin.categoria.index'),'Articulos');
             return view('cpanel.admin.categoria.registro',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
@@ -100,7 +100,7 @@ class CategoriaArticuloController extends Controller
     {
 
         if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Categoria Articulo',route('admin.categoria.index'),'Categorias Articulos');
+            $this->datos['brand'] = Tool::brand('Editar Categoria Articulo',route('admin.categoria.index'),'Articulos');
             $this->datos['categoria'] = CategoriaArticulo::find($id);
             return view('cpanel.admin.categoria.edit',$this->datos);
         }else{

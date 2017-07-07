@@ -20,7 +20,7 @@ class MarcaController extends Controller
     {
 
         if(Auth::user()->can('allow-read')){
-            $this->datos['brand'] = Tool::brand('Marcas',route('admin.marca.index'),'Almacen');
+            $this->datos['brand'] = Tool::brand('Marcas',route('admin.marca.index'),'Articulos');
             $this->datos['marcas'] = Marca::marca($request->get('s'))
                 ->orderBy('estado','desc')
                 ->orderBy('nombre','asc')
@@ -42,7 +42,7 @@ class MarcaController extends Controller
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Agregar Nueva Marca',route('admin.marca.index'),'Marcas');
+            $this->datos['brand'] = Tool::brand('Agregar Nueva Marca',route('admin.marca.index'),'Articulos');
             return view('cpanel.admin.marca.registro',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
@@ -98,7 +98,7 @@ class MarcaController extends Controller
     {
 
         if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Marca',route('admin.marca.index'),'Marcas');
+            $this->datos['brand'] = Tool::brand('Editar Marca',route('admin.marca.index'),'Articulos');
             $this->datos['marca'] = Marca::find($id);
             return view('cpanel.admin.marca.edit',$this->datos);
         }else{

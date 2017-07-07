@@ -33,7 +33,6 @@ class CotizacionArticuloController extends Controller
         }else{
             $this->venta = new  CotizacionArticulo();
             $this->venta->usuario_id = Auth::user()->id;
-            $this->venta->cliente_id = 1;
             $this->venta->save();
         }
     }

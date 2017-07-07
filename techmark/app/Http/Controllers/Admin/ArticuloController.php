@@ -25,7 +25,7 @@ class ArticuloController extends Controller
     {
         if(Auth::user()->can('allow-read'))
         {
-            $this->datos['brand'] = Tool::brand('Articulos',route('admin.articulo.index'),'Almacen');
+            $this->datos['brand'] = Tool::brand('Articulos',route('admin.articulo.index'),'Articulos');
             $this->datos['articulos'] = Articulo::with('categoria','marca','material','medida')
                 ->marca($request->get('marca'))
                 ->medida($request->get('medida'))
@@ -51,7 +51,7 @@ class ArticuloController extends Controller
     {
         if(Auth::user()->can('allow-insert')){
             $this->genDatos();
-            $this->datos['brand'] = Tool::brand('Agragar Nuevo Articulo',route('admin.articulo.index'),'Articulos');
+            $this->datos['brand'] = Tool::brand('Agregar Nuevo Articulo',route('admin.articulo.index'),'Articulos');
             return view('cpanel.admin.articulo.registro',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');

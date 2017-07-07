@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AddClienteRequest;
 use App\Http\Requests\ClienteRequest;
 use App\Http\Requests\EditCiudadRequest;
+use App\Http\Requests\EditClienteRequest;
 use Illuminate\Http\Request;
 use App\Tool;
 use Illuminate\Support\Facades\Auth;
@@ -82,7 +83,7 @@ class ClienteController extends Controller
         }
 
     }
-    public function update(EditCiudadRequest $request, $id)
+    public function update(EditClienteRequest $request, $id)
     {
         if(Auth::user()->can('allow-edit')){
             $cliente = Clientes::find($id);
