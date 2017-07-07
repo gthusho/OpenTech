@@ -39,10 +39,10 @@ class Trabajador extends Model
             default: return ['inverse','error'];
         }
     }
-    function usuario(){
-        return $this->belongsTo('App\User','usuario_id','id');
-    }
     function getFoto(){
         return url(\Config::get('upload.trabajadores').$this->foto);
+    }
+    function usuario(){
+        return $this->belongsTo('App\User','usuario_id','id');
     }
 }

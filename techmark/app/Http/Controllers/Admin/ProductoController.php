@@ -36,7 +36,7 @@ class ProductoController extends Controller
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Agragar Nuevo Producto',route('admin.producto.index'),'Productos');
+            $this->datos['brand'] = Tool::brand('Agregar Nuevo Producto',route('admin.producto.index'),'Productos');
             return view('cpanel.admin.producto.registro',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');

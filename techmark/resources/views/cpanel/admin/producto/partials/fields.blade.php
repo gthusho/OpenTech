@@ -26,11 +26,11 @@
 </div>
 @if(Request::segment(4)=='edit' && $producto->imagen!='')
     <div class="card-box">
-        <h4 class="text-primary header-title m-t-0">Archivo Adjunto</h4>
+        <h4 class="text-primary header-title m-t-0">Imagen Actual</h4>
 
         <div class="row">
             <div class="form-group col-lg-12">
-                <a href="{{$producto->getImagen()}}" target="_blank">{{$producto->imagen}}</a>
+                <img src="{{$producto->getImagen()}}" alt="" class="img-thumbnail" style="max-height: 500px; max-width: 500px;">
             </div>
         </div>
 

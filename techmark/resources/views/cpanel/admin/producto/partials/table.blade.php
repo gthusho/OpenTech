@@ -14,7 +14,7 @@
             <td><span class="label label-{{$row->activo()[0]}}">{{$row->activo()[1]}}</span></td>
             <td>{{($row->descripcion)}}</td>
             <td>
-                <img src="{{$row->getImagen()}}" alt="{{$row->descripcion}}.jpg" height="100px" width="100px" class="img-thumbnail">
+                <img src="{{$row->getImagen()}}" alt="{{$row->descripcion}}.jpg"  class="img-thumbnail thumb-sm">
             </td>
             <td>{{$row->fecha}}</td>
             <td>

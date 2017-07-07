@@ -91,7 +91,7 @@
 
                 <div class="row">
                     <div class="form-group col-lg-12">
-                        <a href="{{$trabajador->getFoto()}}" target="_blank">{{$trabajador->foto}}</a>
+                        <img src="{{$trabajador->getFoto()}}" alt="" class="img-thumbnail">
                     </div>
                 </div>
 
