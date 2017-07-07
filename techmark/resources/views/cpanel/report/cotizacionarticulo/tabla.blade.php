@@ -21,10 +21,6 @@
         <td>SUCURSAL</td>
         <td>{{$venta->sucursal->nombre}}</td>
     </tr>
-    <tr>
-        <td>TIPO DE VENTA</td>
-        <td>{{$venta->tipo_compra}}</td>
-    </tr>
 
     <tr>
         <td>CANTIDAD</td>
@@ -62,7 +58,7 @@
     $i=1;
     ?>
 
-    @foreach($venta->detalleventas as $row)
+    @foreach($venta->detallecotizacion as $row)
         <tr >
             <td>{{$i++}}</td>
             <td>

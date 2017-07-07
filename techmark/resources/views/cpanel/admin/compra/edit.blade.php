@@ -22,7 +22,7 @@
         <div class="pull-left m-b-15 m-l-5">
             <div class="form-group text-left">
 
-                <a href="{{url('reportes/compra').\App\Tool::getDataReportQuery()}}">
+                <a href="{{url('reportes/compra').'?id='.$compra->id}}">
                     <span class="btn btn-inverse waves-effect waves-light" >
                             <i class=" icon-printer"></i>
                             Imprimir Compra

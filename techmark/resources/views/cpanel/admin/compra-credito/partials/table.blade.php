@@ -47,7 +47,7 @@
     <hr>
     <div class="hidden-print">
         <div class="pull-right">
-            <a href="{{url('reportes/pagos/compra').\App\Tool::getDataReportQuery()}}">
+            <a href="{{url('reportes/pagos/compra').'?id='.$compra->id}}">
                     <span class="btn btn-inverse waves-effect waves-light" >
                             <i class=" icon-printer"></i>
                             Imprimir Pagos

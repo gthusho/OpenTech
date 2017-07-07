@@ -25,16 +25,11 @@ class CompraReport extends Controller
 {
     private $datos = null;
     private $horientacion = 'p';//'l';
-    private $titulo = "REPORTE DETALLE COMPRA";
+    private $titulo = "COMPRA";
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['compra'] = Compra::find($id);
-        $this->datos['compras'] = Compra::fecha($request->get('fecha'))
-            ->where('estado','t')
-            ->fecha($request->get('f'))
-            ->codigo($request->get('s'))
-            ->orderBy('id','desc');
+        $this->datos['compra'] = Compra::find($request->get('id'));
     }
 
     public function index(Request $request)
@@ -48,7 +43,7 @@ class CompraReport extends Controller
             $pdf->AddPage($this->horientacion);
             $pdf->SetFont('helvetica', 'B', 25);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
-            $pdf->SetFont('helvetica', '', 10);
+            $pdf->SetFont('helvetica', '', 8);
             $pdf->writeHTML(view('cpanel.report.compra.tabla',$this->datos)->render(), true, false, true, false, '');
             $pdf->Output('detalles_productos.pdf', 'i');
         }else{
@@ -56,18 +51,5 @@ class CompraReport extends Controller
             return redirect('dashboard');
         }
     }
-    function excel(Request $request){
-        $this->request = $request;
-        if(Auth::user()->can('allow-read')) {
-            Excel::create($this->titulo, function ($excel) {
-                $excel->sheet('compras', function ($sheet) {
-                    $sheet->row(1, array($this->titulo));
-                    $sheet->loadView('cpanel.report.compra.tabla', $this->datos);
-                });
-            })->export('xls');
-        } else{
-            \Session::flash('message','No tienes Permiso para visualizar informacion ');
-            return redirect('dashboard');
-        }
-    }
+
 }
