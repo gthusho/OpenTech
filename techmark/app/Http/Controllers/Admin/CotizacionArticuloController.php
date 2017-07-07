@@ -127,15 +127,15 @@ class CotizacionArticuloController extends Controller
             switch ($precio){
                 case ("1"):
                     $articulo->dp="P1";
-                    $articulo->precio=$parametro->precio1;
+                    $articulo->precio=$parametro->precio1 * $cantidad;
                     break;
                 case ("2"):
                     $articulo->dp="P2";
-                    $articulo->precio=$parametro->precio2;
+                    $articulo->precio=$parametro->precio2* $cantidad;
                     break;
                 default:
                     $articulo->dp="P3";
-                    $articulo->precio=$parametro->precio3;
+                    $articulo->precio=$parametro->precio3* $cantidad;
             }
             $articulo->cantidad = $cantidad;
             $articulo->save();
@@ -149,15 +149,15 @@ class CotizacionArticuloController extends Controller
             switch ($precio){
                 case ("1"):
                     $articulo->dp="P1";
-                    $articulo->precio=$parametro->precio1;
+                    $articulo->precio=$parametro->precio1* $cantidad;
                     break;
                 case ("2"):
                     $articulo->dp="P2";
-                    $articulo->precio=$parametro->precio2;
+                    $articulo->precio=$parametro->precio2 * $cantidad;
                     break;
                 case ("3"):
                     $articulo->dp="P3";
-                    $articulo->precio=$parametro->precio3;
+                    $articulo->precio=$parametro->precio3 * $cantidad;
                     break;
             }
 

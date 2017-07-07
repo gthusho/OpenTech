@@ -10,7 +10,8 @@
                 <th>MATERIAL</th>
                 <th>CANTIDAD</th>
                 <th>UNIDAD</th>
-                <th>PRECIO</th>
+                <TH>PRECIO UNITARIO</TH>
+                <th>TOTAL</th>
                 <th>REMOVER</th>
             </tr>
             </thead>
@@ -33,6 +34,9 @@
                         <td> {{\App\ToolArticuloCart::getNombreById($row->articulo->material_id,"material")}}</td>
                         <td>{{number_format((float)$row->cantidad, 2, '.', '')}}</td>
                         <td>{{\App\ToolArticuloCart::getNombreById($row->articulo->unidad_id,"unidad")}}</td>
+                        <td>
+                            {{\App\Tool::convertMoney($row->articulo->getPrecio($row->dp))}}
+                        </td>
                         <td>
                             {{\App\Tool::convertMoney($row->precio)}}
                         </td>

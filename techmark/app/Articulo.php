@@ -80,7 +80,20 @@ class Articulo extends Model
 
         }
     }
-
+    function getPrecio($tipo){
+        switch ($tipo){
+            case 'P1':{
+                return $this->precio1;
+            }
+            case 'P2':{
+                return $this->precio2;
+            }
+            case 'P3':{
+                return $this->precio3;
+            }
+            default: return 0;
+        }
+    }
     function scopeMarca($query,$x){
         if(trim($x) != ''){
             $query->where('marca_id', $x);
