@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\AddMedidaRequest;
 use App\Http\Requests\EditMedidaRequest;
-use App\Medida;
 use App\Tool;
 use App\Unidad;
 use Illuminate\Http\Request;
@@ -68,7 +67,7 @@ class MedidaController extends Controller
                 echo $combo;
                 exit;
             }else {
-                Medida::create($request->all());
+                Unidad::create($request->all());
                 return redirect()->route('admin.unidad.index');
             }
         }else{

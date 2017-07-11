@@ -26,8 +26,12 @@
                     <tr >
                         <td {!! $cl !!}>
                             {{$row->tipo_compra}}
-                            @if($row->tipo_compra == "Credito")
-                            <a href="{{route('admin.compra-credito.show',$row->id)}}" class="btn btn-xs btn-white" target="_blank"> <i class="fa fa-money"></i> Abonar</a>
+                            @if($row->tipo_compra == "Credito" )
+                                @if($row->getTotalDeuda()>0)
+                                    <a href="{{route('admin.compra-credito.show',$row->id)}}" class="btn btn-xs btn-white pull-right" target="_blank"> <i class="fa fa-money"></i> Abonar</a>
+                                @else
+                                    <span class="label label-inverse pull-right">PAGADO</span>
+                                @endif
                             @endif
                         </td>
 
