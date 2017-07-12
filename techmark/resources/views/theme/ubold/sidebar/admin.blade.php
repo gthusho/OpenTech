@@ -90,12 +90,10 @@
                 <li class="has_sub">
                     <a href="{{route('admin.ciudad.index')}}" class="waves-effect"><i class=" icon-location-pin"></i> <span> Ciudades </span> </a>
                 </li>
-                {{--
                 <li class="text-muted menu-title">Rutas Liss</li>
                 @include('theme.ubold.sidebar.liss')
                 <li class="text-muted menu-title">Rutas Diego</li>
                 @include('theme.ubold.sidebar.diego')
-                --}}
             </ul>
             <div class="clearfix"></div>
         </div>

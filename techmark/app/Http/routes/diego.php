@@ -20,4 +20,6 @@ Route::resource('cot_producto','CotizacionProductoController');
 Route::post('deleteItemsCotizacionProducto/{id}',['as' => 'deleteItemsCotizacionProducto', 'uses' => 'DetalleCotizacionProductoController@deleteItemsCotizacionProducto']);
 Route::post('confirmCotizacionProducto/{id}',['as' => 'confirmCotizacionProducto', 'uses' => 'CotizacionProductoController@confirmCotizacionProducto']);
 
+Route::resource('venta-credito-art','VentaCreditoArticuloController');
+
 

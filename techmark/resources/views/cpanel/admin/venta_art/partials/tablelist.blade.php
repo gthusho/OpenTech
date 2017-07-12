@@ -19,14 +19,14 @@
                 @foreach($ventas as $row)
                     <?php
                     $cl = '';
-                    if($row->tipo_pago == "Credito")
+                    if($row->tipo_pago == "Credito" && $row->getTotalDeuda()!=0)
                         $cl="class='bg-primary'" ;
                     ?>
                     <tr >
                         <td {!! $cl !!}>
                             {{$row->tipo_pago}}
-                            @if($row->tipo_pago == "Credito")
-                                <a href="{{route('admin.compra-credito.show',$row->id)}}" class="btn btn-xs btn-white" target="_blank"> <i class="fa fa-money"></i> Pagar</a>
+                            @if($row->tipo_pago == "Credito" && $row->getTotalDeuda()!=0)
+                                <a href="{{route('admin.venta-credito-art.show',$row->id)}}" class="btn btn-xs btn-white" target="_blank"> <i class="fa fa-money"></i> Pagar</a>
                             @endif
                         </td>
 

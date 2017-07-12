@@ -16,7 +16,7 @@ class VentaArticulo extends Model
     function detalleventas(){
         return $this->hasMany('App\DetalleVentaArticulo','venta_articulo_id','id');
     }
-    function ventacredito(){
+    function pagos(){
         return $this->hasMany('App\VentaCreditoArticulo','venta_articulo_id','id');
     }
     function sucursal(){
@@ -56,5 +56,18 @@ class VentaArticulo extends Model
             $pre = str_replace('V','',$v);
             $query->where('id',$pre);
         }
+    }
+
+    function  getTotalAbonos(){
+        $total = VentaCreditoArticulo::where('venta_articulo_id',$this->id)->sum('abono');
+        if($total == '' || $total ==null){
+            return 0;
+        }else{
+            return $total;
+
+        }
+    }
+    function getTotalDeuda(){
+        return $this->totalPrecio() - $this->getTotalAbonos();
     }
 }

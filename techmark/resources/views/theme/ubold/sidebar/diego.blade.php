@@ -19,11 +19,19 @@
         <li><a href="{{route('admin.talla.index')}}">Tallas</a></li>
     </ul>
 </li>
---}}
 <li class="has_sub">
     <a href="javascript:void(0);" class="waves-effect"><i class="icon-credit-card"></i><span class="label label-primary pull-right">2</span> <span> Ventas </span>  </a>
     <ul class="list-unstyled">
         <li><a href="{{route('admin.venta_art.index')}}">Ventas Articulos</a></li>
         <li><a href="{{route('admin.cot_producto.index')}}">Cotizaciones Productos</a></li>
+    </ul>
+</li>
+--}}
+<li class="has_sub">
+    <a href="javascript:void(0);" class="waves-effect"><i class="icon-credit-card"></i><span class="label label-primary pull-right">3</span> <span> Diego </span>  </a>
+    <ul class="list-unstyled">
+        <li><a href="{{route('admin.venta-credito-art.index')}}">Ventas de Articulos al Credito</a></li>
+        <li><a href="{{route('admin.cot_producto.index')}}">Gastos</a></li>
+        <li><a href="{{route('admin.cot_producto.index')}}">Caja</a></li>
     </ul>
 </li>

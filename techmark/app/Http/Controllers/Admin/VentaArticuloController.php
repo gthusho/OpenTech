@@ -267,6 +267,7 @@ class VentaArticuloController extends Controller
         if(Auth::user()->can('allow-delete')) {
             $venta =  VentaArticulo::find($id);
             \DB::table('detalles_ventas_articulos')->where('venta_articulo_id',$venta->id)->delete();
+            \DB::table('ventas_credito_articulos')->where('venta_articulo_id',$venta->id)->delete();
             VentaArticulo::destroy($id);
             $mensaje = 'La Venta fue Cancelada ';
             \Session::flash('message',$mensaje);
