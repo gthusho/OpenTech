@@ -1,8 +1,8 @@
 
-                <li class="has_sub">
-                    <a href="{{route('admin.cotizacion.index')}}" class="waves-effect"><i class="icon-list"></i> <span> Cotizacion Articulos </span> </a>
+                {{--<li class="has_sub">--}}
+                    {{--<a href="{{route('admin.cotizacion.index')}}" class="waves-effect"><i class="icon-list"></i> <span> Cotizacion Articulos </span> </a>--}}
 
-                </li>
+                {{--</li>--}}
                 {{--
                        <li class="has_sub">
                            <a href="javascript:void(0); " class="waves-effect"><i class="icon-people"></i><span class="label label-primary pull-right">3</span> <span> Clientes </span>  </a>
