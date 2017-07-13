@@ -35,7 +35,8 @@ return [
     'tipo_compra' => [
         'Contado'=>'Contado',
         'Credito'=>'Credito',
-        'Cheque'=>'Cheque'
+        'Cheque'=>'Cheque',
+        'Tarjeta Credito'=>'Tarjeta Credito'
     ],
 
 
