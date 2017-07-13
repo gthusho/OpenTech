@@ -35,3 +35,4 @@
         {{--<li><a href="{{route('admin.caja.index')}}">Caja</a></li>--}}
     {{--</ul>--}}
 {{--</li>--}}
+
