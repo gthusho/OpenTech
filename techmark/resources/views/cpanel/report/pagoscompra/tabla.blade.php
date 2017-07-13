@@ -81,7 +81,7 @@
     </tr>
     <tr>
         <td width="72%" ><strong>SALDO:</strong></td>
-        <td>{{\App\Tool::convertMoney($compra->getTotalDeuda())}}</td>
+        <td><b>{{\App\Tool::convertMoney($compra->getTotalDeuda())}}</b></td>
     </tr>
 
 
