@@ -45,8 +45,9 @@ class CotizacionArticulo extends Model
     }
     function scopeFecha($query,$fecha){
         if(trim($fecha) != ''){
-            $fecha2=$fecha." 23:59:59";
-            $query->whereBetween('registro',[$fecha,$fecha2]);
+            $date = Tool::getArrayDate($fecha);
+            $query->where(\DB::raw('DATE(registro)'),'>=',$date[0])->where(\DB::raw('DATE(registro)'),'<=',$date[1]);
+
         }
     }
     function scopeCodigo($query,$v){
