@@ -60,15 +60,12 @@
                     {!! Form::label('Sueldo (*)')!!}
                     {!! Form::text('sueldo',null,['class'=>'form-control','required'])!!}
                 </div>
-
                 <div class="form-group col-lg-6">
                     {!! Form::label('Fecha de Ingreso * ')!!}
-
                     <div class="input-group">
                         {!! Form::text('fecha_ingreso',null,['class'=>'form-control','required','autocomplete'=>"off",'id'=>"datepicker-autoclose",'data-date-format'=>'yyyy/mm/dd'])!!}
                         <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
                     </div><!-- input-group -->
-
                 </div>
                 <div class="form-group col-lg-6">
                     {!! Form::label('Referencia (*)')!!}

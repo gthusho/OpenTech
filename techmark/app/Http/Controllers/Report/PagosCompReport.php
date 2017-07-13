@@ -41,7 +41,7 @@ class PagosCompReport extends Controller
             $pdf->AddPage($this->horientacion);
             $pdf->SetFont('helvetica', 'B', 20);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
-            $pdf->SetFont('helvetica', '', 8);
+            $pdf->SetFont('helvetica', '', 10);
             $pdf->writeHTML(view('cpanel.report.pagoscompra.tabla', $this->datos)->render(), true, false, true, false, '');
             $pdf->Output('detalles_productos.pdf', 'i');
         } else {

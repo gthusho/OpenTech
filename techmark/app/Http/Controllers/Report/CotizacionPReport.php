@@ -23,7 +23,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class CotizacionPReport extends Controller
 {
     private $datos = null;
-    private $horientacion = 'l';//'l';
+    private $horientacion = 'p';//'l';
     private $titulo = "COTIZACION DE PRODUCTOS";
     private $request =  null;
     function __construct(Request $request)
@@ -40,9 +40,9 @@ class CotizacionPReport extends Controller
             ToolPDF::setMargen($pdf);
             $pdf->SetTitle('OpenRed By Liseth');
             $pdf->AddPage($this->horientacion);
-            $pdf->SetFont('helvetica', 'B', 25);
+            $pdf->SetFont('helvetica', 'B', 20);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
-            $pdf->SetFont('helvetica', '', 10);
+            $pdf->SetFont('helvetica', '', 9);
             $pdf->writeHTML(view('cpanel.report.cotizacionproducto.tabla',$this->datos)->render(), true, false, true, false, '');
             $pdf->Output('compras.pdf', 'i');
         }else{
