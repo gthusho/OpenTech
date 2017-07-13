@@ -11,7 +11,9 @@ class Compra extends Model
         'sucursal_id','almacen_id','proveedor_id','fecha','codigo','tipo_compra','nfactura'
     ];
 
-
+    function ingresos(){
+        return $this->belongsTo('App\Ingresos','id','compra_id');
+    }
     function articulos(){
         return $this->hasMany('App\Ingresos','compra_id','id');
     }
@@ -49,10 +51,25 @@ class Compra extends Model
             $query->where('fecha',$fecha);
         }
     }
+    function scopeCompra($query,$fecha){
+        if(trim($fecha) != ''){
+            $query->where('fecha',$fecha);
+        }
+    }
     function scopeCodigo($query,$c){
         if(trim($c) != ''){
             $pre = str_replace('C','',$c);
             $query->where('id',$pre);
+        }
+    }
+    function scopeProveedor($query,$x){
+        if(trim($x) != ''){
+            $query->where('proveedor_id',$x);
+        }
+    }
+    function scopeSucursal($query,$x){
+        if(trim($x) != ''){
+            $query->where('sucursal_id', $x);
         }
     }
 

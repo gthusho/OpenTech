@@ -17,7 +17,7 @@
     @foreach($ingresos as $row)
         <tr>
             <td>{{$row->compra->getCode()}}</td>
-            <td>{{date('d-m-Y',strtotime($row->compra->fecha))}}</td>
+            <td>{{date('d/m/Y',strtotime($row->compra->fecha))}}</td>
             <td>{{$row->articulo->nombre}}</td>
             <td>{{$row->articulo->categoria->nombre}}</td>
             <td>{{$row->articulo->marca->nombre}}</td>

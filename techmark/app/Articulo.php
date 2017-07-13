@@ -61,6 +61,12 @@ class Articulo extends Model
     function categoria(){
     	return $this->belongsTo('App\CategoriaArticulo','categoria_articulo_id','id');
     }
+    function ingreso(){
+        return $this->belongsTo('App\Ingreso','id','articulo_id');
+    }
+    function detalleventaarticulo(){
+        return $this->belongsTo('App\DetalleVentaArticulo','id','articulo_id');
+    }
 
     function marca(){
     	return $this->belongsTo('App\Marca','marca_id','id');
@@ -127,6 +133,12 @@ class Articulo extends Model
                 default: break;
             }
 
+        }
+    }
+    function scopeArticulo($query,$name){
+        if(trim($name) != ''){
+            /* $id=Ingresos::articulo($name)->pluck('id');*/
+            $query->where('articulo_id',$name);
         }
     }
     function  deleteOk(){

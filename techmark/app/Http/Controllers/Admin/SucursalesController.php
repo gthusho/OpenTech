@@ -23,7 +23,8 @@ class SucursalesController extends Controller
 
         if(Auth::user()->can('allow-read')){
             $this->datos['brand'] = Tool::brand('Listado de Sucursales ',route('admin.sucursal.index'),'Sucursales');
-            $this->datos['sucursales'] = Sucursal::name($request->get('s'))
+            $this->datos['sucursales'] = Sucursal::sucursal($request->get('sucursal'))
+                ->sucursal($request->get('s'))
                 ->orderBy('id','desc')
                 ->paginate();
             return view('cpanel.admin.sucursal.list')->with($this->datos);

@@ -18,10 +18,17 @@ class Proveedor extends Model
         'razon_social', 'nit', 'telefono',
         'celular','email','fax','direccion','registro'
     ];
-
+    function compra(){
+        return $this->belongsTo('App\Compra','id','proveedor_id');
+    }
     function scopeName($query,$name){
         if(trim($name) != ''){
             $query->where('razon_social','like',"%$name%")->orwhere('nit','like',"%$name%");
+        }
+    }
+    function scopeProveedor($query,$name){
+        if(trim($name) != ''){
+            $query->where('razon_social','like',"%$name%");
         }
     }
     function  deleteOk(){

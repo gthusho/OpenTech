@@ -11,12 +11,29 @@ class Sucursal extends Model
         'nombre','direccion','direccion','telefono','celular','nit','usuario_id','ciudad_id','estado'
     ];
     function ciudad(){
-        return $this->belongsTo('App\Ciudad','ciudad_id','id');
-    }
+    return $this->belongsTo('App\Ciudad','ciudad_id','id');
+}
     function usuario(){
         return $this->belongsTo('App\User','usuario_id','id');
     }
+    function ingreso(){
+        return $this->belongsTo('App\Ingreso','id','sucursal_id');
+    }
+    function detalleventaarticulo(){
+        return $this->belongsTo('App\DetalleVentaArticulo','id','sucursal_id');
+    }
+    function ventaarticulo(){
+        return $this->belongsTo('App\VentaArticulo','id','sucursal_id');
+    }
+    function compra(){
+        return $this->belongsTo('App\Compra','id','sucursal_id');
+    }
     function scopeName($query,$name){
+        if(trim($name) != ''){
+            $query->where('nombre','like',"%$name%");
+        }
+    }
+    function scopeSucursal($query,$name){
         if(trim($name) != ''){
             $query->where('nombre','like',"%$name%");
         }

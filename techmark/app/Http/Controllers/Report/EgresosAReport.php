@@ -27,13 +27,12 @@ class EgresosAReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-       /* $this->datos['egresos'] = VentaArticulo::with('cliente','usuario','sucursal','almacen')
-            ->where('estado','t')
-            ->where('estado','t')
-            ->orderBy('id','desc')->get();*/
-
-        $this->datos['egresos'] = DetalleVentaArticulo::orderBy('id','desc')->get();
-        /*dd($this->datos['egresos']);*/
+        $this->datos['egresos'] = DetalleVentaArticulo::with('articulo','sucursal','almacen')
+            ->fecha($request->get('fecha'))
+            ->fecha($request->get('f'))
+            ->sucursal($request->get('sucursal'))
+            ->articulo($request->get('articulo'))
+            ->orderBy('id','desc')->get();
     }
 
     public function index(Request $request)
@@ -60,7 +59,7 @@ class EgresosAReport extends Controller
         $this->request = $request;
         if(Auth::user()->can('allow-read')) {
             Excel::create($this->titulo, function ($excel) {
-                $excel->sheet('ventas', function ($sheet) {
+                $excel->sheet('egresos', function ($sheet) {
                     $sheet->row(1, array($this->titulo));
                     $sheet->loadView('cpanel.report.egresos.tabla', $this->datos);
                 });

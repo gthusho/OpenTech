@@ -22,17 +22,12 @@
         <div class="pull-left m-b-15 m-l-5">
             <div class="form-group text-left">
 
-                <a href="{{url('reportes/compra').'?id='.$compra->id}}">
-                    <span class="btn btn-inverse waves-effect waves-light" >
-                            <i class=" icon-printer"></i>
-                            Imprimir Compra
-                        </span>
-                </a>
+                <a href="{{url('reportes/compra').'?id='.$compra->id}}"
+                   class="btn btn-inverse  waves-effect waves-light" target="_blank" >Imprimir Compra
+                    <span class="m-l-5"><i class=" icon-printer"></i></span></a>
             </div>
 
 
-
-        </div>
         <div class="pull-right ">
             {!! Form::open(['route'=>['admin.compra.destroy',$compra->id],'method'=>'delete']) !!}
             <button  class="btn btn-danger waves-effect waves-light m-l-5" onclick="return confirm('Esta Seguro de Cancelar la Compra?')">

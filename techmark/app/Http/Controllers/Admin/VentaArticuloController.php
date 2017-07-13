@@ -127,14 +127,19 @@ class VentaArticuloController extends Controller
                 ->where('estado','t')
                 ->fecha($request->get('f'))
                 ->codigo($request->get('s'))
+                ->sucursal($request->get('sucursal'))
                 ->orderBy('id','desc')
                 ->paginate();
+            $this->genDatos();
             return view('cpanel.admin.venta_art.list',$this->datos);
         }
 
         \Session::flash('message','No tienes Permiso para visualizar informacion ');
         return redirect('dashboard');
 
+    }
+    function genDatos(){
+        $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
     }
 
     public function create()

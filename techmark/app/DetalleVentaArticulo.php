@@ -39,4 +39,20 @@ class DetalleVentaArticulo extends Model
         }
 
     }
+    function scopeArticulo($query,$name){
+        if(trim($name) != ''){
+            /* $id=Ingresos::articulo($name)->pluck('id');*/
+            $query->where('articulo_id',$name);
+        }
+    }
+    function scopeSucursal($query,$x){
+        if(trim($x) != ''){
+            $query->where('sucursal_id', $x);
+        }
+    }
+    function scopeFecha($query,$x){
+        if(trim($x) != ''){
+            $query->where('registro', $x);
+        }
+    }
 }

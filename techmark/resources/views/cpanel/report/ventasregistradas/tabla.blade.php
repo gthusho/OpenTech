@@ -20,7 +20,7 @@
                 <td style="border-bottom: 1px dashed black;">{{$i++}}</td>
                 <td style="border-bottom: 1px dashed black;">{{$row->tipo_pago}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->getcode())}}</td>
-                <td style="border-bottom: 1px dashed black;">{{$row->fecha}}</td>
+                <td style="border-bottom: 1px dashed black;">{{$row->registro}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->sucursal->nombre)}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->almacen->nombre)}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->cliente->razon_social)}}</td>

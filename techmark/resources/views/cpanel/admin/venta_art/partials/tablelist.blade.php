@@ -3,9 +3,11 @@
         <table class="table table-hover" id="tabla">
             <thead>
             <tr>
-                <th class='bg-primary'>CODIGO</th>
+
+
+                <th  class='bg-primary'>TIPO PAGO</th>
+                <th>CODIGO</th>
                 <th>FECHA</th>
-                <th>TIPO PAGO</th>
                 <th>SUCURSAL</th>
                 <th>ALMACEN</th>
                 <th>CLIENTE</th>

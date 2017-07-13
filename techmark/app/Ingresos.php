@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Ingresos extends Model
 {
     protected $table = 'ingresos';
+    protected $fillable = [
+        'sucursal_id','almacen_id','compra_id','registro','articulo_id'
+    ];
 
     function articulo(){
         return $this->belongsTo('App\Articulo','articulo_id','id');
@@ -37,8 +40,8 @@ class Ingresos extends Model
     }
     function scopeArticulo($query,$name){
         if(trim($name) != ''){
-            $id=Ingresos::articulo($name)->pluck('id');
-            $query->whereIn('articulo_id',$id);
+           /* $id=Ingresos::articulo($name)->pluck('id');*/
+            $query->where('articulo_id',$name);
         }
     }
     function scopeSucursal($query,$x){
@@ -46,4 +49,11 @@ class Ingresos extends Model
             $query->where('sucursal_id', $x);
         }
     }
+    function scopeCompra($query,$x){
+        if(trim($x) != ''){
+            $query->where('compra_id', $x);
+        }
+    }
+
+
 }

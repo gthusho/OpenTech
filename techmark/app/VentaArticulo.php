@@ -67,6 +67,11 @@ class VentaArticulo extends Model
 
         }
     }
+    function scopeSucursal($query,$x){
+        if(trim($x) != ''){
+            $query->where('sucursal_id', $x);
+        }
+    }
     function getTotalDeuda(){
         return $this->totalPrecio() - $this->getTotalAbonos();
     }

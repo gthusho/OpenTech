@@ -95,18 +95,26 @@ class ComprasController extends Controller
 
         if(Auth::user()->can('allow-read')){
             $this->datos['brand'] = Tool::brand('Compras Registradas',route('admin.compra.index'),'Compras');
-            $this->datos['compras'] = Compra::fecha($request->get('fecha'))
+            $this->datos['compras'] = Compra::with('sucursal','proveedor')
+                ->fecha($request->get('fecha'))
                 ->where('estado','t')
                 ->fecha($request->get('f'))
                 ->codigo($request->get('s'))
+                ->sucursal($request->get('sucursal'))
+                ->proveedor($request->get('proveedor'))
                 ->orderBy('id','desc')
                 ->paginate();
+            $this->genDatos();
             return view('cpanel.admin.compra.list',$this->datos);
         }
 
         \Session::flash('message','No tienes Permiso para visualizar informacion ');
         return redirect('dashboard');
 
+    }
+    function genDatos(){
+        $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+        $this->datos['proveedores']=Proveedor::where('estado',true)->orderBy('razon_social')->pluck('razon_social','id');
     }
 
     public function create()

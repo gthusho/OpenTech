@@ -16,11 +16,9 @@
                         </span>
             </div>
             <div class="pull-left">
-                <a href="{{url('reportes/cotizacion/articulo').'?id='.$venta->id}}">
-                    <span class="btn btn-inverse waves-effect waves-light" >
-                            <i class=" icon-printer"></i>
-                            Imprimir
-                        </span>
+                <a href="{{url('reportes/cotizacion/articulo').'?id='.$venta->id}}"
+                    class="btn btn-inverse  waves-effect waves-light" target="_blank" >Imprimir
+                    <span class="m-l-5"><i class=" icon-printer"></i></span>
                 </a>
             </div>
 
