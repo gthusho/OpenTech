@@ -37,11 +37,11 @@ class VentaReport extends Controller
             ToolPDF::footerPDF($pdf);
             ToolPDF::headerPDF($pdf);
             ToolPDF::setMargen($pdf);
-            $pdf->SetTitle('OpenRed By LDiego');
+            $pdf->SetTitle('OpenRed By Liss');
             $pdf->AddPage($this->horientacion);
             $pdf->SetFont('helvetica', 'B', 20);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
-            $pdf->SetFont('helvetica', '', 8);
+            $pdf->SetFont('helvetica', '', 9);
             $pdf->writeHTML(view('cpanel.report.venta.tabla', $this->datos)->render(), true, false, true, false, '');
             $pdf->Output('detalles_productos.pdf', 'i');
         } else {

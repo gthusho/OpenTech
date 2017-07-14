@@ -1,55 +1,60 @@
-<table>
+<h3>
+    <br>
+    <table>
+        <br>
+        <tr>
+            <td width="20%">FECHA</td>
+            <td width="35%">{{$venta->registro}}</td>
+        </tr>
+
+        <tr>
+            <td width="20%">CODIGO</td>
+            <td width="20%">{{$venta->getCode()}}</td>
+        </tr>
+    </table>
+</h3>
+
+<br>
+
+<table width="40%">
     <tr>
-        <td>FECHA</td>
-        <td>{{$venta->registro}}</td>
-    </tr>
-    <tr>
-        <td>COMPRA</td>
-        <td>{{$venta->getCode()}}</td>
-    </tr>
-    <tr>
-        <td>CLIENTE</td>
+        <td><strong>CLIENTE:</strong></td>
         <td>{{$venta->cliente->razon_social}}</td>
 
     </tr>
     <tr>
-        <td>NIT</td>
+        <td><strong>NIT:</strong></td>
         <td>{{$venta->cliente->nit}}</td>
     </tr>
 
     <tr>
-        <td>SUCURSAL</td>
+        <td><strong>SUCURSAL:</strong></td>
         <td>{{$venta->sucursal->nombre}}</td>
     </tr>
-
     <tr>
-        <td>CANTIDAD</td>
+        <td><strong>CANTIDAD:</strong></td>
         <td>{{ucwords($venta->totalCantidad())}}</td>
     </tr>
     <tr>
-        <td>TOTAL PRECIO</td>
+        <td><strong>TOTAL PRECIO</strong></td>
         <td>{{\App\Tool::convertMoney($venta->totalPrecio())}}</td>
     </tr>
     <tr>
-        <td>OBSERVACIONES</td>
+        <td><strong>OBSERVACIONES:</strong></td>
         <td>{{$venta->observaciones}}</td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
     </tr>
 </table>
 
-
+<P></P>
 
 <table  cellspacing="5">
     <tr>
-        <th width="5%" ><strong>#</strong></th>
+        <th width="3%" ><strong>#</strong></th>
         <th width="15%" ><strong>ARTICULOS</strong></th>
         <th width="15%" ><strong>CATEGORIA</strong></th>
         <th width="15%" ><strong>MARCA</strong></th>
         <th width="15%" ><strong>MATERIAL</strong></th>
-        <th width="10%" ><strong>CANTIDAD</strong></th>
+        <th width="12%" ><strong>CANTIDAD</strong></th>
         <th width="10%" ><strong>UNIDAD</strong></th>
         <th width="15%" ><strong>PRECIO</strong></th>
 
@@ -57,24 +62,23 @@
     <?php
     $i=1;
     ?>
-
     @foreach($venta->detallecotizacion as $row)
         <tr >
-            <td>{{$i++}}</td>
-            <td>
+            <td style="border-bottom: 1px dashed black;">{{$i++}}</td>
+            <td style="border-bottom: 1px dashed black;">
                 {{$row->articulo->nombre}}
 
             </td>
-            <td>
+            <td style="border-bottom: 1px dashed black;">
                 {{\App\ToolArticuloCart::getNombreById($row->articulo->categoria_articulo_id,'categoria')}}
             </td>
-            <td>
+            <td style="border-bottom: 1px dashed black;">
                 {{\App\ToolArticuloCart::getNombreById($row->articulo->marca_id,"marca")}}
             </td>
-            <td> {{\App\ToolArticuloCart::getNombreById($row->articulo->material_id,"material")}}</td>
-            <td>{{number_format((float)$row->cantidad, 2, '.', '')}}</td>
-            <td>{{\App\ToolArticuloCart::getNombreById($row->articulo->unidad_id,"unidad")}}</td>
-            <td>
+            <td style="border-bottom: 1px dashed black;"> {{\App\ToolArticuloCart::getNombreById($row->articulo->material_id,"material")}}</td>
+            <td style="border-bottom: 1px dashed black;">{{number_format((float)$row->cantidad, 2, '.', '')}}</td>
+            <td style="border-bottom: 1px dashed black;">{{\App\ToolArticuloCart::getNombreById($row->articulo->unidad_id,"unidad")}}</td>
+            <td style="border-bottom: 1px dashed black;">
                 {{\App\Tool::convertMoney($row->articulo->getPrecio($row->dp))}}
             </td>
 
@@ -82,3 +86,6 @@
     @endforeach
 
 </table>
+
+
+

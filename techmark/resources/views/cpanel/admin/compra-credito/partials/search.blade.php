@@ -9,6 +9,10 @@
         </div><!-- input-group -->
     </div>
     <div class="form-group">
+        <label class="sr-only" for="medida">Sucursal</label>
+        {!! Form::select('sucursal',$sucursales,null,['class'=>'form-control select2','placeholder'=>'Seleccione una Sucursal'])!!}
+    </div>
+    <div class="form-group">
         <label for="name"  class="sr-only">Codigo</label>
         {!! Form::text('s',null,['placeholder'=>'codigo de compra','class'=>'form-control']) !!}
     </div>

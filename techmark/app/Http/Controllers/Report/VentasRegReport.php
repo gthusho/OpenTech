@@ -25,11 +25,12 @@ class VentasRegReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['ventas'] = VentaArticulo::with('cliente','usuario','sucursal','almacen')
-            ->fecha($request->get('fecha'))
+        $this->datos['ventas'] = VentaArticulo::fecha($request->get('fecha'))
             ->where('estado','t')
             ->fecha($request->get('f'))
             ->codigo($request->get('s'))
+            ->sucursal($request->get('sucursal'))
+            ->tipo($request->get('type'),$request->get('s'))
             ->orderBy('id','desc')->get();
 
     }

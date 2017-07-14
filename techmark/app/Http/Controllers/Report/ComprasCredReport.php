@@ -30,6 +30,7 @@ class ComprasCredReport extends Controller
             ->where('estado','t')->where('tipo_compra','Credito')
             ->fecha($request->get('f'))
             ->codigo($request->get('s'))
+            ->sucursal($request->get('sucursal'))
             ->orderBy('id','desc')->get();
 
     }

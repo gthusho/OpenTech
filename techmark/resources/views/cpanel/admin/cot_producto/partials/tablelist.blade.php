@@ -26,7 +26,10 @@
                             {{date('d/m/Y',strtotime($row->registro))}}
                         </td>
                         <td>{{$row->sucursal->nombre}}</td>
-                        <td>{{$row->cliente->razon_social}}</td>
+                        <td>
+                            {{($row->cliente->razon_social)}}
+                            <br><b class="text-primary">NIT: {{$row->cliente->nit}}</b>
+                        </td>
                         <td>{{$row->totalCantidad()}}</td>
                         <td>
                             {{\App\Tool::convertMoney($row->totalPrecio())}}

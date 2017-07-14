@@ -181,8 +181,12 @@ class CotizacionArticuloController extends Controller
                 ->where('estado','t')
                 ->fecha($request->get('f'))
                 ->codigo($request->get('s'))
+                ->sucursal($request->get('sucursal'))
+                ->cliente($request->get('cliente'))
+                ->cliente($request->get('c'))
                 ->orderBy('id','desc')
                 ->paginate();
+            $this->genDatos();
            /* dd($this->datos['ventas']);*/
             return view('cpanel.admin.cotizacionarticulo.list',$this->datos);
         }
@@ -191,7 +195,10 @@ class CotizacionArticuloController extends Controller
         return redirect('dashboard');
 
     }
-
+    function genDatos(){
+        $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+        $this->datos['clientes']=Clientes::orderBy('razon_social')->pluck('nit','id');
+    }
     public function create()
     {
         if(Auth::user()->can('allow-insert')){

@@ -54,4 +54,14 @@ class CotizacionProducto extends Model
             $query->where('id',$pre);
         }
     }
+    function scopeSucursal($query,$x){
+        if(trim($x) != ''){
+            $query->where('sucursal_id', $x);
+        }
+    }
+    function scopeCliente($query,$x){
+        if(trim($x) != ''){
+            $query->where('cliente_id', $x);
+        }
+    }
 }

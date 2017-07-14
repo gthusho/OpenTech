@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpKernel\Client;
 
 class VentaArticulo extends Model
 {
@@ -74,5 +75,26 @@ class VentaArticulo extends Model
     }
     function getTotalDeuda(){
         return $this->totalPrecio() - $this->getTotalAbonos();
+    }
+    function scopeTipo($query,$tipo,$s){
+        if(trim($s) != ''){
+            switch ($tipo){
+                case '0':{
+                    $pre = str_replace('V','',$s);
+                    $query->where('id',$pre);
+                    break;
+                }
+                case '1':{
+                    $query->where('razaon_social', 'like', "%$s%");
+                    break;
+                }
+                case '2':{
+                    $query->where('nit', 'like', "%$s%");
+                    break;
+                }
+                default: break;
+            }
+
+        }
     }
 }

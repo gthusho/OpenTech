@@ -51,8 +51,18 @@ class CotizacionArticulo extends Model
     }
     function scopeCodigo($query,$v){
         if(trim($v) != ''){
-            $pre = str_replace('V','',$v);
+            $pre = str_replace('COT-','',$v);
             $query->where('id',$pre);
+        }
+    }
+    function scopeSucursal($query,$x){
+        if(trim($x) != ''){
+            $query->where('sucursal_id', $x);
+        }
+    }
+    function scopeCliente($query,$x){
+        if(trim($x) != ''){
+            $query->where('cliente_id', $x);
         }
     }
 }

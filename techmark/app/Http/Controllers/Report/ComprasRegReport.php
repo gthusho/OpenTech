@@ -30,6 +30,8 @@ class ComprasRegReport extends Controller
             ->where('estado','t')
             ->fecha($request->get('f'))
             ->codigo($request->get('s'))
+            ->sucursal($request->get('sucursal'))
+            ->proveedor($request->get('proveedor'))
             ->orderBy('id','desc')->get();
     }
 

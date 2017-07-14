@@ -19,6 +19,12 @@ class Sucursal extends Model
     function ingreso(){
         return $this->belongsTo('App\Ingreso','id','sucursal_id');
     }
+    function cotizacionarticulo(){
+        return $this->belongsTo('App\CotizacionArticulo','id','sucursal_id');
+    }
+    function cotizacionproducto(){
+        return $this->belongsTo('App\CotizacionProducto','id','sucursal_id');
+    }
     function detalleventaarticulo(){
         return $this->belongsTo('App\DetalleVentaArticulo','id','sucursal_id');
     }

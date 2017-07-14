@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Clientes;
 use App\CotizacionProducto;
 use App\DetalleCotizacionProducto;
 use App\DetalleProductoBase;
@@ -89,14 +90,22 @@ class CotizacionProductoController extends Controller
                 ->where('estado','t')
                 ->fecha($request->get('f'))
                 ->codigo($request->get('s'))
+                ->sucursal($request->get('sucursal'))
+                ->cliente($request->get('cliente'))
+                ->cliente($request->get('c'))
                 ->orderBy('id','desc')
                 ->paginate();
+            $this->genDatos();
             return view('cpanel.admin.cot_producto.list',$this->datos);
         }
 
         \Session::flash('message','No tienes Permiso para visualizar informacion ');
         return redirect('dashboard');
 
+    }
+    function genDatos(){
+        $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+        $this->datos['clientes']=Clientes::orderBy('razon_social')->pluck('nit','id');
     }
 
     public function create()

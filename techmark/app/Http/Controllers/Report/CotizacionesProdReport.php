@@ -27,11 +27,13 @@ class CotizacionesProdReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['cotizaciones'] = CotizacionProducto::with('cliente','usuario','sucursal')
-            ->fecha($request->get('fecha'))
+        $this->datos['cotizaciones'] = CotizacionProducto::fecha($request->get('fecha'))
             ->where('estado','t')
             ->fecha($request->get('f'))
             ->codigo($request->get('s'))
+            ->sucursal($request->get('sucursal'))
+            ->cliente($request->get('cliente'))
+            ->cliente($request->get('c'))
             ->orderBy('id','desc')->get();
     }
 

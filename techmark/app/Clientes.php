@@ -19,7 +19,19 @@ class Clientes extends Model
         'direccion',
         'email'
     ];
+    function cotizacionarticulo(){
+        return $this->belongsTo('App\CotizacionArticulo','id','cliente_id');
+    }
+    function cotizacionproducto(){
+        return $this->belongsTo('App\CotizacionProducto','id','cliente_id');
+    }
     function scopeName($query,$name){
+        if(trim($name) != ''){
+            $query->where('razon_social','like',"%$name%")
+                ->orwhere('nit','like',"%$name%");
+        }
+    }
+    function scopeCliente($query,$name){
         if(trim($name) != ''){
             $query->where('razon_social','like',"%$name%")
                 ->orwhere('nit','like',"%$name%");

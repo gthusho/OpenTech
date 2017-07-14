@@ -126,8 +126,8 @@ class VentaArticuloController extends Controller
                 ->fecha($request->get('fecha'))
                 ->where('estado','t')
                 ->fecha($request->get('f'))
-                ->codigo($request->get('s'))
                 ->sucursal($request->get('sucursal'))
+                ->tipo($request->get('type'),$request->get('s'))
                 ->orderBy('id','desc')
                 ->paginate();
             $this->genDatos();

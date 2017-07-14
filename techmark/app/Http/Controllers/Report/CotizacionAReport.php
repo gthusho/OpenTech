@@ -40,9 +40,9 @@ class CotizacionAReport extends Controller
             ToolPDF::setMargen($pdf);
             $pdf->SetTitle('OpenRed By LDiego');
             $pdf->AddPage($this->horientacion);
-            $pdf->SetFont('helvetica', 'B', 20);
+            $pdf->SetFont('helvetica', 'B', 18);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
-            $pdf->SetFont('helvetica', '', 8);
+            $pdf->SetFont('helvetica', '', 9);
             $pdf->writeHTML(view('cpanel.report.cotizacionarticulo.tabla', $this->datos)->render(), true, false, true, false, '');
             $pdf->Output('detalles_productos.pdf', 'i');
         } else {
