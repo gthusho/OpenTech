@@ -31,7 +31,7 @@
     <a href="javascript:void(0);" class="waves-effect"><i class="icon-credit-card"></i><span class="label label-primary pull-right">3</span> <span> Diego </span>  </a>
     <ul class="list-unstyled">
         <li><a href="{{route('admin.venta-credito-art.index')}}">Ventas de Articulos al Credito</a></li>
-        <li><a href="{{route('admin.cot_producto.index')}}">Gastos</a></li>
-        <li><a href="{{route('admin.cot_producto.index')}}">Caja</a></li>
+        <li><a href="{{route('admin.gasto.index')}}">Gastos</a></li>
+        <li><a href="{{route('admin.caja.index')}}">Caja</a></li>
     </ul>
 </li>
