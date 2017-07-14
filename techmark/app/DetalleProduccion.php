@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DetalleVentaArticulo extends Model
+class DetalleProduccion extends Model
 {
-    protected $table = 'detalles_ventas_articulos';
+    protected $table = 'detalles_producciones';
 
     protected $fillable = [
-        'articulo_id','cantidad','precio','registro','usuario_id','dp','sucursal_id','venta_articulo_id'
+        'articulo_id','cantidad','registro','usuario_id','sucursal_id','produccion_id','precio','dp','almacen_id'
     ];
 
     function articulo(){
@@ -21,12 +21,13 @@ class DetalleVentaArticulo extends Model
     function sucursal(){
         return $this->belongsTo('App\Sucursal','sucursal_id','id');
     }
-    function ventaarticulo(){
-        return $this->belongsTo('App\VentaArticulo','venta_articulo_id','id');
+    function produccion(){
+        return $this->belongsTo('App\Produccion','produccion_id','id');
     }
     function almacen(){
         return $this->belongsTo('App\Almacen','almacen_id','id');
     }
+
     public  function  setPrecioAttribute($value){
         if(!empty($value)){
             $this->attributes['precio']=\str_replace(",","",$value);
@@ -41,13 +42,17 @@ class DetalleVentaArticulo extends Model
     }
     function scopeArticulo($query,$name){
         if(trim($name) != ''){
-            /* $id=Ingresos::articulo($name)->pluck('id');*/
             $query->where('articulo_id',$name);
         }
     }
     function scopeSucursal($query,$x){
         if(trim($x) != ''){
             $query->where('sucursal_id', $x);
+        }
+    }
+    function scopeAlmacen($query,$x){
+        if(trim($x) != ''){
+            $query->where('almacen_id', $x);
         }
     }
     function scopeFecha($query,$x){

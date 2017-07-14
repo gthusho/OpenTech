@@ -1,4 +1,5 @@
 
+
 {!! Form::model(Request::all(), ['route' => ['admin.agenda.index'],'method'=>'GET']) !!}
         <div class="form-group">
             <div class="input-group">
