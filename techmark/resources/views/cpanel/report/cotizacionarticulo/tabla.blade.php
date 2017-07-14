@@ -39,10 +39,7 @@
         <td><strong>TOTAL PRECIO</strong></td>
         <td>{{\App\Tool::convertMoney($venta->totalPrecio())}}</td>
     </tr>
-    <tr>
-        <td><strong>OBSERVACIONES:</strong></td>
-        <td>{{$venta->observaciones}}</td>
-    </tr>
+
 </table>
 
 <P></P>
@@ -86,6 +83,3 @@
     @endforeach
 
 </table>
-
-
-

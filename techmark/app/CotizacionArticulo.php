@@ -41,7 +41,7 @@ class CotizacionArticulo extends Model
         return $total;
     }
     function getCode(){
-        return 'COT-'.sprintf("%03d", $this->id);
+        return 'COT-'.sprintf("%06d", $this->id);
     }
     function scopeFecha($query,$fecha){
         if(trim($fecha) != ''){
