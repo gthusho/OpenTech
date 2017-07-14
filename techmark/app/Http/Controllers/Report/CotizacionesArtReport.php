@@ -27,9 +27,8 @@ class CotizacionesArtReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['ventas'] = CotizacionArticulo::fecha($request->get('fecha'))
-            ->where('estado','t')
-            ->fecha($request->get('f'))
+        $this->datos['ventas'] = CotizacionArticulo::where('estado','t')
+            ->fecha($request->get('fecha'))
             ->codigo($request->get('s'))
             ->sucursal($request->get('sucursal'))
             ->cliente($request->get('cliente'))

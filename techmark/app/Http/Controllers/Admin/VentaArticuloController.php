@@ -125,9 +125,10 @@ class VentaArticuloController extends Controller
             $this->datos['ventas'] = VentaArticulo::with('cliente','usuario','sucursal','almacen')
                 ->fecha($request->get('fecha'))
                 ->where('estado','t')
-                ->fecha($request->get('f'))
+                ->codigo($request->get('s'))
                 ->sucursal($request->get('sucursal'))
-                ->tipo($request->get('type'),$request->get('s'))
+                ->cliente($request->get('cliente'))
+                ->cliente($request->get('c'))
                 ->orderBy('id','desc')
                 ->paginate();
             $this->genDatos();
@@ -140,6 +141,10 @@ class VentaArticuloController extends Controller
     }
     function genDatos(){
         $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+        $this->datos['clientes'] = [];
+
+        foreach (Clientes::orderBy('razon_social')->get() as $row)
+            $this->datos['clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
     }
 
     public function create()

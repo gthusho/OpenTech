@@ -4,21 +4,21 @@
 
     <div class="form-group">
         <div class="input-group">
-            {!! Form::text('f',null,['class'=>'form-control','','autocomplete'=>"off",'id'=>"datepicker-autoclose",'data-date-format'=>'yyyy/mm/dd'])!!}
+            {!! Form::text('fecha',null,['class'=>'form-control input-daterange-timepicker','required'])!!}
             <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
-        </div><!-- input-group -->
+        </div>
     </div>
     <div class="form-group">
         <label class="sr-only" for="sucursal">Sucursal</label>
         {!! Form::select('sucursal',$sucursales,null,['class'=>'form-control select2','placeholder'=>'Seleccione una sucursal...'])!!}
     </div>
     <div class="form-group">
-        <label class="sr-only" for="type">Buscar por</label>
-        {!! Form::select('type',[0=>'Codigo',1=>'Nombre Cliente',2=>'Nit'],null,['class'=>'selectpicker','data-style'=>"btn-primary btn-custom"])!!}
+        <label class="sr-only" for="sucursal">Sucursal</label>
+        {!! Form::select('cliente',$clientes,null,['class'=>'form-control select2','placeholder'=>'Seleccione un Nit...'])!!}
     </div>
     <div class="form-group">
-        <label for="name"  class="sr-only">Que Buscar</label>
-        {!! Form::text('s',null,['placeholder'=>'buscar..','class'=>'form-control']) !!}
+        <label for="name"  class="sr-only">Codigo</label>
+        {!! Form::text('s',null,['placeholder'=>'codigo de compra','class'=>'form-control']) !!}
     </div>
     <button type="submit" class="btn btn-primary waves-effect waves-light m-l-10 btn-md">Buscar</button>
     {!! Form::close() !!}

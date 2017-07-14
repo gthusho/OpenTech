@@ -31,7 +31,11 @@
                         </td>
 
                         <td>
-                            <a href="{{route('admin.cotizacion.edit',$row->id)}}"> <i class="icon-pencil"></i> Editar </a>
+                            <a href="{{route('admin.cotizacion.edit',$row->id)}}"> <i class="icon-pencil"></i></a>
+                        </td>
+                        <td>
+                            <a href="{{url('reportes/cotizacion/articulo').'?id='.$row->id}}"
+                               target="_blank"> <i class=" icon-printer"></i> </a>
                         </td>
                     </tr>
                 @endforeach

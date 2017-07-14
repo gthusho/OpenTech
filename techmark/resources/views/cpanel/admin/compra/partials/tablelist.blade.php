@@ -12,7 +12,7 @@
                 <th>PROVEEDOR</th>
                 <th>CANTIDAD ARTICULOS</th>
                 <th>COSTO TOTAL</th>
-                <th>ACCIONES</th>
+                <th width="3%">ACCIONES</th>
             </tr>
             </thead>
 
@@ -47,7 +47,11 @@
                             {{\App\Tool::convertMoney($row->totalCosto())}}
                         </td>
                         <td>
-                            <a href="{{route('admin.compra.edit',$row->id)}}"> <i class="icon-pencil"></i> Editar </a>
+                            <a href="{{route('admin.compra.edit',$row->id)}}"> <i class="icon-pencil"></i></a>
+                        </td>
+                        <td>
+                            <a href="{{url('reportes/compra').'?id='.$row->id}}"
+                               target="_blank"> <i class=" icon-printer"></i> </a>
                         </td>
                     </tr>
                 @endforeach

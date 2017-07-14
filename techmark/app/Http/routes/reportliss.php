@@ -50,3 +50,15 @@ Route::get('cotizacion/producto/excel','CotizacionPReport@excel');
 
 Route::get('cotizacion/articulo','CotizacionAReport@index');
 Route::get('cotizacion/articulo/excel','CotizacionAReport@excel');
+
+Route::get('gastos','GastosReport@index');
+Route::get('gastos/excel','GastosReport@excel');
+
+Route::get('cajas','CajasReport@index');
+Route::get('cajas/excel','CajasReport@excel');
+
+Route::get('caja/general','CajaGeneralReport@index');
+Route::get('caja/general/excel','CajaGeneralReport@excel');
+
+Route::get('caja/detalle','CajaDetalleReport@index');
+Route::get('caja/detalla/excel','CajaDetalleReport@excel');

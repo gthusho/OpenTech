@@ -38,16 +38,24 @@
                         </td>
                         <td>{{$row->sucursal->nombre}}</td>
                         <td>{{$row->almacen->nombre}}</td>
-                        <td>{{$row->cliente->razon_social}}</td>
+                        <td>
+                            {{($row->cliente->razon_social)}}
+                            <br><b class="text-primary">NIT: {{$row->cliente->nit}}</b>
+                        </td>
                         <td>{{$row->totalCantidad()}}</td>
                         <td>
                             {{\App\Tool::convertMoney($row->totalPrecio())}}
                         </td>
-                        <td>
-                            <a href="{{route('admin.venta_art.edit',$row->id)}}"> <i class="icon-pencil"></i> Editar </a>
+                        <td class="text-center">
+                            <a href="{{route('admin.venta_art.edit',$row->id)}}"> <i class="icon-pencil"></i> </a>
+                        </td>
+                        <td class="text-center">
+                            <a href="{{url('reportes/venta').'?id='.$row->id}}"
+                               target="_blank"> <i class=" icon-printer"></i>  </a>
                         </td>
                     </tr>
                 @endforeach
+
             </tbody>
         </table>
     </div>

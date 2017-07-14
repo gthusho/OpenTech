@@ -29,7 +29,6 @@ class CotizacionesProdReport extends Controller
     {
         $this->datos['cotizaciones'] = CotizacionProducto::fecha($request->get('fecha'))
             ->where('estado','t')
-            ->fecha($request->get('f'))
             ->codigo($request->get('s'))
             ->sucursal($request->get('sucursal'))
             ->cliente($request->get('cliente'))

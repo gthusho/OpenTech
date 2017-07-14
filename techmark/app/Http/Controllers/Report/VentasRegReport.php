@@ -27,10 +27,10 @@ class VentasRegReport extends Controller
     {
         $this->datos['ventas'] = VentaArticulo::fecha($request->get('fecha'))
             ->where('estado','t')
-            ->fecha($request->get('f'))
             ->codigo($request->get('s'))
             ->sucursal($request->get('sucursal'))
-            ->tipo($request->get('type'),$request->get('s'))
+            ->cliente($request->get('cliente'))
+            ->cliente($request->get('c'))
             ->orderBy('id','desc')->get();
 
     }

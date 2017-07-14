@@ -28,7 +28,11 @@
                         <td class="text-right"><b>{{\App\Tool::convertMoney($row->getTotalDeuda())}}</b></td>
 
                         <td class="text-right">
-                            <a href="{{route('admin.compra-credito.show',$row->id)}}"> <i class="fa  fa-money"></i> Abonar </a>
+                            <a href="{{route('admin.compra-credito.show',$row->id)}}"> <i class="fa  fa-money"></i></a>
+                        </td>
+                        <td>
+                            <a href="{{url('reportes/pagos/compra').'?id='.$row->id}}"
+                               target="_blank"> <i class=" icon-printer"></i> </a>
                         </td>
                     </tr>
                 @endforeach

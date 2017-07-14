@@ -43,8 +43,17 @@ class CotizacionAReport extends Controller
             $pdf->SetFont('helvetica', 'B', 18);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
             $pdf->SetFont('helvetica', '', 9);
+            /*
+       * QR
+       */
+            $y = $pdf->GetY(); //obtengo la posicion en Y
+            $style = array('width' => 0.6, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
+            $code = $this->datos['venta']->getCode().' | '.$this->datos['venta']->cliente->nit.' | '.$this->datos['venta']->registro;
             $pdf->writeHTML(view('cpanel.report.cotizacionarticulo.tabla', $this->datos)->render(), true, false, true, false, '');
+            $pdf->write2DBarcode($code, 'QRCODE,Q', 150, $y, 30, 30, $style, 'N');
+
             $pdf->Output('detalles_productos.pdf', 'i');
+
         } else {
             \Session::flash('message', 'No tienes Permiso para visualizar informacion ');
             return redirect('dashboard');

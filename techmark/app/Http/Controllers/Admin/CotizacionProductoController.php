@@ -88,7 +88,6 @@ class CotizacionProductoController extends Controller
             $this->datos['cotizaciones'] = CotizacionProducto::with('cliente','usuario','sucursal')
                 ->fecha($request->get('fecha'))
                 ->where('estado','t')
-                ->fecha($request->get('f'))
                 ->codigo($request->get('s'))
                 ->sucursal($request->get('sucursal'))
                 ->cliente($request->get('cliente'))
@@ -105,7 +104,10 @@ class CotizacionProductoController extends Controller
     }
     function genDatos(){
         $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
-        $this->datos['clientes']=Clientes::orderBy('razon_social')->pluck('nit','id');
+        $this->datos['clientes'] = [];
+
+        foreach (Clientes::orderBy('razon_social')->get() as $row)
+            $this->datos['clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
     }
 
     public function create()

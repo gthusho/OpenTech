@@ -54,6 +54,4 @@ class Ingresos extends Model
             $query->where('compra_id', $x);
         }
     }
-
-
 }

@@ -12,7 +12,7 @@
         {!! Form::text('s',null,['placeholder'=>'codigo de Cotizacion','class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-        <label class="sr-only" for="sucursal">Sucursal</label>
+        <label class="sr-only" for="sucursal">Cliente</label>
         {!! Form::select('cliente',$clientes,null,['class'=>'form-control select2','placeholder'=>'Seleccione un Nit...'])!!}
     </div>
     <div class="form-group">

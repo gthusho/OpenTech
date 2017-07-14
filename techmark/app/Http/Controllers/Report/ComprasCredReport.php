@@ -28,7 +28,6 @@ class ComprasCredReport extends Controller
     {
         $this->datos['compras'] = Compra::fecha($request->get('fecha'))
             ->where('estado','t')->where('tipo_compra','Credito')
-            ->fecha($request->get('f'))
             ->codigo($request->get('s'))
             ->sucursal($request->get('sucursal'))
             ->orderBy('id','desc')->get();

@@ -43,23 +43,21 @@ class CotizacionPReport extends Controller
             $pdf->SetFont('helvetica', 'B', 20);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
             $pdf->SetFont('helvetica', '', 9);
-            $pdf->writeHTML(view('cpanel.report.cotizacionproducto.tabla',$this->datos)->render(), true, false, true, false, '');
-            $pdf->Output('compras.pdf', 'i');
+
+            /*
+            * QR
+             */
+            $y = $pdf->GetY(); //obtengo la posicion en Y
+            $style = array('width' => 0.6, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
+            $code = $this->datos['cotizacion']->getCode().' | '.$this->datos['cotizacion']->cliente->nit.' | '.$this->datos['cotizacion']->registro;
+            $pdf->writeHTML(view('cpanel.report.cotizacionproducto.tabla', $this->datos)->render(), true, false, true, false, '');
+            $pdf->write2DBarcode($code, 'QRCODE,Q', 150, $y, 30, 30, $style, 'N');
+
+            $pdf->Output('cotizacionproducto.pdf', 'i');
+
+
+
         }else{
-            \Session::flash('message','No tienes Permiso para visualizar informacion ');
-            return redirect('dashboard');
-        }
-    }
-    function excel(Request $request){
-        $this->request = $request;
-        if(Auth::user()->can('allow-read')) {
-            Excel::create($this->titulo, function ($excel) {
-                $excel->sheet('ventas', function ($sheet) {
-                    $sheet->row(1, array($this->titulo));
-                    $sheet->loadView('cpanel.report.cotizacionproducto.tabla', $this->datos);
-                });
-            })->export('xls');
-        } else{
             \Session::flash('message','No tienes Permiso para visualizar informacion ');
             return redirect('dashboard');
         }

@@ -44,7 +44,17 @@ class CompraReport extends Controller
             $pdf->SetFont('helvetica', 'B', 20);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
             $pdf->SetFont('helvetica', '', 9);
-            $pdf->writeHTML(view('cpanel.report.compra.tabla',$this->datos)->render(), true, false, true, false, '');
+            /*
+        * QR
+        */
+            $y = $pdf->GetY(); //obtengo la posicion en Y
+
+            $style = array('width' => 0.6, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
+            $code = $this->datos['compra']->getCode().' | '.$this->datos['compra']->proveedor->razon_social.' | '.$this->datos['compra']->fecha;
+
+            $pdf->writeHTML(view('cpanel.report.compra.tabla', $this->datos)->render(), true, false, true, false, '');
+            $pdf->write2DBarcode($code, 'QRCODE,Q', 150, $y, 30, 30, $style, 'N');
+
             $pdf->Output('detalles_productos.pdf', 'i');
         }else{
             \Session::flash('message','No tienes Permiso para visualizar informacion ');

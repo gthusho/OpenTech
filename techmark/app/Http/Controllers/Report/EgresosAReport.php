@@ -29,7 +29,6 @@ class EgresosAReport extends Controller
     {
         $this->datos['egresos'] = DetalleVentaArticulo::with('articulo','sucursal','almacen')
             ->fecha($request->get('fecha'))
-            ->fecha($request->get('f'))
             ->sucursal($request->get('sucursal'))
             ->articulo($request->get('articulo'))
             ->orderBy('id','desc')->get();

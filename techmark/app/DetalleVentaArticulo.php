@@ -50,9 +50,12 @@ class DetalleVentaArticulo extends Model
             $query->where('sucursal_id', $x);
         }
     }
-    function scopeFecha($query,$x){
-        if(trim($x) != ''){
-            $query->where('registro', $x);
+    function scopeFecha($query,$fecha){
+        if(trim($fecha) != ''){
+            $date = Tool::getArrayDate($fecha);
+            $query->where(\DB::raw('DATE(registro)'),'>=',$date[0])->where(\DB::raw('DATE(registro)'),'<=',$date[1]);
+
         }
     }
+
 }

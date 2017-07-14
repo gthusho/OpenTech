@@ -46,14 +46,18 @@ class Compra extends Model
     function getCode(){
         return 'C'.sprintf("%06d", $this->id);
     }
-    function scopeFecha($query,$fecha){
+        function scopeCompra($query,$fecha){
         if(trim($fecha) != ''){
-            $query->where('fecha',$fecha);
+            $date = Tool::getArrayDate($fecha);
+            $query->where(\DB::raw('DATE(fecha)'),'>=',$date[0])->where(\DB::raw('DATE(fecha)'),'<=',$date[1]);
+
         }
     }
-    function scopeCompra($query,$fecha){
+    function scopeFecha($query,$fecha){
         if(trim($fecha) != ''){
-            $query->where('fecha',$fecha);
+            $date = Tool::getArrayDate($fecha);
+            $query->where(\DB::raw('DATE(fecha)'),'>=',$date[0])->where(\DB::raw('DATE(fecha)'),'<=',$date[1]);
+
         }
     }
     function scopeCodigo($query,$c){

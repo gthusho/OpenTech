@@ -22,6 +22,9 @@ class Clientes extends Model
     function cotizacionarticulo(){
         return $this->belongsTo('App\CotizacionArticulo','id','cliente_id');
     }
+    function ventaarticulo(){
+        return $this->belongsTo('App\VentaArticulo','id','cliente_id');
+    }
     function cotizacionproducto(){
         return $this->belongsTo('App\CotizacionProducto','id','cliente_id');
     }

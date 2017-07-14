@@ -32,7 +32,6 @@ class IngresosReport extends Controller
     {
         $this->datos['ingresos'] = Ingresos::with('articulo','sucursal','compra','almacen')
             ->compra($request->get('compra'))
-            ->compra($request->get('f'))
             ->sucursal($request->get('sucursal'))
             ->articulo($request->get('articulo'))
             ->orderBy('id','desc')->get();

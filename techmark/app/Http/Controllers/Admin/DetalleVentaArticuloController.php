@@ -22,7 +22,6 @@ class DetalleVentaArticuloController extends Controller
             $this->datos['brand'] = Tool::brand('Listado de Ingresos ',route('egresos.articulos.index'),'Egresos Articulos');
             $this->datos['egresos'] = DetalleVentaArticulo::with('articulo','sucursal','almacen')
                 ->fecha($request->get('fecha'))
-                ->fecha($request->get('f'))
                 ->sucursal($request->get('sucursal'))
                 ->articulo($request->get('articulo'))
                 ->orderBy('id','desc')

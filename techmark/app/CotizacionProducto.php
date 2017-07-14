@@ -42,12 +42,6 @@ class CotizacionProducto extends Model
     function getCode(){
         return 'CO'.sprintf("%06d", $this->id);
     }
-    function scopeFecha($query,$fecha){
-        if(trim($fecha) != ''){
-            $fecha2=$fecha." 23:59:59";
-            $query->whereBetween('registro',[$fecha,$fecha2]);
-        }
-    }
     function scopeCodigo($query,$co){
         if(trim($co) != ''){
             $pre = str_replace('CO','',$co);
@@ -62,6 +56,13 @@ class CotizacionProducto extends Model
     function scopeCliente($query,$x){
         if(trim($x) != ''){
             $query->where('cliente_id', $x);
+        }
+    }
+    function scopeFecha($query,$fecha){
+        if(trim($fecha) != ''){
+            $date = Tool::getArrayDate($fecha);
+            $query->where(\DB::raw('DATE(registro)'),'>=',$date[0])->where(\DB::raw('DATE(registro)'),'<=',$date[1]);
+
         }
     }
 }

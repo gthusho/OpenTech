@@ -44,21 +44,25 @@ class VentaArticulo extends Model
         return $total;
     }
     function getCode(){
-        return 'V'.sprintf("%06d", $this->id);
+        return 'V-'.sprintf("%06d", $this->id);
     }
     function scopeFecha($query,$fecha){
         if(trim($fecha) != ''){
-            $fecha2=$fecha." 23:59:59";
-            $query->whereBetween('registro',[$fecha,$fecha2]);
+            $date = Tool::getArrayDate($fecha);
+            $query->where(\DB::raw('DATE(registro)'),'>=',$date[0])->where(\DB::raw('DATE(registro)'),'<=',$date[1]);
         }
     }
     function scopeCodigo($query,$v){
         if(trim($v) != ''){
-            $pre = str_replace('V','',$v);
+            $pre = str_replace('V-','',$v);
             $query->where('id',$pre);
         }
     }
-
+    function scopeCliente($query,$x){
+        if(trim($x) != ''){
+            $query->where('cliente_id', $x);
+        }
+    }
     function  getTotalAbonos(){
         $total = VentaCreditoArticulo::where('venta_articulo_id',$this->id)->sum('abono');
         if($total == '' || $total ==null){
@@ -75,26 +79,5 @@ class VentaArticulo extends Model
     }
     function getTotalDeuda(){
         return $this->totalPrecio() - $this->getTotalAbonos();
-    }
-    function scopeTipo($query,$tipo,$s){
-        if(trim($s) != ''){
-            switch ($tipo){
-                case '0':{
-                    $pre = str_replace('V','',$s);
-                    $query->where('id',$pre);
-                    break;
-                }
-                case '1':{
-                    $query->where('razaon_social', 'like', "%$s%");
-                    break;
-                }
-                case '2':{
-                    $query->where('nit', 'like', "%$s%");
-                    break;
-                }
-                default: break;
-            }
-
-        }
     }
 }
