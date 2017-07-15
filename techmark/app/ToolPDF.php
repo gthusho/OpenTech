@@ -33,7 +33,7 @@ namespace App;
              $pdf->SetFont('times', 'I', 10);
              // Title
 
-             $pdf->Write(0, 'TechMark
+             $pdf->Write(0, 'TexMarck
                             64646565
             ',0,false,'R');
              $pdf->Ln();

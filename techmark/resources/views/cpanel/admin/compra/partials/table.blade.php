@@ -39,12 +39,10 @@
                             {!! Form::open(['route'=>['deleteItemsCompra',$row->id],'method'=>'post']) !!}
                             <button class="btn btn-danger btn-sm" ><i class=" icon-trash"></i> Remover</button>
                             {!! Form::close() !!}
-
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
-
 </div>

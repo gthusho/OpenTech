@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Articulo;
 use App\DetalleVentaArticulo;
+use App\IAManager;
 use App\Sucursal;
 use App\Tool;
+use App\VentaArticulo;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -41,6 +43,16 @@ class DetalleVentaArticuloController extends Controller
     public function deleteItemsVentaArticulo($id)
     {
         if(Auth::user()->can('allow-delete')) {
+            $detalle = DetalleVentaArticulo::find($id);
+            $venta = VentaArticulo::find($detalle->venta_articulo_id);
+            if($venta->estado=='t'){
+                /*
+               * reducimos de stock
+               */
+                $existencia = new IAManager($detalle->articulo_id, $detalle->sucursal_id, $detalle->almacen_id);
+                $existencia->add($detalle->cantidad);
+            }
+
             DetalleVentaArticulo::destroy($id);
             return redirect()->back();
             //return redirect()->route('admin.compra.create');

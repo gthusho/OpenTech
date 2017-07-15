@@ -158,7 +158,7 @@ class Articulo extends Model
             return true;
     }
     function getStockAll(){
-        return InventarioArticulo::where('articulo_id',$this->id)->count();
+        return ExistenciaArticulo::where('articulo_id',$this->id)->sum('cantidad');
     }
     function activo(){
         if($this->estado==1)

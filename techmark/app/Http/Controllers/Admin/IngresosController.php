@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Articulo;
 use App\Compra;
 use App\Http\Controllers\Controller;
+use App\IAManager;
 use App\Ingresos;
 use App\Rol;
 use App\Sucursal;
@@ -47,6 +48,17 @@ class IngresosController extends Controller
     public function deleteItemsCompra($id)
     {
         if(Auth::user()->can('allow-delete')) {
+            $ingreso = Ingresos::find($id);
+            /*
+              * reducimos de stock
+              */
+            $compra = Compra::find($ingreso->compra_id);
+            if($compra->estado =='t'){
+
+                $existencia = new IAManager($ingreso->articulo_id, $ingreso->sucursal_id, $ingreso->almacen_id);
+                $existencia->down($ingreso->cantidad);
+            }
+
             Ingresos::destroy($id);
             return redirect()->back();
             //return redirect()->route('admin.compra.create');

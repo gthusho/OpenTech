@@ -26,6 +26,7 @@
                    class="btn btn-inverse  waves-effect waves-light" target="_blank" >Imprimir Compra
                     <span class="m-l-5"><i class=" icon-printer"></i></span></a>
             </div>
+        </div>
 
 
         <div class="pull-right ">
@@ -52,7 +53,7 @@
             </div>
         </div>
     </div>
-@include('cpanel.admin.compra.partials.modals')
+    @include('cpanel.admin.compra.partials.modals')
 @endsection
 
 @section('css')

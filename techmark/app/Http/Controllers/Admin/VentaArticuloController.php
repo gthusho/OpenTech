@@ -6,6 +6,7 @@ use App\Almacen;
 use App\Articulo;
 use App\Clientes;
 use App\DetalleVentaArticulo;
+use App\IAManager;
 use App\Sucursal;
 use App\Tool;
 use App\VentaArticulo;
@@ -81,6 +82,14 @@ class VentaArticuloController extends Controller
                     $articulo->dp="P3";
                     $articulo->precio=$parametro->precio3* $cantidad;
             }
+            /*
+            * modifico la existencia al modificar una venta
+            */
+            if ($this->venta->estado=='t'){
+                $existencia = new IAManager($articulo->articulo_id, $this->venta->sucursal_id, $this->venta->almacen_id);
+                $existencia->UpdateSale($articulo->cantidad,$cantidad);
+            }
+
             $articulo->cantidad = $cantidad;
             $articulo->save();
         }else{
@@ -107,6 +116,10 @@ class VentaArticuloController extends Controller
             $articulo->almacen_id = $this->venta->almacen_id;
 
             $articulo->save();
+            if ($this->venta->estado=='t'){
+                $existencia = new IAManager($articulo->articulo_id, $this->venta->sucursal_id, $this->venta->almacen_id);
+                $existencia->down($cantidad);
+            }
         }
     }
 
@@ -178,6 +191,13 @@ class VentaArticuloController extends Controller
         $venta = VentaArticulo::find($id);
         $venta->estado = 't';
         $venta->save();
+        /*
+       * egreso items a existencia una vez terminado la venta
+       */
+        foreach ($venta->detalleventas as $row){
+            $existencia = new IAManager($row->articulo_id, $venta->sucursal_id, $venta->almacen_id);
+            $existencia->down($row->cantidad);
+        }
         return redirect()->route('admin.venta_art.index');
     }
 

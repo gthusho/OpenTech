@@ -6,6 +6,7 @@ use App\Articulo;
 use App\Cart;
 use App\Compra;
 use App\Http\Controllers\Controller;
+use App\IAManager;
 use App\Ingresos;
 use App\Proveedor;
 use App\Rol;
@@ -65,6 +66,13 @@ class ComprasController extends Controller
         $query = Ingresos::where('compra_id',$this->compra->id)->where('articulo_id',$articulo_id)->get();
         if(Tool::existe($query)){
             $articulo = $query->first();
+            /*
+            * ingreso items a existencia una vez terminado la compra
+             */
+            if ($this->compra->estado=='t'){
+                $existencia = new IAManager($articulo->articulo_id, $this->compra->sucursal_id, $this->compra->almacen_id);
+                $existencia->UpdatePurchase($articulo->cantidad,$cantidad);
+            }
             $articulo->cantidad = $cantidad;
             $articulo->costo = $costo;
             $articulo->save();
@@ -77,7 +85,10 @@ class ComprasController extends Controller
             $articulo->usuario_id = Auth::user()->id;
             $articulo->cantidad = $cantidad;
             $articulo->costo = $costo;
-
+            if ($this->compra->estado=='t'){
+                $existencia = new IAManager($articulo->articulo_id, $this->compra->sucursal_id, $this->compra->almacen_id);
+                $existencia->add($cantidad);
+            }
             $articulo->save();
         }
     }
@@ -140,6 +151,19 @@ class ComprasController extends Controller
         $compra = Compra::find($id);
         $compra->estado = 't';
         $compra->save();
+
+        /*
+         * ingreso items a existencia una vez terminado la compra
+         */
+
+        foreach ($compra->articulos as $row){
+            $existencia = new IAManager($row->articulo_id, $compra->sucursal_id, $compra->almacen_id);
+            $existencia->add($row->cantidad);
+        }
+
+
+
+
         return redirect()->route('admin.compra.index');
     }
 
@@ -157,6 +181,9 @@ class ComprasController extends Controller
             //valido si me envias un articulo id
             if($request->get('articulo_id')!='' && $request->get('xCantidad')!=''){
                 $this->setArticulo($request->get('articulo_id'),$request->get('xCantidad'),$request->get('xCosto'));
+
+
+
             }
 
             //actualzamos los datos de ingresos con referencia a los cambios en compra si uera necesario
@@ -208,6 +235,7 @@ class ComprasController extends Controller
             if($request->get('articulo_id')!=''){
                 $this->setArticulo($request->get('articulo_id'),$request->get('xCantidad'),$request->get('xCosto'));
             }
+
 
             //actualzamos los datos de ingresos con referencia a los cambios en compra si uera necesario
 
