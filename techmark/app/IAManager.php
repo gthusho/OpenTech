@@ -17,14 +17,14 @@ class IAManager
     private $almacen_id  = null;
     private $articulo_id = null;
 
-    function __construct($articulo_id,  $sucursal_id , $almacen_id)
+    function __construct($articulo_id,  $sucursal_id , $almacen_id='')
     {
         $this->sucursal_id = $sucursal_id;
-        $this->almacen_id = $almacen_id;
         $this->articulo_id = $articulo_id;
-
-        $query = ExistenciaArticulo::where('sucursal_id',$this->sucursal_id)->where('almacen_id',$almacen_id)->where('articulo_id',$articulo_id)->get();
-        if(Tool::existe($query)){
+        $su = Sucursal::find($this->sucursal_id);
+        $this->almacen_id = $su->almacen->id;
+        $query = ExistenciaArticulo::where('sucursal_id',$this->sucursal_id)->where('almacen_id',$this->almacen_id)->where('articulo_id',$this->articulo_id)->get();
+        if(count($query)>0){
             $this->existencia = $query->first();
         }else{
             $newExistencia = new ExistenciaArticulo();

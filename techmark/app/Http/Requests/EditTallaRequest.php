@@ -24,7 +24,7 @@ class EditTallaRequest extends Request
     public function rules()
     {
         return [
-            'nombre'=>'required|unique:tallas,nombre,'.$this->route()->getParameter('talla').'|min:2|max:45'
+            'nombre'=>'required|unique:tallas,nombre,'.$this->route()->getParameter('talla').'|max:45'
         ];
     }
 }

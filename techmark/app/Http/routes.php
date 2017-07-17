@@ -10,12 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('test',function (){
-        // first strip any formatting;
-        $n = str_replace(",","",'1,000,000.50');
 
-        echo $n;
-});
 Route::get('/', 'HomeController@index');
 Route::auth();
 
@@ -54,13 +49,21 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
 /*
  * todo ingresos egresos e inventario
  */
-
+    Route::get('inventario/articulos',['as' => 'inventario.articulos', 'uses' => 'InventarioController@articulos']);
     Route::get('ingresos/articulos',['as' => 'ingresos.articulos.index', 'uses' => 'IngresosController@index']);
     Route::get('egresos/articulos',['as' => 'egresos.articulos.index', 'uses' => 'DetalleVentaArticuloController@index']);
 
 
     require __DIR__ . '/routes/diego.php';
     require __DIR__ . '/routes/liss.php';
+
+    /*
+     * complementario a productos
+     * Asignacion de tallas
+     */
+    Route::resource('producto/asignacion/talla','AsignacionTallaProducto');
+
+
 });
 
 Route::group(['prefix'=>'reportes','middleware'=>['auth'],'namespace'=>'Report'], function(){
@@ -113,3 +116,8 @@ Route::get('service/showDetalleProducto',['as' => 'showDetalleProducto', 'uses' 
  * cotizacion
  */
 Route::get('service/showArticleByCotizacionId/{id}',['as' => 'showArticleByCotizacionId', 'uses' => 'ServiceCotizacionArticulosController@showArticleByCotizacionId']);
+/*
+ * produccion
+ */
+Route::get('service/showArticleByProduccionId/{id}',['as' => 'showArticleByProduccionId', 'uses' => 'ServiceProduccionController@showArticleByProduccionId']);
+

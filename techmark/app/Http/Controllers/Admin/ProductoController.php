@@ -139,17 +139,17 @@ class ProductoController extends Controller
         if(Auth::user()->can('allow-delete')) {
             $producto = Producto::find($id);
             \File::Delete(\Config::get('upload.productos').$producto->imagen);
-            \Session::flash('user-dead',$producto->descripcion);
-            /*if(!$producto->deleteOk()){
+            \Session::flash('producto-dead',$producto->descripcion);
+            if(!$producto->deleteOk()){
                 $producto->estado=0;
                 $producto->save();
                 $mensaje = 'El Producto Base Tiene algunas Transacciones Registradas.. Imposible Eliminar. Se Inhabilito el registro ';
             }
-            else{*/
+            else{
+                \DB::table('producto_tallas')->where('producto_id', $producto->id)->delete();
                 Producto::destroy($id);
                 $mensaje = 'El Producto fue eliminado ';
-
-            //}
+            }
             \Session::flash('message',$mensaje);
             return redirect()->route('admin.producto.index');
         }else{

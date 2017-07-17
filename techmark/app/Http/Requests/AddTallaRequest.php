@@ -24,7 +24,7 @@ class AddTallaRequest extends Request
     public function rules()
     {
         return [
-            'nombre'=>'required|unique:tallas,nombre|min:2|max:45'
+            'nombre'=>'required|unique:tallas,nombre|max:45'
         ];
     }
 }

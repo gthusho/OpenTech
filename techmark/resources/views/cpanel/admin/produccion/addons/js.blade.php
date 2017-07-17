@@ -155,7 +155,7 @@
     $('td').css('cursor','crosshair');
     $(".rows").click(function (){
         var codigo = $(this).attr('data-id');
-        var url = "{{route('showArticleByEgresoId','GTHUSHO')}}";
+        var url = "{{route('showArticleByProduccionId','GTHUSHO')}}";
         url = url.replace('GTHUSHO',codigo);
         workAjax(url,codigo,"id")
     });

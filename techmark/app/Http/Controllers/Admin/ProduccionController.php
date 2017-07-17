@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Almacen;
 use App\Articulo;
 use App\DetalleProduccion;
+use App\IAManager;
 use App\Produccion;
 use App\Sucursal;
 use App\Tool;
@@ -51,18 +52,7 @@ class ProduccionController extends Controller
         $this->datos['almacenes'] = Almacen::where('estado',1)->orderBy('nombre')->get()->lists('nombre','id');
     }
 
-    /**
-     * metodo para el ajax del buscador codigo o codigo barra
-     * @param Request $request
-     * @return array
-     */
 
-
-    /**
-     * @param $articulo
-     * @param $cantidad
-     * @param $costo
-     */
     function setArticulo($articulo_id, $cantidad, $precio){
         $articulo = null;
         $query = DetalleProduccion::where('produccion_id',$this->produccion->id)->where('articulo_id',$articulo_id)->get();
@@ -82,6 +72,14 @@ class ProduccionController extends Controller
                     $articulo->dp="P3";
                     $articulo->precio=$parametro->precio3* $cantidad;
             }
+            /*
+           * modifico la existencia al modificar una produccion
+           */
+            if ($this->produccion->estado=='t'){
+                $existencia = new IAManager($articulo->articulo_id, $this->produccion->sucursal_id);
+                $existencia->UpdateSale($articulo->cantidad,$cantidad);
+            }
+
             $articulo->cantidad = $cantidad;
             $articulo->save();
         }else{
@@ -108,6 +106,10 @@ class ProduccionController extends Controller
             //$articulo->almacen_id = $this->produccion->almacen_id;
 
             $articulo->save();
+            if ($this->produccion->estado=='t'){
+                $existencia = new IAManager($articulo->articulo_id, $this->produccion->sucursal_id);
+                $existencia->down($cantidad);
+            }
         }
     }
 
@@ -169,6 +171,13 @@ class ProduccionController extends Controller
         $produccion = Produccion::find($id);
         $produccion->estado = 't';
         $produccion->save();
+        /*
+      * egreso items a existencia una vez terminado la venta
+      */
+        foreach ($produccion->detalle as $row){
+            $existencia = new IAManager($row->articulo_id, $produccion->sucursal_id, 0);
+            $existencia->down($row->cantidad);
+        }
         return redirect()->route('admin.produccion.index');
     }
 

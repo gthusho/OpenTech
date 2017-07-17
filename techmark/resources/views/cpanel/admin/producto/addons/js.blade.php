@@ -35,7 +35,7 @@
 <script>
     $(window).load(function(){
         @if(Session::has('message'))
-        swal("Actualizacion Exitosa", " ", "success")
+        swal('{!! Session::get('message') !!}', " ", "success");
         @endif
     });
 </script>

@@ -3,14 +3,14 @@
     @include('cpanel.partials.brand')
     <div class="row">
         <div class="col-sm-12">
-            @include('cpanel.admin.producto.partials.report')
+            @include('cpanel.admin.asiganaciontallas.partials.report')
 
         </div>
     </div>
     <br>
     <div class="row">
       <div class="col-sm-12">
-          @include('cpanel.admin.producto.partials.search')
+          @include('cpanel.admin.asiganaciontallas.partials.search')
       </div>
     </div>
     <div class="row">
@@ -18,7 +18,7 @@
             <div class="card-box">
                 <div class="table-rep-plugin">
                     <div class="table-responsive" data-pattern="priority-columns">
-                        @include('cpanel.admin.producto.partials.table')
+                        @include('cpanel.admin.asiganaciontallas.partials.table')
                     </div>
 
                 </div>
@@ -44,7 +44,7 @@
         <script>
             $(window).load(function(){
                 swal({
-                    title: "{{Session::get('producto-dead')}}",
+                    title: "{{Session::get('rol-dead')}}",
                     text: "{{Session::get('message')}}",
                     type: "info",
                     showCancelButton: false,

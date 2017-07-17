@@ -47,16 +47,20 @@
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class=" icon-puzzle"></i><span class="label label-primary pull-right">4</span> <span> Productos </span>  </a>
                     <ul class="list-unstyled">
-                        <li><a href="{{route('admin.detprodbase.index')}}">Detalle Producto Base</a></li>
-                        <li><a href="{{route('admin.prodbase.index')}}">Producto Base</a></li>
+                        <li class="text-muted menu-title">PRODUCTOS VENTA</li>
                         <li><a href="{{route('admin.producto.index')}}">Producto</a></li>
+                        <li class="text-muted menu-title">PRODUCTOS COTIZACIONES</li>
+                        <li><a href="{{route('admin.prodbase.index')}}">Producto Base</a></li>
+                        <li><a href="{{route('admin.detprodbase.index')}}">Detallar Producto Base</a></li>
+                        <li class="text-muted menu-title">MANTENIMIENTO</li>
                         <li><a href="{{route('admin.talla.index')}}">Tallas</a></li>
+
                     </ul>
                 </li>
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class=" ti-notepad"></i><span class="label label-primary pull-right">6</span> <span> Inventario </span>  </a>
                     <ul class="list-unstyled">
-                        {{--<li><a href="{{route('admin.usuario.index')}}">Articulos</a></li>--}}
+                        <li><a href="{{route('inventario.articulos')}}">Articulos</a></li>
                         {{--<li><a href="{{route('admin.usuario.index')}}">Productos</a></li>--}}
                         <li><a href="{{route('ingresos.articulos.index')}}">Ingresos Articulos</a></li>
                         {{--<li><a href="{{route('admin.rol.index')}}">Ingresos Productos</a></li>--}}
@@ -92,15 +96,17 @@
                         <a href="{{route('admin.proveedor.index')}}">Proveedores</a>
                     </ul>
                 </li>
-
+                <li class="has_sub">
+                    <a href="{{route('admin.produccion.index')}}" class="waves-effect"><i class="fa fa-cog fa-spin"></i> <span> Produccion </span> </a>
+                </li>
                 <li class="text-muted menu-title">Configuraciones Sistemas</li>
                 <li class="has_sub">
                     <a href="{{route('admin.ciudad.index')}}" class="waves-effect"><i class=" icon-location-pin"></i> <span> Ciudades </span> </a>
                 </li>
-                <li class="text-muted menu-title">Rutas Liss</li>
-                @include('theme.ubold.sidebar.liss')
-                <li class="text-muted menu-title">Rutas Diego</li>
-                @include('theme.ubold.sidebar.diego')
+                {{--<li class="text-muted menu-title">Rutas Liss</li>--}}
+                {{--@include('theme.ubold.sidebar.liss')--}}
+                {{--<li class="text-muted menu-title">Rutas Diego</li>--}}
+                {{--@include('theme.ubold.sidebar.diego')--}}
             </ul>
             <div class="clearfix"></div>
         </div>

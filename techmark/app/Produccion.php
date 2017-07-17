@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Produccion extends Model
@@ -69,6 +70,20 @@ class Produccion extends Model
         if(trim($p) != ''){
             $pre = str_replace('P','',$p);
             $query->where('id',$pre);
+        }
+    }
+    function checkState(){
+        $state = '';
+        $dateFinish = Carbon::createFromDate(date('Y',strtotime($this->fin)),date('m',strtotime($this->fin)),date('d',strtotime($this->fin)));
+        $dateCurrent = Carbon::now();
+        if($dateCurrent->lessThanOrEqualTo($dateFinish)){
+          return  $state = ['EN PRODUCCION','p','inverse'];
+        }else{
+            if ($this->terminado==1){
+                return $state = ['EN INVENTARIO','t','success'];
+            }else{
+                return  $state = ['PLAZO TERMINADO','e','warning'];
+            }
         }
     }
 

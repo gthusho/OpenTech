@@ -33,7 +33,7 @@ class ArticuloController extends Controller
                 ->categoria($request->get('categoria'))
                 ->tipo($request->get('type'),$request->get('s'))
                 ->orderBy('nombre','asc')
-                ->paginate();
+                ->paginate(60);
             $this->genDatos();
             return view('cpanel.admin.articulo.list')->with($this->datos);
         }

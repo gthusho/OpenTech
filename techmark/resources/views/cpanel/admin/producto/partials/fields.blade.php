@@ -30,7 +30,7 @@
 
         <div class="row">
             <div class="form-group col-lg-12">
-                <img src="{{$producto->getImagen()}}" alt="" class="img-thumbnail" style="max-height: 500px; max-width: 500px;">
+                <img src="{{$producto->getImagen()}}" alt="" class="img-thumbnail thumb-lg" >
             </div>
         </div>
 

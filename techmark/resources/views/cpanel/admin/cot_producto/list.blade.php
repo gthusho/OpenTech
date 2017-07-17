@@ -100,7 +100,6 @@
                 locale: {
                     format: 'DD/MM/YYYY'
                 },
-
                 buttonClasses: ['btn', 'btn-sm'],
                 applyClass: 'btn-default',
                 cancelClass: 'btn-white'

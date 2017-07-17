@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Articulo;
 use App\DetalleProduccion;
+use App\IAManager;
+use App\Produccion;
 use App\Sucursal;
 use App\Tool;
 use Illuminate\Http\Request;
@@ -42,7 +44,17 @@ class DetalleProduccionController extends Controller
     public function deleteItemsProduccion($id)
     {
         if(Auth::user()->can('allow-delete')) {
+            $detalle = DetalleProduccion::find($id);
+            $produccion = Produccion::find($detalle->produccion_id);
+            if($produccion->estado=='t'){
+                /*
+               * devolvemos al stock de stock
+               */
+                $existencia = new IAManager($detalle->articulo_id, $detalle->sucursal_id);
+                $existencia->add($detalle->cantidad);
+            }
             DetalleProduccion::destroy($id);
+
             return redirect()->back();
         }
         \Session::flash('message','No tienes Permisos para Borrar informacion');

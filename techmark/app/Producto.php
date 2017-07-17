@@ -19,7 +19,9 @@ class Producto extends Model
     function usuario(){
         return $this->belongsTo('App\User','usuario_id','id');
     }
-
+    function tallas(){
+        return $this->hasMany('App\ProductoTalla','producto_id','id');
+    }
     function scopeProducto($query,$name){
         if(trim($name) != ''){
             $query->where('descripcion','like',"%$name%");
@@ -39,4 +41,14 @@ class Producto extends Model
         else
             return url(\Config::get('upload.productos').'defaultstore.jpg');
     }
+    function  deleteOk(){
+        $num = ExistenciaProducto::where('producto_id',$this->id)->count();
+        $num += DetalleVentaProducto::where('producto_id',$this->id)->count();
+        $num += IngresosProducto::where('producto_id',$this->id)->count();
+        if($num>0)
+            return false;
+        else
+            return true;
+    }
+
 }

@@ -41,8 +41,11 @@
     @if(Session::has('message'))
         <link href="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.css')}}" rel="stylesheet" type="text/css">
     @endif
+    <link href="{{url('assets/plugins/timepicker/bootstrap-timepicker.min.css')}}" rel="stylesheet">
+    <link href="{{url('assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}" rel="stylesheet">
     <link href="{{url('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
-
+    <link href="{{url('assets/plugins/clockpicker/css/bootstrap-clockpicker.min.css')}}" rel="stylesheet">
+    <link href="{{url('assets/plugins/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
 @endsection
 @section('js')
     <script src="{{url('assets/plugins/bootstrap-select/js/bootstrap-select.min.js')}}" type="text/javascript"></script>
@@ -73,10 +76,9 @@
 
     <script src="{{url('assets/plugins/moment/moment.js')}}"></script>
 
-    <script src="{{url('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script src="{{url('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.es.js')}}"></script>
     <script src="{{url('assets/plugins/timepicker/bootstrap-timepicker.js')}}"></script>
     <script src="{{url('assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
+    <script src="{{url('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script src="{{url('assets/plugins/clockpicker/js/bootstrap-clockpicker.min.js')}}"></script>
     <script src="{{url('assets/plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
     <script src="{{url('assets/plugins/bootstrap-select/js/bootstrap-select.min.js')}}" type="text/javascript"></script>
@@ -90,20 +92,17 @@
             $('.input-daterange-timepicker').daterangepicker({
                 timePicker: false,
                 timePickerIncrement: 30,
-                autoUpdateInput: false,
+                @if(!Request::get('fecha'))
+                startDate: moment().startOf('month'),
+                endDate: moment().endOf('month'),
+                @endif
                 locale: {
-                    format: 'YYYY/MM/DD',
-                    cancelLabel: 'Clear'
+                    format: 'DD/MM/YYYY'
                 },
-
                 buttonClasses: ['btn', 'btn-sm'],
                 applyClass: 'btn-default',
                 cancelClass: 'btn-white'
             });
-            $('.input-daterange-timepicker').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD'));
-            });
         });
     </script>
-
 @endsection
