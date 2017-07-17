@@ -58,7 +58,12 @@ Route::get('cajas','CajasReport@index');
 Route::get('cajas/excel','CajasReport@excel');
 
 Route::get('caja/general','CajaGeneralReport@index');
-Route::get('caja/general/excel','CajaGeneralReport@excel');
 
 Route::get('caja/detalle','CajaDetalleReport@index');
-Route::get('caja/detalla/excel','CajaDetalleReport@excel');
+
+Route::get('pagos/venta','PagosVentaReport@index');
+
+Route::get('producciones','ProduccionesReport@index');
+Route::get('producciones/excel','ProduccionesReport@excel');
+
+Route::get('produccion','ProduccionReport@index');

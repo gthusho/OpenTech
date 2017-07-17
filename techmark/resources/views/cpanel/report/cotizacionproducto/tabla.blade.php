@@ -43,12 +43,11 @@
 <table  cellspacing="5">
     <tr>
         <th width="5%" ><strong>#</strong></th>
-        <th width="20%" ><strong>PRODUCTO</strong></th>
-        <th width="20%" ><strong>DESCRIPCION</strong></th>
-        <th width="10%" ><strong>TALLA</strong></th>
+        <th width="25%" ><strong>PRODUCTO</strong></th>
+        <th width="25%" ><strong>DESCRIPCION</strong></th>
+        <th width="15%" ><strong>TALLA</strong></th>
         <th width="15%" ><strong>MATERIAL</strong></th>
         <th width="15%" ><strong>CANTIDAD</strong></th>
-        <th width="12%" ><strong>PRECIO</strong></th>
 
     </tr>
     <?php
@@ -70,12 +69,21 @@
             </td>
             <td style="border-bottom: 1px dashed black;"> {{$row->material->nombre}}</td>
             <td style="border-bottom: 1px dashed black;">{{number_format((float)$row->cantidad, 2, '.', '')}}</td>
-            <td style="border-bottom: 1px dashed black;">
-                {{\App\Tool::convertMoney($row->precio)}}
-            </td>
 
         </tr>
     @endforeach
 
 </table>
 
+
+<h3>
+    <table align="right">
+
+        <tr>
+            <td ><strong>TOTAL PRECIO COTIZACION:</strong></td>
+            <td>{{\App\Tool::convertMoney($cotizacion->totalPrecio())}}</td>
+        </tr>
+
+
+    </table>
+</h3>

@@ -36,10 +36,6 @@
     </tr>
 
     <tr>
-        <td><strong>CANTIDAD:</strong></td>
-        <td>{{ucwords($venta->totalCantidad())}}</td>
-    </tr>
-    <tr>
         <td><strong>TOTAL PRECIO</strong></td>
         <td>{{\App\Tool::convertMoney($venta->totalPrecio())}}</td>
     </tr>
@@ -90,3 +86,17 @@
     @endforeach
 
 </table>
+
+<P></P>
+
+<h3>
+    <table align="right">
+
+        <tr>
+            <td ><strong>TOTAL PRECIO:</strong></td>
+            <td>{{\App\Tool::convertMoney($venta->totalPrecio())}}</td>
+        </tr>
+
+
+    </table>
+</h3>

@@ -22,3 +22,5 @@ Route::post('confirmCotizacion/{id}',['as' => 'confirmCotizacion', 'uses' => 'Co
 Route::get('service/getArticuloByCodigo',['as' => 'getArticuloByCodigo', 'uses' => 'ComprasController@getArticuloByCodigo']);
 Route::get('service/getListArticulos',['as' => 'getListArticulos', 'uses' => 'ComprasController@getListArticulos']);
 Route::get('service/showArticle',['as' => 'showArticle', 'uses' => 'ArticuloController@showArticle']);
+
+Route::resource('cajavistas','vistasCajaController');

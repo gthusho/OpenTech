@@ -42,7 +42,7 @@ class Caja extends Model
 
     function activo(){
         if($this->estado=='p')
-            return ['default','Activo'];
+            return ['default','Abierto'];
         else
             return ['danger','Cerrado'];
     }

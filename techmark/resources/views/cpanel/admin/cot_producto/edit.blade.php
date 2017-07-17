@@ -20,8 +20,6 @@
                    class="btn btn-inverse  waves-effect waves-light" target="_blank" >Imprimir
                     <span class="m-l-5"><i class=" icon-printer"></i></span>
                 </a>
-
-
             </div>
             <div class="pull-right">
                 {!! Form::open(['route'=>['admin.cot_producto.destroy',$cotizacion->id],'method'=>'delete']) !!}
