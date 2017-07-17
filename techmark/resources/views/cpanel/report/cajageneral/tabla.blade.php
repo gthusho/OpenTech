@@ -1,4 +1,4 @@
-<h3 class="panel-title">INFORMACION CAJA</h3>
+<h3 class="panel-title">INFORMACION </h3>
 <div class="panel-body">
         <table>
             <tr>
@@ -40,82 +40,85 @@
 </div>
 <h4 class="panel-title">VENTAS ARTICULOS</h4>
 <div class="panel-body">
-    <table class="table table-hover">
+    <table CELLSPACING="5" class="table table-hover">
         <tr>
-            <td width="50%" ><h4>Ventas de Articulos al Contado</h4></td>
-            <td width="15%" class="text-right">{{\App\Tool::convertMoney($caja->totalVentasArticulosByType('Contado'))}}</td>
+            <td style="border-bottom: 1px dashed black;">Ventas de Articulos al Contado</td>
+            <td align="rigth" style="border-bottom: 1px dashed black;" >{{\App\Tool::convertMoney($caja->totalVentasArticulosByType('Contado'))}}</td>
         </tr>
         <tr>
-            <td width="50%" ><h4>Ventas de Articulos con Tarjeta</h4></td>
-            <td width="15%" class="text-right">{{\App\Tool::convertMoney($caja->totalVentasArticulosByType('Tarjeta Credito'))}}</td>
+            <td  style="border-bottom: 1px dashed black;">Ventas de Articulos con Tarjeta</td>
+            <td  align="rigth" style="border-bottom: 1px dashed black;" >{{\App\Tool::convertMoney($caja->totalVentasArticulosByType('Tarjeta Credito'))}}</td>
         </tr>
         <tr>
-            <td width="50%" ><h4>Ventas de Articulos con Cheque</h4></td>
-            <td width="15%" class="text-right">{{\App\Tool::convertMoney($caja->totalVentasArticulosByType('Cheque'))}}</td>
+            <td style="border-bottom: 1px dashed black;">Ventas de Articulos con Cheque</td>
+            <td align="rigth" style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($caja->totalVentasArticulosByType('Cheque'))}}</td>
         </tr>
         <tr>
-            <td width="50%" ><h4>Ventas de Articulos al Credito</h4></td>
-            <td width="15%" class="text-right">{{\App\Tool::convertMoney($caja->totalVentasArticulosByType('Credito'))}}</td>
+            <td style="border-bottom: 1px dashed black;">Ventas de Articulos al Credito</td>
+            <td  align="rigth" style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($caja->totalVentasArticulosByType('Credito'))}}</td>
         </tr>
         <tr>
-            <td width="50%" class="text-right"><h4>TOTAL</h4></td>
-            <td width="15%" class="text-right">{{\App\Tool::convertMoney($caja->totalVentasArticulos())}}</td>
+            <td ><h4>TOTAL</h4></td>
+            <td  align="rigth"><H4> {{\App\Tool::convertMoney($caja->totalVentasArticulos())}}</H4></td>
         </tr>
     </table>
 </div>
 <h4 class="panel-title">VENTAS DE PRODUCTOS</h4>
 <div class="panel-body">
-    <TABLE>
+    <TABLE cellspacing="5">
         <tr>
-            <td width="50%"><strong>Ventas de Productos al Contado</strong></td>
-            <td width="15%" ><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td  style="border-bottom: 1px dashed black;">Ventas de Productos al Contado</td>
+            <td align="rigth" style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney(0)}}</td>
         </tr>
         <tr>
-            <td width="50%" ><strong>Ventas de Productos con Tarjeta</strong></td>
-            <td width="15%" ><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td  style="border-bottom: 1px dashed black;">Ventas de Productos con Tarjeta</td>
+            <td align="rigth" style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney(0)}}</td>
         </tr>
         <tr>
-            <td width="50%" ><strong>Ventas de Productos con Cheque</strong></td>
-            <td width="15%" ><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td style="border-bottom: 1px dashed black;">Ventas de Productos con Cheque</td>
+            <td  align="rigth" style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney(0)}}</td>
         </tr>
         <tr>
-            <td width="50%" ><strong>Ventas de Productos al Credito</strong></td>
-            <td width="15%" ><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td style="border-bottom: 1px dashed black;">Ventas de Productos al Credito</td>
+            <td align="rigth" style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney(0)}}</td>
         </tr>
     </TABLE>
 </div>
 <h4 class="panel-title">PAGOS DE VENTAS</h4>
 <div class="panel-body">
-    <table>
+    <table cellspacing="5" class="table table-hover">
         <tr>
-            <td ><strong>Pagos de Articulos</strong></td>
-            <td ><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td style="border-bottom: 1px dashed black;">Pagos de Articulos</td>
+            <td  align="rigth" style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($caja->totalPagoCreArt())}}</td>
         </tr>
         <tr>
-            <td><strong>Pagos de Productos</strong></td>
-            <td width="20%" ><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td style="border-bottom: 1px dashed black;">Pagos de Productos</td>
+            <td  align="rigth" style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney(0)}}</td>
+        </tr>
+        <tr>
+            <td ><h4>TOTAL</h4></td>
+            <td  align="rigth" ><h4> {{\App\Tool::convertMoney($caja->totalPgVntCredit())}}</h4></td>
         </tr>
     </table>
 </div>
 <h4 class="panel-title">TOTALES</h4>
 <div class="panel-body">
-    <table>
+    <table cellspacing="5" class="table table-hover">
         <tr>
-            <td width="83%"><strong>Total de Ingresos</strong></td>
-            <td width="20%" ><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td style="border-bottom: 1px dashed black;">Total de Ingresos</td>
+            <td  align="rigth" style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($caja->totalIngresos())}}</td>
         </tr>
         <tr>
-            <td width="83%"><strong>Total de Gastos</strong></td>
-            <td width="20%" ><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td  style="border-bottom: 1px dashed black;">Total de Gastos</td>
+            <td  align="rigth" style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($caja->totalGastos())}}</td>
         </tr>
         <tr>
-            <td width="83%"><strong>Total (I - G)</strong></td>
-            <td width="20%" ><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td style="border-bottom: 1px dashed black;">Total (I - G)</td>
+            <td  align="rigth" style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($caja->totalIG())}}</td>
         </tr>
-        <P></P>
         <tr>
-            <td width="83%"><strong>Efectivo en Caja</strong></td>
-            <td width="20%" ><strong>{{\App\Tool::convertMoney(1000)}}</strong></td>
+            <td><h4>Efectivo en Caja</h4></td>
+            <td align="rigth" ><h4>{{\App\Tool::convertMoney(($caja->totalIG() + $caja->apertura))}}</h4></td>
         </tr>
     </table>
 </div>

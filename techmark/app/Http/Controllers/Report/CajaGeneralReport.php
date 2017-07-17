@@ -21,7 +21,7 @@ class CajaGeneralReport extends Controller
 {
     private $datos = null;
     private $horientacion = 'p';//'l';
-    private $titulo = "CAJA TANSACCIONES";
+    private $titulo = "CAJA CHICA";
     private $request = null;
 
     function __construct(Request $request)
