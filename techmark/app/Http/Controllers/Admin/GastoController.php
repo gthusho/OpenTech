@@ -23,7 +23,6 @@ class GastoController extends Controller
             $this->datos['brand'] = Tool::brand('Gastos',route('admin.gasto.index'),'Caja');
             $this->datos['gastos'] = Gasto::with('sucursal','usuario')
                 ->fecha($request->get('fecha'))
-                ->fecha($request->get('f'))
                 ->usuario($request->get('usuario'))
                 ->sucursal($request->get('sucursal'))
                 ->orderBy('id','desc')

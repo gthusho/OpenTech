@@ -20,13 +20,12 @@ class Gasto extends Model
     function sucursal(){
         return $this->belongsTo('App\Sucursal','sucursal_id','id');
     }
-
     function scopeFecha($query,$fecha){
         if(trim($fecha) != ''){
-            $query->where('fecha',$fecha);
+            $date = Tool::getArrayDate($fecha);
+            $query->where(\DB::raw('DATE(fecha)'),'>=',$date[0])->where(\DB::raw('DATE(fecha)'),'<=',$date[1]);
         }
     }
-
     function scopeUsuario($query,$x){
         if(trim($x) != ''){
             $query->where('usuario_id', $x);
