@@ -168,7 +168,7 @@ CREATE TABLE `caja` (
 
 LOCK TABLES `caja` WRITE;
 /*!40000 ALTER TABLE `caja` DISABLE KEYS */;
-INSERT INTO `caja` VALUES (1,2,4,1.00,0.00,'2017-07-13 17:32:22','MIL BOLIVIANOS EN BILLETES DE 100\r\n500 EN BILLETES DE 50 \r\n63 EN MODENAS DE BS 1','2017-07-14 01:32:22','2017-07-14 03:39:50','t','2017-07-13 19:39:50');
+INSERT INTO `caja` VALUES (1,2,4,1000.00,500.00,'2017-07-13 17:32:22','MIL BOLIVIANOS EN BILLETES DE 100\r\n500 EN BILLETES DE 50 \r\n63 EN MODENAS DE BS 1','2017-07-14 01:32:22','2017-07-17 18:14:19','p','2017-07-13 19:39:50');
 /*!40000 ALTER TABLE `caja` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -287,7 +287,7 @@ CREATE TABLE `compras` (
   CONSTRAINT `fk_almacen_id_lotes` FOREIGN KEY (`almacen_id`) REFERENCES `almacenes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_proveedor_id_lotes` FOREIGN KEY (`proveedor_id`) REFERENCES `proveedores` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sucursal_id_lotes` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursales` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -296,7 +296,7 @@ CREATE TABLE `compras` (
 
 LOCK TABLES `compras` WRITE;
 /*!40000 ALTER TABLE `compras` DISABLE KEYS */;
-INSERT INTO `compras` VALUES (20,'2017-07-14 18:16:35',NULL,1,NULL,NULL,NULL,NULL,'2017-07-15 02:16:35','2017-07-15 02:16:35',NULL,NULL,'p');
+INSERT INTO `compras` VALUES (20,'2017-07-14 18:16:35','128',1,'2017-07-15',4,15,5,'2017-07-15 02:16:35','2017-07-15 18:18:55','Contado','','t'),(21,'2017-07-15 10:18:56','9',1,'2017-07-18',1,1,8,'2017-07-15 18:18:56','2017-07-16 02:55:03','Contado','','t'),(22,'2017-07-15 18:55:03','9',1,'2017-07-26',4,15,7,'2017-07-16 02:55:03','2017-07-17 03:49:47','Contado','','t'),(23,'2017-07-16 19:49:48','115',1,'2017-07-22',4,15,7,'2017-07-17 03:49:48','2017-07-17 05:34:10','Contado','','t'),(24,'2017-07-16 21:34:10',NULL,1,NULL,NULL,NULL,NULL,'2017-07-17 05:34:10','2017-07-17 05:34:10',NULL,NULL,'p');
 /*!40000 ALTER TABLE `compras` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -461,8 +461,8 @@ CREATE TABLE `detalle_productos_base` (
   `producto_base_id` int(11) NOT NULL,
   `talla_id` int(11) DEFAULT NULL,
   `material_id` int(11) DEFAULT NULL,
-  `precio` decimal(19,4) DEFAULT '0.0000',
-  `costo` decimal(19,4) DEFAULT '0.0000',
+  `precio` decimal(19,2) DEFAULT '0.00',
+  `costo` decimal(19,2) DEFAULT '0.00',
   `registro` datetime DEFAULT CURRENT_TIMESTAMP,
   `usuario_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -538,14 +538,14 @@ DROP TABLE IF EXISTS `detalles_producciones`;
 CREATE TABLE `detalles_producciones` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `articulo_id` int(11) NOT NULL,
-  `cantidad` decimal(19,4) DEFAULT NULL,
+  `cantidad` decimal(19,2) DEFAULT '0.00',
   `registro` datetime DEFAULT CURRENT_TIMESTAMP,
   `usuario_id` int(11) NOT NULL,
   `sucursal_id` int(11) DEFAULT NULL,
   `produccion_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `precio` decimal(19,4) DEFAULT NULL,
+  `precio` decimal(19,2) DEFAULT '0.00',
   `dp` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_articulo_id_detalles_producciones_idx` (`articulo_id`),
@@ -556,7 +556,7 @@ CREATE TABLE `detalles_producciones` (
   CONSTRAINT `fk_proudccion_id_detalles_producciones` FOREIGN KEY (`produccion_id`) REFERENCES `producciones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sucursal_id_detalles_producciones` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursales` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_usuario_id_detalles_producciones` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -565,6 +565,7 @@ CREATE TABLE `detalles_producciones` (
 
 LOCK TABLES `detalles_producciones` WRITE;
 /*!40000 ALTER TABLE `detalles_producciones` DISABLE KEYS */;
+INSERT INTO `detalles_producciones` VALUES (13,126,22.00,'2017-07-16 20:32:06',1,4,1,'2017-07-17 04:32:06','2017-07-17 04:32:06',1804.00,'P1');
 /*!40000 ALTER TABLE `detalles_producciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -599,7 +600,7 @@ CREATE TABLE `detalles_ventas_articulos` (
   CONSTRAINT `fk_sucursal_id_detalles_ventas_articulos` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursales` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_usuario_id_detalles_ventas_articulos` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_venta_articulo_id_detalles_ventas_articulos` FOREIGN KEY (`venta_articulo_id`) REFERENCES `ventas_articulos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -608,6 +609,7 @@ CREATE TABLE `detalles_ventas_articulos` (
 
 LOCK TABLES `detalles_ventas_articulos` WRITE;
 /*!40000 ALTER TABLE `detalles_ventas_articulos` DISABLE KEYS */;
+INSERT INTO `detalles_ventas_articulos` VALUES (6,368,10.00,160.00,'2017-07-16 20:18:32',1,'P1',10,4,'2017-07-17 04:18:32','2017-07-17 04:18:32',15);
 /*!40000 ALTER TABLE `detalles_ventas_articulos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -666,14 +668,8 @@ CREATE TABLE `existencia_articulo` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `sucursal_id` int(11) NOT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`),
-  KEY `fk_sucursal_id_existencia_idx` (`sucursal_id`),
-  KEY `fk_almacen_id_existencia_articulo_idx` (`almacen_id`),
-  KEY `fk_articulo_id_existencia_articulo` (`articulo_id`),
-  CONSTRAINT `fk_almacen_id_existencia_articulo` FOREIGN KEY (`almacen_id`) REFERENCES `almacenes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_articulo_id_existencia_articulo` FOREIGN KEY (`articulo_id`) REFERENCES `articulos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_sucursal_id_existencia` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursales` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -682,6 +678,7 @@ CREATE TABLE `existencia_articulo` (
 
 LOCK TABLES `existencia_articulo` WRITE;
 /*!40000 ALTER TABLE `existencia_articulo` DISABLE KEYS */;
+INSERT INTO `existencia_articulo` VALUES (368,15,535.00,'2017-07-15 18:18:55','2017-07-17 05:34:52',4,1),(372,15,300.00,'2017-07-15 18:18:55','2017-07-15 18:18:55',4,2),(118,15,615.00,'2017-07-15 18:18:56','2017-07-17 03:24:25',4,3),(136,15,300.00,'2017-07-15 18:18:56','2017-07-15 18:18:56',4,4),(102,15,451.00,'2017-07-15 18:18:56','2017-07-15 18:18:56',4,5),(103,15,1.00,'2017-07-15 18:18:56','2017-07-15 18:18:56',4,6),(250,15,500.00,'2017-07-15 18:18:56','2017-07-15 18:18:56',4,7),(161,15,1.00,'2017-07-15 18:18:56','2017-07-15 18:18:56',4,8),(368,1,15.00,'2017-07-16 02:55:03','2017-07-16 02:55:03',1,9),(140,15,11.00,'2017-07-17 04:03:04','2017-07-17 05:34:10',4,20),(146,15,0.00,'2017-07-17 04:06:10','2017-07-17 04:10:16',4,22),(126,15,100.00,'2017-07-17 04:20:50','2017-07-17 04:32:06',4,25);
 /*!40000 ALTER TABLE `existencia_articulo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -782,7 +779,7 @@ CREATE TABLE `ingresos` (
   CONSTRAINT `fk_compra_id_articulos` FOREIGN KEY (`compra_id`) REFERENCES `compras` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sucursal_id_ingresos` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursales` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_usuario_id_ingresos` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -791,6 +788,7 @@ CREATE TABLE `ingresos` (
 
 LOCK TABLES `ingresos` WRITE;
 /*!40000 ALTER TABLE `ingresos` DISABLE KEYS */;
+INSERT INTO `ingresos` VALUES (40,1,'2017-07-15 10:16:28',20,368,50.00,'2017-07-15 18:16:28','2017-07-15 18:16:28',5000.00,15,4),(41,1,'2017-07-15 10:16:50',20,372,300.00,'2017-07-15 18:16:50','2017-07-15 18:16:50',3000.00,15,4),(42,1,'2017-07-15 10:17:04',20,118,600.00,'2017-07-15 18:17:04','2017-07-15 18:17:04',5000.00,15,4),(43,1,'2017-07-15 10:17:22',20,136,300.00,'2017-07-15 18:17:22','2017-07-15 18:17:22',21000.00,15,4),(44,1,'2017-07-15 10:17:40',20,102,451.00,'2017-07-15 18:17:40','2017-07-15 18:17:40',45000.00,15,4),(45,1,'2017-07-15 10:17:56',20,103,1.00,'2017-07-15 18:17:56','2017-07-15 18:17:56',20000.00,15,4),(46,1,'2017-07-15 10:18:13',20,250,500.00,'2017-07-15 18:18:13','2017-07-15 18:18:13',6700.00,15,4),(47,1,'2017-07-15 10:18:45',20,161,1.00,'2017-07-15 18:18:45','2017-07-15 18:18:45',3500.00,15,4),(48,1,'2017-07-15 18:54:59',21,368,15.00,'2017-07-16 02:54:59','2017-07-16 02:54:59',1000.00,1,1),(49,1,'2017-07-16 19:49:37',22,368,100.00,'2017-07-17 03:49:37','2017-07-17 03:49:37',578.50,15,4),(50,1,'2017-07-16 21:32:43',23,368,100.00,'2017-07-17 05:32:43','2017-07-17 05:34:52',500.00,15,4),(51,1,'2017-07-16 21:33:59',23,140,11.00,'2017-07-17 05:33:59','2017-07-17 05:33:59',5000.00,15,4);
 /*!40000 ALTER TABLE `ingresos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -913,6 +911,7 @@ CREATE TABLE `producciones` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `estado` char(1) DEFAULT 'p',
+  `terminado` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_trabajador_id_producciones_idx` (`trabajador_id`),
   KEY `fk_usuario_id_producciones_idx` (`usuario_id`),
@@ -929,42 +928,43 @@ CREATE TABLE `producciones` (
 
 LOCK TABLES `producciones` WRITE;
 /*!40000 ALTER TABLE `producciones` DISABLE KEYS */;
-INSERT INTO `producciones` VALUES (1,'60 poleras promocion colegio San Juanillo National School','2017/07/17 - 2017/07/30','2017-07-14 13:37:00',1,1,'2017-07-17','2017-07-30',4,'2017-07-14 21:37:00','2017-07-14 21:38:41','t'),(2,NULL,NULL,'2017-07-14 13:38:41',NULL,1,NULL,NULL,NULL,'2017-07-14 21:38:41','2017-07-14 21:38:41','p');
+INSERT INTO `producciones` VALUES (1,'60 poleras promocion colegio San Juanillo National School','2017/07/10 - 2017/07/15','2017-07-14 13:37:00',1,1,'2017-07-10','2017-07-15',4,'2017-07-14 21:37:00','2017-07-17 17:28:30','t',0),(2,NULL,NULL,'2017-07-14 13:38:41',NULL,1,NULL,NULL,NULL,'2017-07-14 21:38:41','2017-07-14 21:38:41','p',0);
 /*!40000 ALTER TABLE `producciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `produccto_tallas`
+-- Table structure for table `producto_tallas`
 --
 
-DROP TABLE IF EXISTS `produccto_tallas`;
+DROP TABLE IF EXISTS `producto_tallas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `produccto_tallas` (
+CREATE TABLE `producto_tallas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `registro` datetime DEFAULT CURRENT_TIMESTAMP,
-  `produccto_id` int(11) NOT NULL,
+  `producto_id` int(11) NOT NULL,
   `talla_id` int(11) NOT NULL,
-  `precio1` decimal(19,4) DEFAULT '0.0000',
-  `precio2` decimal(19,4) DEFAULT '0.0000',
-  `precio3` decimal(19,4) DEFAULT '0.0000',
+  `precio1` decimal(19,2) DEFAULT '0.00',
+  `precio2` decimal(19,2) DEFAULT '0.00',
+  `precio3` decimal(19,2) DEFAULT '0.00',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_talla_id_produccto_tallas_idx` (`talla_id`),
-  KEY `fk_producto_id_producto_tallas_idx` (`produccto_id`),
-  CONSTRAINT `fk_producto_id_producto_tallas` FOREIGN KEY (`produccto_id`) REFERENCES `productos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `fk_producto_id_producto_tallas_idx` (`producto_id`),
+  CONSTRAINT `fk_producto_id_producto_tallas` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_talla_id_produccto_tallas` FOREIGN KEY (`talla_id`) REFERENCES `tallas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `produccto_tallas`
+-- Dumping data for table `producto_tallas`
 --
 
-LOCK TABLES `produccto_tallas` WRITE;
-/*!40000 ALTER TABLE `produccto_tallas` DISABLE KEYS */;
-/*!40000 ALTER TABLE `produccto_tallas` ENABLE KEYS */;
+LOCK TABLES `producto_tallas` WRITE;
+/*!40000 ALTER TABLE `producto_tallas` DISABLE KEYS */;
+INSERT INTO `producto_tallas` VALUES (1,'2017-07-16 10:50:10',1,3,100.00,50.00,30.00,NULL,'2017-07-16 22:03:05'),(6,'2017-07-16 13:42:56',4,4,1.00,0.00,0.00,'2017-07-16 21:42:56','2017-07-16 21:42:56'),(7,'2017-07-16 13:55:28',1,2,100.00,98.99,92.50,'2017-07-16 21:55:28','2017-07-16 22:14:35'),(8,'2017-07-16 16:56:37',1,9,55.00,25.00,15.50,'2017-07-17 00:56:37','2017-07-17 00:56:37');
+/*!40000 ALTER TABLE `producto_tallas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1140,7 +1140,7 @@ CREATE TABLE `tallas` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1149,7 +1149,7 @@ CREATE TABLE `tallas` (
 
 LOCK TABLES `tallas` WRITE;
 /*!40000 ALTER TABLE `tallas` DISABLE KEYS */;
-INSERT INTO `tallas` VALUES (1,'Extra Large',1,'2017-06-26 15:26:24','2017-06-26 23:26:24','2017-06-26 23:26:24'),(2,'Large',1,'2017-06-26 15:27:17','2017-06-26 23:27:17','2017-06-26 23:27:17'),(3,'Medium',1,'2017-06-26 15:27:23','2017-06-26 23:27:23','2017-06-26 23:27:23'),(4,'Small',1,'2017-06-26 15:27:30','2017-06-26 23:27:30','2017-06-26 23:27:30'),(5,'Extra Small',1,'2017-06-26 15:27:39','2017-06-26 23:27:39','2017-06-26 23:27:39'),(6,'Normal',1,'2017-06-26 15:27:51','2017-06-26 23:27:51','2017-06-26 23:27:51'),(7,'Ninguno',0,'2017-06-26 15:27:57','2017-06-26 23:27:57','2017-06-26 23:28:05');
+INSERT INTO `tallas` VALUES (1,'Extra Large',1,'2017-06-26 15:26:24','2017-06-26 23:26:24','2017-06-26 23:26:24'),(2,'Large',1,'2017-06-26 15:27:17','2017-06-26 23:27:17','2017-06-26 23:27:17'),(3,'Medium',1,'2017-06-26 15:27:23','2017-06-26 23:27:23','2017-06-26 23:27:23'),(4,'Small',1,'2017-06-26 15:27:30','2017-06-26 23:27:30','2017-06-26 23:27:30'),(5,'Extra Small',1,'2017-06-26 15:27:39','2017-06-26 23:27:39','2017-06-26 23:27:39'),(6,'Normal',1,'2017-06-26 15:27:51','2017-06-26 23:27:51','2017-06-26 23:27:51'),(7,'Ninguno',1,'2017-06-26 15:27:57','2017-06-26 23:27:57','2017-07-16 05:22:29'),(8,'XXL',1,'2017-07-16 16:54:51','2017-07-17 00:54:51','2017-07-17 00:54:51'),(9,'S',1,'2017-07-16 16:56:22','2017-07-17 00:56:22','2017-07-17 00:56:22');
 /*!40000 ALTER TABLE `tallas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1294,7 +1294,7 @@ CREATE TABLE `ventas_articulos` (
   CONSTRAINT `fk_sucursal_id_venta_articulos` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursales` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_usuario_id_ventas` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fl_cliente_id_ventas` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1303,7 +1303,7 @@ CREATE TABLE `ventas_articulos` (
 
 LOCK TABLES `ventas_articulos` WRITE;
 /*!40000 ALTER TABLE `ventas_articulos` DISABLE KEYS */;
-INSERT INTO `ventas_articulos` VALUES (10,NULL,'2017-07-14 19:06:09',NULL,'p',1,NULL,NULL,'2017-07-15 03:06:09','2017-07-15 03:06:09',NULL);
+INSERT INTO `ventas_articulos` VALUES (10,18,'2017-07-14 19:06:09','','t',1,'Contado',4,'2017-07-15 03:06:09','2017-07-17 03:53:06',15),(11,NULL,'2017-07-16 19:53:07',NULL,'p',1,NULL,NULL,'2017-07-17 03:53:07','2017-07-17 03:53:07',NULL);
 /*!40000 ALTER TABLE `ventas_articulos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1418,4 +1418,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-07-14 22:09:00
+-- Dump completed on 2017-07-17 11:12:33
