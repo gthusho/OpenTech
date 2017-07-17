@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Caja extends Model
 {
@@ -55,5 +56,58 @@ class Caja extends Model
             return ['default','Abierto'];
         else
             return ['danger','Cerrado'];
+    }
+    /*
+     * metodos para obertener informacion para caja
+     */
+    function totalVentasArticulosByType($type){
+        $fi= date('Y-m-d',strtotime($this->registro));
+        $fc= $fi;
+
+        if($this->fcierre!='' || $this->fcierre!=null)
+            $fc= date('Y-m-d',strtotime($this->fcierre));
+
+        $idSearch = VentaArticulo::where(\DB::raw("DATE(registro)"),'>=',$fi)
+            ->where('usuario_id',$this->usuario_id)
+            ->where(\DB::raw("DATE(registro)"),'<=',$fc)
+            ->where('estado','t')
+            ->where('tipo_pago',$type)->get()->lists('id')->toArray();
+
+        if(count($idSearch)<=0)
+            $idSearch = [0];
+
+        $total = DetalleVentaArticulo::whereIn('venta_articulo_id',$idSearch)->sum('precio');
+
+        if($total==0 || $total == null)
+            return 0;
+        else
+            return $total;
+    }
+    function totalVentasArticulos(){
+        $fi= date('Y-m-d',strtotime($this->registro));
+        $fc= $fi;
+
+        if($this->fcierre!='' || $this->fcierre!=null)
+            $fc= date('Y-m-d',strtotime($this->fcierre));
+
+        $idSearch = VentaArticulo::where(\DB::raw("DATE(registro)"),'>=',$fi)
+            ->where('usuario_id',$this->usuario_id)
+            ->where(\DB::raw("DATE(registro)"),'<=',$fc)
+            ->where('estado','t')->get()->lists('id')->toArray();
+
+        if(count($idSearch)<=0)
+            $idSearch = [0];
+
+        $total = DetalleVentaArticulo::whereIn('venta_articulo_id',$idSearch)->sum('precio');
+
+        if($total==0 || $total == null)
+            return 0;
+        else
+            return $total;
+    }
+    function totalIngresos(){
+        $ingresosVentasArticulos = $this->totalVentasArticulos();
+        $ingresosVentasProductos = 0;
+
     }
 }

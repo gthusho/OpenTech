@@ -17,25 +17,6 @@ class vistasCajaController extends Controller
 {
     private $datos=null;
 
-    public function index(Request $request)
-    {
-        if(Auth::user()->can('allow-read'))
-        {
-            $this->datos['brand'] = Tool::brand('Cajas',route('admin.caja.index'),'Caja');
-            $this->datos['cajas'] = Caja::with('sucursal','usuario')
-                ->fecha($request->get('fecha'))
-                ->fecha($request->get('f'))
-                ->usuario($request->get('usuario'))
-                ->sucursal($request->get('sucursal'))
-                ->orderBy('id','desc')
-                ->paginate();
-            $this->genDatos();
-            return view('cpanel.admin.caja.list')->with($this->datos);
-        }
-        \Session::flash('message','No tienes Permiso para visualizar informacion ');
-        return redirect('dashboard');
-    }
-
     function genDatos(){
         $this->datos['usuarios']=User::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
         $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');

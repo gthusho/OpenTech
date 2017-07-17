@@ -89,6 +89,7 @@ Route::group(['prefix'=>'produccion','middleware'=>['auth'],'namespace'=>'Produc
 Route::group(['prefix'=>'ventas','middleware'=>['auth'],'namespace'=>'Sales'], function(){
 
 });
+
 /*
  * servicios para articulos
  */
@@ -121,3 +122,13 @@ Route::get('service/showArticleByCotizacionId/{id}',['as' => 'showArticleByCotiz
  */
 Route::get('service/showArticleByProduccionId/{id}',['as' => 'showArticleByProduccionId', 'uses' => 'ServiceProduccionController@showArticleByProduccionId']);
 
+
+/*
+ * rutas sucursal
+ */
+Route::group(['prefix'=>'','middleware'=>['auth'],'namespace'=>'Sucursal'], function(){
+
+    require __DIR__ . '/routes/sdiego.php';
+    require __DIR__ . '/routes/sliss.php';
+
+});
