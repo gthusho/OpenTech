@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <td><span class="text-custom">Monto Cierre </span></td>
-                <td>{{\App\Tool::convertMoney($caja->cierre)}}</td>
+                <td>{{\App\Tool::convertMoney(($caja->totalIG() + $caja->apertura))}}</td>
             </tr>
         </table>
     </div>

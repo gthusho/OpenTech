@@ -65,7 +65,7 @@
         <table class="table table-hover">
             <tr>
                 <td width="50%" ><h5>Pagos de Articulos</h5></td>
-                <td width="15%" class="text-right"><h5>{{\App\Tool::convertMoney(0)}}</h5></td>
+                <td width="15%" class="text-right"><h5>{{\App\Tool::convertMoney($caja->totalPagoCreArt())}}</h5></td>
             </tr>
             <tr>
                 <td width="50%" ><h5>Pagos de Productos</h5></td>
@@ -73,7 +73,7 @@
             </tr>
             <tr>
                 <td width="50%" class="text-right"><h4>TOTAL</h4></td>
-                <td width="15%" class="text-right"><h4>{{\App\Tool::convertMoney(0)}}</h4></td>
+                <td width="15%" class="text-right"><h4>{{\App\Tool::convertMoney($caja->totalPgVntCredit())}}</h4></td>
             </tr>
         </table>
     </div>
@@ -86,19 +86,19 @@
         <table class="table table-hover">
             <tr>
                 <td width="83%"><h5>Total de Ingresos</h5></td>
-                <td width="20%" class="text-right"><h5>{{\App\Tool::convertMoney(0)}}</h5></td>
+                <td width="20%" class="text-right"><h5>{{\App\Tool::convertMoney($caja->totalIngresos())}}</h5></td>
             </tr>
             <tr>
                 <td width="83%"><h5>Total de Gastos</h5></td>
-                <td width="20%" class="text-right"><h5>{{\App\Tool::convertMoney(0)}}</h5></td>
+                <td width="20%" class="text-right"><h5>{{\App\Tool::convertMoney($caja->totalGastos())}}</h5></td>
             </tr>
             <tr>
                 <td width="83%"><h5>Total (I - G)</h5></td>
-                <td width="20%" class="text-right"><h5>{{\App\Tool::convertMoney(0)}}</h5></td>
+                <td width="20%" class="text-right"><h5>{{\App\Tool::convertMoney($caja->totalIG())}}</h5></td>
             </tr>
             <tr>
                 <td width="83%"><h5>Efectivo en Caja</h5></td>
-                <td width="20%" class="text-right"><h5>{{\App\Tool::convertMoney(1000)}}</h5></td>
+                <td width="20%" class="text-right"><h5>{{\App\Tool::convertMoney(($caja->totalIG() + $caja->apertura))}}</h5></td>
             </tr>
         </table>
     </div>

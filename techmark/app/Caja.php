@@ -105,9 +105,52 @@ class Caja extends Model
         else
             return $total;
     }
-    function totalIngresos(){
-        $ingresosVentasArticulos = $this->totalVentasArticulos();
-        $ingresosVentasProductos = 0;
+    function totalGastos(){
+        $fi= date('Y-m-d',strtotime($this->registro));
+        $fc= $fi;
 
+        if($this->fcierre!='' || $this->fcierre!=null)
+            $fc= date('Y-m-d',strtotime($this->fcierre));
+        $total = Gasto::where('usuario_id',$this->usuario_id)
+            ->where(\DB::raw("DATE(fecha)"),'>=',$fi)
+            ->where(\DB::raw("DATE(fecha)"),'<=',$fc)
+            ->sum('monto');
+        if($total==0 || $total == null)
+            return 0;
+        else
+            return $total;
     }
+    function totalIngresos(){
+        $ingresosVentasArticulos = $this->totalVentasArticulosByType('Contado') ;
+        $ingresosVentasProductos = 0;
+        $ingPagosCreditoArticulos = $this->totalPagoCreArt();
+        $ingPagosCreditoProductos = 0;
+
+        return $ingPagosCreditoArticulos + $ingPagosCreditoProductos + $ingresosVentasArticulos + $ingresosVentasProductos;
+    }
+    function totalIG(){
+        return $this->totalIngresos() - $this->totalGastos();
+    }
+    function totalPgVntCredit(){
+        $pagosProductos = 0;
+        $pagosArticulos = $this->totalPagoCreArt();
+        return $pagosArticulos + $pagosProductos;
+    }
+    function totalPagoCreArt(){
+        $fi= date('Y-m-d',strtotime($this->registro));
+        $fc= $fi;
+
+        if($this->fcierre!='' || $this->fcierre!=null)
+            $fc= date('Y-m-d',strtotime($this->fcierre));
+
+        $total = VentaCreditoArticulo::where(\DB::raw("DATE(fecha)"),'>=',$fi)
+            ->where('usuario_id',$this->usuario_id)
+            ->where(\DB::raw("DATE(fecha)"),'<=',$fc)->sum('abono');
+
+        if($total==0 || $total == null)
+            return 0;
+        else
+            return $total;
+    }
+
 }
