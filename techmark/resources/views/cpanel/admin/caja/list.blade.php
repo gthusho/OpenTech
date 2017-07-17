@@ -39,7 +39,11 @@
     @if(Session::has('message'))
         <link href="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.css')}}" rel="stylesheet" type="text/css">
     @endif
+    <link href="{{url('assets/plugins/timepicker/bootstrap-timepicker.min.css')}}" rel="stylesheet">
+    <link href="{{url('assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}" rel="stylesheet">
     <link href="{{url('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
+    <link href="{{url('assets/plugins/clockpicker/css/bootstrap-clockpicker.min.css')}}" rel="stylesheet">
+    <link href="{{url('assets/plugins/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
 @endsection
 @section('js')
     <script src="{{url('assets/plugins/bootstrap-select/js/bootstrap-select.min.js')}}" type="text/javascript"></script>
@@ -68,13 +72,35 @@
         </script>
     @endif
 
+    <script src="{{url('assets/plugins/moment/moment.js')}}"></script>
+
+    <script src="{{url('assets/plugins/timepicker/bootstrap-timepicker.js')}}"></script>
+    <script src="{{url('assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
     <script src="{{url('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script src="{{url('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.es.js')}}"></script>
+    <script src="{{url('assets/plugins/clockpicker/js/bootstrap-clockpicker.min.js')}}"></script>
+    <script src="{{url('assets/plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+    <script src="{{url('assets/plugins/bootstrap-select/js/bootstrap-select.min.js')}}" type="text/javascript"></script>
+    <script src="{{url('assets/plugins/es.js')}}" type="text/javascript"></script>
+    <script src="{{url('assets/plugins/select2/js/select2.min.js')}}" type="text/javascript"></script>
     <script>
-        jQuery('#datepicker-autoclose').datepicker({
-            autoclose: true,
-            todayHighlight: true,
-            language: 'es'
+        jQuery(document).ready(function() {
+            $(".select2").select2();
+            $('.selectpicker').selectpicker();
+            moment.locale('es');
+            $('.input-daterange-timepicker').daterangepicker({
+                timePicker: false,
+                timePickerIncrement: 30,
+                @if(!Request::get('fecha'))
+                startDate: moment().startOf('month'),
+                endDate: moment().endOf('month'),
+                @endif
+                locale: {
+                    format: 'YYYY/MM/DD'
+                },
+                buttonClasses: ['btn', 'btn-sm'],
+                applyClass: 'btn-default',
+                cancelClass: 'btn-white'
+            });
         });
     </script>
 @endsection

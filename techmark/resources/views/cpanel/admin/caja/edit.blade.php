@@ -4,12 +4,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card-box">
-                <div class="pull-left">
-                    <a href="{{url('reportes/caja/general').'?id='.$caja->id}}"
-                       class="btn btn-inverse  waves-effect waves-light" target="_blank" >Imprimir
-                        <span class="m-l-5"><i class=" icon-printer"></i></span>
-                    </a>
-                </div>
+
                 <div class="pull-right">
                     {!! Form::open(['route'=>['admin.caja.destroy',$caja->id],'method'=>'delete','id'=>'form-delete']) !!}
                     <a class="btn btn-danger" id="btn-delete"> <i class="fa fa-trash"></i> Eliminar</a>

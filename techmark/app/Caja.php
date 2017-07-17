@@ -11,8 +11,18 @@ class Caja extends Model
         'usuario_id','sucursal_id','apertura','cierre','registro','observaciones','fcierre','estado'
     ];
 
+    public  function  setAperturaAttribute($value){
+        if(!empty($value)){
+            $this->attributes['apertura']=\str_replace(",","",$value);
+        }
 
+    }
+    public  function  setCierreAttribute($value){
+        if(!empty($value)){
+            $this->attributes['cierre']=\str_replace(",","",$value);
+        }
 
+    }
     function usuario(){
         return $this->belongsTo('App\User','usuario_id','id');
     }
