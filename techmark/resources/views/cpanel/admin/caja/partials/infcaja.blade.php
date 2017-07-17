@@ -18,7 +18,7 @@
                 <td>{{$caja->fcierre}}</td>
             </tr>
             <tr>
-                <td><span class="text-custom">Usuario Caja</td>
+                <td><span class="text-custom">Usuario Caja</span></td>
                 <td>{{$caja->usuario->nombre}}</td>
             </tr>
             <tr>
