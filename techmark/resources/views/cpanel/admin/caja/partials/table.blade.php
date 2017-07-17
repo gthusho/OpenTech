@@ -22,7 +22,7 @@
             <td>{{$row->observaciones}}</td>
             <td class="text-center">{{date('d/m/Y',strtotime($row->registro))}}</td>
             <td class="text-center">
-                <a href="{{route('admin.caja.edit',$row->id)}}"> <i class=" icon-eye"></i>  </a>
+                <a href="{{route('admin.cajavistas.edit',$row->id)}}"> <i class=" icon-eye"></i>  </a>
             </td>
             <td class="text-center">
                 <a href="{{route('admin.caja.edit',$row->id)}}"> <i class=" icon-pencil"></i>  </a>

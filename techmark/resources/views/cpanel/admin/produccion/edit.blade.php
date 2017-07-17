@@ -16,7 +16,7 @@
                         </span>
             </div>
             <div class="pull-left">
-                    <a href="{{url('reportes/venta').'?id='.$produccion->id}}"
+                    <a href="{{url('reportes/produccion').'?id='.$produccion->id}}"
                        class="btn btn-inverse  waves-effect waves-light" target="_blank" >Imprimir
                         <span class="m-l-5"><i class=" icon-printer"></i></span></a>
             </div>

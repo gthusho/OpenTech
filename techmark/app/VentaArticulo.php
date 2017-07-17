@@ -80,4 +80,24 @@ class VentaArticulo extends Model
     function getTotalDeuda(){
         return $this->totalPrecio() - $this->getTotalAbonos();
     }
+    function totalVenta($query,$fecha){
+        $total = DetalleVentaArticulo::where('venta_articulo_id',$this->id)->where('registro',$this->caja->registro)->sum(totalPrecio());
+        if($total==null || $total=='')
+            return '0' ;
+        else
+            return $total;
+    }
+
+    function activo(){
+        switch ($this->estado){
+            case '1':{
+                return ['default','Activo'];
+            }
+            case '0' :{
+                return ['danger','Inactivo'];
+            }
+            default: return ['inverse','error'];
+        }
+    }
+
 }

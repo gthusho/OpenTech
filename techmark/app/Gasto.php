@@ -38,4 +38,5 @@ class Gasto extends Model
             $query->where('sucursal_id', $x);
         }
     }
+
 }

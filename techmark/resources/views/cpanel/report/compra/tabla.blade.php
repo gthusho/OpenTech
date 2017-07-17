@@ -80,3 +80,15 @@
     @endforeach
 
 </table>
+
+<h3>
+    <table align="right">
+
+        <tr>
+            <td ><strong>TOTAL COMPRA:</strong></td>
+            <td>{{\App\Tool::convertMoney($compra->totalCosto())}}</td>
+        </tr>
+
+
+    </table>
+</h3>

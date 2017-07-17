@@ -1,32 +1,29 @@
 
-    <table  cellspacing="5"  >
-        <tr>
-            <th width="3%" ><strong>#</strong></th>
-            <th width="10%" ><strong>TIPO PAGO</strong></th>
-            <th width="10%" ><strong>CODIGO</strong></th>
-            <th width="10%" ><strong>FECHA</strong></th>
-            <th width="15%" ><strong>SUCURSAL</strong></th>
-            <th width="15%"><strong>ALMACEN</strong></th>
-            <th width="15%"><strong>CLIENTE</strong></th>
-            <th width="13%" ><strong>CANTIDAD ARTICULOS</strong></th>
-            <th width="10%" ><strong>PRECIO TOTAL</strong></th>
+<table  cellspacing="5"  >
+    <tr>
+        <th width="3%" ><strong>#</strong></th>
+        <th width="10%"><strong>FECHA</strong></th>
+        <th width="16%" ><strong>USUARIO</strong></th>
+        <th width="20%" ><strong>SUCURSAL</strong></th>
+        <th width="26%"><strong>OBSERVACION</strong></th>
+        <th width="12%"><strong>APERTURA</strong></th>
+        <th width="12%"><strong>CIERRE</strong></th>
+    </tr>
+    <?php
+    $i=1;
+    ?>
+
+    @foreach($cajas as $row)
+        <tr >
+            <td style="border-bottom: 1px dashed black;">{{$i++}}</td>
+            <td style="border-bottom: 1px dashed black;">{{date('d/m/Y',strtotime($row->registro))}}</td>
+            <td style="border-bottom: 1px dashed black;">{{$row->usuario->nombre}}</td>
+            <td style="border-bottom: 1px dashed black;">{{ucwords($row->sucursal->nombre)}}</td>
+            <td style="border-bottom: 1px dashed black;">{{ucwords($row->observaciones)}}</td>
+            <td style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($row->apertura)}}</td>
+            <td style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($row->cierre)}}</td>
+
         </tr>
-        <?php
-        $i=1;
-        ?>
+    @endforeach
 
-        @foreach($ventas as $row)
-            <tr >
-                <td style="border-bottom: 1px dashed black;">{{$i++}}</td>
-                <td style="border-bottom: 1px dashed black;">{{$row->tipo_pago}}</td>
-                <td style="border-bottom: 1px dashed black;">{{ucwords($row->getcode())}}</td>
-                <td style="border-bottom: 1px dashed black;">{{$row->registro}}</td>
-                <td style="border-bottom: 1px dashed black;">{{ucwords($row->sucursal->nombre)}}</td>
-                <td style="border-bottom: 1px dashed black;">{{ucwords($row->almacen->nombre)}}</td>
-                <td style="border-bottom: 1px dashed black;">{{ucwords($row->cliente->razon_social)}}</td>
-                <td style="border-bottom: 1px dashed black;">{{$row->totalCantidad()}}</td>
-                <td style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($row->totalPrecio())}}</td>
-            </tr>
-        @endforeach
-
-    </table>
+</table>

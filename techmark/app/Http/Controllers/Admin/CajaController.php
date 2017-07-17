@@ -104,7 +104,6 @@ class CajaController extends Controller
             return redirect('dashboard');
         }
     }
-
     public function update(Request $request, $id)
     {
         if(Auth::user()->can('allow-edit')){

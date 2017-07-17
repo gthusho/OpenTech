@@ -19,6 +19,12 @@ class Sucursal extends Model
     function ingreso(){
         return $this->belongsTo('App\Ingreso','id','sucursal_id');
     }
+    function gasto(){
+        return $this->belongsTo('App\Gasto','id','sucursal_id');
+    }
+    function caja(){
+        return $this->belongsTo('App\Caja','id','sucursal_id');
+    }
     function cotizacionarticulo(){
         return $this->belongsTo('App\CotizacionArticulo','id','sucursal_id');
     }
@@ -54,5 +60,12 @@ class Sucursal extends Model
             return false;
         else
         return true;
+    }
+    function totalGasto($query,$fecha){
+        $total = Gasto::where('sucursal_id',$this->id)->sum('monto');
+        if($total==null || $total=='')
+            return '0' ;
+        else
+            return $total;
     }
 }
