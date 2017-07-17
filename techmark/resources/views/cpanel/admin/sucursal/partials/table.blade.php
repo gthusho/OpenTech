@@ -7,7 +7,7 @@
         <th>TELEFONO / CELULAR</th>
         <th>DIRECCION</th>
         <th>ALMACEN </th>
-        <th>ACCIONES</th>
+        <th class="text-center">ACCIONES</th>
     </tr>
     </thead>
     <tbody>
@@ -34,8 +34,8 @@
                 <br>
                 {{$row->almacen->direccion}}
             </td>
-            <td>
-                <a href="{{route('admin.sucursal.edit',$row->id)}}"><i class=" icon-pencil"></i> Editar</a>
+            <td class="text-center">
+                <a href="{{route('admin.sucursal.edit',$row->id)}}" class="btn btn-primary btn-sm"><i class=" icon-pencil fa-2x"></i> </a>
             </td>
         </tr>
     @endforeach

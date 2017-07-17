@@ -4,7 +4,7 @@
         <th>ESTADO</th>
         <th>NOMBRE</th>
         <th>DESCRIPCION</th>
-        <th>ACCIONES</th>
+        <th class="text-center">ACCIONES</th>
     </tr>
     </thead>
     <tbody>
@@ -13,8 +13,8 @@
             <td><span class="label label-{{$row->activo()[0]}}">{{$row->activo()[1]}}</span></td>
             <td>{{($row->nombre)}}</td>
             <td>{{($row->descripcion)}}</td>
-            <td>
-                <a href="{{route('admin.material.edit',$row->id)}}"><i class=" icon-pencil"></i> Editar</a>
+            <td class="text-center">
+                <a href="{{route('admin.material.edit',$row->id)}}" class="btn btn-primary btn-sm"><i class=" icon-pencil fa-2x"></i></a>
             </td>
         </tr>
     @endforeach

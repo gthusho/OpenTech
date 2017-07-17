@@ -7,7 +7,7 @@
                 <th>FECHA</th>
                 <th>MONTO</th>
                 <th>REGISTRO</th>
-                <th>ACCION</th>
+                <th class="text-center">ACCION</th>
             </tr>
             </thead>
 
@@ -25,7 +25,7 @@
                         <td>
                             {{$row->usuario->nombre}}
                         </td>
-                        <td>
+                        <td class="text-center">
                             {!! Form::open(['route'=>['admin.compra-credito.destroy',$row->id],'method'=>'delete']) !!}
                             <button class="btn btn-danger btn-sm" ><i class=" icon-trash"></i> </button>
                             {!! Form::close() !!}

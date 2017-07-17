@@ -9,7 +9,7 @@
                 <th>SUCURSAL</th>
                 <th>CANTIDAD DE ARTICULOS</th>
                 <th>TOTAL COTIZACION</th>
-                <th>ACCIONES</th>
+                <th class="text-center" colspan="2">ACCIONES</th>
             </tr>
             </thead>
 
@@ -31,11 +31,12 @@
                         </td>
 
                         <td>
-                            <a href="{{route('admin.cotizacion.edit',$row->id)}}"> <i class="icon-pencil"></i></a>
+                            <a href="{{route('admin.cotizacion.edit',$row->id)}}" class="btn btn-primary btn-sm">
+                                <i class="icon-pencil fa-2x"></i></a>
                         </td>
                         <td>
-                            <a href="{{url('reportes/cotizacion/articulo').'?id='.$row->id}}"
-                               target="_blank"> <i class=" icon-printer"></i> </a>
+                            <a href="{{url('reportes/cotizacion/articulo').'?id='.$row->id}}" class="btn btn-primary btn-sm"
+                               target="_blank"> <i class=" icon-printer fa-2x"></i> </a>
                         </td>
                     </tr>
                 @endforeach

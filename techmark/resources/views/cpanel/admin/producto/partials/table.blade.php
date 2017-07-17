@@ -5,7 +5,7 @@
         <th>IMAGEN</th>
         <th>DESCRIPCION</th>
         <th>TALLAS</th>
-        <th>ACCIONES</th>
+        <th class="text-center">ACCIONES</th>
     </tr>
     </thead>
     <tbody>
@@ -44,8 +44,8 @@
                 @endif
 
             </td>
-            <td>
-                <a href="{{route('admin.producto.edit',$row->id)}}"><i class=" icon-pencil"></i> Editar</a>
+            <td class="text-center">
+                <a href="{{route('admin.producto.edit',$row->id)}}" class="btn btn-primary btn-sm"><i class=" icon-pencil fa-2x"></i></a>
             </td>
         </tr>
     @endforeach

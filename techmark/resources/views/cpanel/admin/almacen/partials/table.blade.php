@@ -6,7 +6,7 @@
         <th>NOMBRE ALMACEN</th>
         <th>DIRECCION</th>
         <th>CIUDAD</th>
-        <th>ACCIONES</th>
+        <th class="text-center">ACCIONES</th>
     </tr>
     </thead>
     
@@ -18,8 +18,8 @@
             <td>{{($row->nombre)}}</td>
             <td>{{($row->direccion)}}</td>
             <td>{{($row->ciudad->nombre)}}</td>
-            <td>
-                <a href="{{route('admin.almacen.edit',$row->id)}}"> <i class="icon-pencil"></i> Editar </a>
+            <td class="text-center" >
+                <a href="{{route('admin.almacen.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class="icon-pencil fa-2x"></i>  </a>
             </td>
         </tr>
     @endforeach

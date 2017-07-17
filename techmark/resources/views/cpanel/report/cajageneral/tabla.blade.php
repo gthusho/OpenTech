@@ -32,7 +32,7 @@
         </table>
         <table  cellspacing="5">
 
-            @foreach($caja as $row)
+            @foreach($caja->sucursal as $row)
 
             @endforeach
 
@@ -102,7 +102,7 @@
         </tr>
         <tr>
             <td width="83%"><strong>Total de Gastos</strong></td>
-            <td width="20%" ><strong>{{\App\Tool::convertMoney($row->sucursal->totalGasto())}}</strong></td>
+            <td width="20%" ><strong>{{\App\Tool::convertMoney($row->totalGasto())}}</strong></td>
         </tr>
         <tr>
             <td width="83%"><strong>Total (I - G)</strong></td>

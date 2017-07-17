@@ -7,7 +7,7 @@
         <th>NOMBRE COMPLETO</th>
         <th>TELEFONO / CELULAR</th>
         <th>DIRECCION</th>
-        <th>ACCIONES</th>
+        <th class="text-center">ACCIONES</th>
     </tr>
     </thead>
     <tbody>
@@ -25,8 +25,8 @@
                 <i class=" icon-screen-smartphone"></i> {{$row->celular}}
             </td>
             <td>{{$row->direccion}}</td>
-            <td>
-                <a href="{{route('admin.usuario.edit',$row->id)}}"><i class=" icon-pencil"></i> Editar</a>
+            <td class="text-center">
+                <a href="{{route('admin.usuario.edit',$row->id)}}" class="btn btn-primary btn-sm"><i class=" icon-pencil fa-2x"></i></a>
             </td>
         </tr>
     @endforeach

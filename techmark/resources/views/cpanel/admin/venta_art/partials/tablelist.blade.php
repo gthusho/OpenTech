@@ -3,8 +3,6 @@
         <table class="table table-hover" id="tabla">
             <thead>
             <tr>
-
-
                 <th  class='bg-primary'>TIPO PAGO</th>
                 <th>CODIGO</th>
                 <th>FECHA</th>
@@ -13,7 +11,7 @@
                 <th>CLIENTE</th>
                 <th>CANTIDAD ARTICULOS</th>
                 <th>PRECIO TOTAL</th>
-                <th>ACCIONES</th>
+                <th class="text-center" colspan="2">ACCIONES</th>
             </tr>
             </thead>
 
@@ -47,11 +45,11 @@
                             {{\App\Tool::convertMoney($row->totalPrecio())}}
                         </td>
                         <td class="text-center">
-                            <a href="{{route('admin.venta_art.edit',$row->id)}}"> <i class="icon-pencil"></i> </a>
+                            <a href="{{route('admin.venta_art.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class="icon-pencil fa-2x"></i> </a>
                         </td>
                         <td class="text-center">
-                            <a href="{{url('reportes/venta').'?id='.$row->id}}"
-                               target="_blank"> <i class=" icon-printer"></i>  </a>
+                            <a href="{{url('reportes/venta').'?id='.$row->id}}" class="btn btn-primary btn-sm"
+                               target="_blank"> <i class=" icon-printer fa-2x"></i>  </a>
                         </td>
                     </tr>
                 @endforeach

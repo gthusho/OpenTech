@@ -3,10 +3,10 @@
     <tr>
         <th>CATEGORIA</th>
         <th width="30%">ASUNTO</th>
-        <th>MENSAJE</th>
+        <th >MENSAJE</th>
         <th>CONTACTO/UBICACION</th>
         <th>REGISTRO</th>
-        <th>ACCION</th>
+        <th class="text-center">ACCION</th>
     </tr>
     </thead>
     <tbody>
@@ -34,9 +34,8 @@
 
             </td>
 
-            <td>
-
-                <a href="{{route('admin.agenda.edit',$row->id)}}" class="table-action-btn"> <i class="md md-edit"></i></a>
+            <td class="text-center">
+                <a href="{{route('admin.agenda.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class=" icon-pencil fa-2x"></i></a>
             </td>
         </tr>
     @endforeach

@@ -1,19 +1,38 @@
-
-
 <div class="panel panel-border panel-custom">
     <div class="panel-heading">
         <h3 class="panel-title">VENTA {{$venta->getCode()}}</h3>
     </div>
     <div class="panel-body">
-        <ul class="list-unstyled">
-            <li><span class="text-custom">Sucursal: </span>{{$venta->sucursal->nombre}}</li>
-            <li><span class="text-custom">Almacen: </span>{{$venta->almacen->nombre}}</li>
-            <li><span class="text-custom">Cantidad Articulos: </span>{{$venta->totalCantidad()}}</li>
-            <li><span class="text-custom">Precio Venta: </span>{{\App\Tool::convertMoney($venta->totalPrecio())}}</li>
-            <li><span class="text-custom">Saldo Venta: </span>{{\App\Tool::convertMoney($venta->getTotalDeuda())}}</li>
-            <li><span class="text-custom">Fecha Venta: </span>{{date('d-m-Y',strtotime($venta->registro))}}</li>
-            <li><span class="text-custom">Registro la Venta: </span>{{$venta->usuario->nombre}}</li>
-        </ul>
+        <table class="table table-hover">
+            <tr>
+                <td><span class="text-custom">Sucursal </span></td>
+                <td>{{$venta->sucursal->nombre}}</td>
+            </tr>
+            <tr>
+                <td><span class="text-custom">Almacen </span></td>
+                <td>{{$venta->almacen->nombre}}</td>
+            </tr>
+            <tr>
+                <td><span class="text-custom">Cantidad de Articulos </span></td>
+                <td>{{$venta->totalCantidad()}}</td>
+            </tr>
+            <tr>
+                <td><span class="text-custom">Precio Venta </span></td>
+                <td>{{\App\Tool::convertMoney($venta->totalPrecio())}}</td>
+            </tr>
+            <tr>
+                <td><span class="text-custom">Saldo Venta </span></td>
+                <td>{{\App\Tool::convertMoney($venta->getTotalDeuda())}}</td>
+            </tr>
+            <tr>
+                <td><span class="text-custom">Fecha Venta</span></td>
+                <td>{{date('d-m-Y',strtotime($venta->registro))}}</td>
+            </tr>
+            <tr>
+                <td><span class="text-custom">Registro Venta </span></td>
+                <td>{{$venta->usuario->nombre}}</td>
+            </tr>
+        </table>
     </div>
 </div>
 <div class="panel panel-border panel-custom">

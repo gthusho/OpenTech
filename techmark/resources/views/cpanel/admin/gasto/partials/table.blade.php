@@ -6,7 +6,7 @@
         <th>DESCRIPCION</th>
         <th>MONTO</th>
         <th>FECHA</th>
-        <th>Acciones</th>
+        <th class="text-center">Acciones</th>
     </tr>
     </thead>
     <tbody>
@@ -17,8 +17,8 @@
             <td>{{$row->descripcion}}</td>
             <td>{{\App\Tool::convertMoney($row->monto)}}</td>
             <td>{{date('d/m/Y',strtotime($row->fecha))}}</td>
-            <td>
-                <a href="{{route('admin.gasto.edit',$row->id)}}"> <i class=" icon-pencil"></i> Editar </a>
+            <td class="text-center">
+                <a href="{{route('admin.gasto.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class=" icon-pencil fa-2x"></i></a>
             </td>
         </tr>
     @endforeach

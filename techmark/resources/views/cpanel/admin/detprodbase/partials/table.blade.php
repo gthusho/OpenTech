@@ -7,7 +7,7 @@
         <th>TALLAS</th>
         <th>PRECIO</th>
         <th>COSTO</th>
-        <th>ACCIONES</th>
+        <th class="text-center">ACCIONES</th>
     </tr>
     </thead>
     <tbody>
@@ -19,8 +19,8 @@
             <td>{{$row->talla->nombre}}</td>
             <td>{{\App\Tool::convertMoney($row->precio)}}</td>
             <td>{{\App\Tool::convertMoney($row->costo)}}</td>
-            <td>
-                <a href="{{route('admin.detprodbase.edit',$row->id)}}"><i class="icon-pencil"></i>  Editar </a>
+            <td class="text-center">
+                <a href="{{route('admin.detprodbase.edit',$row->id)}}" class="btn btn-primary btn-sm"><i class="icon-pencil fa-2x"></i></a>
             </td>
         </tr>
     @endforeach

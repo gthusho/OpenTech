@@ -12,7 +12,7 @@
         <th>PRECIO #1</th>
         <th>PRECIO #2</th>
         <th>PRECIO #3</th>
-        <th>Acciones</th>
+        <th class="text-center">Acciones</th>
     </tr>
     </thead>
     <tbody>
@@ -29,8 +29,8 @@
             <td>{{\App\Tool::convertMoney($row->precio1)}}</td>
             <td>{{\App\Tool::convertMoney($row->precio2)}}</td>
             <td>{{\App\Tool::convertMoney($row->precio3)}}</td>
-            <td>
-                <a href="{{route('admin.articulo.edit',$row->id)}}"> <i class=" icon-pencil"></i> Editar </a>
+            <td class="text-center">
+                <a href="{{route('admin.articulo.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class=" icon-pencil fa-2x"></i></a>
             </td>
         </tr>
     @endforeach

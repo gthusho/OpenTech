@@ -7,7 +7,7 @@
         <th>EMAIL</th>
         <th>FAX</th>
         <th>DIRECCION</th>
-        <th>ACCIONES</th>
+        <th class="text-center">ACCIONES</th>
     </tr>
     </thead>
     
@@ -23,9 +23,9 @@
             <td>{{$row->email}}</td>
             <td>{{($row->fax)}}</td>
             <td>{{($row->direccion)}}</td>
-            <td>
+            <td class="text-center">
         
-                <a href="{{route('admin.proveedor.edit',$row->id)}}"> <i class="icon-pencil"></i> Editar </a>
+                <a href="{{route('admin.proveedor.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class="icon-pencil fa-2x"></i>  </a>
             </td>
         </tr>
     @endforeach

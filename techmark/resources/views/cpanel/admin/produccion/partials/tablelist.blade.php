@@ -11,7 +11,7 @@
                 <th>A CARGO</th>
                 <th>CANTIDAD ARTICULOS</th>
                 <th>PRECIO TOTAL</th>
-                <th colspan="3">ACCIONES</th>
+                <th class="text-center" colspan="3">ACCIONES</th>
             </tr>
             </thead>
 

@@ -9,7 +9,7 @@
         <th>EMAIL</th>
         <th>REFERENCIA</th>
         <th>FECHA DE INGRESO</th>
-        <th>ACCIONES</th>
+        <th class="text-center">ACCIONES</th>
     </tr>
     </thead>
     
@@ -34,8 +34,8 @@
                 <br><b class="text-primary">Tel:{{$row->tel_referencia}}</b>
             </td>
             <td>{{$row->fecha_ingreso}}</td>
-            <td>
-                <a href="{{route('admin.trabajador.edit',$row->id)}}"> <i class="icon-pencil"></i> Editar </a>
+            <td class="text-center">
+                <a href="{{route('admin.trabajador.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class="icon-pencil fa-2x"></i>  </a>
             </td>
         </tr>
     @endforeach

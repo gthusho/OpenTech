@@ -1,19 +1,38 @@
-
-
 <div class="panel panel-border panel-custom">
     <div class="panel-heading">
         <h3 class="panel-title">COMPRA {{$compra->getCode()}}</h3>
     </div>
     <div class="panel-body">
-        <ul class="list-unstyled">
-            <li><span class="text-custom">Sucursal: </span>{{$compra->sucursal->nombre}}</li>
-            <li><span class="text-custom">Almacen: </span>{{$compra->almacen->nombre}}</li>
-            <li><span class="text-custom">Cantidad Articulos: </span>{{$compra->totalCantidad()}}</li>
-            <li><span class="text-custom">Costo Compra: </span>{{\App\Tool::convertMoney($compra->totalCosto())}}</li>
-            <li><span class="text-custom">Saldo Compra: </span>{{\App\Tool::convertMoney($compra->getTotalDeuda())}}</li>
-            <li><span class="text-custom">Fecha Compra: </span>{{date('d-m-Y',strtotime($compra->fecha))}}</li>
-            <li><span class="text-custom">Registro la Compra: </span>{{$compra->usuario->nombre}}</li>
-        </ul>
+        <table class="table table-hover">
+            <tr>
+                <td><span class="text-custom">Sucursal </span></td>
+                <td>{{$compra->sucursal->nombre}}</td>
+            </tr>
+            <tr>
+                <td><span class="text-custom">Almacen </span></td>
+                <td>{{$compra->almacen->nombre}}</td>
+            </tr>
+            <tr>
+                <td><span class="text-custom">Cantidad de Articulos </span></td>
+                <td>{{$compra->totalCantidad()}}</td>
+            </tr>
+            <tr>
+                <td><span class="text-custom">Costo Compra </span></td>
+                <td>{{\App\Tool::convertMoney($compra->totalCosto())}}</td>
+            </tr>
+            <tr>
+                <td><span class="text-custom">Saldo Compra </span></td>
+                <td>{{\App\Tool::convertMoney($compra->getTotalDeuda())}}</td>
+            </tr>
+            <tr>
+                <td><span class="text-custom">Fecha Compra</span></td>
+                <td>{{date('d-m-Y',strtotime($compra->fecha))}}</td>
+            </tr>
+            <tr>
+                <td><span class="text-custom">Registro Compra </span></td>
+                <td>{{$compra->usuario->nombre}}</td>
+            </tr>
+        </table>
     </div>
 </div>
 <div class="panel panel-border panel-custom">

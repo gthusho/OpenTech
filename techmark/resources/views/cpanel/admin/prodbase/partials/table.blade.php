@@ -5,7 +5,7 @@
         <th>DESCRIPCION</th>
         <th>MATERIALES</th>
         <th>ULTIMO USUARIO</th>
-        <th>ACCIONES</th>
+        <th class="text-center">ACCIONES</th>
     </tr>
     </thead>
     <tbody>
@@ -20,8 +20,8 @@
                 @endforeach
             </td>
             <td>{{($row->usuario->nombre)}}</td>
-            <td>
-                <a href="{{route('admin.prodbase.edit',$row->id)}}"><i class=" icon-pencil"></i> Editar</a>
+            <td class="text-center">
+                <a href="{{route('admin.prodbase.edit',$row->id)}}" class="btn btn-primary btn-sm"><i class=" icon-pencil fa-2x"></i></a>
             </td>
         </tr>
     @endforeach
