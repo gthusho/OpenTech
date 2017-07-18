@@ -17,5 +17,4 @@ class InventarioController extends Controller
         $this->datos['articulos'] = ExistenciaArticulo::orderBy('articulo_id','desc')->paginate(50);
         return view('cpanel.admin.inventario.articulos.list',$this->datos);
     }
-
 }
