@@ -22,7 +22,9 @@ class Marca extends Model
     function articulo(){
     	return $this->hasMany('App\Articulo','id','marca_id');
     }
-
+    function existenciaarticulo(){
+        return $this->belongsTo('App\ExistenciaArituclo','id','marca_id');
+    }
     function scopeMarca($query,$name){
         if(trim($name) != ''){
             $query->where('nombre','like',"%$name%")

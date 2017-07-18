@@ -67,6 +67,9 @@ class Articulo extends Model
     function detalleventaarticulo(){
         return $this->belongsTo('App\DetalleVentaArticulo','id','articulo_id');
     }
+    function existenciaarticulo(){
+        return $this->belongsTo('App\ExistenciaArticulo','id','articulo_id');
+    }
 
     function marca(){
     	return $this->belongsTo('App\Marca','marca_id','id');
@@ -135,10 +138,15 @@ class Articulo extends Model
 
         }
     }
+   /* function scopeArticulo($query,$name){
+        if(trim($name) != ''){
+            $id=Ingresos::articulo($name)->pluck('id');
+            $query->where('articulo_id',$name);
+        }
+    }*/
     function scopeArticulo($query,$name){
         if(trim($name) != ''){
-            /* $id=Ingresos::articulo($name)->pluck('id');*/
-            $query->where('articulo_id',$name);
+            $query->where('nombre', 'like', "%$name%");
         }
     }
     function  deleteOk(){

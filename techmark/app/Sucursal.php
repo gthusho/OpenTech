@@ -40,6 +40,9 @@ class Sucursal extends Model
     function compra(){
         return $this->belongsTo('App\Compra','id','sucursal_id');
     }
+    function existenciaarticulo(){
+        return $this->belongsTo('App\ExistenciaArticulo','id','sucursal_id');
+    }
     function scopeName($query,$name){
         if(trim($name) != ''){
             $query->where('nombre','like',"%$name%");

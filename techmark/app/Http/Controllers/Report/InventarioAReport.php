@@ -27,7 +27,10 @@ class InventarioAReport extends Controller
 
     function __construct(Request $request)
     {
-        $this->datos['articulos'] = ExistenciaArticulo::orderBy('articulo_id','desc')->get();
+        $this->datos['articulos'] = ExistenciaArticulo::with('articulo','almacen','sucursal','categoria')
+            ->sucursal($request->get('sucursal'))
+            ->articulo($request->get('articulo'))
+            ->orderBy('articulo_id','desc')->get();
     }
 
     public function index(Request $request)

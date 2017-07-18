@@ -23,7 +23,9 @@ class CategoriaArticulo extends Model
     function articulo(){
     	return $this->hasMany('App\Articulo','id','categoria_articulo_id');
     }
-
+    function existenciaarticulo(){
+        return $this->hasMany('App\ExistenciaArticulo','id','categoria_articulo_id');
+    }
     function scopeCategoria($query,$name){
         if(trim($name) != ''){
             $query->where('nombre','like',"%$name%");
