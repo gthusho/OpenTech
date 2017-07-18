@@ -70,3 +70,7 @@ Route::get('produccion','ProduccionReport@index');
 
 Route::get('inventario/articulo','InventarioAReport@index');
 Route::get('inventario/articulo/excel','InventarioAReport@excel');
+
+Route::get('productos','ProductosReport@index');
+Route::get('productos/excel','ProductosReport@excel');
+

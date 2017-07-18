@@ -36,11 +36,15 @@
                             {{\App\Tool::convertMoney($row->totalPrecio())}}
                         </td>
                         <td>
-                            <a href="#" class="btn btn-inverse btn-sm">  <i class=" ti-printer fa-2x"></i></a>
+                            <a href="{{url('reportes/produccion').'?id='.$row->id}}"
+                               class="btn btn-inverse  btn-sm" target="_blank" >
+                                <i class=" icon-printer fa-2x"></i></a>
                         </td>
+
                         <td>
                             @if($row->checkState()[1]!='t')
-                            <a href="{{route('admin.produccion.edit',$row->id)}}" class="btn btn-primary btn-sm "> <i class="icon-pencil fa-2x"></i>  </a>
+                            <a href="{{route('admin.produccion.edit',$row->id)}}" class="btn btn-primary btn-sm ">
+                                <i class="icon-pencil fa-2x"></i>  </a>
                             @endif
                         </td>
                         <td>
