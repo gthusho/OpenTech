@@ -4,8 +4,8 @@
     <div class="row">
 
                 @include('cpanel.partials.errors')
-                {!! Form::model($venta,['route'=>'admin.venta_art.store','method'=>'post','files'=>true,'id'=>'form-venta-articulo']) !!}
-                    @include('cpanel.admin.venta_art.partials.data')
+                {!! Form::model($venta,['route'=>'venta_art.store','method'=>'post','files'=>true,'id'=>'form-venta-articulo']) !!}
+                    @include('cpanel.sucursal.venta_art.partials.data')
 
                 {!! Form::close() !!}
         <div class="row m-b-15 col-lg-12">
@@ -16,7 +16,7 @@
                         </span>
             </div>
             <div class="pull-right">
-                {!! Form::open(['route'=>['admin.venta_art.destroy',$venta->id],'method'=>'delete']) !!}
+                {!! Form::open(['route'=>['venta_art.destroy',$venta->id],'method'=>'delete']) !!}
                 <button  class="btn btn-danger waves-effect waves-light" onclick="return confirm('Esta Seguro de Cancelar la Venta?')">
                     <i class="ti-close"></i>
                     Cancelar Venta

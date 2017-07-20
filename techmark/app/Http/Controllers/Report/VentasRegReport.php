@@ -29,6 +29,7 @@ class VentasRegReport extends Controller
             ->where('estado','t')
             ->codigo($request->get('s'))
             ->sucursal($request->get('sucursal'))
+            ->usuario($request->get('usuario'))
             ->cliente($request->get('cliente'))
             ->cliente($request->get('c'))
             ->orderBy('id','desc')->get();

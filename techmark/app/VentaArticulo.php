@@ -100,4 +100,10 @@ class VentaArticulo extends Model
         }
     }
 
+    function scopeUsuario($query,$x){
+        if(trim($x) != ''){
+            $query->where('usuario_id', $x);
+        }
+    }
+
 }

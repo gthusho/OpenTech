@@ -1,56 +1,42 @@
 <?php
 
 namespace App\Http\Controllers\Sucursal;
+
 use App\Articulo;
-use App\Caja;
 use App\Clientes;
-use App\DetalleVentaArticulo;
+use App\CotizacionArticulo;
+use App\DetalleCotizacion;
 use App\Http\Controllers\Controller;
-use App\IAManager;
-use App\Rol;
+use App\Sucursal;
 use App\User;
-use App\VentaArticulo;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Tool;
 use Illuminate\Support\Facades\Auth;
 
-class VentaArticuloController extends Controller
+class CotizacionArticuloController extends Controller
 {
-
     private  $datos = null;
-    private  $venta = null;
+    private  $cotizacion = null;
 
     function __construct()
     {
-        $this->validarCaja();
-        $this->PermisoModulo();
-        $this->setVenta();
+        $this->setCotizacion();
     }
-    function validarCaja(){
-        $user=User::find(Auth::user()->id);
-        $query = Caja::where('usuario_id',Auth::user()->id)->where('sucursal_id',$user->sucursal_id)->where('estado','p')->get();
-        if(Tool::existe($query)){
-            return true;
-        }
-        return false;
-    }
-    function PermisoModulo(){
-        return true;
-    }
-    function setVenta(){
+
+    /**
+     * metodo me devuelve o crea una venta
+     */
+    function setCotizacion(){
         //estados = t=>terminado , p=>pendiente
-        $query = VentaArticulo::where('usuario_id',Auth::user()->id)->where('estado','p')->get();
+        $query = CotizacionArticulo::where('usuario_id',Auth::user()->id)->where('estado','p')->get();
         if(Tool::existe($query)){
-            $this->venta = $query->first();
+            $this->cotizacion = $query->first();
         }else{
             $user=User::find(Auth::user()->id);
-            $this->venta = new  VentaArticulo();
-            $this->venta->usuario_id = $user->id;
-            $this->venta->sucursal_id=$user->sucursal_id;
-            $this->venta->save();
-            $this->venta->almacen_id=$this->venta->sucursal->almacen->id;
-            $this->venta->save();
+            $this->cotizacion = new  CotizacionArticulo();
+            $this->cotizacion->usuario_id = $user->id;
+            $this->cotizacion->sucursal_id=$user->sucursal_id;
+            $this->cotizacion->save();
         }
     }
 
@@ -59,7 +45,66 @@ class VentaArticuloController extends Controller
      * @param Request $request
      * @return array
      */
+    public function getArticuloCotizacion(Request $request){
+        $query = null;
+        switch ($request->get('type')){
+            case "codigo":{
+                $query = Articulo::where('codigo',$request->get('data'))->get();
+                break;
+            }
+            case "barra":{
+                $query = Articulo::where('codigobarra',$request->get('data'))->get();
+                break;
+            }
+            default: abort(1000);
+        }
 
+        if(Tool::existe($query)){
+            $item =  $query->first();
+
+            $data = [
+                'id'=>$item->id,
+                'nombre'=>$item->nombre,
+                'unidad'=>$item->medida->nombre,
+                'categoria'=>$item->categoria->nombre,
+                'material'=>$item->material->nombre,
+                'marca'=>$item->marca->nombre,
+                'precio1'=>Tool::convertMoney($item->precio1),
+                'precio2'=>Tool::convertMoney($item->precio2),
+                'precio3'=>Tool::convertMoney($item->precio3),
+                'stockIventario'=>$item->getStockAll(),
+                'xcantidad'=>'',
+                'xprecio'=>''
+
+            ];
+
+            return $data;
+        }else{
+            abort(1000);
+        }
+
+
+    }
+
+    public function getClienteCotizacion(Request $request){
+        $query = Clientes::where('nit',$request->get('data'))->get();
+
+        if(Tool::existe($query)){
+            $item =  $query->first();
+
+            $data = [
+                'id'=>$item->id,
+                'razon_social'=>$item->razon_social
+
+            ];
+
+            return $data;
+        }else{
+            abort(1000);
+        }
+
+
+    }
 
     /**
      * @param $articulo
@@ -68,14 +113,14 @@ class VentaArticuloController extends Controller
      */
     function setArticulo($articulo_id, $cantidad, $precio){
         $articulo = null;
-        $query = DetalleVentaArticulo::where('venta_articulo_id',$this->venta->id)->where('articulo_id',$articulo_id)->get();
+        $query = DetalleCotizacion::where('cotizacion_id',$this->venta->id)->where('articulo_id',$articulo_id)->get();
         $parametro=Articulo::where('id',$articulo_id)->get()->first();
         if(Tool::existe($query)){
             $articulo = $query->first();
             switch ($precio){
                 case ("1"):
                     $articulo->dp="P1";
-                    $articulo->precio=$parametro->precio1* $cantidad;
+                    $articulo->precio=$parametro->precio1 * $cantidad;
                     break;
                 case ("2"):
                     $articulo->dp="P2";
@@ -85,19 +130,11 @@ class VentaArticuloController extends Controller
                     $articulo->dp="P3";
                     $articulo->precio=$parametro->precio3* $cantidad;
             }
-            /*
-            * modifico la existencia al modificar una venta
-            */
-            if ($this->venta->estado=='t'){
-                $existencia = new IAManager($articulo->articulo_id, $this->venta->sucursal_id, $this->venta->almacen_id);
-                $existencia->UpdateSale($articulo->cantidad,$cantidad);
-            }
-
             $articulo->cantidad = $cantidad;
             $articulo->save();
         }else{
-            $articulo = new  DetalleVentaArticulo();
-            $articulo->venta_articulo_id = $this->venta->id;
+            $articulo = new  DetalleCotizacion();
+            $articulo->cotizacion_id = $this->venta->id;
             $articulo->sucursal_id = $this->venta->sucursal_id;
             $articulo->articulo_id = $articulo_id;
             $articulo->usuario_id = Auth::user()->id;
@@ -109,31 +146,27 @@ class VentaArticuloController extends Controller
                     break;
                 case ("2"):
                     $articulo->dp="P2";
-                    $articulo->precio=$parametro->precio2* $cantidad;
+                    $articulo->precio=$parametro->precio2 * $cantidad;
                     break;
                 case ("3"):
                     $articulo->dp="P3";
-                    $articulo->precio=$parametro->precio3* $cantidad;
+                    $articulo->precio=$parametro->precio3 * $cantidad;
                     break;
             }
-            $articulo->almacen_id = $this->venta->almacen_id;
 
             $articulo->save();
-            if ($this->venta->estado=='t'){
-                $existencia = new IAManager($articulo->articulo_id, $this->venta->sucursal_id, $this->venta->almacen_id);
-                $existencia->down($cantidad);
-            }
         }
     }
+
 
     public function index(Request $request)
     {
 
         if(Auth::user()->can('allow-read')){
-            $this->datos['brand'] = Tool::brand('Ventas de Articulos Registradas',route('venta_art.index'),'Ventas');
-            $this->datos['ventas'] = VentaArticulo::with('cliente','usuario','sucursal','almacen')
-                ->fecha($request->get('fecha'))
+            $this->datos['brand'] = Tool::brand('Cotizaciones Registradas',route('cotizacion.index'),'Cotizaciones');
+            $this->datos['ventas'] = CotizacionArticulo::with('cliente','usuario','sucursal')
                 ->where('estado','t')
+                ->fecha($request->get('fecha'))
                 ->codigo($request->get('s'))
                 ->usuario(Auth::user()->id)
                 ->cliente($request->get('cliente'))
@@ -141,7 +174,8 @@ class VentaArticuloController extends Controller
                 ->orderBy('id','desc')
                 ->paginate();
             $this->genDatos();
-            return view('cpanel.sucursal.venta_art.list',$this->datos);
+           /* dd($this->datos['ventas']);*/
+            return view('cpanel.sucursal.cotizacionarticulo.list',$this->datos);
         }
 
         \Session::flash('message','No tienes Permiso para visualizar informacion ');
@@ -154,25 +188,23 @@ class VentaArticuloController extends Controller
         foreach (Clientes::orderBy('razon_social')->get() as $row)
             $this->datos['clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
     }
-
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Registrar una Venta',route('venta_art.index'),'Ventas de Articulos');
+            $this->datos['brand'] = Tool::brand('Registrar una Cotizacion',route('cotizacion.index'),'Cotizacion');
             //mando la compra pre-registrada y/o obtenida en el constructor
+
+            $this->datos['cotizacion'] = $this->cotizacion;
 
             $this->datos['razon_social'] = null;
             $this->datos['nit'] = null;
-            if($this->venta->cliente_id!='' || $this->venta->cliente_id!=0){
-                $this->datos['razon_social'] = $this->venta->cliente->razon_social;
-                $this->datos['nit'] = $this->venta->cliente->nit;
+            if($this->cotizacion->cliente_id!='' || $this->cotizacion->cliente_id!=0){
+                $this->datos['razon_social'] = $this->cotizacion->cliente->razon_social;
+                $this->datos['nit'] = $this->cotizacion->cliente->nit;
             }
-
-            $this->datos['sucursal']=$this->venta->sucursal->nombre;
-
-            $this->datos['venta'] = $this->venta;
-
-            return view('cpanel.sucursal.venta_art.registro',$this->datos);
+            $user=User::find(Auth::user()->id);
+            $this->datos['sucursal']=$user->sucursal->nombre;
+            return view('cpanel.sucursl.cotizacionarticulo.registro',$this->datos);
         }
 
 
@@ -181,18 +213,11 @@ class VentaArticuloController extends Controller
 
 
     }
-    public function confirmVenta($id){
-        $venta = VentaArticulo::find($id);
-        $venta->estado = 't';
-        $venta->save();
-        /*
-       * egreso items a existencia una vez terminado la venta
-       */
-        foreach ($venta->detalleventas as $row){
-            $existencia = new IAManager($row->articulo_id, $venta->sucursal_id, $venta->almacen_id);
-            $existencia->down($row->cantidad);
-        }
-        return redirect()->route('venta_art.index');
+    public function confirmCotizacion($id){
+        $cotizacion = CotizacionArticulo::find($id);
+        $cotizacion->estado = 't';
+        $cotizacion->save();
+        return redirect()->route('cotizacion.index');
     }
 
     public function store(Request $request)
@@ -200,9 +225,8 @@ class VentaArticuloController extends Controller
         if(Auth::user()->can('allow-insert')){
 
             //actualizo la compra de ser necesario
-            $this->venta->fill($request->all());
-            $this->venta->save();
-
+            $this->cotizacion->fill($request->all());
+            $this->cotizacion->save();
 
             //valido si me envias un articulo id
             if($request->get('articulo_id')!='' && $request->get('xCantidad')!='' && $request->get('xPrecio')!=''){
@@ -228,12 +252,13 @@ class VentaArticuloController extends Controller
     public function edit($id)
     {
         if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Venta',route('venta_art.index'),'Venta de Articulos');
-            $this->datos['venta'] = VentaArticulo::find($id);
+            $user=User::find(Auth::user()->id);
+            $this->datos['brand'] = Tool::brand('Editar Cotizacion',route('cotizacion.index'),'Cotizacion');
+            $this->datos['cotizacion'] = CotizacionArticulo::find($id);
             $this->datos['razon_social'] = $this->datos['venta']->cliente->razon_social;
             $this->datos['nit'] = $this->datos['venta']->cliente->nit;
-            $this->datos['sucursal']=$this->datos['venta']->sucursal->nombre;
-            return view('cpanel.sucursal.venta_art.edit',$this->datos);
+            $this->datos['sucursal']=$user->sucursal->nombre;
+            return view('cpanel.sucursal.cotizacionarticulo.edit',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para editar ');
             return redirect('dashboard');
@@ -245,10 +270,9 @@ class VentaArticuloController extends Controller
     {
         if(Auth::user()->can('allow-edit')){
             //actualizo la compra de ser necesario
-            $this->venta = VentaArticulo::find($id);
-            $this->venta->cliente_id = $request->get('cliente_id');
-            $this->venta->tipo_pago = $request->get('tipo_pago');
-            $this->venta->observaciones = $request->get('observaciones');
+            $this->cotizacion = CotizacionArticulo::find($id);
+            $this->cotizacion->fill($request->all());
+            $this->cotizacion->save();
 
 
             //valido si me envias un articulo id
@@ -274,13 +298,12 @@ class VentaArticuloController extends Controller
     {
 
         if(Auth::user()->can('allow-delete')) {
-            $venta =  VentaArticulo::find($id);
-            \DB::table('detalles_ventas_articulos')->where('venta_articulo_id',$venta->id)->delete();
-            \DB::table('ventas_credito_articulos')->where('venta_articulo_id',$venta->id)->delete();
-            VentaArticulo::destroy($id);
-            $mensaje = 'La Venta fue Cancelada ';
+            $cotizacion =  CotizacionArticulo::find($id);
+            \DB::table('detalles_cotizaciones')->where('cotizacion_id',$cotizacion->id)->delete();
+            CotizacionArticulo::destroy($id);
+            $mensaje = 'La Cotizacion fue Cancelada ';
             \Session::flash('message',$mensaje);
-            return redirect()->route('venta_art.index');
+            return redirect()->route('cotizacion.index');
         }
         \Session::flash('message','No tienes Permisos para Borrar informacion');
         return redirect('dashboard');

@@ -24,9 +24,12 @@
         <div class="row">
             <div class="col-lg-6">
                 <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">SUCURSAL QUE REALIZA LA VENTA</legend>
+                    {!! Form::text('sucursal',$sucursal,['class'=>'form-control','disabled','id'=>'sucursal'])!!}
+                </fieldset>
+                <fieldset class="scheduler-border">
                     <legend class="scheduler-border">TIPO VENTA</legend>
                     {!! Form::select('tipo_pago',Config::get('gthusho.tipo_compra'),null,['class'=>'form-control select2','required'])!!}
-
                 </fieldset>
             </div>
             <div class="col-lg-6">

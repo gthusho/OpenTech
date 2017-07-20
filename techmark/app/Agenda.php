@@ -24,4 +24,9 @@ class Agenda extends Model
     function getArchivo(){
         return url(\Config::get('upload.archivos').$this->archivo);
     }
+    function scopeUsuario($query,$name){
+        if(trim($name) != ''){
+            $query->where('usuario_id',$name);
+        }
+    }
 }

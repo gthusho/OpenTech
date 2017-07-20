@@ -66,4 +66,9 @@ class CotizacionArticulo extends Model
             $query->where('cliente_id', $x);
         }
     }
+    function scopeUsuario($query,$x){
+        if(trim($x) != ''){
+            $query->where('usuario_id', $x);
+        }
+    }
 }
