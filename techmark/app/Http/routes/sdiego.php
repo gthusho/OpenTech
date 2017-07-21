@@ -13,7 +13,7 @@ Route::post('confirmCotizacionProducto/{id}',['as' => 'confirmCotizacionProducto
 
 Route::resource('gasto','GastoController');
 
-Route::get('inventario/articulos',['as' => 'inventario.articulos', 'uses' => 'InventarioController@articulos']);
+//Route::get('inventario/articulos',['as' => 'inventario.articulos', 'uses' => 'InventarioController@articulos']);
 
 Route::resource('venta_art','VentaArticuloController');
 
@@ -21,4 +21,5 @@ Route::post('deleteItemsVentaArticulo/{id}',['as' => 'deleteItemsVentaArticulo',
 Route::post('confirmVentaArticulo/{id}',['as' => 'confirmVentaArticulo', 'uses' => 'VentaArticuloController@confirmVenta']);
 
 Route::resource('venta-credito-art','VentaCreditoArticuloController');
+Route::resource('cajavistas','vistasCajaController');
 

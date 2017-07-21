@@ -88,43 +88,4 @@ class CajaController extends Controller
         }
     }
 
-    public function edit($id)
-    {
-        if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Caja',route('caja.index'),'Cajas');
-            $this->datos['caja'] = Caja::find($id);
-            return view('cpanel.sucursal.caja.edit',$this->datos);
-        }else{
-            \Session::flash('message','No tienes Permisos para editar ');
-            return redirect('dashboard');
-        }
-    }
-    public function update(Request $request, $id)
-    {
-        if(Auth::user()->can('allow-edit')){
-            $caja = Caja::find($id);
-            $caja->fill($request->all());
-            $caja->save();
-            \Session::flash('message','Se Actualizo Exitosamente la información');
-            return redirect()->back();
-        }else{
-            \Session::flash('message','No tienes Permisos para editar ');
-            return redirect('dashboard');
-        }
-    }
-
-    public function destroy($id)
-    {
-        if(Auth::user()->can('allow-delete')) {
-            $caja = Caja::find($id);
-            \Session::flash('caja-dead',$caja->id);
-            Caja::destroy($id);
-            $mensaje = 'La cuenta de caja fue eliminada ';
-            \Session::flash('message',$mensaje);
-            return redirect()->route('caja.index');
-        }else{
-            \Session::flash('message','No tienes Permisos para Borrar informacion');
-            return redirect('dashboard');
-        }
-    }
 }

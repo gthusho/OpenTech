@@ -19,9 +19,7 @@ class InventarioController extends Controller
     function articulos(Request $request){
         $this->datos['brand'] = Tool::brand('Stock Articulos',route('inventario.articulos'),'Inventario');
         $this->datos['articulos'] = ExistenciaArticulo::with('articulo','almacen','sucursal','categoria')
-
             ->sucursal($request->get('sucursal'))
-
             ->articulo($request->get('articulo'))
             ->orderBy('articulo_id','desc')
             ->paginate(50);

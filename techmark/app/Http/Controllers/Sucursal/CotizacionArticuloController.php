@@ -113,7 +113,7 @@ class CotizacionArticuloController extends Controller
      */
     function setArticulo($articulo_id, $cantidad, $precio){
         $articulo = null;
-        $query = DetalleCotizacion::where('cotizacion_id',$this->venta->id)->where('articulo_id',$articulo_id)->get();
+        $query = DetalleCotizacion::where('cotizacion_id',$this->cotizacion->id)->where('articulo_id',$articulo_id)->get();
         $parametro=Articulo::where('id',$articulo_id)->get()->first();
         if(Tool::existe($query)){
             $articulo = $query->first();
@@ -134,8 +134,8 @@ class CotizacionArticuloController extends Controller
             $articulo->save();
         }else{
             $articulo = new  DetalleCotizacion();
-            $articulo->cotizacion_id = $this->venta->id;
-            $articulo->sucursal_id = $this->venta->sucursal_id;
+            $articulo->cotizacion_id = $this->cotizacion->id;
+            $articulo->sucursal_id = $this->cotizacion->sucursal_id;
             $articulo->articulo_id = $articulo_id;
             $articulo->usuario_id = Auth::user()->id;
             $articulo->cantidad = $cantidad;
@@ -164,7 +164,7 @@ class CotizacionArticuloController extends Controller
 
         if(Auth::user()->can('allow-read')){
             $this->datos['brand'] = Tool::brand('Cotizaciones Registradas',route('cotizacion.index'),'Cotizaciones');
-            $this->datos['ventas'] = CotizacionArticulo::with('cliente','usuario','sucursal')
+            $this->datos['cotizaciones'] = CotizacionArticulo::with('cliente','usuario','sucursal')
                 ->where('estado','t')
                 ->fecha($request->get('fecha'))
                 ->codigo($request->get('s'))
@@ -203,8 +203,8 @@ class CotizacionArticuloController extends Controller
                 $this->datos['nit'] = $this->cotizacion->cliente->nit;
             }
             $user=User::find(Auth::user()->id);
-            $this->datos['sucursal']=$user->sucursal->nombre;
-            return view('cpanel.sucursl.cotizacionarticulo.registro',$this->datos);
+            $this->datos['sucursal']=$this->cotizacion->sucursal->nombre;
+            return view('cpanel.sucursal.cotizacionarticulo.registro',$this->datos);
         }
 
 
@@ -255,8 +255,8 @@ class CotizacionArticuloController extends Controller
             $user=User::find(Auth::user()->id);
             $this->datos['brand'] = Tool::brand('Editar Cotizacion',route('cotizacion.index'),'Cotizacion');
             $this->datos['cotizacion'] = CotizacionArticulo::find($id);
-            $this->datos['razon_social'] = $this->datos['venta']->cliente->razon_social;
-            $this->datos['nit'] = $this->datos['venta']->cliente->nit;
+            $this->datos['razon_social'] = $this->datos['cotizacion']->cliente->razon_social;
+            $this->datos['nit'] = $this->datos['cotizacion']->cliente->nit;
             $this->datos['sucursal']=$user->sucursal->nombre;
             return view('cpanel.sucursal.cotizacionarticulo.edit',$this->datos);
         }else{

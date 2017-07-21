@@ -49,7 +49,7 @@ class GastoController extends Controller
             $user=User::find(Auth::user()->id);
             $gasto=new Gasto();
             $gasto->fill($request->all());
-            $gasto->usaurio_id=$user->id;
+            $gasto->usuario_id=$user->id;
             $gasto->sucursal_id=$user->sucursal_id;
             $gasto->save();
             return redirect()->route('gasto.index');
