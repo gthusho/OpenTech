@@ -46,7 +46,8 @@ class ServiceArticulosController extends Controller
                 'precio'=>Tool::convertMoney($item->precio1),
                 'stockIventario'=>$item->getStockAll(),
                 'xcantidad'=>'',
-                'xcosto'=>''
+                'xcosto'=>'',
+                'dp'=>'P1'
 
             ];
 
@@ -117,6 +118,7 @@ class ServiceArticulosController extends Controller
             'precio1'=>Tool::convertMoney($item->precio1),
             'precio2'=>Tool::convertMoney($item->precio2),
             'precio3'=>Tool::convertMoney($item->precio3),
+            'dp'=>'P1'
         ];
         return $data;
     }
