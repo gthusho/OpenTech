@@ -22,9 +22,10 @@
                     <a href="{{route('admin.gasto.index')}}" class="waves-effect"><i class=" icon-wallet"></i> <span> Gastos </span> </a>
                 </li>
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="icon-basket"></i><span class="label label-primary pull-right">1</span> <span> Ventas </span>  </a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="icon-basket"></i><span class="label label-primary pull-right">2</span> <span> Ventas </span>  </a>
                     <ul class="list-unstyled">
                         <li><a href="{{route('admin.venta_art.index')}}">Articulos</a></li>
+                        <li><a href="{{route('admin.venta-credito-art.index')}}">Ventas al Credito</a></li>
                     </ul>
                 </li>
                 <li class="has_sub">

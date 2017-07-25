@@ -8,7 +8,7 @@ class CotizacionProducto extends Model
 {
     protected $table = 'cotizaciones_productos';
     protected $fillable = [
-        'registro','usuario_id','cliente_id','sucursal_id'
+        'registro','usuario_id','cliente_id','sucursal_id','fvalides'
     ];
 
 
