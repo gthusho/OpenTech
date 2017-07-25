@@ -4,7 +4,7 @@
         <br>
         <tr>
             <td width="20%">FECHA</td>
-            <td width="35%">{{$cotizacion->registro}}</td>
+            <td width="35%">{{date('d/m/Y',strtotime($cotizacion->fvalides))}}</td>
         </tr>
 
         <tr>
@@ -13,7 +13,7 @@
         </tr>
         <tr>
             <td width="20%">VALIDO HASTA</td>
-            <td width="35%">{{$cotizacion->fvalides}}</td>
+            <td width="35%">{{date('d/m/Y',strtotime($cotizacion->fvalides))}}</td>
         </tr>
     </table>
 </h3>
