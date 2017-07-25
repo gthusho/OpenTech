@@ -11,6 +11,10 @@
             <td width="20%">CODIGO</td>
             <td width="20%">{{$venta->getCode()}}</td>
         </tr>
+        <tr>
+            <td width="20%">VALIDO HASTA</td>
+            <td width="35%">{{$venta->fvalides}}</td>
+        </tr>
     </table>
 </h3>
 

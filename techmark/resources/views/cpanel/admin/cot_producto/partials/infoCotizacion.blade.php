@@ -33,6 +33,14 @@
         <div class="row">
             <div class="col-lg-12">
                 <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">FECHA LIMITE DE VALIDEZ</legend>
+                    {!! Form::text('fvalides',null,['class'=>'form-control','','autocomplete'=>"off",'id'=>"datepicker-autoclose",'data-date-format'=>'yyyy/mm/dd','required'])!!}
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <fieldset class="scheduler-border">
                     <legend class="scheduler-border">PRECIOS Y CANTIDAD</legend>
                     <div class="col-lg-6">
                         <div class="form-group">

@@ -11,6 +11,10 @@
             <td width="20%">CODIGO</td>
             <td width="20%">{{$cotizacion->getCode()}}</td>
         </tr>
+        <tr>
+            <td width="20%">VALIDO HASTA</td>
+            <td width="35%">{{$cotizacion->fvalides}}</td>
+        </tr>
     </table>
 </h3>
 <table width="40%">

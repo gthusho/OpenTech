@@ -15,7 +15,7 @@ class CotizacionArticulo extends Model
 {
     protected $table = 'cotizaciones_articulos';
     protected $fillable = [
-        'registro','usuario_id','cliente_id','sucursal_id','estado'
+        'registro','usuario_id','cliente_id','sucursal_id','estado','fvalides'
     ];
     function detallecotizacion(){
         return $this->hasMany('App\DetalleCotizacion','cotizacion_id','id');
