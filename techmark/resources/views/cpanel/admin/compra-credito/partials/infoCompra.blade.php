@@ -13,6 +13,10 @@
                 <td>{{$compra->almacen->nombre}}</td>
             </tr>
             <tr>
+                <td><span class="text-custom">Proveedor </span></td>
+                <td>{{$compra->proveedor->razon_social}}</td>
+            </tr>
+            <tr>
                 <td><span class="text-custom">Cantidad de Articulos </span></td>
                 <td>{{$compra->totalCantidad()}}</td>
             </tr>
