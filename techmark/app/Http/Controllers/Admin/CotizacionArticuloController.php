@@ -19,7 +19,8 @@ class CotizacionArticuloController extends Controller
 
     function __construct()
     {
-        $this->setVenta();
+
+      $this->setVenta();
     }
 
     /**
@@ -39,18 +40,11 @@ class CotizacionArticuloController extends Controller
 
 
 
-    /**
-     * inicializa datos para los combos
-     */
     function genDataIni(){
         $this->datos['sucursales'] = Sucursal::where('estado',1)->orderBy('nombre')->get()->lists('nombre','id');
     }
 
-    /**
-     * metodo para el ajax del buscador codigo o codigo barra
-     * @param Request $request
-     * @return array
-     */
+
     public function getArticuloCotizacion(Request $request){
         $query = null;
         switch ($request->get('type')){
@@ -112,11 +106,7 @@ class CotizacionArticuloController extends Controller
 
     }
 
-    /**
-     * @param $articulo
-     * @param $cantidad
-     * @param $costo
-     */
+
     function setArticulo($articulo_id, $cantidad, $precio){
         $articulo = null;
         $query = DetalleCotizacion::where('cotizacion_id',$this->venta->id)->where('articulo_id',$articulo_id)->get();
@@ -203,6 +193,7 @@ class CotizacionArticuloController extends Controller
     }
     public function create()
     {
+
         if(Auth::user()->can('allow-insert')){
             $this->datos['brand'] = Tool::brand('Registrar una Cotizacion',route('admin.cotizacion.index'),'Cotizacion');
             //inicializo loscombos
@@ -213,16 +204,18 @@ class CotizacionArticuloController extends Controller
 
             $this->datos['razon_social'] = null;
             $this->datos['nit'] = null;
-            if($this->venta->cliente_id!='' || $this->venta->cliente_id!=0){
+            if($this->venta->cliente_id!='' || $this->venta->cliente_id!=null || $this->venta->cliente_id!=0){
                 $this->datos['razon_social'] = $this->venta->cliente->razon_social;
                 $this->datos['nit'] = $this->venta->cliente->nit;
             }
             return view('cpanel.admin.cotizacionarticulo.registro',$this->datos);
+        }else{
+            \Session::flash('message','No tienes Permisos para agregar registros ');
+            return redirect('dashboard');
         }
 
 
-        \Session::flash('message','No tienes Permisos para agregar registros ');
-        return redirect('dashboard');
+
 
 
     }
@@ -252,22 +245,17 @@ class CotizacionArticuloController extends Controller
 
 
             return redirect()->back();
+        }else{
+            \Session::flash('message','No tienes Permisos para agregar registros ');
+            return redirect('dashboard');
         }
-
-        \Session::flash('message','No tienes Permisos para agregar registros ');
-        return redirect('dashboard');
-
     }
 
-
-    public function show($id)
-    {
-        //
-    }
 
 
     public function edit($id)
     {
+
         if(Auth::user()->can('allow-edit')){
             $this->datos['brand'] = Tool::brand('Editar Cotizacion',route('admin.cotizacion.index'),'Cotizacion');
             $this->genDataIni();

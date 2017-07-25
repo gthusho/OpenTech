@@ -24,6 +24,7 @@ class User extends Authenticatable
         'insert',
         'delete',
         'edit',
+        'sucursal_id'
     ];
 
     /**
