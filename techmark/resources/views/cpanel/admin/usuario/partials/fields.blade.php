@@ -41,9 +41,16 @@
     {!! Form::label('Dirección (*)')!!}
     {!! Form::text('direccion',null,['class'=>'form-control','required'])!!}
 </div>
-<div class="form-group col-lg-12" >
+<div class="form-group col-lg-6" >
     {!! Form::label('Rol (*) ')!!}
-    {!! Form::select('rol_id',$roles,null,['class'=>'form-control select2','required'])!!}
+    {!! Form::select('rol_id',$roles,null,['class'=>'form-control select2','required','id'=>'cargo'])!!}
+</div>
+<?php
+
+?>
+<div class="form-group col-lg-6" >
+    {!! Form::label('Afiliar a: ')!!}
+    {!! Form::select('sucursal_id',$sucursales,null,['class'=>'form-control select2','required','disabled','placeholder'=>'Seleccione la Sucursal','id'=>'sucursal'])!!}
 </div>
 <div class="form-group col-lg-6">
     {!! Form::label('Contraseña (*)')!!}

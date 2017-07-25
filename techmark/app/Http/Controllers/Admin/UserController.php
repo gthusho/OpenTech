@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Rol;
+use App\Sucursal;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -41,6 +42,7 @@ class UserController extends Controller
         if(Auth::user()->can('allow-insert')){
             $this->datos['brand'] = Tool::brand('Editar usuario',route('admin.usuario.index'),'Usuarios');
             $this->datos['roles'] = Rol::where('estado',1)->get()->lists('nombre','id');
+            $this->datos['sucursales'] = Sucursal::where('estado',1)->get()->lists('nombre','id');
             return view('cpanel.admin.usuario.registro',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
@@ -92,6 +94,7 @@ class UserController extends Controller
             $this->datos['brand'] = Tool::brand('Editar usuario',route('admin.usuario.index'),'Usuarios');
             $this->datos['user'] = User::find($id);
             $this->datos['roles'] = Rol::where('estado',1)->get()->lists('nombre','id');
+            $this->datos['sucursales'] = Sucursal::where('estado',1)->get()->lists('nombre','id');
             return view('cpanel.admin.usuario.edit',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para editar ');

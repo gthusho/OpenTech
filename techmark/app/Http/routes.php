@@ -17,7 +17,7 @@ Route::auth();
 Route::get('/dashboard', 'HomeController@index');
 Route::resource('perfil','PerfilController');
 
-Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], function(){
+Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin','user_on'],'namespace'=>'Admin'], function(){
     /*
      * rutas usuarios
      */

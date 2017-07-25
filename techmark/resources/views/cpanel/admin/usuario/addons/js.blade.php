@@ -40,3 +40,23 @@
     });
 </script>
 @endif
+
+<script>
+
+    $('#cargo').on('change', function() {
+        if( this.value =="Sucursal" || this.value =="2" ||  this.value =="sucursal"){
+            $('#sucursal').prop("disabled", false);
+        }else{
+            $('#sucursal').prop("disabled", true);
+        }
+    });
+    $(document).ready(function(){
+        var x = $("#cargo").val();
+        if( x =="sucursal" || x =="Sucursal" || x =="2"){
+            $('#sucursal').prop("disabled", false);
+
+        }else{
+            $('#sucursal').prop("disabled", true);
+        }
+    });
+</script>
