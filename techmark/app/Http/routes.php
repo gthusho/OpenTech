@@ -126,7 +126,7 @@ Route::get('service/showArticleByProduccionId/{id}',['as' => 'showArticleByProdu
 /*
  * rutas sucursal
  */
-Route::group(['prefix'=>'','middleware'=>['auth'],'namespace'=>'Sucursal'], function(){
+Route::group(['prefix'=>'s','middleware'=>['auth'],'namespace'=>'Sucursal'], function(){
 
    // require __DIR__ . '/routes/sdiego.php';
    // require __DIR__ . '/routes/sliss.php';

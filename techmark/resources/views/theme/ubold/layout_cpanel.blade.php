@@ -16,14 +16,14 @@
 
 
     <!-- ========== Left Sidebar Start ========== -->
-   {{--  @can('isAdmin',Auth::user()->rol)
+    @can('isAdmin',Auth::user()->rol)
         @include('theme.ubold.sidebar.admin')
     @endcan
-    @can('isConcesionario',Auth::user()->rol)
-    @include('theme.ubold.sidebar.empresa')
+    @can('isSucursal',Auth::user()->rol)
+    @include('theme.ubold.sidebar.sucursal')
     @endcan
-    --}}
-    @include('theme.ubold.sidebar.admin')
+
+    {{--@include('theme.ubold.sidebar.admin')--}}
     <!-- Left Sidebar End -->
 
     <!-- ============================================================== -->

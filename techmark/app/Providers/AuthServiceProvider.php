@@ -26,6 +26,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
+
+        $gate->define('isAdmin',function($user,$rol){
+            return $user->isSuperAdmin($rol);
+        });
+        $gate->define('isSucursal',function($user,$rol){
+            return $user->isSucursal($rol);
+        });
+
          $gate->define('allow-edit',function($user){
             return $user->allowEdit();
         });

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Caja;
 use App\Http\Requests;
+use App\Tool;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -14,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','is_admin','user_on']);
+        $this->middleware(['auth','user_on']);
     }
 
     /**
@@ -22,8 +25,19 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $datos = null;
     public function index()
     {
-        return view('cpanel.welcome');
+        if(Auth::user()->can('isSucursal',Auth::user()->rol))   {
+            $this->datos['brand'] = Tool::brand('Sucursal '.Auth::user()->sucursal->nombre,url(''),'Informacion Rápida');
+            $this->datos['caja'] = Caja::find(1);
+            return view('cpanel.welcome_sucursal',$this->datos);
+        }
+        elseif (Auth::user()->can('isAdmin',Auth::user()->rol))   {
+            return view('cpanel.welcome');
+        }else{
+            abort(404);
+        }
+
     }
 }

@@ -41,6 +41,9 @@ class User extends Authenticatable
         }
 
     }
+    function sucursal(){
+        return $this->belongsTo('App\Sucursal','sucursal_id','id');
+    }
     function rol(){
         return $this->belongsTo('App\Rol','rol_id','id');
     }
@@ -49,6 +52,18 @@ class User extends Authenticatable
         if(trim($name) != ''){
             $query->where('nombre','like',"%$name%");
         }
+    }
+    /*
+    * metodos para los policy
+    */
+    function isSuperAdmin($rol){
+        return (strtolower($rol->nombre)==strtolower('administrador'));
+
+    }
+
+    function isSucursal($rol){
+        return (strtolower($rol->nombre)==strtolower('Sucursal'));
+
     }
     function allowEdit(){
         return $this->edit==1;
