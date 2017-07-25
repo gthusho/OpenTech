@@ -33,6 +33,7 @@ class ComprasCreditoController extends Controller
                 ->where('estado','t')->where('tipo_compra','Credito')
                 ->codigo($request->get('s'))
                 ->sucursal($request->get('sucursal'))
+                ->proveedor($request->get('proveedor'))
                 ->orderBy('id','desc')
                 ->paginate();
             $this->genDatos();

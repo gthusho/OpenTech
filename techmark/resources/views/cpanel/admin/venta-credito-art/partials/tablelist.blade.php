@@ -6,6 +6,7 @@
                 <th>CODIGO</th>
                 <th>FECHA</th>
                 <th>SUCURSAL</th>
+                <th>CLIENTE</th>
                 <th class="text-right">CANTIDAD ARTICULOS</th>
                 <th class="text-right">COSTO TOTAL</th>
                 <th class="text-right">ABONO</th>
@@ -22,6 +23,7 @@
                             {{date('d/m/Y',strtotime($row->registro))}}
                         </td>
                         <td>{{$row->sucursal->nombre}}</td>
+                        <td>{{$row->cliente->razon_social}}</td>
                         <td class="text-right">{{$row->totalCantidad()}}</td>
                         <td class="text-right">{{\App\Tool::convertMoney($row->totalPrecio())}}</td>
                         <td class="text-right">{{\App\Tool::convertMoney($row->getTotalAbonos())}}</td>

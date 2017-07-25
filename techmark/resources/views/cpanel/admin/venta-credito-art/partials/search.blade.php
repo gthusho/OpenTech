@@ -4,9 +4,17 @@
 
     <div class="form-group">
         <div class="input-group">
-            {!! Form::text('f',null,['class'=>'form-control','','autocomplete'=>"off",'id'=>"datepicker-autoclose",'data-date-format'=>'yyyy/mm/dd'])!!}
+            {!! Form::text('fecha',null,['class'=>'form-control input-daterange-timepicker','required'])!!}
             <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
-        </div><!-- input-group -->
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="medida">Sucursal</label>
+        {!! Form::select('sucursal',$sucursales,null,['class'=>'form-control select2','placeholder'=>'Seleccione una Sucursal'])!!}
+    </div>
+    <div class="form-group">
+        <label class="sr-only" for="medida">Proveedor</label>
+        {!! Form::select('cliente',$clientes,null,['class'=>'form-control select2','placeholder'=>'Seleccione un Cliente'])!!}
     </div>
     <div class="form-group">
         <label for="name"  class="sr-only">Codigo</label>

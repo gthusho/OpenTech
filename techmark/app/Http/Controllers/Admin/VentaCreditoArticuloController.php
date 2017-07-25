@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Clientes;
+use App\Proveedor;
+use App\Sucursal;
 use App\Tool;
 use App\VentaArticulo;
 use App\VentaCreditoArticulo;
@@ -20,12 +23,16 @@ class VentaCreditoArticuloController extends Controller
 
         if(Auth::user()->can('allow-read')){
             $this->datos['brand'] = Tool::brand('Ventas al Credito Registradas',route('admin.venta-credito-art.index'),'Ventas al Credito');
-            $this->datos['ventas'] = VentaArticulo::fecha($request->get('fecha'))
+            $this->datos['ventas'] = VentaArticulo::with('sucursal','cliente')
+                ->fecha($request->get('fecha'))
                 ->where('estado','t')->where('tipo_pago','Credito')
                 ->fecha($request->get('f'))
                 ->codigo($request->get('s'))
+                ->sucursal($request->get('sucursal'))
+                ->cliente($request->get('cliente'))
                 ->orderBy('id','desc')
                 ->paginate();
+            $this->genDatos();
             return view('cpanel.admin.venta-credito-art.list',$this->datos);
         }
 
@@ -33,7 +40,13 @@ class VentaCreditoArticuloController extends Controller
         return redirect('dashboard');
 
     }
+    function genDatos(){
+        $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+        $this->datos['clientes'] = [];
 
+        foreach (Clientes::orderBy('razon_social')->get() as $row)
+            $this->datos['clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
+    }
 
     public function store(Request $request)
     {

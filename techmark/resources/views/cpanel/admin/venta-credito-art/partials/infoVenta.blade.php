@@ -13,6 +13,10 @@
                 <td>{{$venta->almacen->nombre}}</td>
             </tr>
             <tr>
+                <td><span class="text-custom">Ciente </span></td>
+                <td>{{$venta->cliente->razon_social}}</td>
+            </tr>
+            <tr>
                 <td><span class="text-custom">Cantidad de Articulos </span></td>
                 <td>{{$venta->totalCantidad()}}</td>
             </tr>
