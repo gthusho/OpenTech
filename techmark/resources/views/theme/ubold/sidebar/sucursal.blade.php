@@ -7,6 +7,9 @@
                 <li class="has_sub">
                     <a href="{{url('dashboard')}}" class="waves-effect"><i class="ti-home"></i> <span> Inicio </span> </a>
                 </li>
+                <li class="has_sub">
+                    <a href="{{route('s.cliente.index')}}" class="waves-effect"><i class="icon-people"></i> <span> Cliente </span> </a>
+                </li>
                  <li class="text-muted menu-title">Rutas Liss</li>
                 @include('theme.ubold.sidebar.liss')
                 <li class="text-muted menu-title">Rutas Diego</li>
