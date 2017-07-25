@@ -16,8 +16,13 @@
             <td><span class="label label-{{$row->activo()[0]}}">{{$row->activo()[1]}}</span></td>
             <td >
                 {{($row->username)}}
+                <br>
+                @if($row->rol->nombre == "Sucursal")
+                    <a href="{{route('admin.usuario.show',$row->id)}}"  target="_blank"> <i></i>Asignar Permisos</a>
+                @endif
             </td>
             <td>{{$row->rol->nombre}}</td>
+
             <td>{{$row->nombre}}</td>
             <td>
                 <i class=" icon-phone"></i> {{$row->telefono}}

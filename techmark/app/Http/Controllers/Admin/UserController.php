@@ -78,7 +78,16 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        if(Auth::user()->can('allow-edit')){
+            $this->datos['brand'] = Tool::brand('Permisos',route('admin.usuario.index'),'Usuarios');
+            $this->datos['user'] = User::find($id);
+            $this->datos['roles'] = Rol::where('estado',1)->get()->lists('nombre','id');
+            $this->datos['sucursales'] = Sucursal::where('estado',1)->get()->lists('nombre','id');
+            return view('cpanel.admin.usuario.show',$this->datos);
+        }else{
+            \Session::flash('message','No tienes Permisos para editar ');
+            return redirect('dashboard');
+        }
     }
 
     /**
