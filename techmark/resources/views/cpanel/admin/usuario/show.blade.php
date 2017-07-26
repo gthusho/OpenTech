@@ -4,14 +4,25 @@
     <div class="row">
 
         @include('cpanel.partials.errors')
+        {!! Form::open(['route'=>['usuario.permiso',$user->id],'method'=>'POST']) !!}
         @include('cpanel.admin.usuario.partials.data')
-
+        {!! Form::close() !!}
     </div>
 @endsection
 
 @section('css')
-    @include('cpanel.admin.usuario.addons.css')
+    @if(Session::has('message'))
+        <link href="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.css')}}" rel="stylesheet" type="text/css">
+    @endif
 @endsection
 @section('js')
-    @include('cpanel.admin.usuario.addons.js')
+    @if(Session::has('message'))
+        <script src="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.min.js')}}"></script>
+        <script>
+            $(window).load(function(){
+                swal("{!! Session::get('message') !!}");
+            });
+
+        </script>
+    @endif
 @endsection

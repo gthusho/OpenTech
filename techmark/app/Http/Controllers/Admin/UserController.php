@@ -81,8 +81,6 @@ class UserController extends Controller
         if(Auth::user()->can('allow-edit')){
             $this->datos['brand'] = Tool::brand('Permisos',route('admin.usuario.index'),'Usuarios');
             $this->datos['user'] = User::find($id);
-            $this->datos['roles'] = Rol::where('estado',1)->get()->lists('nombre','id');
-            $this->datos['sucursales'] = Sucursal::where('estado',1)->get()->lists('nombre','id');
             return view('cpanel.admin.usuario.show',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para editar ');
@@ -161,5 +159,26 @@ class UserController extends Controller
         }
 
 
+    }
+
+    function permiso($id,Request $request){
+
+
+       \DB::table('permisos')->where('usuario_id', $id)->delete();
+        $user = User::find($id);
+       $data = json_encode($request->get('modulo'));
+
+       $json = json_decode($data,true);
+       $modulos = null;
+
+
+       foreach ($json as $row=>$valor){
+           $modulos[]=['modulo_id'=>$valor,'usuario_id'=>$user->id];
+       }
+        if($modulos!=null)
+        \DB::table('permisos')->insert($modulos);
+
+        \Session::flash('message','Se Actualizo Exitosamente la información');
+        return redirect()->back();
     }
 }

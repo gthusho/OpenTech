@@ -62,6 +62,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin','user_on'],'nam
      * Asignacion de tallas
      */
     Route::resource('producto/asignacion/talla','AsignacionTallaProducto');
+    /*
+     * Asignacion de permisos
+     */
+
+    Route::post('usuario/{id}/permiso',['as' => 'usuario.permiso', 'uses' => 'UserController@permiso']);
 
 
 });

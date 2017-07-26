@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -100,5 +101,22 @@ class User extends Authenticatable
             return ['default','Activo'];
         else
             return ['danger','Inactivo'];
+    }
+    function checkAccess($to){
+        $idModulo = Modulos::where('nombre',$to)->get()->first();
+        $listAcess = Permisos::where('usuario_id',$this->id)->get()->lists('modulo_id')->Toarray();
+        if($idModulo==null || $idModulo=='')
+        {
+            $idModulo=0;
+
+        }
+
+        if(in_array($idModulo->id, $listAcess))
+
+            return "checked";
+        else
+            return "";
+
+
     }
 }
