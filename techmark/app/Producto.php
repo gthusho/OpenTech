@@ -29,7 +29,16 @@ class Producto extends Model
             $query->where('descripcion','like',"%$name%");
         }
     }
-
+    function scopeCodigo($query,$name){
+        if(trim($name) != ''){
+            $query->where('codigo','like',"%$name%");
+        }
+    }
+    function scopeBarra($query,$name){
+        if(trim($name) != ''){
+            $query->where('codigobarra','like',"%$name%");
+        }
+    }
     function activo(){
         if($this->estado==1)
             return ['default','Activo'];

@@ -24,6 +24,8 @@ class ProductoController extends Controller
             $this->datos['brand'] = Tool::brand('Productos',route('admin.producto.index'),'Productos');
             $this->datos['productos'] = Producto::with('usuario')
                 ->producto($request->get('s'))
+                ->codigo($request->get('c'))
+                ->barra($request->get('b'))
                 ->orderBy('estado','desc')
                 ->orderBy('descripcion','asc')
                 ->paginate();
