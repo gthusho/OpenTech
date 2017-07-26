@@ -47,6 +47,7 @@ class Producto extends Model
         $num = ExistenciaProducto::where('producto_id',$this->id)->count();
         $num += DetalleVentaProducto::where('producto_id',$this->id)->count();
         $num += IngresosProducto::where('producto_id',$this->id)->count();
+        $num += ProductoTalla::where('producto_id',$this->id)->count();
         if($num>0)
             return false;
         else

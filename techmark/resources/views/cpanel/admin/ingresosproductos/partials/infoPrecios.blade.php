@@ -2,7 +2,7 @@
     <legend class="scheduler-border">DATOS PRECIOS</legend>
     <div class="form-group">
         {!! Form::label('Unidad ')!!}
-        {!! Form::text('Unidad',null,['class'=>'form-control','disabled','id'=>'amedida'])!!}
+        {!! Form::select('Unidad',[],null,['class'=>'form-control select2','id'=>'atalla'])!!}
     </div>
     <div class="form-group">
         {!! Form::label('Cantidad ')!!}

@@ -12,33 +12,33 @@
             <div class="pull-left">
                         <span class="btn btn-primary waves-effect waves-light m-r-5" id="btnConfirmar">
                             <i class="fa fa-check-square-o"></i>
-                            Registrar Produccion
+                            Añadir Productos
                         </span>
             </div>
-            <div class="pull-right">
-                {!! Form::open(['route'=>['admin.produccion.destroy',$produccion->id],'method'=>'delete']) !!}
-                <button  class="btn btn-danger waves-effect waves-light" onclick="return confirm('Esta Seguro de Cancelar la Produccion?')">
-                    <i class="ti-close"></i>
-                    Cancelar Produccion
-                </button>
-                {!! Form::close() !!}
-            </div>
+            {{--<div class="pull-right">--}}
+                {{--{!! Form::open(['route'=>['admin.produccion.destroy',$produccion->id],'method'=>'delete']) !!}--}}
+                {{--<button  class="btn btn-danger waves-effect waves-light" onclick="return confirm('Esta Seguro de Cancelar la Produccion?')">--}}
+                    {{--<i class="ti-close"></i>--}}
+                    {{--Cancelar Produccion--}}
+                {{--</button>--}}
+                {{--{!! Form::close() !!}--}}
+            {{--</div>--}}
         </div>
         {!! Form::open(['route'=>['confirmProduccion',$produccion->id],'method'=>'post','id'=>'confirmar']) !!}
         {!! Form::close() !!}
-        {{--<div class="row">--}}
-            {{--<div class="col-lg-12">--}}
-                {{--<div class="panel panel-border panel-custom">--}}
-                    {{--<div class="panel-heading">--}}
-                        {{--<h3 class="panel-title">ARTICULOS AÑADIDOS A LA PRODUCCION</h3>--}}
-                    {{--</div>--}}
-                    {{--<div class="panel-body">--}}
-                        {{--@include('cpanel.admin.produccion.partials.table')--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-border panel-custom">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">PRODUCTOS TERMINADOS</h3>
+                    </div>
+                    <div class="panel-body">
+                        @include('cpanel.admin.produccion.partials.table')
+                    </div>
+                </div>
 
-            {{--</div>--}}
-        {{--</div>--}}
+            </div>
+        </div>
     </div>
     {{--@include('cpanel.admin.produccion.partials.modals')--}}
 @endsection
