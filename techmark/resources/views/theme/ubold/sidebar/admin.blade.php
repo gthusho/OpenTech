@@ -98,7 +98,11 @@
                     </ul>
                 </li>
                 <li class="has_sub">
-                    <a href="{{route('admin.produccion.index')}}" class="waves-effect"><i class="fa fa-cog fa-spin"></i> <span> Produccion </span> </a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-cog fa-spin"></i><span class="label label-primary pull-right">2</span> <span> Producción </span>  </a>
+                    <ul class="list-unstyled">
+                        <a href="{{route('admin.produccion.index')}}" ><span> Producir </span> </a>
+                        <a href="{{route('admin.ingresar.productos.index')}}">Ingresos Productos</a>
+                    </ul>
                 </li>
                 <li class="text-muted menu-title">Configuraciones Sistemas</li>
                 <li class="has_sub">

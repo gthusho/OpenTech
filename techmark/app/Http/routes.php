@@ -67,7 +67,10 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin','user_on'],'nam
      */
 
     Route::post('usuario/{id}/permiso',['as' => 'usuario.permiso', 'uses' => 'UserController@permiso']);
-
+    /*
+     * produccion ingresos
+     */
+    Route::resource('ingresar/productos','IngresosProductosController');
 
 });
 
