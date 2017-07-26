@@ -1,11 +1,17 @@
-
-{!! Form::model(Request::all(), ['route' => ['admin.producto.index'],'method'=>'GET']) !!}
-        <div class="form-group">
-            <div class="input-group">
-                {!!  Form::text('s',null,['class'=>"form-control" ,'placeholder'=>"Buscar "]) !!}
-                <span class="input-group-btn">
-                    <button type="button" class="btn waves-effect waves-light btn-primary"><i class="fa fa-search"></i></button>
-                </span>
-            </div>
-        </div> <!-- form-group -->
+<div class=" m-b-30 pull-right">
+{!! Form::model(Request::all(), ['route' => ['admin.producto.index'],'method'=>'GET','class'=>'form-inline']) !!}
+    <div class="form-group">
+        <label for="descripcion"  class="sr-only">Descripcion</label>
+        {!! Form::text('s',null,['placeholder'=>'Buscar por Descripcion...','class'=>'form-control']) !!}
+    </div>
+<div class="form-group">
+    <label for="codigo"  class="sr-only">Codigo</label>
+    {!! Form::text('c',null,['placeholder'=>'codigo...','class'=>'form-control']) !!}
+</div>
+<div class="form-group">
+    <label for="barra"  class="sr-only">Codigo de Barra</label>
+    {!! Form::text('b',null,['placeholder'=>'codigo de barra...','class'=>'form-control']) !!}
+</div>
+    <button type="submit" class="btn btn-primary waves-effect waves-light m-l-10 btn-md">Buscar</button>
 {!! Form::close() !!}
+</div>

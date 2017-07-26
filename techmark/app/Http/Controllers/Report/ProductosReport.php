@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Report;
 use App\Http\Controllers\Controller;
 use App\Producto;
 use App\Proveedor;
+use App\Talla;
 use App\ToolPDF;
 use App\User;
 use Elibyy\TCPDF\TCPDF;
@@ -30,8 +31,13 @@ class ProductosReport extends Controller
     {
         $this->datos['productos'] = Producto::with('usuario')
             ->producto($request->get('s'))
+            ->codigo($request->get('c'))
+            ->barra($request->get('b'))
             ->orderBy('estado','desc')
             ->orderBy('descripcion','asc')->get();
+        $this->datos['tallas'] = Talla::talla($request->get('s'))
+            ->orderBy('estado','desc')
+            ->orderBy('nombre','asc')->get();
     }
     public function index(Request $request)
     {

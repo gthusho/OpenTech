@@ -1,5 +1,4 @@
-
-    <table  cellspacing="5"  >
+<table  cellspacing="5"  >
         <tr>
             <th width="3%" ><strong>#</strong></th>
             <th width="10%" ><strong>TIPO PAGO</strong></th>
