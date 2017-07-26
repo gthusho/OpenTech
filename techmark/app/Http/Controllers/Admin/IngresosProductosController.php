@@ -6,6 +6,7 @@ use App\Compra;
 use App\Http\Controllers\Controller;
 use App\IAManager;
 use App\Ingresos;
+use App\IngresosProducto;
 use App\Produccion;
 use App\Rol;
 use App\Sucursal;
@@ -43,20 +44,6 @@ class IngresosProductosController extends Controller
     }
 
     private $produccion =  null;
-    /**
-     * metodo me devuelve o crea una venta
-     */
-    function setIngreso(){
-        //estados = t=>terminado , p=>pendiente
-        $query = Compra::where('usuario_id',Auth::user()->id)->where('estado','p')->get();
-        if(Tool::existe($query)){
-            $this->compra = $query->first();
-        }else{
-            $this->compra = new  Compra();
-            $this->compra->usuario_id = Auth::user()->id;
-            $this->compra->save();
-        }
-    }
 
 
     function create(Request $request){
@@ -68,7 +55,7 @@ class IngresosProductosController extends Controller
          * si no es un falso verdadero
          */
         if (!Tool::existe($this->produccion) || $this->produccion->terminado ==1 || $this->produccion->estado=='p' ){
-            $this->setIngreso();
+
             return redirect()->route('admin.ingresos.productos.index');
         }
         /*

@@ -11,7 +11,10 @@ class Produccion extends Model
     protected $fillable = [
         'destino','fecha','registro','trabajador_id','usuario_id','inicio','fin','sucursal_id','estado'
     ];
-
+    function productos_terminados()
+    {
+        return $this->hasMany('App\IngresosProducto', 'produccion_id', 'id');
+    }
     function detalle()
     {
         return $this->hasMany('App\DetalleProduccion', 'produccion_id', 'id');

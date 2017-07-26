@@ -18,7 +18,7 @@
 
             <tbody>
                 <?php $i=1; ?>
-                @foreach($produccion->detalle as $row)
+                @foreach($produccion->productos_terminados as $row)
                     <tr class="rows" data-id="{{$row->id}}">
                         <td>{{$i++}}</td>
                         <td>
