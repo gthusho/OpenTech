@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\DetalleCotizacionProducto;
 use App\DetalleProductoBase;
+use App\ProductoBase;
 use App\Tool;
 use Illuminate\Http\Request;
 
@@ -50,6 +52,28 @@ class ServiceDetalleProductoBaseController extends Controller
             'xdescripcion'=>'',
             'xprecio'=>'',
             'elprecio'=>$item->precio
+        ];
+        return $data;
+    }
+    public function productoById($id)
+    {
+
+        $dCotizacionP =  DetalleCotizacionProducto::find($id);
+        $item = ProductoBase::find($dCotizacionP->productos_base_id);
+        $data = [
+            'id'=>$dCotizacionP->id,
+            'producto'=>$item->descripcion,
+            'producto_id'=>$item->id,
+            'talla'=>$dCotizacionP->talla->nombre,
+            'talla_id'=>$dCotizacionP->talla_id,
+            'material'=>$dCotizacionP->material->nombre,
+            'material_id'=>$dCotizacionP->material_id,
+            'costo'=>Tool::convertMoney($dCotizacionP->costo),
+            'precio'=>Tool::convertMoney($dCotizacionP->precio),
+            'xcantidad'=>$dCotizacionP->cantidad,
+            'xdescripcion'=>$dCotizacionP->descripcion,
+            'xprecio'=>$dCotizacionP->precio,
+            'elprecio'=>$dCotizacionP->precio
         ];
         return $data;
     }

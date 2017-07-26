@@ -57,6 +57,8 @@ class CotizacionProductoController extends Controller
         if(Tool::existe($query)){
             $producto = $query->first();
             $producto->cantidad = $cantidad;
+            $producto->precio= $precio ;
+            $producto->descripcion=$descripcion;
             $producto->save();
         }else{
             $producto = new  DetalleCotizacionProducto();
@@ -65,7 +67,7 @@ class CotizacionProductoController extends Controller
             $producto->productos_base_id = $producto_base_id;
             $producto->usuario_id = Auth::user()->id;
             $producto->cantidad = $cantidad;
-            $producto->precio= $precio;
+            $producto->precio= $precio ;
             $producto->material_id=$material_id;
             $producto->talla_id=$talla_id;
             $producto->descripcion=$descripcion;
@@ -201,12 +203,10 @@ class CotizacionProductoController extends Controller
             $this->cotizacion->fill($request->all());
             $this->cotizacion->save();
 
-
             //valido si me envias un articulo id
-            if($request->get('cotizacion_producto_id')!='' && $request->get('xCantidad')!='' && $request->get('xPrecio')!='' && $request->get('material_id')!='' && $request->get('talla_id')!=''){
-                $this->setArticulo($request->get('cotizacion_producto_id'),$request->get('xCantidad'),$request->get('xPrecio'),$request->get('material_id'),$request->get('talla_id'),$request->get('xDescripcion'));
+            if($request->get('producto_id')!='' && $request->get('xCantidad')!='' && $request->get('xPrecio')!='' && $request->get('material_id')!='' && $request->get('talla_id')!=''){
+                $this->setProducto($request->get('producto_id'),$request->get('xCantidad'),$request->get('xPrecio'),$request->get('material_id'),$request->get('talla_id'),$request->get('xDescripcion'));
             }
-
             //actualzamos los datos de ingresos con referencia a los cambios en compra si uera necesario
 
             $this->updateCotizacion();
