@@ -16,7 +16,10 @@
             <td>
                 <img src="{{$row->getImagen()}}"   class="img-thumbnail thumb-lg">
             </td>
-            <td >{{($row->descripcion)}}</td>
+            <td >{{($row->descripcion)}}
+                <br><b>Codigo:</b> {{($row->codigo)}}
+                <br> <b>Codigo Barras:</b>{{($row->codigobarra)}}
+            </td>
             <td >
                 @if($row->tallas->count()>0)
                     <table class="table table-hover">

@@ -9,7 +9,14 @@
     {!! Form::label('Descripcion del Producto (*) ')!!}
     {!! Form::text('descripcion',null,['class'=>'form-control','required'])!!}
 </div>
-
+    <div class="form-group col-lg-6">
+        {!! Form::label('Codigo Producto (*) ')!!}
+        {!! Form::text('codigo',null,['class'=>'form-control','required'])!!}
+    </div>
+    <div class="form-group col-lg-6">
+        {!! Form::label('Codigo de Barras ')!!}
+        {!! Form::text('codigobarra',null,['class'=>'form-control'])!!}
+    </div>
 <div class="form-group col-lg-6">
     {!! Form::label('Fecha de importacion del producto ')!!}
     <div class="input-group">

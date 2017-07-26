@@ -13,7 +13,9 @@ class Producto extends Model
         'registro',
         'estado',
         'usuario_id',
-        'fecha'
+        'fecha',
+        'codigo',
+        'codigobarra'
     ];
 
     function usuario(){
