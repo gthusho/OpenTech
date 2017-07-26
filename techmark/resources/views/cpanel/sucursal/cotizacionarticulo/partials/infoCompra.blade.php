@@ -1,6 +1,6 @@
 <div class="panel panel-border panel-custom">
     <div class="panel-heading">
-        <h3 class="panel-title">VENTA {{$cotizacion->getCode()}}</h3>
+        <h3 class="panel-title">COTIZACION {{$cotizacion->getCode()}}</h3>
     </div>
     <div class="panel-body">
         <div class="row">
@@ -25,9 +25,18 @@
             <div class="col-lg-12">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">SUCURSAL QUE REALIZA LA COTIZACION</legend>
-                    {!! Form::text('sucursal',$sucursal,['class'=>'form-control','disabled','id'=>'crazon'])!!}
+                    {!! Form::text('sucursal',$sucursal,['class'=>'form-control','disabled'])!!}
+
                 </fieldset>
 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border">FECHA LIMITE DE VALIDEZ</legend>
+                    {!! Form::text('fvalides',null,['class'=>'form-control','','autocomplete'=>"off",'id'=>"datepicker-autoclose",'data-date-format'=>'yyyy/mm/dd','required'])!!}
+                </fieldset>
             </div>
         </div>
         <div class="row">

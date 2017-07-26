@@ -9,7 +9,7 @@
                     * Los campos con (*) son obligatorios
                 </p>
                 @include('cpanel.partials.errors')
-                {!! Form::open(['route'=>'gasto.store','method'=>'POST','files'=>true,'id'=>'form-gasto']) !!}
+                {!! Form::open(['route'=>'s.gasto.store','method'=>'POST','files'=>true,'id'=>'form-gasto']) !!}
                     @include('cpanel.sucursal.gasto.partials.fields')
                     <div class="form-group text-right m-b-0">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">

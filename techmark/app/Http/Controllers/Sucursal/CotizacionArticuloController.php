@@ -17,9 +17,10 @@ class CotizacionArticuloController extends Controller
 {
     private  $datos = null;
     private  $cotizacion = null;
-
+    private $permiso = 'cotizacion';
     function __construct()
     {
+        $this->middleware('observador:'.$this->permiso);
         $this->setCotizacion();
     }
 
@@ -163,7 +164,7 @@ class CotizacionArticuloController extends Controller
     {
 
         if(Auth::user()->can('allow-read')){
-            $this->datos['brand'] = Tool::brand('Cotizaciones Registradas',route('cotizacion.index'),'Cotizaciones');
+            $this->datos['brand'] = Tool::brand('Cotizaciones Registradas',route('s.cotizacion.index'),'Cotizaciones');
             $this->datos['cotizaciones'] = CotizacionArticulo::with('cliente','usuario','sucursal')
                 ->where('estado','t')
                 ->fecha($request->get('fecha'))
@@ -191,7 +192,7 @@ class CotizacionArticuloController extends Controller
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Registrar una Cotizacion',route('cotizacion.index'),'Cotizacion');
+            $this->datos['brand'] = Tool::brand('Registrar una Cotizacion',route('s.cotizacion.index'),'Cotizacion');
             //mando la compra pre-registrada y/o obtenida en el constructor
 
             $this->datos['cotizacion'] = $this->cotizacion;
@@ -217,7 +218,7 @@ class CotizacionArticuloController extends Controller
         $cotizacion = CotizacionArticulo::find($id);
         $cotizacion->estado = 't';
         $cotizacion->save();
-        return redirect()->route('cotizacion.index');
+        return redirect()->route('s.cotizacion.index');
     }
 
     public function store(Request $request)
@@ -253,7 +254,7 @@ class CotizacionArticuloController extends Controller
     {
         if(Auth::user()->can('allow-edit')){
             $user=User::find(Auth::user()->id);
-            $this->datos['brand'] = Tool::brand('Editar Cotizacion',route('cotizacion.index'),'Cotizacion');
+            $this->datos['brand'] = Tool::brand('Editar Cotizacion',route('s.cotizacion.index'),'Cotizacion');
             $this->datos['cotizacion'] = CotizacionArticulo::find($id);
             $this->datos['razon_social'] = $this->datos['cotizacion']->cliente->razon_social;
             $this->datos['nit'] = $this->datos['cotizacion']->cliente->nit;
@@ -303,7 +304,7 @@ class CotizacionArticuloController extends Controller
             CotizacionArticulo::destroy($id);
             $mensaje = 'La Cotizacion fue Cancelada ';
             \Session::flash('message',$mensaje);
-            return redirect()->route('cotizacion.index');
+            return redirect()->route('s.cotizacion.index');
         }
         \Session::flash('message','No tienes Permisos para Borrar informacion');
         return redirect('dashboard');

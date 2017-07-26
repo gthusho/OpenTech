@@ -137,7 +137,7 @@ Route::get('service/showArticleByProduccionId/{id}',['as' => 'showArticleByProdu
 Route::group(['prefix'=>'s','middleware'=>['auth','user_on'],'namespace'=>'Sucursal'], function(){
 
     Route::resource('cliente','ClienteController');
-   // require __DIR__ . '/routes/sdiego.php';
+    require __DIR__ . '/routes/sdiego.php';
    // require __DIR__ . '/routes/sliss.php';
 
 });

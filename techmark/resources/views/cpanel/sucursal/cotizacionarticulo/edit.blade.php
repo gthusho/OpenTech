@@ -4,7 +4,7 @@
     <div class="row">
 
         @include('cpanel.partials.errors')
-        {!! Form::model($venta,['route'=>['cotizacion.update',$venta->id],'method'=>'PUT','files'=>true,'id'=>'form-venta-articulo']) !!}
+        {!! Form::model($cotizacion,['route'=>['s.cotizacion.update',$cotizacion->id],'method'=>'PUT','files'=>true,'id'=>'form-cotizacion-articulo']) !!}
         @include('cpanel.sucursal.cotizacionarticulo.partials.data')
 
         {!! Form::close() !!}
@@ -16,14 +16,14 @@
                         </span>
             </div>
             <div class="pull-left">
-                <a href="{{url('reportes/cotizacion/articulo').'?id='.$venta->id}}"
+                <a href="{{url('reportes/cotizacion/articulo').'?id='.$cotizacion->id}}"
                     class="btn btn-inverse  waves-effect waves-light" target="_blank" >Imprimir
                     <span class="m-l-5"><i class=" icon-printer"></i></span>
                 </a>
             </div>
 
             <div class="pull-right">
-                {!! Form::open(['route'=>['cotizacion.destroy',$venta->id],'method'=>'delete']) !!}
+                {!! Form::open(['route'=>['s.cotizacion.destroy',$cotizacion->id],'method'=>'delete']) !!}
                 <button  class="btn btn-danger waves-effect waves-light m-l-5" onclick="return confirm('Esta Seguro de Cancelar la Cotizacion?')">
                     <i class="ti-close"></i>
                     Eliminar Cotizacion
@@ -31,7 +31,7 @@
                 {!! Form::close() !!}
             </div>
         </div>
-        {!! Form::open(['route'=>['confirmCotizacion',$venta->id],'method'=>'post','id'=>'confirmar']) !!}
+        {!! Form::open(['route'=>['confirmCotizacion',$cotizacion->id],'method'=>'post','id'=>'confirmar']) !!}
         {!! Form::close() !!}
         <div class="row">
             <div class="col-lg-12">

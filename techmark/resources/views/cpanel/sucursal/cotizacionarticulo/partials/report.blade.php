@@ -1,7 +1,7 @@
 
 <div class="btn-group pull-left m-t-15">
 
-    <a href="{{route('cotizacion.create')}}" class="btn btn-primary  waves-effect waves-light" >Agregar <span class="m-l-5"><i class="fa fa-plus"></i></span></a>
+    <a href="{{route('s.cotizacion.create')}}" class="btn btn-primary  waves-effect waves-light" >Agregar <span class="m-l-5"><i class="fa fa-plus"></i></span></a>
 </div>
 <div class="btn-group pull-right m-t-15">
     <a href="{{url('reportes/cotizaciones/articulos').\App\Tool::getDataReportQuery()}}" class="btn btn-inverse  waves-effect waves-light" target="_blank" >Imprimir <span class="m-l-5"><i class=" icon-printer"></i></span></a>

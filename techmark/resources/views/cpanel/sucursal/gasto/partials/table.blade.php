@@ -18,7 +18,7 @@
             <td>{{\App\Tool::convertMoney($row->monto)}}</td>
             <td>{{date('d/m/Y',strtotime($row->fecha))}}</td>
             <td class="text-center">
-                <a href="{{route('gasto.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class=" icon-pencil fa-2x"></i></a>
+                <a href="{{route('s.gasto.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class=" icon-pencil fa-2x"></i></a>
             </td>
         </tr>
     @endforeach

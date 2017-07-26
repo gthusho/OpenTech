@@ -35,5 +35,7 @@
         {{--<li><a href="{{route('admin.caja.index')}}">Caja</a></li>--}}
     {{--</ul>--}}
 {{--</li>--}}
-{{--<li><a href="{{route('admin.produccion.index')}}">Produccion</a></li>--}}
+<li><a href="{{route('s.gasto.index')}}">Gasto</a></li>
+<li><a href="{{route('s.cotizacion.index')}}">Cotizaciones Articulos</a></li>
+<li><a href="{{route('s.cot_producto.index')}}">Cotizaciones Productos</a></li>
 

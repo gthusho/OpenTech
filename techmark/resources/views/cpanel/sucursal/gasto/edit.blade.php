@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="card-box">
                 <div class="pull-right">
-                    {!! Form::open(['route'=>['gasto.destroy',$gasto->id],'method'=>'delete','id'=>'form-delete']) !!}
+                    {!! Form::open(['route'=>['s.gasto.destroy',$gasto->id],'method'=>'delete','id'=>'form-delete']) !!}
                     <a class="btn btn-danger" id="btn-delete"> <i class="fa fa-trash"></i> Eliminar</a>
                     {!! Form::close() !!}
                 </div>
@@ -15,7 +15,7 @@
                 </p>
 
                 @include('cpanel.partials.errors')
-                {!! Form::model($gasto,['route'=>['gasto.update',$gasto->id],'method'=>'PUT','files'=>true,'id'=>'form-gasto']) !!}
+                {!! Form::model($gasto,['route'=>['s.gasto.update',$gasto->id],'method'=>'PUT','files'=>true,'id'=>'form-gasto']) !!}
                     @include('cpanel.sucursal.gasto.partials.fields')
                     <div class="form-group text-right m-b-0">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">

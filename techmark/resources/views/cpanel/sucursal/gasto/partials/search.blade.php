@@ -1,6 +1,6 @@
 
 <div class=" m-b-30 pull-right">
-    {!! Form::model(Request::all(), ['route' => ['admin.gasto.index'],'method'=>'GET','class'=>'form-inline']) !!}'
+    {!! Form::model(Request::all(), ['route' => ['s.gasto.index'],'method'=>'GET','class'=>'form-inline']) !!}'
     <div class="form-group">
         <div class="input-group">
             {!! Form::text('fecha',null,['class'=>'form-control input-daterange-timepicker','required'])!!}

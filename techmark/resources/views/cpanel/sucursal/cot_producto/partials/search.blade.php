@@ -1,6 +1,6 @@
 
 <div class=" m-b-30 pull-right">
-    {!! Form::model(Request::all(), ['route' => ['admin.cot_producto.index'],'method'=>'GET','class'=>'form-inline']) !!}
+    {!! Form::model(Request::all(), ['route' => ['s.cot_producto.index'],'method'=>'GET','class'=>'form-inline']) !!}
 
     <div class="form-group">
         <div class="input-group">

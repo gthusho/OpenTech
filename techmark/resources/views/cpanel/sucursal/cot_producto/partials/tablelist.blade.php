@@ -35,7 +35,7 @@
                             {{\App\Tool::convertMoney($row->totalPrecio())}}
                         </td>
                         <td>
-                            <a href="{{route('cot_producto.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class="icon-pencil fa-2x"></i> </a>
+                            <a href="{{route('s.cot_producto.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class="icon-pencil fa-2x"></i> </a>
                         </td>
                         <td>
                             <a href="{{url('reportes/cotizacion/producto').'?id='.$row->id}}" class="btn btn-primary btn-sm"

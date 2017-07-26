@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="row">
-                            @include('cpanel.sucursal.cot_producto.partials.infoProducto')
+                            @include('cpanel.admin.cot_producto.partials.infoProducto')
                         </div>
                         <div class="row">
                             @include('cpanel.admin.cot_producto.partials.operaciones')

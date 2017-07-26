@@ -1,9 +1,9 @@
 <?php
 
-Route::resource('agenda','AgendaController');
 Route::resource('caja','CajaController');
 Route::resource('cotizacion','CotizacionArticuloController');
 
+Route::post('deleteItemsCotizacionArticulo/{id}',['as' => 'deleteItemsCotizacionArticulo', 'uses' => 'DetalleCotAController@deleteItemsCotizacionArticulo']);
 Route::post('confirmCotizacion/{id}',['as' => 'confirmCotizacion', 'uses' => 'CotizacionArticuloController@confirmCotizacion']);
 
 Route::resource('cot_producto','CotizacionProductoController');

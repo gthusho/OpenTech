@@ -1,5 +1,5 @@
 <div class=" m-b-30 pull-right">
-    {!! Form::model(Request::all(), ['route' => ['admin.cotizacion.index'],'method'=>'GET','class'=>'form-inline']) !!}
+    {!! Form::model(Request::all(), ['route' => ['s.cotizacion.index'],'method'=>'GET','class'=>'form-inline']) !!}
 
     <div class="form-group">
         <div class="input-group">

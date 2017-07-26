@@ -3,14 +3,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Buscador de  Articulos</h4>
+                <h4 class="modal-title">Buscador de  Productos</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="input-group">
-                                                        <span class="input-group-btn">
-                                                        <button type="button" class="btn waves-effect waves-light btn-primary" id="buttonKeySearch"><i class="fa fa-search"></i></button>
-                                                        </span>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn waves-effect waves-light btn-primary" id="buttonKeySearch"><i class="fa fa-search"></i></button>
+                        </span>
                         <input type="text" id="xkeySearch" name="snombre" class="form-control" placeholder="Buscar">
                     </div>
 
@@ -19,10 +19,9 @@
                     <table class="table table-hover" >
                         <thead>
                         <tr>
-                            <th>ARTICULO</th>
-                            <th>CATEGORIA</th>
-                            <th>MARCA</th>
+                            <th>PRODUCTO</th>
                             <th>MATERIAL</th>
+                            <th>TALLA</th>
                         </tr>
                         </thead>
 

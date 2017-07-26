@@ -19,9 +19,11 @@ class CotizacionProductoController extends Controller
 {
     private  $datos = null;
     private  $cotizacion = null;
+    private $permiso = 'cotizacion';
 
     function __construct()
     {
+        $this->middleware('observador:'.$this->permiso);
         $this->setCotizacion();
     }
 
@@ -49,6 +51,8 @@ class CotizacionProductoController extends Controller
         if(Tool::existe($query)){
             $producto = $query->first();
             $producto->cantidad = $cantidad;
+            $producto->precio= $precio ;
+            $producto->descripcion=$descripcion;
             $producto->save();
         }else{
             $producto = new  DetalleCotizacionProducto();
@@ -70,7 +74,7 @@ class CotizacionProductoController extends Controller
     {
 
         if(Auth::user()->can('allow-read')){
-            $this->datos['brand'] = Tool::brand('Cotizacion de Productos Registrados',route('cot_producto.index'),'Cotizacion');
+            $this->datos['brand'] = Tool::brand('Cotizacion de Productos Registrados',route('s.cot_producto.index'),'Cotizacion');
             $this->datos['cotizaciones'] = CotizacionProducto::with('cliente','usuario','sucursal')
                 ->fecha($request->get('fecha'))
                 ->where('estado','t')
@@ -98,7 +102,7 @@ class CotizacionProductoController extends Controller
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Registrar una Cotizacion',route('cot_producto.index'),'Cotizacion de Productos');
+            $this->datos['brand'] = Tool::brand('Registrar una Cotizacion',route('s.cot_producto.index'),'Cotizacion de Productos');
             //mando la compra pre-registrada y/o obtenida en el constructor
 
             $this->datos['razon_social'] = null;
@@ -124,7 +128,7 @@ class CotizacionProductoController extends Controller
         $cotizacion = CotizacionProducto::find($id);
         $cotizacion->estado = 't';
         $cotizacion->save();
-        return redirect()->route('cot_producto.index');
+        return redirect()->route('s.cot_producto.index');
     }
 
     public function store(Request $request)
@@ -159,7 +163,7 @@ class CotizacionProductoController extends Controller
     public function edit($id)
     {
         if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Cotizacion',route('cot_producto.index'),'Cotizacion de Productos');
+            $this->datos['brand'] = Tool::brand('Editar Cotizacion',route('s.cot_producto.index'),'Cotizacion de Productos');
             $this->datos['cotizacion'] = CotizacionProducto::find($id);
             $this->datos['razon_social'] = $this->datos['cotizacion']->cliente->razon_social;
             $this->datos['nit'] = $this->datos['cotizacion']->cliente->nit;
@@ -182,8 +186,8 @@ class CotizacionProductoController extends Controller
 
 
             //valido si me envias un articulo id
-            if($request->get('cotizacion_producto_id')!='' && $request->get('xCantidad')!='' && $request->get('xPrecio')!='' && $request->get('material_id')!='' && $request->get('talla_id')!=''){
-                $this->setArticulo($request->get('cotizacion_producto_id'),$request->get('xCantidad'),$request->get('xPrecio'),$request->get('material_id'),$request->get('talla_id'),$request->get('xDescripcion'));
+            if($request->get('producto_id')!='' && $request->get('xCantidad')!='' && $request->get('xPrecio')!='' && $request->get('material_id')!='' && $request->get('talla_id')!=''){
+                $this->setProducto($request->get('producto_id'),$request->get('xCantidad'),$request->get('xPrecio'),$request->get('material_id'),$request->get('talla_id'),$request->get('xDescripcion'));
             }
 
             return redirect()->back();
@@ -208,7 +212,7 @@ class CotizacionProductoController extends Controller
             CotizacionProducto::destroy($id);
             $mensaje = 'La Cotizacion fue eliminada ';
             \Session::flash('message',$mensaje);
-            return redirect()->route('cot_producto.index');
+            return redirect()->route('s.cot_producto.index');
         }
         \Session::flash('message','No tienes Permisos para Borrar informacion');
         return redirect('dashboard');

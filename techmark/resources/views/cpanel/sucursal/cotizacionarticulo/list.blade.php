@@ -63,7 +63,7 @@
         <script>
             $(window).load(function(){
                 swal({
-                    title: "{{Session::get('venta-dead')}}",
+                    title: "{{Session::get('cotizacion-dead')}}",
                     text: "{{Session::get('message')}}",
                     type: "info",
                     showCancelButton: false,

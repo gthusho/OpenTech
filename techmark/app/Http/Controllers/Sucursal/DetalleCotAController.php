@@ -22,19 +22,7 @@ class DetalleCotAController extends Controller
 {
     private  $datos = null;
 
-    public function deleteItemsVentaArticulo($id)
-    {
-        if(Auth::user()->can('allow-delete')) {
-            DetalleCotizacion::destroy($id);
-            return redirect()->back();
-            //return redirect()->route('admin.compra.create');
-        }
-        \Session::flash('message','No tienes Permisos para Borrar informacion');
-        return redirect('dashboard');
-
-    }
-
-    public function deleteItemsCompra($id)
+    public function deleteItemsCotizacionArticulo($id)
     {
         if(Auth::user()->can('allow-delete')) {
             DetalleCotizacion::destroy($id);

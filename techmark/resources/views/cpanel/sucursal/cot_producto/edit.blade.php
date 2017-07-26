@@ -4,7 +4,7 @@
     <div class="row">
 
         @include('cpanel.partials.errors')
-        {!! Form::model($cotizacion,['route'=>['cot_producto.update',$cotizacion->id],'method'=>'PUT','files'=>true,'id'=>'form-cotizacion-producto']) !!}
+        {!! Form::model($cotizacion,['route'=>['s.cot_producto.update',$cotizacion->id],'method'=>'PUT','id'=>'form-cotizacion-producto']) !!}
         @include('cpanel.sucursal.cot_producto.partials.data')
 
         {!! Form::close() !!}
@@ -22,7 +22,7 @@
                 </a>
             </div>
             <div class="pull-right">
-                {!! Form::open(['route'=>['cot_producto.destroy',$cotizacion->id],'method'=>'delete']) !!}
+                {!! Form::open(['route'=>['s.cot_producto.destroy',$cotizacion->id],'method'=>'delete']) !!}
                 <button  class="btn btn-danger waves-effect waves-light" onclick="return confirm('Esta Seguro de Cancelar la Cotizacion?')">
                     <i class="ti-close"></i>
                     Eliminar Cotizacion

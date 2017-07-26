@@ -15,12 +15,18 @@ use Illuminate\Support\Facades\Auth;
 class GastoController extends Controller
 {
     private $datos=null;
+    private $permiso = 'gasto';
+    function __construct()
+    {
+        $this->middleware('observador:'.$this->permiso);
+    }
+
 
     public function index(Request $request)
     {
         if(Auth::user()->can('allow-read'))
         {
-            $this->datos['brand'] = Tool::brand('Gastos',route('gasto.index'),'Caja');
+            $this->datos['brand'] = Tool::brand('Gastos',route('s.gasto.index'),'Caja');
             $this->datos['gastos'] = Gasto::with('sucursal','usuario')
                 ->fecha($request->get('fecha'))
                 ->usuario(Auth::user()->id)
@@ -35,7 +41,7 @@ class GastoController extends Controller
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Agregar Nuevo Gasto',route('gasto.index'),'Gastos');
+            $this->datos['brand'] = Tool::brand('Agregar Nuevo Gasto',route('s.gasto.index'),'Gastos');
             return view('cpanel.sucursal.gasto.registro',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
@@ -52,7 +58,7 @@ class GastoController extends Controller
             $gasto->usuario_id=$user->id;
             $gasto->sucursal_id=$user->sucursal_id;
             $gasto->save();
-            return redirect()->route('gasto.index');
+            return redirect()->route('s.gasto.index');
         }
 
         \Session::flash('message','No tienes Permisos para agregar registros ');
@@ -67,7 +73,7 @@ class GastoController extends Controller
     public function edit($id)
     {
         if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Gasto',route('gasto.index'),'Gastos');
+            $this->datos['brand'] = Tool::brand('Editar Gasto',route('s.gasto.index'),'Gastos');
             $this->datos['gasto'] = Gasto::find($id);
             return view('cpanel.sucursal.gasto.edit',$this->datos);
         }else{
@@ -98,7 +104,7 @@ class GastoController extends Controller
             Gasto::destroy($id);
             $mensaje = 'El gasto fue eliminado ';
             \Session::flash('message',$mensaje);
-            return redirect()->route('gasto.index');
+            return redirect()->route('s.gasto.index');
         }else{
             \Session::flash('message','No tienes Permisos para Borrar informacion');
             return redirect('dashboard');

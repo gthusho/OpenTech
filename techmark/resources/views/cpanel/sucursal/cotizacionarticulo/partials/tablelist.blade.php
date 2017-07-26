@@ -31,7 +31,7 @@
                         </td>
 
                         <td>
-                            <a href="{{route('cotizacion.edit',$row->id)}}" class="btn btn-primary btn-sm">
+                            <a href="{{route('s.cotizacion.edit',$row->id)}}" class="btn btn-primary btn-sm">
                                 <i class="icon-pencil fa-2x"></i></a>
                         </td>
                         <td>
