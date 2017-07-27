@@ -19,6 +19,9 @@ class ServiceProductosController extends Controller
      * @param Request $request
      * @return array
      */
+    private $talla_id = null;
+    private $stock = 0;
+    private $precio = [0,0,0];
     public function productByCode(Request $request){
         $query = null;
         switch ($request->get('type')){
@@ -37,10 +40,15 @@ class ServiceProductosController extends Controller
             $item =  $query->first();
 
             $data = [
-                'id'=>$item->id,
+                'producto_id'=>$item->id,
+                'talla_id'=>$this->talla_id,
                 'nombre'=>$item->descripcion,
-                'tallas'=>$this->tallasToArray($item->tallas),
+                'tallas'=>$this->tallasToHtml($item->tallas),
                 'imagen'=>$item->getImagen(),
+                'stock'=>$this->stock,
+                'precio1'=>Tool::convertMoney($this->precio[0]),
+                'precio2'=>Tool::convertMoney($this->precio[1]),
+                'precio3'=>Tool::convertMoney($this->precio[2]),
             ];
 
             return $data;
@@ -55,10 +63,19 @@ class ServiceProductosController extends Controller
      * @param $tallas
      * @return null
      */
-    function tallasToArray($tallas){
+    function tallasToHtml($tallas){
         $data = null;
+        $b=false;
+
         foreach ($tallas as $row){
-            $data[$row->talla->id]=$row->talla->nombre;
+            if(!$b){
+                $this->talla_id = $row->talla->id;
+                $this->precio[0]= $row->precio1;
+                $this->precio[1]= $row->precio2;
+                $this->precio[2]= $row->precio3;
+                $b=true;
+            }
+            $data .= "<option value='{$row->talla->id}'>{$row->talla->nombre}</option>";
         }
         return $data;
     }

@@ -12,7 +12,7 @@
             <div class="pull-left">
                         <span class="btn btn-primary waves-effect waves-light m-r-5" id="btnConfirmar">
                             <i class="fa fa-check-square-o"></i>
-                            Añadir Productos
+                            Añadir a Inventario
                         </span>
             </div>
             {{--<div class="pull-right">--}}
@@ -33,7 +33,7 @@
                         <h3 class="panel-title">PRODUCTOS TERMINADOS</h3>
                     </div>
                     <div class="panel-body">
-                        @include('cpanel.admin.produccion.partials.table')
+                        @include('cpanel.admin.ingresosproductos.partials.table')
                     </div>
                 </div>
 
@@ -44,8 +44,8 @@
 @endsection
 
 @section('css')
-    @include('cpanel.admin.produccion.addons.css')
+    @include('cpanel.admin.ingresosproductos.addons.css')
 @endsection
 @section('js')
-    @include('cpanel.admin.produccion.addons.js')
+    @include('cpanel.admin.ingresosproductos.addons.js')
 @endsection

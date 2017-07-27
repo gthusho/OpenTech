@@ -131,7 +131,10 @@ Route::get('service/showArticleByCotizacionId/{id}',['as' => 'showArticleByCotiz
  */
 Route::get('service/showArticleByProduccionId/{id}',['as' => 'showArticleByProduccionId', 'uses' => 'ServiceProduccionController@showArticleByProduccionId']);
 
-
+/*
+ * servicios ingresos productos producidos
+ */
+Route::get('service/productByCode',['as' => 'productByCode', 'uses' => 'ServiceProductosController@productByCode']);
 /*
  * rutas sucursal
  */

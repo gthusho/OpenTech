@@ -1,21 +1,21 @@
 <fieldset class="scheduler-border">
-    <legend class="scheduler-border">DATOS ARTICULO</legend>
+    <legend class="scheduler-border">DATOS PRODUCTO</legend>
     <div class="row">
         <div class="form-group col-lg-12">
             {!! Form::label('Nombre ')!!}
-            {!! Form::text('articulo',null,['class'=>'form-control cleanclean','readonly'=>true,'id'=>'anombre'])!!}
+            {!! Form::text('producto',null,['class'=>'form-control cleanclean','readonly'=>true,'id'=>'Pnombre'])!!}
         </div>
     </div>
     <div class="row">
         <div class="col-lg-4">
-            <img src="{{url('system/productos/defaultstore.jpg')}}" alt="" class="img img-thumbnail img-responsive m-t-10 m-l-10">
+            <img id="pimagen" src="{{url('system/productos/defaultstore.jpg')}}" alt="" class="img img-thumbnail img-responsive m-t-10 m-l-10">
         </div>
         <div class="col-lg-8">
            <div class="row">
                <div class="form-group m-t-5">
                    <label for="astock" class="col-md-2">Stok Actual</label>
                    <div class="col-md-10">
-                       {!! Form::text('stock',null,['class'=>'form-control   cleanclean','disabled','id'=>'astock'])!!}
+                       {!! Form::text('stock',null,['class'=>'form-control   cleanclean','disabled','id'=>'pstock'])!!}
                    </div>
                </div>
            </div>
@@ -46,6 +46,6 @@
         </div>
     </div>
 
-        {!! Form::hidden('articulo_id',null,['class'=>'form-control cleanclean','id'=>'aid'])!!}
-
+        {!! Form::hidden('producto_id',null,['class'=>'form-control cleanclean','id'=>'producto_id'])!!}
+        {!! Form::hidden('talla_id',null,['class'=>'form-control cleanclean','id'=>'talla_id'])!!}
 </fieldset>

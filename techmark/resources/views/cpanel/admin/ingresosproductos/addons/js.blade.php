@@ -11,27 +11,7 @@
 </script>
 @if(Request::segment(4)=='edit')
 <script src="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.min.js')}}"></script>
-<script>
-    $('#btn-delete').click(function (e) {
-        swal({
-            title: "Esta usted Seguro?",
-            text: "No podrás recuperar esta informacion",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Si, Estoy seguro!",
-            cancelButtonText: "No, Cancelar !",
-            closeOnConfirm: false,
-            closeOnCancel: false
-        }, function (isConfirm) {
-            if (isConfirm) {
-                $('#form-delete').submit()
-            } else {
-                swal("Cancelado", "Su informacion esta segura", "error");
-            }
-        });
-    });
-</script>
+
 <script>
     $(window).load(function(){
         @if(Session::has('message'))
@@ -85,17 +65,20 @@
 
 <script>
     function genItem(item) {
-        $('#anombre').val(item['nombre']);
-        $('#acategoria').val(item['categoria']);
-        $('#amarca').val(item['marca']);
-        $('#amaterial').val(item['material']);
+        $('#Pnombre').val(item['nombre']);
+        $('#pimagen').attr("src",item['imagen']);
         $('#aprecio1').val(item['precio1']);
         $('#aprecio2').val(item['precio2']);
         $('#aprecio3').val(item['precio3']);
-        $('#astock').val(item['stockIventario']);
-        $('#aid').val(item['id']);
-        $('#amedida').val(item['unidad']);
+        $('#pstock').val(item['stock']);
+        $('#producto_id').val(item['producto_id']);
+        $('#talla_id').val(item['talla_id']);
         $('#xcantidad').val(item['xcantidad']);
+
+        var tallas = item['tallas'];
+        $("#atallas").html('');
+        $("#atallas").html(tallas);
+        $("#atallas").trigger('change');
 
         if(item['dp']!='' || item['dp']!= null){
             $('.cRemove').attr('checked', false);
@@ -104,7 +87,10 @@
 
     }
     function clean() {
+        var img = "{{url('system/productos/defaultstore.jpg')}}";
+        $('#pimagen').attr("src",img);
         $('.cleanclean').val("");
+
     }
     function workAjax(_url,_data,_type) {
         $.ajax({
@@ -139,14 +125,14 @@
 
     $("#xcodigo").on('keyup', function (e) {
         var codigo = $(this).val();
-        var url = "{{route('getArticuloForVenta')}}";
+        var url = "{{route('productByCode')}}";
         if (e.keyCode == 13) {
             workAjax(url,codigo,"codigo")
         }
     });
     $("#xcodigobarra").on('keyup', function (e) {
         var codigo = $(this).val();
-        var url = "{{route('getArticuloForVenta')}}";
+        var url = "{{route('productByCode')}}";
         if (e.keyCode == 13) {
             workAjax(url,codigo,"barra")
         }
