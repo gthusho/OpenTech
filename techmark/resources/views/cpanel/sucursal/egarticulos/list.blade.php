@@ -3,14 +3,14 @@
     @include('cpanel.partials.brand')
     <div class="row">
         <div class="col-sm-12">
-            @include('cpanel.sucursal.venta_art.partials.report')
+            @include('cpanel.admin.egarticulos.partials.report')
 
         </div>
     </div>
     <br>
     <div class="row">
       <div class="col-sm-12">
-          @include('cpanel.sucursal.venta_art.partials.search')
+       @include('cpanel.sucursal.egarticulos.partials.search')
       </div>
     </div>
     <div class="row">
@@ -18,9 +18,7 @@
             <div class="card-box">
                 <div class="table-rep-plugin">
                     <div class="table-responsive" data-pattern="priority-columns">
-
-                       @include('cpanel.sucursal.venta_art.partials.tablelist')
-
+                        @include('cpanel.admin.egarticulos.partials.table')
                     </div>
 
                 </div>
@@ -31,7 +29,7 @@
 
     <div class="col-lg-12">
         <div class="pull-left">
-            {{$ventas->appends(Request::only(['s']))->render()}}
+            {{$egresos->appends(Request::only(['s']))->render()}}
         </div>
     </div>
 @endsection
@@ -56,25 +54,23 @@
     <script>
         $(".select2").select2();
     </script>
-
     @if(Session::has('message'))
         <script src="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.min.js')}}"></script>
         <script>
             $(window).load(function(){
                 swal({
-                    title: "{{Session::get('venta-dead')}}",
+                    title: "{{Session::get('rol-dead')}}",
                     text: "{{Session::get('message')}}",
                     type: "info",
                     showCancelButton: false,
                     cancelButtonClass: 'btn-white btn-md waves-effect',
                     confirmButtonClass: 'btn-info btn-md waves-effect waves-light',
-                    confirmButtonText: 'Info!'
+                    confirmButtonText: 'OK!'
                 });
             });
 
         </script>
     @endif
-
     <script src="{{url('assets/plugins/moment/moment.js')}}"></script>
 
     <script src="{{url('assets/plugins/timepicker/bootstrap-timepicker.js')}}"></script>

@@ -26,7 +26,7 @@
                         <td {!! $cl !!}>
                             {{$row->tipo_pago}}
                             @if($row->tipo_pago == "Credito" && $row->getTotalDeuda()!=0)
-                                <a href="{{route('venta-credito-art.show',$row->id)}}" class="btn btn-xs btn-white" target="_blank"> <i class="fa fa-money"></i> Pagar</a>
+                                <a href="{{route('s.venta-credito-art.show',$row->id)}}" class="btn btn-xs btn-white" target="_blank"> <i class="fa fa-money"></i> Pagar</a>
                             @endif
                         </td>
 
@@ -45,7 +45,7 @@
                             {{\App\Tool::convertMoney($row->totalPrecio())}}
                         </td>
                         <td class="text-center">
-                            <a href="{{route('venta_art.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class="icon-pencil fa-2x"></i> </a>
+                            <a href="{{route('s.venta_art.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class="icon-pencil fa-2x"></i> </a>
                         </td>
                         <td class="text-center">
                             <a href="{{url('reportes/venta').'?id='.$row->id}}" class="btn btn-primary btn-sm"

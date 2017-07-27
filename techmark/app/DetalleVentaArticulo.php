@@ -54,7 +54,11 @@ class DetalleVentaArticulo extends Model
         if(trim($fecha) != ''){
             $date = Tool::getArrayDate($fecha);
             $query->where(\DB::raw('DATE(registro)'),'>=',$date[0])->where(\DB::raw('DATE(registro)'),'<=',$date[1]);
-
-
-}}
+        }
+    }
+    function scopeUsuario($query,$x){
+        if(trim($x) != ''){
+            $query->where('usuario_id', $x);
+        }
+    }
 }

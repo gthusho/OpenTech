@@ -4,7 +4,7 @@
     <div class="row">
 
         @include('cpanel.partials.errors')
-        @include('cpanel.admin.venta-credito-art.partials.data')
+        @include('cpanel.sucursal.venta-credito-art.partials.data')
 
     </div>
 @endsection

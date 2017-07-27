@@ -38,4 +38,9 @@
 <li><a href="{{route('s.gasto.index')}}">Gasto</a></li>
 <li><a href="{{route('s.cotizacion.index')}}">Cotizaciones Articulos</a></li>
 <li><a href="{{route('s.cot_producto.index')}}">Cotizaciones Productos</a></li>
+<li><a href="{{route('s.venta_art.index')}}">Venta Articulos</a></li>
+<li><a href="{{route('s.venta-credito-art.index')}}">Credito Venta Articulos</a></li>
+<li><a href="{{route('s.inventario.articulos')}}">Inventario Articulos</a></li>
+<li><a href="{{route('s.ingresos.articulos.index')}}">Ingresos Articulos</a></li>
+<li><a href="{{route('s.egresos.articulos.index')}}">Egresos Articulos</a></li>
 

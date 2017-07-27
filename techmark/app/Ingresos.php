@@ -26,9 +26,6 @@ class Ingresos extends Model
         }
 
     }
-    function usuario(){
-    return $this->belongsTo('App\User','usuario_id','id');
-}
     function sucursal(){
         return $this->belongsTo('App\Sucursal','sucursal_id','id');
     }

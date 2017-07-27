@@ -20,24 +20,24 @@ class VentaArticuloController extends Controller
 
     private  $datos = null;
     private  $venta = null;
+    private $permiso = 'venta';
 
     function __construct()
     {
+        $this->middleware('observador:'.$this->permiso);
         $this->validarCaja();
-        $this->PermisoModulo();
         $this->setVenta();
     }
+
     function validarCaja(){
         $user=User::find(Auth::user()->id);
         $query = Caja::where('usuario_id',Auth::user()->id)->where('sucursal_id',$user->sucursal_id)->where('estado','p')->get();
-        if(Tool::existe($query)){
-            return true;
+        if(!Tool::existe($query)){
+            \Session::flash('message','No abriste caja ');
+            return redirect('dashboard');
         }
-        return false;
     }
-    function PermisoModulo(){
-        return true;
-    }
+
     function setVenta(){
         //estados = t=>terminado , p=>pendiente
         $query = VentaArticulo::where('usuario_id',Auth::user()->id)->where('estado','p')->get();
@@ -130,7 +130,7 @@ class VentaArticuloController extends Controller
     {
 
         if(Auth::user()->can('allow-read')){
-            $this->datos['brand'] = Tool::brand('Ventas de Articulos Registradas',route('venta_art.index'),'Ventas');
+            $this->datos['brand'] = Tool::brand('Ventas de Articulos Registradas',route('s.venta_art.index'),'Ventas');
             $this->datos['ventas'] = VentaArticulo::with('cliente','usuario','sucursal','almacen')
                 ->fecha($request->get('fecha'))
                 ->where('estado','t')
@@ -149,6 +149,7 @@ class VentaArticuloController extends Controller
 
     }
     function genDatos(){
+        $this->datos['usuario_id']=Auth::user()->id;
         $this->datos['clientes'] = [];
 
         foreach (Clientes::orderBy('razon_social')->get() as $row)
@@ -158,7 +159,7 @@ class VentaArticuloController extends Controller
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Registrar una Venta',route('venta_art.index'),'Ventas de Articulos');
+            $this->datos['brand'] = Tool::brand('Registrar una Venta',route('s.venta_art.index'),'Ventas de Articulos');
             //mando la compra pre-registrada y/o obtenida en el constructor
 
             $this->datos['razon_social'] = null;
@@ -192,7 +193,7 @@ class VentaArticuloController extends Controller
             $existencia = new IAManager($row->articulo_id, $venta->sucursal_id, $venta->almacen_id);
             $existencia->down($row->cantidad);
         }
-        return redirect()->route('venta_art.index');
+        return redirect()->route('s.venta_art.index');
     }
 
     public function store(Request $request)
@@ -228,7 +229,7 @@ class VentaArticuloController extends Controller
     public function edit($id)
     {
         if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Venta',route('venta_art.index'),'Venta de Articulos');
+            $this->datos['brand'] = Tool::brand('Editar Venta',route('s.venta_art.index'),'Venta de Articulos');
             $this->datos['venta'] = VentaArticulo::find($id);
             $this->datos['razon_social'] = $this->datos['venta']->cliente->razon_social;
             $this->datos['nit'] = $this->datos['venta']->cliente->nit;
@@ -280,7 +281,7 @@ class VentaArticuloController extends Controller
             VentaArticulo::destroy($id);
             $mensaje = 'La Venta fue Cancelada ';
             \Session::flash('message',$mensaje);
-            return redirect()->route('venta_art.index');
+            return redirect()->route('s.venta_art.index');
         }
         \Session::flash('message','No tienes Permisos para Borrar informacion');
         return redirect('dashboard');

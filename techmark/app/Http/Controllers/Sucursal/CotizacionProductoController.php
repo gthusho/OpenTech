@@ -28,7 +28,7 @@ class CotizacionProductoController extends Controller
     }
 
     /**
-     * metodo me devuelve o crea una venta
+     * metodo me devuelve o crea una cotizacion
      */
     function setCotizacion(){
         //estados = t=>terminado , p=>pendiente
@@ -93,6 +93,7 @@ class CotizacionProductoController extends Controller
 
     }
     function genDatos(){
+        $this->datos['usuario_id']=Auth::user()->id;
         $this->datos['clientes'] = [];
 
         foreach (Clientes::orderBy('razon_social')->get() as $row)

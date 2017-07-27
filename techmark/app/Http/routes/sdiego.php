@@ -23,3 +23,7 @@ Route::post('confirmVentaArticulo/{id}',['as' => 'confirmVentaArticulo', 'uses' 
 Route::resource('venta-credito-art','VentaCreditoArticuloController');
 Route::resource('cajavistas','vistasCajaController');
 
+Route::get('inventario/articulos',['as' => 's.inventario.articulos', 'uses' => 'InventarioController@articulos']);
+Route::get('ingresos/articulos',['as' => 's.ingresos.articulos.index', 'uses' => 'IngresosController@index']);
+Route::get('egresos/articulos',['as' => 's.egresos.articulos.index', 'uses' => 'DetalleVentaArticuloController@index']);
+

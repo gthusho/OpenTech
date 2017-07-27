@@ -78,6 +78,7 @@ class VentaCreditoArticuloController extends Controller
         \Session::flash('message','No tienes Permisos para agregar registros ');
         return redirect('dashboard');
     }
+
     public function destroy($id)
     {
 

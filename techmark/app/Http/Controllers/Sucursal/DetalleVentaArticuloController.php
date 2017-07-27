@@ -7,6 +7,7 @@ use App\DetalleVentaArticulo;
 use App\IAManager;
 use App\Sucursal;
 use App\Tool;
+use App\User;
 use App\VentaArticulo;
 use Illuminate\Http\Request;
 
@@ -17,6 +18,36 @@ use Illuminate\Support\Facades\Auth;
 class DetalleVentaArticuloController extends Controller
 {
     private  $datos = null;
+    private $permiso = 'inventario';
+    function __construct()
+    {
+        $this->middleware('observador:'.$this->permiso);
+    }
+
+    public function index(Request $request)
+    {
+
+        if(Auth::user()->can('allow-read')){
+            $this->datos['brand'] = Tool::brand('Listado de Ingresos ',route('s.egresos.articulos.index'),'Egresos Articulos');
+            $this->datos['egresos'] = DetalleVentaArticulo::with('articulo','sucursal','almacen')
+                ->fecha($request->get('fecha'))
+                ->usuario(Auth::user()->id)
+                ->articulo($request->get('articulo'))
+                ->orderBy('id','desc')
+                ->paginate();
+            $this->genDatos();
+            return view('cpanel.sucursal.egarticulos.list')->with($this->datos);
+        }
+
+        \Session::flash('message','No tienes Permiso para visualizar informacion ');
+        return redirect('dashboard');
+
+    }
+
+    function genDatos(){
+        $this->datos['usuario_id']=Auth::user()->id;
+        $this->datos['articulos']=Articulo::orderBy('nombre')->pluck('nombre','id');
+    }
 
     public function deleteItemsVentaArticulo($id)
     {

@@ -4,7 +4,7 @@
     <div class="row">
 
         @include('cpanel.partials.errors')
-        {!! Form::model($venta,['route'=>['venta_art.update',$venta->id],'method'=>'PUT','files'=>true,'id'=>'form-venta-articulo']) !!}
+        {!! Form::model($venta,['route'=>['s.venta_art.update',$venta->id],'method'=>'PUT','files'=>true,'id'=>'form-venta-articulo']) !!}
         @include('cpanel.sucursal.venta_art.partials.data')
 
         {!! Form::close() !!}
@@ -22,7 +22,7 @@
             </div>
 
             <div class="pull-right">
-                {!! Form::open(['route'=>['venta_art.destroy',$venta->id],'method'=>'delete']) !!}
+                {!! Form::open(['route'=>['s.venta_art.destroy',$venta->id],'method'=>'delete']) !!}
                 <button  class="btn btn-danger waves-effect waves-light" onclick="return confirm('Esta Seguro de Cancelar la Venta?')">
                     <i class="ti-close"></i>
                     Eliminar Venta

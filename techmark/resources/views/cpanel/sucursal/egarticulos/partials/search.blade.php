@@ -1,5 +1,5 @@
 <div class=" m-b-30 pull-right">
-    {!! Form::model(Request::all(), ['route' => ['s.cotizacion.index'],'method'=>'GET','class'=>'form-inline']) !!}
+    {!! Form::model(Request::all(), ['route' => ['s.egresos.articulos.index'],'method'=>'GET','class'=>'form-inline']) !!}
     <div class="form-group">
         {!! Form::hidden('usuario',$usuario_id,['class'=>'form-control'])!!}
     </div>
@@ -10,15 +10,10 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="name"  class="sr-only">Codigo</label>
-        {!! Form::text('s',null,['placeholder'=>'codigo de Cotizacion','class'=>'form-control']) !!}
-    </div>
-    <div class="form-group">
-        <label class="sr-only" for="sucursal">Cliente</label>
-        {!! Form::select('cliente',$clientes,null,['class'=>'form-control select2','placeholder'=>'Seleccione un Nit...'])!!}
+        <label class="sr-only" for="sucursal">Articulos</label>
+        {!! Form::select('articulo',$articulos,null,['class'=>'form-control select2','placeholder'=>'Seleccione un articulo...'])!!}
     </div>
     <button type="submit" class="btn btn-primary waves-effect waves-light m-l-10 btn-md">Buscar</button>
     {!! Form::close() !!}
-
 
 </div>

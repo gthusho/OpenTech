@@ -172,7 +172,7 @@
     });
     $('#btnActualizar').click(function () {
         clean();
-        $('#form-venta-articulo').submit();
+        $('#form-cotizacion-articulo').submit();
     });
 
     $('#Search').click(function () {

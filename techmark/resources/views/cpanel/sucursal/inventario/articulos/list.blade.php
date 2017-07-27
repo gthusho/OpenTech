@@ -1,16 +1,19 @@
 @extends('theme.ubold.layout_cpanel')
 @section('content')
     @include('cpanel.partials.brand')
-    <div class="row">
-        <div class="col-sm-12">
-            @include('cpanel.sucursal.venta_art.partials.report')
-
-        </div>
-    </div>
+    @if(isset($_GET['sucursal']))
+        @if($_GET['sucursal']==$sucursal)
+            <div class="row">
+                <div class="col-sm-12">
+                    @include('cpanel.admin.inventario.articulos.partials.report')
+                </div>
+            </div>
+        @endif
+    @endif
     <br>
     <div class="row">
       <div class="col-sm-12">
-          @include('cpanel.sucursal.venta_art.partials.search')
+          @include('cpanel.sucursal.inventario.articulos.partials.search')
       </div>
     </div>
     <div class="row">
@@ -18,9 +21,7 @@
             <div class="card-box">
                 <div class="table-rep-plugin">
                     <div class="table-responsive" data-pattern="priority-columns">
-
-                       @include('cpanel.sucursal.venta_art.partials.tablelist')
-
+                        @include('cpanel.admin.inventario.articulos.partials.table')
                     </div>
 
                 </div>
@@ -31,7 +32,7 @@
 
     <div class="col-lg-12">
         <div class="pull-left">
-            {{$ventas->appends(Request::only(['s']))->render()}}
+            {{$articulos->appends(Request::all())->render()}}
         </div>
     </div>
 @endsection

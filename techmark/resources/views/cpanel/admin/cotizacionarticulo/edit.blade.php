@@ -4,7 +4,7 @@
     <div class="row">
 
         @include('cpanel.partials.errors')
-        {!! Form::model($venta,['route'=>['admin.cotizacion.update',$venta->id],'method'=>'PUT','files'=>true,'id'=>'form-venta-articulo']) !!}
+        {!! Form::model($venta,['route'=>['admin.cotizacion.update',$venta->id],'method'=>'PUT','files'=>true,'id'=>'form-cotizacion-articulo']) !!}
         @include('cpanel.admin.cotizacionarticulo.partials.data')
 
         {!! Form::close() !!}
