@@ -32,7 +32,6 @@ class GastoController extends Controller
                 ->usuario(Auth::user()->id)
                 ->orderBy('id','desc')
                 ->paginate();
-            $this->datos['usuario_id']=Auth::user()->id;
             return view('cpanel.sucursal.gasto.list')->with($this->datos);
         }
         \Session::flash('message','No tienes Permiso para visualizar informacion ');

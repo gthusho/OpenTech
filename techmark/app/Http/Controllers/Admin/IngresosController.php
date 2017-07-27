@@ -25,7 +25,7 @@ class IngresosController extends Controller
         if(Auth::user()->can('allow-read')){
             $this->datos['brand'] = Tool::brand('Listado de Ingresos ',route('ingresos.articulos.index'),'Ingresos Articulos');
             $this->datos['ingresos'] = Ingresos::with('articulo','sucursal','compra','almacen')
-                ->compra($request->get('compra'))
+                ->fecha($request->get('fecha'))
                 ->sucursal($request->get('sucursal'))
                 ->articulo($request->get('articulo'))
                 ->orderBy('id','desc')

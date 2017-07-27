@@ -160,9 +160,9 @@ namespace App;
          }else{
              $request = str_replace(\Request::url(), '', \Request::fullUrl());
              if(count($request)==0 || $request == '' || $request== null){
-                 return $request.'?sucursal='.$id;
+                 return $request.'?reportsuc='.$id;
              }else{
-                 return $request.'&sucursal='.$id;
+                 return $request.'&reportsuc='.$id;
              }
 
          }

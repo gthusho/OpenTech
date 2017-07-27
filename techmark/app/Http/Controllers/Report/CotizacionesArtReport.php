@@ -33,7 +33,7 @@ class CotizacionesArtReport extends Controller
             ->sucursal($request->get('sucursal'))
             ->cliente($request->get('cliente'))
             ->cliente($request->get('c'))
-            ->usuario($request->get('usuario'))
+            ->usuario($request->get('reportsuc'))
             ->orderBy('id','desc')->get();
     }
 

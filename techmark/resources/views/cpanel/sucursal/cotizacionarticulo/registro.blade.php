@@ -24,7 +24,7 @@
                 {!! Form::close() !!}
             </div>
         </div>
-        {!! Form::open(['route'=>['confirmCotizacion',$cotizacion->id],'method'=>'post','id'=>'confirmar']) !!}
+        {!! Form::open(['route'=>['s.confirmCotizacion',$cotizacion->id],'method'=>'post','id'=>'confirmar']) !!}
         {!! Form::close() !!}
         <div class="row">
             <div class="col-lg-12">

@@ -27,12 +27,11 @@ class IngresosController extends Controller
 
     public function index(Request $request)
     {
-        $user=User::find(Auth::user()->id);
         if(Auth::user()->can('allow-read')){
             $this->datos['brand'] = Tool::brand('Listado de Ingresos ',route('s.ingresos.articulos.index'),'Ingresos Articulos');
             $this->datos['ingresos'] = Ingresos::with('articulo','sucursal','compra','almacen')
-                ->compra($request->get('compra'))
-                ->sucursal($user->sucursal_id)
+                ->fecha($request->get('fecha'))
+                ->sucursal(Auth::user()->sucursal_id)
                 ->articulo($request->get('articulo'))
                 ->orderBy('id','desc')
                 ->paginate();
@@ -45,9 +44,6 @@ class IngresosController extends Controller
 
     }
     function genDatos(){
-        $user=User::find(Auth::user()->id);
-        $this->datos['sucursal_id']=$user->sucursal_id;
-        $this->datos['compras']=Compra::where('sucursal_id',$user->sucursal_id)->pluck('fecha');
         $this->datos['articulos']=Articulo::orderBy('nombre')->pluck('nombre','id');
     }
 

@@ -93,7 +93,6 @@ class CotizacionProductoController extends Controller
 
     }
     function genDatos(){
-        $this->datos['usuario_id']=Auth::user()->id;
         $this->datos['clientes'] = [];
 
         foreach (Clientes::orderBy('razon_social')->get() as $row)

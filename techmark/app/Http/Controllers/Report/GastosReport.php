@@ -33,6 +33,7 @@ class GastosReport extends Controller
             ->fecha($request->get('f'))
             ->usuario($request->get('usuario'))
             ->sucursal($request->get('sucursal'))
+            ->usuario($request->get('reportsuc'))
             ->orderBy('id','desc')->get();
     }
 

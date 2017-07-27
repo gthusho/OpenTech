@@ -46,9 +46,10 @@ class Ingresos extends Model
             $query->where('sucursal_id', $x);
         }
     }
-    function scopeCompra($query,$x){
-        if(trim($x) != ''){
-            $query->where('compra_id', $x);
+    function scopeFecha($query,$fecha){
+        if(trim($fecha) != ''){
+            $compra=Compra::fecha($fecha)->pluck('id');
+            $query->whereIn('compra_id',$compra);
         }
     }
 }

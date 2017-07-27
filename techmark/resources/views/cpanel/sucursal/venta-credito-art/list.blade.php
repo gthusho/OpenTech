@@ -3,7 +3,7 @@
     @include('cpanel.partials.brand')
     <div class="row">
         <div class="col-sm-12">
-            @include('cpanel.admin.venta-credito-art.partials.report')
+            @include('cpanel.sucursal.venta-credito-art.partials.report')
 
         </div>
     </div>

@@ -1,4 +1,3 @@
-
 <div class=" m-b-30 pull-right">
     {!! Form::model(Request::all(), ['route' => ['s.venta-credito-art.index'],'method'=>'GET','class'=>'form-inline']) !!}
 

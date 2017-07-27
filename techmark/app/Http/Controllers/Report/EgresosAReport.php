@@ -31,7 +31,7 @@ class EgresosAReport extends Controller
             ->fecha($request->get('fecha'))
             ->sucursal($request->get('sucursal'))
             ->articulo($request->get('articulo'))
-            ->usuario($request->get('usuario'))
+            ->sucursal($request->get('reportsuc'))
             ->orderBy('id','desc')->get();
     }
 

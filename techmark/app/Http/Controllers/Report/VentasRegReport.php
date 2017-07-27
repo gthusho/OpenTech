@@ -32,6 +32,7 @@ class VentasRegReport extends Controller
             ->usuario($request->get('usuario'))
             ->cliente($request->get('cliente'))
             ->cliente($request->get('c'))
+            ->usuario($request->get('reportsuc'))
             ->orderBy('id','desc')->get();
 
     }

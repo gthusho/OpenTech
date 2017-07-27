@@ -30,7 +30,7 @@
                 {!! Form::close() !!}
             </div>
         </div>
-        {!! Form::open(['route'=>['confirmVentaArticulo',$venta->id],'method'=>'post','id'=>'confirmar']) !!}
+        {!! Form::open(['route'=>['s.confirmVentaArticulo',$venta->id],'method'=>'post','id'=>'confirmar']) !!}
         {!! Form::close() !!}
         <div class="row">
             <div class="col-lg-12">
@@ -39,7 +39,7 @@
                         <h3 class="panel-title">ARTICULOS AÑADIDOS A LA VENTA</h3>
                     </div>
                     <div class="panel-body">
-                        @include('cpanel.admin.venta_art.partials.table')
+                        @include('cpanel.sucursal.venta_art.partials.table')
                     </div>
                 </div>
 

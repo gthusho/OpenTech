@@ -40,7 +40,7 @@
                         {{\App\Tool::convertMoney($row->precio)}}
                     </td>
                     <td>
-                        {!! Form::open(['route'=>['deleteItemsCotizacionArticulo',$row->id],'method'=>'post']) !!}
+                        {!! Form::open(['route'=>['s.deleteItemsCotizacionArticulo',$row->id],'method'=>'post']) !!}
                         <button class="btn btn-danger btn-sm" ><i class=" icon-trash"></i> Remover</button>
                         {!! Form::close() !!}
 

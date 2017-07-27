@@ -24,7 +24,7 @@
                 {!! Form::close() !!}
             </div>
         </div>
-        {!! Form::open(['route'=>['confirmCotizacionProducto',$cotizacion->id],'method'=>'post','id'=>'confirmar']) !!}
+        {!! Form::open(['route'=>['s.confirmCotizacionProducto',$cotizacion->id],'method'=>'post','id'=>'confirmar']) !!}
         {!! Form::close() !!}
         <div class="row">
             <div class="col-lg-12">
@@ -33,7 +33,7 @@
                         <h3 class="panel-title">PRODUCTOS AÑADIDOS A LA COTIZACION</h3>
                     </div>
                     <div class="panel-body">
-                        @include('cpanel.admin.cot_producto.partials.table')
+                        @include('cpanel.sucursal.cot_producto.partials.table')
                     </div>
                 </div>
 

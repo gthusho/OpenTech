@@ -45,7 +45,6 @@ class DetalleVentaArticuloController extends Controller
     }
 
     function genDatos(){
-        $this->datos['usuario_id']=Auth::user()->id;
         $this->datos['articulos']=Articulo::orderBy('nombre')->pluck('nombre','id');
     }
 
