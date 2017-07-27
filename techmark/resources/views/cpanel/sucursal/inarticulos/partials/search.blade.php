@@ -1,8 +1,6 @@
 <div class=" m-b-30 pull-right">
     {!! Form::model(Request::all(), ['route' => ['s.ingresos.articulos.index'],'method'=>'GET','class'=>'form-inline']) !!}
-    <div class="form-group">
-        {!! Form::hidden('sucursal',$sucursal_id,['class'=>'form-control'])!!}
-    </div>
+
     <div class="form-group">
         <div class="input-group">
             {!! Form::text('compra',null,['class'=>'form-control input-daterange-timepicker','required'])!!}

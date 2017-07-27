@@ -48,4 +48,6 @@
 
         {!! Form::hidden('producto_id',null,['class'=>'form-control cleanclean','id'=>'producto_id'])!!}
         {!! Form::hidden('talla_id',null,['class'=>'form-control cleanclean','id'=>'talla_id'])!!}
+    {!! Form::hidden('sucursal_id',$produccion->sucursal_id)!!}
+    {!! Form::hidden('produccion_id',$produccion->id)!!}
 </fieldset>

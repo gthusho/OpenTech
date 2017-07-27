@@ -25,7 +25,6 @@ class IngresosProductosController extends Controller
 
     public function index(Request $request)
     {
-
 //        if(Auth::user()->can('allow-read')){
 //            $this->datos['brand'] = Tool::brand('Listado de Ingresos ',route('ingresos.articulos.index'),'Ingresos Articulos');
 //            $this->datos['ingresos'] = Ingresos::with('articulo','sucursal','compra','almacen')
@@ -61,14 +60,12 @@ class IngresosProductosController extends Controller
         /*
          * comenzamos
          */
-
         $this->datos['brand'] = Tool::brand('',route('ingresos.articulos.index'),'Ingresos productos');
         $this->datos['produccion'] = $this->produccion;
         return view('cpanel.admin.ingresosproductos.registro',$this->datos);
-
-
-
     }
-
+    function store(Request $request){
+        dd($request->all());
+    }
 
 }

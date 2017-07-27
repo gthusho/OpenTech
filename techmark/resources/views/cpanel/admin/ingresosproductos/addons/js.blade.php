@@ -64,6 +64,23 @@
 </script>
 
 <script>
+    $("#atallas").on("change", function(e) {
+        var id_ = $(this).val();
+
+        var url = "{{route('priceByIdProduct')}}";
+
+        $.post(url, { id:id_}, function(data){
+            genPrice(data);
+            onOffBtnCart(true);
+        });
+    });
+    function genPrice(item) {
+        $('#aprecio1').val(item['precio1']);
+        $('#aprecio2').val(item['precio2']);
+        $('#aprecio3').val(item['precio3']);
+        $('#pstock').val(item['stock']);
+        $('#talla_id').val(item['talla_id']);
+    }
     function genItem(item) {
         $('#Pnombre').val(item['nombre']);
         $('#pimagen').attr("src",item['imagen']);

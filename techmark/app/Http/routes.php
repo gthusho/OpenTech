@@ -135,6 +135,7 @@ Route::get('service/showArticleByProduccionId/{id}',['as' => 'showArticleByProdu
  * servicios ingresos productos producidos
  */
 Route::get('service/productByCode',['as' => 'productByCode', 'uses' => 'ServiceProductosController@productByCode']);
+Route::post('service/priceByIdProduct',['as' => 'priceByIdProduct', 'uses' => 'ServiceProductosController@priceByIdProduct']);
 /*
  * rutas sucursal
  */

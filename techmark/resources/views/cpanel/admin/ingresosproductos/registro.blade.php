@@ -4,7 +4,7 @@
     <div class="row">
 
                 @include('cpanel.partials.errors')
-                {!! Form::model($produccion,['route'=>'admin.produccion.store','method'=>'post','files'=>true,'id'=>'form-produccion']) !!}
+                {!! Form::model($produccion,['route'=>'admin.ingresar.productos.store','method'=>'post','files'=>true,'id'=>'form-produccion']) !!}
                     @include('cpanel.admin.ingresosproductos.partials.data')
 
                 {!! Form::close() !!}

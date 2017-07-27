@@ -6,6 +6,7 @@ use App\Articulo;
 use App\Clientes;
 use App\Ingresos;
 use App\Producto;
+use App\ProductoTalla;
 use App\Tool;
 use Illuminate\Http\Request;
 
@@ -75,9 +76,28 @@ class ServiceProductosController extends Controller
                 $this->precio[2]= $row->precio3;
                 $b=true;
             }
-            $data .= "<option value='{$row->talla->id}'>{$row->talla->nombre}</option>";
+            $data .= "<option value='{$row->id}'>{$row->talla->nombre}</option>";
         }
         return $data;
+    }
+    function priceByIdProduct(Request $request){
+
+        $query = ProductoTalla::find($request->get('id'));
+        if(Tool::existe($query)){
+            $item =  $query;
+
+            $data = [
+                'talla_id'=>$item->talla_id,
+                'stock'=>$this->stock,
+                'precio1'=>Tool::convertMoney($item->precio1),
+                'precio2'=>Tool::convertMoney($item->precio2),
+                'precio3'=>Tool::convertMoney($item->precio3),
+            ];
+
+            return $data;
+        }else{
+            abort(1000);
+        }
     }
 //    function getListArticulos(Request $request){
 //        $query = Articulo::tipo(0,$request->get('data'))->get();
