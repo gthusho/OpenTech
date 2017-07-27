@@ -16,7 +16,9 @@ class Talla extends Model
     function detprodbase(){
         return $this->hasMany('App\DetalleProductoBase','id','talla_id');
     }
-
+    function existenciaproducto(){
+        return $this->belongsTo('App\ExistenciaProducto','id','talla_id');
+    }
     function scopeTalla($query,$name){
         if(trim($name) != ''){
             $query->where('nombre','like',"%$name%");

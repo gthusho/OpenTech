@@ -1,21 +1,21 @@
-<table class="table table-hover  m-0 table table-actions-bar">
+<table class="table table-hover table-bordered ">
     <thead>
     <tr>
-        <th>ESTADO</th>
-        <th>NOMBRE</th>
-        <th>ACCIONES</th>
+        <th>SUCURSAL</th>
+        <th>NOMBRE PRODUCTO</th>
+        <th class="text-right">CODIGO</th>
+        <th>TALLAS</th>
+        <th>STOCK</th>
     </tr>
     </thead>
     <tbody>
-    @foreach($roles as $row)
+    @foreach($productos as $row)
         <tr>
-            <td><span class="label label-{{$row->activo()[0]}}">{{$row->activo()[1]}}</span></td>
-
-            <td>{{($row->nombre)}}</td>
-            <td>
-                <a href="{{route('admin.rol.edit',$row->id)}}"><i class=" icon-pencil"></i> Editar</a>
-            </td>
-        </tr>
+            <td class="bg-inverse text-white">{{$row->sucursal->nombre}}</td>
+            <td>{{$row->producto->descripcion}}</td>
+            <td class="text-right">{{$row->producto->codigo}}</td>
+            <td>{{$row->talla->nombre}}</td>
+            <td class="bg-primary text-white text-right">{{$row->cantidad}}</td>
     @endforeach
     </tbody>
 </table>

@@ -74,3 +74,6 @@ Route::get('inventario/articulo/excel','InventarioAReport@excel');
 Route::get('productos','ProductosReport@index');
 Route::get('productos/excel','ProductosReport@excel');
 
+Route::get('inventario/producto','InventarioPReport@index');
+Route::get('inventario/producto/excel','InventarioPReport@excel');
+

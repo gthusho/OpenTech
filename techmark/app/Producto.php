@@ -24,6 +24,9 @@ class Producto extends Model
     function tallas(){
         return $this->hasMany('App\ProductoTalla','producto_id','id');
     }
+    function existenciaproducto(){
+        return $this->belongsTo('App\ExistenciaProducto','id','producto_id');
+    }
     function scopeProducto($query,$name){
         if(trim($name) != ''){
             $query->where('descripcion','like',"%$name%");

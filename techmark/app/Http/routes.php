@@ -53,6 +53,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin','user_on'],'nam
     Route::get('ingresos/articulos',['as' => 'ingresos.articulos.index', 'uses' => 'IngresosController@index']);
     Route::get('egresos/articulos',['as' => 'egresos.articulos.index', 'uses' => 'DetalleVentaArticuloController@index']);
 
+    Route::get('inventario/productos',['as' => 'inventario.productos', 'uses' => 'InventarioController@productos']);
 
     require __DIR__ . '/routes/diego.php';
     require __DIR__ . '/routes/liss.php';
