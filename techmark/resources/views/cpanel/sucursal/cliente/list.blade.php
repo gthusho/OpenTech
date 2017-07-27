@@ -18,7 +18,7 @@
             <div class="card-box">
                 <div class="table-rep-plugin">
                     <div class="table-responsive" data-pattern="priority-columns">
-                        @include('cpanel.admin.cliente.partials.table')
+                        @include('cpanel.sucursal.cliente.partials.table')
                     </div>
 
                 </div>

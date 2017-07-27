@@ -16,7 +16,7 @@
 
                 @include('cpanel.partials.errors')
                 {!! Form::model($cliente,['route'=>['s.cliente.update',$cliente->id],'method'=>'PUT','files'=>true,'id'=>'form-articulo']) !!}
-                    @include('cpanel.sucursal.cliente.partials.fields')
+                    @include('cpanel.admin.cliente.partials.fields')
                     <div class="form-group text-right m-b-0">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">
                             Actualizar
@@ -32,8 +32,8 @@
 @endsection
 
 @section('css')
-    @include('cpanel.sucursal.cliente.addons.css')
+    @include('cpanel.admin.cliente.addons.css')
 @endsection
 @section('js')
-    @include('cpanel.sucursal.cliente.addons.js')
+    @include('cpanel.admin.cliente.addons.js')
 @endsection
