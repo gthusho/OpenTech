@@ -35,8 +35,7 @@
                             @endif
                         </td>
                         <td class="text-center">
-                            <a href="{{url('reportes/pagos/venta').'?id='.$row->id}}" class="btn btn-primary btn-sm"
-                               target="_blank"> <i class=" icon-printer fa-2x"></i> </a>
+                            <a onclick="printJS('{{url('reportes/pagos/venta').'?id='.$row->id}}')" class="btn btn-primary btn-sm"> <i class=" icon-printer fa-2x"></i> </a>
                         </td>
 
                     </tr>
