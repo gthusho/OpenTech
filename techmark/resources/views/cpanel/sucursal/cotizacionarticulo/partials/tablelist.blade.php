@@ -35,8 +35,7 @@
                                 <i class="icon-pencil fa-2x"></i></a>
                         </td>
                         <td>
-                            <a href="{{url('reportes/cotizacion/articulo').'?id='.$row->id}}" class="btn btn-primary btn-sm"
-                               target="_blank"> <i class=" icon-printer fa-2x"></i> </a>
+                            <a onclick="printJS('{{url('reportes/cotizacion/articulo').'?id='.$row->id}}')" class="btn btn-primary btn-sm"> <i class=" icon-printer fa-2x"></i> </a>
                         </td>
                     </tr>
                 @endforeach

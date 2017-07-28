@@ -48,8 +48,7 @@
                             <a href="{{route('s.venta_art.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class="icon-pencil fa-2x"></i> </a>
                         </td>
                         <td class="text-center">
-                            <a href="{{url('reportes/venta').'?id='.$row->id}}" class="btn btn-primary btn-sm"
-                               target="_blank"> <i class=" icon-printer fa-2x"></i>  </a>
+                            <button onclick="printJS('{{url('reportes/venta').'?id='.$row->id}}')" class="btn btn-primary btn-sm"> <i class=" icon-printer fa-2x"></i>  </button>
                         </td>
                     </tr>
                 @endforeach

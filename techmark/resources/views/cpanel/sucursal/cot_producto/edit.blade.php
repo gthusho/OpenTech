@@ -16,10 +16,10 @@
                         </span>
             </div>
             <div class="pull-left">
-                <a href="{{url('reportes/cotizacion/producto').'?id='.$cotizacion->id}}"
-                   class="btn btn-inverse  waves-effect waves-light" target="_blank" >Imprimir
+                <button onclick="printJS('{{url('reportes/cotizacion/producto').'?id='.$cotizacion->id}}')"
+                   class="btn btn-inverse  waves-effect waves-light" >Imprimir
                     <span class="m-l-5"><i class=" icon-printer"></i></span>
-                </a>
+                </button>
             </div>
             <div class="pull-right">
                 {!! Form::open(['route'=>['s.cot_producto.destroy',$cotizacion->id],'method'=>'delete']) !!}
