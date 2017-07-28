@@ -7,7 +7,7 @@
 <title>{{Config::get('cpanel.titulo')}}</title>
 
 @yield('css')
-
+<link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">
 <link href="{{url('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{url('assets/css/core.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{url('assets/css/components.css')}}" rel="stylesheet" type="text/css" />

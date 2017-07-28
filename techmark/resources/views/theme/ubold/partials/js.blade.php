@@ -1,7 +1,7 @@
 <script>
     var resizefunc = [];
 </script>
-<!-- jQuery  -->
+<script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
 <script src="{{url('assets/js/jquery.min.js')}}"></script>
 <script src="{{url('assets/js/bootstrap.min.js')}}"></script>
 <script src="{{url('assets/js/detect.js')}}"></script>
