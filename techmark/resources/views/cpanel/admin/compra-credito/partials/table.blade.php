@@ -47,9 +47,9 @@
     <hr>
     <div class="hidden-print">
         <div class="pull-right">
-            <a href="{{url('reportes/pagos/compra').'?id='.$compra->id}}"
-               class="btn btn-inverse  waves-effect waves-light" target="_blank" >Imprimir Pagos
-                <span class="m-l-5"><i class=" icon-printer"></i></span></a>
+            <button onclick="printJS('{{url('reportes/pagos/compra').'?id='.$compra->id}}')"
+               class="btn btn-inverse  waves-effect waves-light">Imprimir Pagos
+                <span class="m-l-5"><i class=" icon-printer"></i></span></button>
         </div>
     </div>
 

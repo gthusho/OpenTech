@@ -36,9 +36,10 @@
                             {{\App\Tool::convertMoney($row->totalPrecio())}}
                         </td>
                         <td>
-                            <a href="{{url('reportes/produccion').'?id='.$row->id}}"
-                               class="btn btn-inverse  btn-sm" target="_blank" >
-                                <i class=" icon-printer fa-2x"></i></a>
+                            <button onclick="printJS('{{url('reportes/produccion').'?id='.$row->id}}')"
+                               href="{{url('reportes/produccion').'?id='.$row->id}}"
+                               class="btn btn-inverse  btn-sm" >
+                                <i class=" icon-printer fa-2x"></i></button>
                         </td>
 
                         <td>

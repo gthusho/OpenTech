@@ -33,8 +33,7 @@
                             <a href="{{route('admin.compra-credito.show',$row->id)}}" class="btn btn-primary btn-sm"> <i class="fa  fa-money fa-2x"></i></a>
                         </td>
                         <td class="text-center">
-                            <a href="{{url('reportes/pagos/compra').'?id='.$row->id}}" class="btn btn-primary btn-sm"
-                               target="_blank"> <i class=" icon-printer fa-2x"></i> </a>
+                            <button onclick="printJS('{{url('reportes/pagos/compra').'?id='.$row->id}}')" class="btn btn-primary btn-sm"> <i class=" icon-printer fa-2x"></i> </button>
                         </td>
                     </tr>
                 @endforeach

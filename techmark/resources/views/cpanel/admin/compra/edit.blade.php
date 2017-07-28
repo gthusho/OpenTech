@@ -22,9 +22,9 @@
         <div class="pull-left m-b-15 m-l-5">
             <div class="form-group text-left">
 
-                <a href="{{url('reportes/compra').'?id='.$compra->id}}"
-                   class="btn btn-inverse  waves-effect waves-light" target="_blank" >Imprimir Compra
-                    <span class="m-l-5"><i class=" icon-printer"></i></span></a>
+                <button onclick="printJS('{{url('reportes/compra').'?id='.$compra->id}}')"
+                   class="btn btn-inverse  waves-effect waves-light">Imprimir Compra
+                    <span class="m-l-5"><i class=" icon-printer"></i></span></button>
             </div>
         </div>
 
