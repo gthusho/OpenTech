@@ -21,13 +21,14 @@ class Observador
     function checkAccess($to){
         $idModulo = Modulos::where('nombre',$to)->get()->first();
         $listAcess = Permisos::where('usuario_id',$this->auth->user()->id)->get()->lists('modulo_id')->Toarray();
-        if($idModulo==null || $idModulo=='')
+       $id = 0;
+        if($idModulo!=null || $idModulo!='')
         {
-            $idModulo=0;
+            $id=$idModulo->id;
 
         }
 
-        if(in_array($idModulo->id, $listAcess))
+        if(in_array($id, $listAcess))
 
             return true;
         else

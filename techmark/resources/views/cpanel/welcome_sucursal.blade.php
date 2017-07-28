@@ -25,9 +25,5 @@
         </script>
     @endif
 
-    <script>
 
-        var pdf_url = "http://techmark.me/reportes/cotizacion/articulo?id=8";
-        printJS(pdf_url)
-    </script>
 @endsection

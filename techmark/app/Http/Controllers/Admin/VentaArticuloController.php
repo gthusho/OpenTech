@@ -198,6 +198,8 @@ class VentaArticuloController extends Controller
             $existencia = new IAManager($row->articulo_id, $venta->sucursal_id, $venta->almacen_id);
             $existencia->down($row->cantidad);
         }
+        /// enviar la url del reporte en la variable tiket
+        \Session::flash('tiket',url('reportes/venta').'?id='.$venta->id);
         return redirect()->route('admin.venta_art.index');
     }
 

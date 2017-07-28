@@ -107,4 +107,5 @@
             });
         });
     </script>
+    @include('cpanel.partials.iTiket');
 @endsection
