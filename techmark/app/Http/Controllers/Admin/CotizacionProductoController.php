@@ -53,7 +53,7 @@ class CotizacionProductoController extends Controller
 
     function setProducto($producto_base_id, $cantidad, $precio, $material_id, $talla_id, $descripcion){
         $producto = null;
-        $query = DetalleCotizacionProducto::where('cotizacion_producto_id',$this->cotizacion->id)->where('productos_base_id',$producto_base_id)->get();
+        $query = DetalleCotizacionProducto::where('cotizacion_producto_id',$this->cotizacion->id)->where('productos_base_id',$producto_base_id)->where('material_id',$material_id)->where('talla_id',$talla_id)->get();
         if(Tool::existe($query)){
             $producto = $query->first();
             $producto->cantidad = $cantidad;
