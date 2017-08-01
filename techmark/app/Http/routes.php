@@ -72,7 +72,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin','user_on'],'nam
      * produccion ingresos
      */
     Route::resource('ingresar/productos','IngresosProductosController');
-
+    Route::post('ingresar/productos/workProduccion/{id}/{action}',['as' => 'produccion.workProduccion', 'uses' => 'IngresosProductosController@workProduccion']);
 });
 
 Route::group(['prefix'=>'reportes','middleware'=>['auth'],'namespace'=>'Report'], function(){
@@ -136,6 +136,9 @@ Route::get('service/showArticleByProduccionId/{id}',['as' => 'showArticleByProdu
  */
 Route::get('service/productByCode',['as' => 'productByCode', 'uses' => 'ServiceProductosController@productByCode']);
 Route::post('service/priceByIdProduct',['as' => 'priceByIdProduct', 'uses' => 'ServiceProductosController@priceByIdProduct']);
+Route::get('service/productByRowId',['as' => 'productByRowId', 'uses' => 'ServiceProductosController@productByRowId']);
+Route::get('service/getListProductos',['as' => 'getListProductos', 'uses' => 'ServiceProductosController@getListProductos']);
+Route::get('service/showProductoSearch',['as' => 'showProductoSearch', 'uses' => 'ServiceProductosController@showProductoSearch']);
 /*
  * rutas sucursal
  */

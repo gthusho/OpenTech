@@ -19,10 +19,9 @@
                     <table class="table table-hover" >
                         <thead>
                         <tr>
-                            <th>ARTICULO</th>
-                            <th>CATEGORIA</th>
-                            <th>MARCA</th>
-                            <th>MATERIAL</th>
+                            <th>IMAGEN</th>
+                            <th>PRODUCTO</th>
+                            <th>TALLA</th>
                         </tr>
                         </thead>
 

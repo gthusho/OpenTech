@@ -48,7 +48,11 @@ class Producto extends Model
         else
             return ['danger','Inactivo'];
     }
-
+    function scopeName($query,$name){
+        if(trim($name) != ''){
+            $query->where('descripcion','like',"%$name%");
+        }
+    }
     function getImagen(){
         if(trim($this->imagen) != '')
             return url(\Config::get('upload.productos').$this->imagen);

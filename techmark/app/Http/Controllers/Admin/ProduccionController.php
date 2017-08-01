@@ -127,7 +127,7 @@ class ProduccionController extends Controller
             $this->datos['brand'] = Tool::brand('Producciones Registradas',route('admin.produccion.index'),'Producciones');
             $this->datos['producciones'] = Produccion::with('trabajador','usuario','sucursal'/*,'almacen'*/)
                 //->fecha($request->get('fecha'))
-                ->where('estado','t')
+                ->whereIn('estado',['t','c'])
                 ->fecha($request->get('fecha'))
                 ->sucursal($request->get('sucursal'))
                 ->trabajador($request->get('trabajador'))

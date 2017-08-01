@@ -29,8 +29,8 @@
                         </td>
                         <td>{{$row->cantidad}}</td>
                         <td>
-                            {!! Form::open(['route'=>['deleteItemsProduccion',$row->id],'method'=>'post']) !!}
-                            <button class="btn btn-danger btn-sm" ><i class=" icon-trash"></i> Remover</button>
+                            {!! Form::open(['route'=>['admin.ingresar.productos.destroy',$row->id],'method'=>'delete']) !!}
+                            <button class="btn btn-danger btn-sm" ><i class=" icon-trash fa-2x"></i> </button>
                             {!! Form::close() !!}
 
                         </td>

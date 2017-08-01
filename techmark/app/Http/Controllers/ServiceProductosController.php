@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Articulo;
 use App\Clientes;
 use App\Ingresos;
+use App\IngresosProducto;
 use App\Producto;
 use App\ProductoTalla;
 use App\Tool;
@@ -80,7 +81,19 @@ class ServiceProductosController extends Controller
         }
         return $data;
     }
+    function tallasRowToHtml($tallas,$id){
+        $data = null;
+        foreach ($tallas as $row){
+           if($row->talla->id==$id){
+               $data .= "<option value='{$row->id}' selected>{$row->talla->nombre}</option>";
+           }else{
+               $data .= "<option value='{$row->id}' >{$row->talla->nombre}</option>";
+           }
+        }
+        return $data;
+    }
     function priceByIdProduct(Request $request){
+
 
         $query = ProductoTalla::find($request->get('id'));
         if(Tool::existe($query)){
@@ -99,69 +112,80 @@ class ServiceProductosController extends Controller
             abort(1000);
         }
     }
-//    function getListArticulos(Request $request){
-//        $query = Articulo::tipo(0,$request->get('data'))->get();
-//        if(Tool::existe($query)){
-//            $data = "";
-//            foreach ($query as $row){
-//                $data .= "
-//                    <tr data-id='{$row->id}'>
-//                    <td>{$row->nombre}</td>
-//                    <td>{$row->categoria->nombre}</td>
-//                    <td>{$row->marca->nombre}</td>
-//                    <td>{$row->material->nombre}</td>
-//                    <td><button class='btn btn-primary btn-sm' onclick='genListSubData({$row->id})'><i class=' icon-action-redo'></i></button></td>
-//                    </tr>
-//                ";
-//            }
-//            echo $data;
-//        }else{
-//            abort(1000);
-//        }
-//
-//    }
-//
-//    public function showArticleByIngresoId($id)
-//    {
-//        $ingreso = Ingresos::find($id);
-//        $item = Articulo::find($ingreso->articulo_id);
-//        $data = [
-//            'id'=>$item->id,
-//            'nombre'=>$item->nombre,
-//            'unidad'=>$item->medida->nombre,
-//            'categoria'=>$item->categoria->nombre,
-//            'material'=>$item->material->nombre,
-//            'marca'=>$item->marca->nombre,
-//            'costo'=>Tool::convertMoney($item->costo),
-//            'precio'=>Tool::convertMoney($item->precio1),
-//            'xcantidad'=>number_format((float)$ingreso->cantidad, 2, '.', ''),
-//            'xcosto'=>number_format((float)$ingreso->costo, 2, '.', ''),
-//            'stockIventario'=>$item->getStockAll(),
-//
-//        ];
-//        return $data;
-//    }
-//    public function showArticle(Request $request)
-//    {
-//        $item = Articulo::find($request->get('data'));
-//        $data = [
-//            'id'=>$item->id,
-//            'nombre'=>$item->nombre,
-//            'unidad'=>$item->medida->nombre,
-//            'categoria'=>$item->categoria->nombre,
-//            'material'=>$item->material->nombre,
-//            'marca'=>$item->marca->nombre,
-//            'costo'=>Tool::convertMoney($item->costo),
-//            'precio'=>Tool::convertMoney($item->precio1),
-//            'xcantidad'=>'',
-//            'xcosto'=>'',
-//            'stockIventario'=>$item->getStockAll(),
-//            'precio1'=>Tool::convertMoney($item->precio1),
-//            'precio2'=>Tool::convertMoney($item->precio2),
-//            'precio3'=>Tool::convertMoney($item->precio3),
-//            'dp'=>'P1'
-//        ];
-//        return $data;
-//    }
+    function productByRowId(Request $request){
 
+        $ingreso = IngresosProducto::find($request->get('data'));
+        if($ingreso != null || $ingreso !=''){
+            $producto = Producto::find($ingreso->producto_id);
+
+            $productoTalla = ProductoTalla::where('producto_id',$producto->id)->where('talla_id',$ingreso->talla_id)->get()->first();
+
+            $data = [
+                'producto_id'=>$ingreso->producto_id,
+                'talla_id'=>$ingreso->talla_id,
+                'nombre'=>$producto->descripcion,
+                'tallas'=>$this->tallasRowToHtml($producto->tallas,$ingreso->talla_id),
+                'imagen'=>$producto->getImagen(),
+                'stock'=>$this->stock,
+                'precio1'=>Tool::convertMoney($productoTalla->precio1),
+                'precio2'=>Tool::convertMoney($productoTalla->precio2),
+                'precio3'=>Tool::convertMoney($productoTalla->precio3),
+                'xcantidad'=>$ingreso->cantidad
+            ];
+            return $data;
+        }else{
+            abort(1000);
+        }
+    }
+    function getListProductos(Request $request){
+        $query = Producto::name($request->get('data'))->get();
+        if(Tool::existe($query)){
+            $data = "";
+            foreach ($query as $producto){
+                $productoTalla = ProductoTalla::where('producto_id',$producto->id)->get();
+                foreach ($productoTalla as $row){
+                    $data .= "
+                    <tr data-id='{$row->id}'>
+                    <td><img src='{$row->producto->getImagen()}' alt='' class='img img-thumbnail thumb-sm'></td>
+                    <td>{$row->producto->descripcion}</td>
+                    <td>{$row->talla->nombre}</td>
+                    <td><button class='btn btn-primary btn-sm' onclick='genListSubData({$row->id})'><i class=' icon-action-redo'></i></button></td>
+                    </tr>
+                ";
+                }
+            }
+
+
+            echo $data;
+        }else{
+            abort(1000);
+        }
+
+    }
+    function showProductoSearch(Request $request){
+
+        $productoTalla = ProductoTalla::find($request->get('data'));
+
+
+        if($productoTalla != null || $productoTalla !=''){
+            $producto = Producto::find($productoTalla->producto_id);
+
+
+            $data = [
+                'producto_id'=>$productoTalla->producto_id,
+                'talla_id'=>$productoTalla->talla_id,
+                'nombre'=>$producto->descripcion,
+                'tallas'=>$this->tallasRowToHtml($producto->tallas,$productoTalla->talla_id),
+                'imagen'=>$producto->getImagen(),
+                'stock'=>$this->stock,
+                'precio1'=>Tool::convertMoney($productoTalla->precio1),
+                'precio2'=>Tool::convertMoney($productoTalla->precio2),
+                'precio3'=>Tool::convertMoney($productoTalla->precio3),
+                'xcantidad'=>''
+            ];
+            return $data;
+        }else{
+            abort(1000);
+        }
+    }
 }

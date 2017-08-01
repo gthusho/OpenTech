@@ -83,7 +83,11 @@ class Produccion extends Model
           return  $state = ['EN PRODUCCION','p','inverse'];
         }else{
             if ($this->terminado==1){
-                return $state = ['EN INVENTARIO','t','success'];
+                if($this->estado=='c'){
+                    return $state = ['CANCELADA','c','warning'];
+                }else{
+                    return $state = ['EN INVENTARIO','t','success'];
+                }
             }else{
                 return  $state = ['PLAZO TERMINADO','e','warning'];
             }

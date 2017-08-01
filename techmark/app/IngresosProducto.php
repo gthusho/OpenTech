@@ -20,4 +20,9 @@ class IngresosProducto extends Model
     function produccion(){
         return $this->belongsTo('App\Produccion','produccion_id','id');
     }
+
+    function producto()
+    {
+        return $this->belongsTo('App\Producto', 'producto_id', 'id');
+    }
 }

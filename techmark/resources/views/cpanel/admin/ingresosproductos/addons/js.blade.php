@@ -107,6 +107,8 @@
         var img = "{{url('system/productos/defaultstore.jpg')}}";
         $('#pimagen').attr("src",img);
         $('.cleanclean').val("");
+        $("#atallas").html("");
+        $("#atallas").trigger('change');
 
     }
     function workAjax(_url,_data,_type) {
@@ -158,8 +160,7 @@
     $('td').css('cursor','crosshair');
     $(".rows").click(function (){
         var codigo = $(this).attr('data-id');
-        var url = "{{route('showArticleByProduccionId','GTHUSHO')}}";
-        url = url.replace('GTHUSHO',codigo);
+        var url = "{{route('productByRowId')}}";
         workAjax(url,codigo,"id")
     });
 
@@ -188,20 +189,20 @@
             },
             error: function (data) {
                 $("#tablaRows").find("tr").remove();
-                alert("No se Encontraron articulos!!");
+                alert("No se Encontraron Productos!!");
             }
         });
     }
     $('#xkeySearch').on('keyup',function (e) {
         var key = $(this).val();
-        var url = "{{route('getListArticulos')}}";
+        var url = "{{route('getListProductos')}}";
         if (e.keyCode == 13) {
             workAjaxListItems(url,key);
         }
     });
   function genListSubData(key) {
       var codigo = key;
-      var url = "{{route('showArticle')}}";
+      var url = "{{route('showProductoSearch')}}";
       workAjax(url,codigo,"id");
   }
 </script>

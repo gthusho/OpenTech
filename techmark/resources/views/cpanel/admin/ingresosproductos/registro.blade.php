@@ -2,6 +2,10 @@
 @section('content')
     @include('cpanel.partials.brand')
     <div class="row">
+        <h5 class="text-danger">* Solo se visualizan productos que tengan asignados tallas y precios</h5>
+        <h5 class="text-danger">* Si el producto no se encuentra registrado. Registrar haciendo <a target="_blank" href="{{route('admin.producto.create')}}">click aqui</a></h5>
+    </div>
+    <div class="row">
 
                 @include('cpanel.partials.errors')
                 {!! Form::model($produccion,['route'=>'admin.ingresar.productos.store','method'=>'post','files'=>true,'id'=>'form-produccion']) !!}
@@ -9,20 +13,23 @@
 
                 {!! Form::close() !!}
         <div class="row m-b-15 col-lg-12">
+
             <div class="pull-left">
-                        <span class="btn btn-primary waves-effect waves-light m-r-5" id="btnConfirmar">
-                            <i class="fa fa-check-square-o"></i>
-                            Añadir a Inventario
-                        </span>
+                {!! Form::open(['route'=>['produccion.workProduccion',$produccion->id,'t'],'method'=>'post']) !!}
+                <button  class="btn btn-primary waves-effect waves-light" onclick="return confirm('Esta apunto de ingresar Productos a inventario, desea continuar?')">
+                    <i class="fa fa-check-square-o"></i>
+                    Añadir a Inventario
+                </button>
+                {!! Form::close() !!}
             </div>
-            {{--<div class="pull-right">--}}
-                {{--{!! Form::open(['route'=>['admin.produccion.destroy',$produccion->id],'method'=>'delete']) !!}--}}
-                {{--<button  class="btn btn-danger waves-effect waves-light" onclick="return confirm('Esta Seguro de Cancelar la Produccion?')">--}}
-                    {{--<i class="ti-close"></i>--}}
-                    {{--Cancelar Produccion--}}
-                {{--</button>--}}
-                {{--{!! Form::close() !!}--}}
-            {{--</div>--}}
+            <div class="pull-right">
+                {!! Form::open(['route'=>['produccion.workProduccion',$produccion->id,'c'],'method'=>'post']) !!}
+                <button  class="btn btn-warning waves-effect waves-light" onclick="return confirm('Esta Seguro de Cancelar la Produccion?')">
+                    <i class="ti-close "></i>
+                    Cancelar Producción
+                </button>
+                {!! Form::close() !!}
+            </div>
         </div>
         {!! Form::open(['route'=>['confirmProduccion',$produccion->id],'method'=>'post','id'=>'confirmar']) !!}
         {!! Form::close() !!}
@@ -40,7 +47,7 @@
             </div>
         </div>
     </div>
-    {{--@include('cpanel.admin.produccion.partials.modals')--}}
+    @include('cpanel.admin.ingresosproductos.partials.modals')
 @endsection
 
 @section('css')

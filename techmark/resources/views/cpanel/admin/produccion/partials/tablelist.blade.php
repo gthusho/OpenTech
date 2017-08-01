@@ -38,15 +38,23 @@
                         <td>
                             <button onclick="printJS('{{url('reportes/produccion').'?id='.$row->id}}')"
                                href="{{url('reportes/produccion').'?id='.$row->id}}"
-                               class="btn btn-inverse  btn-sm" >
+                               class="btn btn-primary  btn-sm" >
                                 <i class=" icon-printer fa-2x"></i></button>
                         </td>
 
                         <td>
-                            @if($row->checkState()[1]!='t')
-                            <a href="{{route('admin.produccion.edit',$row->id)}}" class="btn btn-primary btn-sm ">
+                            @if($row->checkState()[1]=='p'&& $row->terminado==0)
+                            <a href="{{route('admin.produccion.edit',$row->id)}}" class="btn btn-inverse btn-sm ">
                                 <i class="icon-pencil fa-2x"></i>  </a>
+                            @elseif($row->checkState()[1]=='t' && $row->terminado==1)
+                                <a href="{{route('admin.ingresar.productos.edit',$row->id)}}" class="btn btn-success btn-sm ">
+                                    <i class="icon-pencil fa-2x"></i>  </a>
+                            @elseif($row->checkState()[1]=='c' && $row->terminado==1)
+                                <a href="{{route('admin.ingresar.productos.edit',$row->id)}}" class="btn btn-warning btn-sm ">
+                                    <i class="icon-pencil fa-2x"></i>  </a>
                             @endif
+
+
                         </td>
                         <td>
                             @if($row->checkState()[1]=='e')
