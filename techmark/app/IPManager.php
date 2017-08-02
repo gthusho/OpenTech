@@ -22,6 +22,7 @@ class IPManager
     {
         $this->sucursal_id = $sucursal_id;
         $this->producto_id = $producto_id;
+        $this->talla_id = $talla_id;
         $su = Sucursal::find($this->sucursal_id);
         $this->almacen_id = $su->almacen->id;
         $query = ExistenciaProducto::where('sucursal_id',$this->sucursal_id)
