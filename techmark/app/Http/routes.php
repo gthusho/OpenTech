@@ -53,6 +53,8 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin','user_on'],'nam
     Route::get('ingresos/articulos',['as' => 'ingresos.articulos.index', 'uses' => 'IngresosController@index']);
     Route::get('egresos/articulos',['as' => 'egresos.articulos.index', 'uses' => 'DetalleVentaArticuloController@index']);
 
+    Route::get('ingresos/productos',['as' => 'ingresos.productos.index', 'uses' => 'IngresosProductosController@index']);
+    Route::get('egresos/productos',['as' => 'egresos.productos.index', 'uses' => 'DetalleVentaArticuloController@index']);
     Route::get('inventario/productos',['as' => 'inventario.productos', 'uses' => 'InventarioController@productos']);
 
     require __DIR__ . '/routes/diego.php';
@@ -73,6 +75,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin','user_on'],'nam
      */
     Route::resource('ingresar/productos','IngresosProductosController');
     Route::post('ingresar/productos/workProduccion/{id}/{action}',['as' => 'produccion.workProduccion', 'uses' => 'IngresosProductosController@workProduccion']);
+    Route::post('ingresar/productos/changeStateP/{id}',['as' => 'produccion.changeStateP', 'uses' => 'IngresosProductosController@changeStateP']);
 });
 
 Route::group(['prefix'=>'reportes','middleware'=>['auth'],'namespace'=>'Report'], function(){

@@ -61,12 +61,15 @@
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class=" ti-notepad"></i><span class="label label-primary pull-right">6</span> <span> Inventario </span>  </a>
                     <ul class="list-unstyled">
+                        <li class="text-muted menu-title">ARTICULOS</li>
                         <li><a href="{{route('inventario.articulos')}}">Articulos</a></li>
-                        <li><a href="{{route('inventario.productos')}}">Productos</a></li>
                         <li><a href="{{route('ingresos.articulos.index')}}">Ingresos Articulos</a></li>
-                        {{--<li><a href="{{route('admin.rol.index')}}">Ingresos Productos</a></li>--}}
                         <li><a href="{{route('egresos.articulos.index')}}">Egresos Articulos</a></li>
-                        {{--<li><a href="{{route('admin.rol.index')}}">Egresos Productos</a></li>--}}
+
+                        <li class="text-muted menu-title">PRODUCTOS</li>
+                        <li><a href="{{route('inventario.productos')}}">Productos</a></li>
+                        <li><a href="{{route('ingresos.productos.index')}}">Ingresos Productos</a></li>
+                        <li><a href="{{route('egresos.productos.index')}}">Egresos Productos</a></li>
                     </ul>
                 </li>
                 <li class="has_sub">
@@ -98,11 +101,7 @@
                     </ul>
                 </li>
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-cog fa-spin"></i><span class="label label-primary pull-right">2</span> <span> Producción </span>  </a>
-                    <ul class="list-unstyled">
-                        <a href="{{route('admin.produccion.index')}}" ><span> Producir </span> </a>
-                        <a href="{{route('admin.ingresar.productos.index')}}">Ingresos Productos</a>
-                    </ul>
+                    <a href="{{route('admin.produccion.index')}}" class="waves-effect"><i class="fa fa-cog fa-spin"></i><span> Produccción </span> </a>
                 </li>
                 <li class="text-muted menu-title">Configuraciones Sistemas</li>
                 <li class="has_sub">

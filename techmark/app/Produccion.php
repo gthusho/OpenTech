@@ -40,7 +40,10 @@ class Produccion extends Model
         if($total==null || $total=='')
             return '0' ;
         else
-            return $total;
+            if($this->estado=='c')
+                return $total*-1;
+            else
+                return $total;
     }
     function totalCantidad(){
         $total =  DetalleProduccion::where('produccion_id',$this->id)->count();

@@ -9,7 +9,7 @@
                 <th>SUCURSAL</th>
                 <th>DESTINO</th>
                 <th>A CARGO</th>
-                <th>CANTIDAD ARTICULOS</th>
+                <th>C/U</th>
                 <th>PRECIO TOTAL</th>
                 <th class="text-center" colspan="3">ACCIONES</th>
             </tr>
@@ -33,7 +33,11 @@
                         <td>{{$row->trabajador->nombre}}</td>
                         <td>{{$row->totalCantidad()}}</td>
                         <td>
-                            {{\App\Tool::convertMoney($row->totalPrecio())}}
+                            @if($row->totalPrecio()>0)
+                                {{\App\Tool::convertMoney($row->totalPrecio())}}
+                            @else
+                                <span class="text-danger">{{\App\Tool::convertMoney($row->totalPrecio())}}</span>
+                            @endif
                         </td>
                         <td>
                             <button onclick="printJS('{{url('reportes/produccion').'?id='.$row->id}}')"
@@ -50,11 +54,12 @@
                                 <a href="{{route('admin.ingresar.productos.edit',$row->id)}}" class="btn btn-success btn-sm ">
                                     <i class="icon-pencil fa-2x"></i>  </a>
                             @elseif($row->checkState()[1]=='c' && $row->terminado==1)
-                                <a href="{{route('admin.ingresar.productos.edit',$row->id)}}" class="btn btn-warning btn-sm ">
-                                    <i class="icon-pencil fa-2x"></i>  </a>
+                                {!! Form::open(['route'=>['produccion.changeStateP',$row->id],'method'=>'post']) !!}
+                                <button  class="btn btn-warning btn-sm " onclick="return confirm('Seguro de Volver a, Habilitar la Produccion?..')">
+                                    <i class="fa fa-repeat fa-spin fa-2x"></i>
+                                </button>
+                                {!! Form::close() !!}
                             @endif
-
-
                         </td>
                         <td>
                             @if($row->checkState()[1]=='e')

@@ -6,7 +6,6 @@
         <h5 class="text-danger">* Si el producto no se encuentra registrado. Registrar haciendo <a target="_blank" href="{{route('admin.producto.create')}}">click aqui</a></h5>
     </div>
     <div class="row">
-
                 @include('cpanel.partials.errors')
                 {!! Form::model($produccion,['route'=>'admin.ingresar.productos.store','method'=>'post','files'=>true,'id'=>'form-produccion']) !!}
                     @include('cpanel.admin.ingresosproductos.partials.data')
