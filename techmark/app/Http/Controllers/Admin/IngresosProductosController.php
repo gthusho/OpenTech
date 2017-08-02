@@ -71,6 +71,7 @@ class IngresosProductosController extends Controller
             $ingreso->usuario_id =  Auth::user()->id;
             $ingreso->sucursal_id =  $sucursal_id;
             if ($this->produccion->terminado==1){
+                $ingreso->estado = 't';
                 $existencia = new IPManager($ingreso->producto_id, $ingreso->talla_id, $ingreso->sucursal_id);
                 $existencia->add($cantidad);
             }
@@ -179,6 +180,12 @@ class IngresosProductosController extends Controller
     {
 
         if(Auth::user()->can('allow-delete')) {
+           $ingreso = IngresosProducto::find($id);
+
+            if($ingreso->estado =='t'){
+                $existencia = new IPManager($ingreso->producto_id,$ingreso->talla_id, $ingreso->sucursal_id);
+                $existencia->down($ingreso->cantidad);
+            }
             IngresosProducto::destroy($id);
             return redirect()->back();
         }
