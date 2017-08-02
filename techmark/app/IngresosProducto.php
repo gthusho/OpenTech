@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class IngresosProducto extends Model
 {
     protected $table = 'ingresos_productos';
-
+    protected $fillable = [
+        'sucursal_id','producto_id','produccion_id','registro'
+    ];
     function  sucursal(){
         return $this->belongsTo('App\Sucursal','sucursal_id','id');
     }
@@ -24,5 +26,27 @@ class IngresosProducto extends Model
     function producto()
     {
         return $this->belongsTo('App\Producto', 'producto_id', 'id');
+    }
+    function scopeSucursal($query,$x){
+        if(trim($x) != ''){
+            $query->where('sucursal_id', $x);
+        }
+    }
+    function scopeProducto($query,$x){
+        if(trim($x) != ''){
+            $query->where('producto_id', $x);
+        }
+    }
+    function scopeTalla($query,$x){
+        if(trim($x) != ''){
+            $query->where('talla_id', $x);
+        }
+    }
+    function scopeFecha($query,$fecha){
+        if(trim($fecha) != ''){
+            $date = Tool::getArrayDate($fecha);
+            $query->where(\DB::raw('DATE(registro)'),'>=',$date[0])->where(\DB::raw('DATE(registro)'),'<=',$date[1]);
+
+        }
     }
 }

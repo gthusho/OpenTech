@@ -9,8 +9,10 @@ use App\Ingresos;
 use App\IngresosProducto;
 use App\IPManager;
 use App\Produccion;
+use App\Producto;
 use App\Rol;
 use App\Sucursal;
+use App\Talla;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -30,13 +32,16 @@ class IngresosProductosController extends Controller
         if(Auth::user()->can('allow-read')){
             $this->datos['brand'] = Tool::brand('Listado de Ingresos ',route('ingresos.productos.index'),'Ingresos Productos');
             $this->datos['ingresos'] = IngresosProducto::with('producto','sucursal','produccion','talla')
-//                ->fecha($request->get('fecha'))
-//                ->sucursal($request->get('sucursal'))
-//                ->articulo($request->get('articulo'))
+                ->fecha($request->get('fecha'))
+                ->sucursal($request->get('sucursal'))
+                ->producto($request->get('producto'))
+                ->talla($request->get('talla'))
                     ->where('estado','t')
                 ->orderBy('id','desc')
                 ->paginate();
             $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+            $this->datos['productos']=Producto::where('estado',true)->orderBy('descripcion')->pluck('descripcion','id');
+            $this->datos['tallas']=Talla::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
             return view('cpanel.admin.inproductos.list')->with($this->datos);
         }
 
