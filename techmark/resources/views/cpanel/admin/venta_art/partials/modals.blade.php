@@ -72,3 +72,27 @@
         </div>
     </div>
 </div>
+<div id="modal_venta_ok" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-keyboard="false" data-backdrop="static" data-focus-on="input:first">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h5 class="modal-title">Usuario: {!! Auth::user()->nombre !!}</h5>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    {!! Form::open(['route'=>['confirmVentaArticulo',$venta->id,'t'],'method'=>'post']) !!}
+                    @include('cpanel.admin.venta_pro.partials.infoVenta')
+                    <button  class="btn btn-primary waves-effect waves-light" onclick="return confirm('Esta Seguro confirmar la venta?')" id="superStart" disabled>
+                        <i class=" fa fa-opencart fa-2x"></i> Terminar
+                    </button>
+                    {!! Form::close() !!}
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Salir</button>
+            </div>
+        </div>
+    </div>
+</div>

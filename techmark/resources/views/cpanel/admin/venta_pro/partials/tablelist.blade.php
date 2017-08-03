@@ -57,7 +57,7 @@
                         @endif
                     </td>
                     <td class="text-center">
-                        <button onclick="printJS('{{url('reportes/venta').'?id='.$row->id}}')"  class="btn btn-primary btn-sm"> <i class=" icon-printer fa-2x"></i>  </button>
+                        <button onclick="printJS('{{url('reportes/venta/producto').'?id='.$row->id}}')"  class="btn btn-primary btn-sm"> <i class=" icon-printer fa-2x"></i>  </button>
                     </td>
                 </tr>
             @endforeach

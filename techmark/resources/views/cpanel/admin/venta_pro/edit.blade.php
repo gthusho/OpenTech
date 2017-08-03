@@ -16,7 +16,7 @@
                 </button>
             </div>
             <div class="pull-left">
-                <button onclick="printJS('{{url('reportes/venta').'?id='.$venta->id}}')"
+                <button onclick="printJS('{{url('reportes/venta/producto').'?id='.$venta->id}}')"
                         class="btn btn-inverse  waves-effect waves-light" >Imprimir
                     <span class="m-l-5"><i class=" icon-printer"></i></span></button>
             </div>
@@ -40,7 +40,7 @@
                 {!! Form::close() !!}
             </div>
         </div>
-        {!! Form::open(['route'=>['confirmVentaArticulo',$venta->id],'method'=>'post','id'=>'confirmar']) !!}
+        {!! Form::open(['route'=>['confirmVentaProducto',$venta->id],'method'=>'post','id'=>'confirmar']) !!}
         {!! Form::close() !!}
         <div class="row">
             <div class="col-lg-12">

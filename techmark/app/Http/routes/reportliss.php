@@ -82,3 +82,16 @@ Route::get('inventario/producto/excel','InventarioPReport@excel');
 
 Route::get('ingresos/productos','IngresosPReport@index');
 Route::get('ingresos/productos/excel','IngresosPReport@excel');
+
+Route::get('egresos/productos','EgresosPReport@index');
+Route::get('egresos/productos/excel','EgresosPReport@excel');
+
+Route::get('ventas/productos','VentasPReport@index');
+Route::get('ventas/productos/excel','VentasPReport@excel');
+
+Route::get('venta/producto','VentaPReport@index');
+
+Route::get('ventas/productos/credito','VentasPCredReport@index');
+Route::get('ventas/productos/credito/excel','VentasPCredReport@excel');
+
+Route::get('pagos/venta/productos','PagosVentaPReport@index');

@@ -60,4 +60,9 @@ class DetalleVentaProducto extends Model
             $query->where('usuario_id', $x);
         }
     }
+    function scopeTalla($query,$x){
+        if(trim($x) != ''){
+            $query->where('talla_id', $x);
+        }
+    }
 }
