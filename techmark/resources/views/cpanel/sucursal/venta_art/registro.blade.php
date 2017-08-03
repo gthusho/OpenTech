@@ -17,9 +17,9 @@
             </div>
             <div class="pull-right">
                 {!! Form::open(['route'=>['s.venta_art.destroy',$venta->id],'method'=>'delete']) !!}
-                <button  class="btn btn-danger waves-effect waves-light" onclick="return confirm('Esta Seguro de Cancelar la Venta?')">
+                <button  class="btn btn-warning waves-effect waves-light" onclick="return confirm('Esta Seguro de Anular la Venta?')">
                     <i class="ti-close"></i>
-                    Cancelar Venta
+                    Anular Venta
                 </button>
                 {!! Form::close() !!}
             </div>

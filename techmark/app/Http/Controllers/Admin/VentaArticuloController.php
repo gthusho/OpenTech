@@ -138,6 +138,7 @@ class VentaArticuloController extends Controller
             $this->datos['ventas'] = VentaArticulo::with('cliente','usuario','sucursal','almacen')
                 ->fecha($request->get('fecha'))
                 ->where('estado','t')
+                ->orWhere('estado','c')
                 ->codigo($request->get('s'))
                 ->sucursal($request->get('sucursal'))
                 ->cliente($request->get('cliente'))
@@ -187,17 +188,34 @@ class VentaArticuloController extends Controller
 
 
     }
-    public function confirmVenta($id){
+    public function confirmVentaArticulo($id, $estado, Request $request)
+    {
         $venta = VentaArticulo::find($id);
-        $venta->estado = 't';
-        $venta->save();
-        /*
-       * egreso items a existencia una vez terminado la venta
-       */
-        foreach ($venta->detalleventas as $row){
-            $existencia = new IAManager($row->articulo_id, $venta->sucursal_id, $venta->almacen_id);
-            $existencia->down($row->cantidad);
+        if ($estado == 't') {
+            $venta->fill($request->all());
+            $venta->save();
+            $venta->almacen_id=$venta->sucursal->almacen->id;
+            $venta->estado = 't';
+            foreach ($venta->detalleventas as $row) {
+                $existencia = new IAManager($row->articulo_id, $venta->sucursal_id, $venta->almacen_id);
+                $existencia->down($row->cantidad);
+            }
         }
+        elseif($estado=='c'){
+            if($venta->estado == 't') {
+                $articulos = DetalleVentaArticulo::where('venta_articulo_id', $id);
+                foreach ($articulos as $art) {
+                    $existencia = new IAManager($art->articulo_id, $this->venta->sucursal_id, $this->venta->almacen_id);
+                    $existencia->add($art->cantidad);
+                }
+            }
+            $venta->estado='c';
+        }
+        $venta->save();
+
+        $this->venta = $venta;
+        $this->updateVenta();
+
         /// enviar la url del reporte en la variable tiket
         \Session::flash('tiket',url('reportes/venta').'?id='.$venta->id);
         return redirect()->route('admin.venta_art.index');
@@ -210,8 +228,6 @@ class VentaArticuloController extends Controller
             //actualizo la compra de ser necesario
             $this->venta->fill($request->all());
             $this->venta->sucursal_id = $request->get('sucursal_id');
-            $this->venta->save();
-            $this->venta->almacen_id = $this->venta->sucursal->almacen->id;
             $this->venta->save();
 
 
@@ -262,18 +278,11 @@ class VentaArticuloController extends Controller
             //actualizo la compra de ser necesario
             $this->venta = VentaArticulo::find($id);
             $this->venta->cliente_id = $request->get('cliente_id');
-            $this->venta->tipo_pago = $request->get('tipo_pago');
             $this->venta->observaciones = $request->get('observaciones');
             $this->venta->sucursal_id = $request->get('sucursal_id');
             $this->venta->save();
             $this->venta->almacen_id = $this->venta->sucursal->almacen->id;
             $this->venta->save();
-
-
-            //valido si me envias un articulo id
-            if($request->get('articulo_id')!=''){
-                $this->setArticulo($request->get('articulo_id'),$request->get('xCantidad'),$request->get('xPrecio'));
-            }
 
             //actualzamos los datos de ingresos con referencia a los cambios en compra si uera necesario
 
@@ -298,6 +307,13 @@ class VentaArticuloController extends Controller
 
         if(Auth::user()->can('allow-delete')) {
             $venta =  VentaArticulo::find($id);
+            if($venta->estado == 't') {
+                $articulos = DetalleVentaArticulo::where('venta_articulo_id', $id);
+                foreach ($articulos as $art) {
+                    $existencia = new IAManager($art->articulo_id, $this->venta->sucursal_id, $this->venta->almacen_id);
+                    $existencia->add($art->cantidad);
+                }
+            }
             \DB::table('detalles_ventas_articulos')->where('venta_articulo_id',$venta->id)->delete();
             \DB::table('ventas_credito_articulos')->where('venta_articulo_id',$venta->id)->delete();
             VentaArticulo::destroy($id);

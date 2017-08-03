@@ -12,7 +12,7 @@ Route::resource('producto','ProductoController');
 Route::resource('venta_art','VentaArticuloController');
 
 Route::post('deleteItemsVentaArticulo/{id}',['as' => 'deleteItemsVentaArticulo', 'uses' => 'DetalleVentaArticuloController@deleteItemsVentaArticulo']);
-Route::post('confirmVentaArticulo/{id}',['as' => 'confirmVentaArticulo', 'uses' => 'VentaArticuloController@confirmVenta']);
+Route::post('confirmVentaArticulo/{id}/{estado}',['as' => 'confirmVentaArticulo', 'uses' => 'VentaArticuloController@confirmVentaArticulo']);
 
 Route::resource('cot_producto','CotizacionProductoController');
 
