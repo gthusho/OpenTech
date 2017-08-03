@@ -7,7 +7,7 @@
                 <th>IMAGEN</th>
                 <th>PRODUCTO</th>
                 <th>TALLA</th>
-                <th>PRECIO</th>
+                <th>P/U</th>
                 <th>CANTIDAD</th>
                 <th>TOTAL</th>
                 <th>REMOVER</th>
@@ -29,9 +29,34 @@
                         <td>
                             {{$row->talla->nombre}}
                         </td>
-                        <td>{{\App\Tool::convertMoney($row->precio)}}</td>
+                        <td>
+                            <?php
+                            $punitario = 0;
+                            $pt =  \App\ProductoTalla::where('producto_id',$row->producto_id)->where('talla_id',$row->talla_id)->get()->first();
+                            if(\App\Tool::existe($pt)){
+                                switch ($row->dp){
+                                    case 'P1':{
+                                        $punitario = $pt->precio1;
+                                        break;
+                                    }
+                                    case 'P2':{
+                                        $punitario = $pt->precio2;
+                                        break;
+                                    }
+                                    case 'P3':{
+                                        $punitario = $pt->precio3;
+                                        break;
+                                    }
+                                    default: break;
+                                }
+
+                            }
+                            ?>
+                            {{\App\Tool::convertMoney($punitario)}}
+
+                        </td>
                         <td>{{$row->cantidad}}</td>
-                        <td>{{\App\Tool::convertMoney(($row->precio*$row->cantidad))}}</td>
+                        <td>{{\App\Tool::convertMoney(($row->precio))}}</td>
                         <td>
                             @if(Request::segment(5)!='edit')
                             {!! Form::open(['route'=>['vpd.destroyItemCar',$row->id],'method'=>'delete']) !!}
