@@ -59,6 +59,13 @@ class Producto extends Model
         else
             return url(\Config::get('upload.productos').'defaultstore.jpg');
     }
+    function getStockAll(){
+        $cantidad =  ExistenciaProducto::where('producto_id',$this->id)->sum('cantidad');
+        if($cantidad!='')
+            return $cantidad;
+        else
+            return 0;
+    }
     function  deleteOk(){
         $num = ExistenciaProducto::where('producto_id',$this->id)->count();
         $num += DetalleVentaProducto::where('producto_id',$this->id)->count();

@@ -82,7 +82,7 @@ class VentasProductosController extends Controller
             */
             if ($this->venta->estado=='t'){
                 $existencia = new IPManager($producto_talla->producto_id,$producto_talla->talla_id, $this->venta->sucursal_id);
-                $existencia->UpdateSale($producto_talla->cantidad,$cantidad);
+                $existencia->UpdateSale($productoVenta->cantidad,$cantidad);
             }
 
             $productoVenta->cantidad = $cantidad;

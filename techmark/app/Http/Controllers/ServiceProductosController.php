@@ -41,7 +41,7 @@ class ServiceProductosController extends Controller
 
         if(Tool::existe($query)){
             $item =  $query->first();
-
+            $this->stock =  $item->getStockAll();
             $data = [
                 'producto_id'=>$item->id,
                 'talla_id'=>$this->talla_id,
@@ -100,7 +100,7 @@ class ServiceProductosController extends Controller
         $query = ProductoTalla::find($request->get('id'));
         if(Tool::existe($query)){
             $item =  $query;
-
+            $this->stock =  $item->producto->getStockAll();
             $data = [
                 'talla_id'=>$item->talla_id,
                 'stock'=>$this->stock,
@@ -121,7 +121,7 @@ class ServiceProductosController extends Controller
             $producto = Producto::find($ingreso->producto_id);
 
             $productoTalla = ProductoTalla::where('producto_id',$producto->id)->where('talla_id',$ingreso->talla_id)->get()->first();
-
+            $this->stock =  $producto->getStockAll();
             $data = [
                 'producto_id'=>$ingreso->producto_id,
                 'talla_id'=>$ingreso->talla_id,
@@ -172,7 +172,7 @@ class ServiceProductosController extends Controller
         if($productoTalla != null || $productoTalla !=''){
             $producto = Producto::find($productoTalla->producto_id);
 
-
+            $this->stock =  $producto->getStockAll();
             $data = [
                 'producto_id'=>$productoTalla->producto_id,
                 'talla_id'=>$productoTalla->talla_id,
@@ -198,7 +198,7 @@ class ServiceProductosController extends Controller
 
         $productoVenta = DetalleVentaProducto::find($request->get('data'));
 
-
+        $this->stock =  $productoVenta->producto->getStockAll();
         if($productoVenta != null || $productoVenta !=''){
             $productoTalla = ProductoTalla::where('producto_id',$productoVenta->producto_id)->where('talla_id',$productoVenta->talla_id)->get()->first();
             $data = [
