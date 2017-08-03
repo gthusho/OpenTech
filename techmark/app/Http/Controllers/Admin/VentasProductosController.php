@@ -176,9 +176,10 @@ class VentasProductosController extends Controller
             return redirect('dashboard');
         }
     }
-    public function confirmVenta($id,$stado){
+    public function confirmVenta($id,$stado,Request $request){
         $venta = VentaProducto::find($id);
         if($stado=='t'){
+            $venta->fill($request->all());//aumentar esto
             $venta->estado = 't';
             foreach ($venta->detalleventas as $row){
                 $existencia = new IPManager($row->producto_id,$row->talla_id, $venta->sucursal_id);

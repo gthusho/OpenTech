@@ -10,12 +10,10 @@
         {!! Form::close() !!}
         <div class="row m-b-15 col-lg-12">
             <div class="pull-left ">
-                {!! Form::open(['route'=>['confirmVentaProducto',$venta->id,'t'],'method'=>'post']) !!}
-                <button  class="btn btn-primary waves-effect waves-light" onclick="return confirm('Esta Seguro confirmar la venta?')">
+                <button  class="btn btn-primary waves-effect waves-light" id="showModalVenta">
                     <i class="ti-check"></i>
                      Confirmar Venta
                 </button>
-                {!! Form::close() !!}
             </div>
 
             <div class="pull-right ">

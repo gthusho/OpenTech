@@ -24,10 +24,10 @@
     }
 </style>
 <div class="row">
-    <div class="col-lg-5">
-        @include('cpanel.admin.venta_pro.partials.infoVenta')
-    </div>
-    <div class="col-lg-7">
+    {{--<div class="col-lg-5">--}}
+        {{--@include('cpanel.admin.venta_pro.partials.infoVenta')--}}
+    {{--</div>--}}
+    <div class="col-lg-12">
         <div class="panel panel-border panel-custom">
             <div class="panel-heading">
 

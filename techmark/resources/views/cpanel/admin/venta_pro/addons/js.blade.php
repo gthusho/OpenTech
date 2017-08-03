@@ -156,14 +156,14 @@
             workAjax(url,codigo,"barra")
         }
     });
-
-    $('td').css('cursor','crosshair');
+    @if(Request::segment(5)!='edit')
+        $('td').css('cursor','crosshair');
     $(".rows").click(function (){
         var codigo = $(this).attr('data-id');
         var url = "{{route('ventaProductobyRow')}}";
         workAjax(url,codigo,"id")
     });
-
+   @endif
     $('#btnConfirmar').click(function () {
         var isGood=confirm('Esta Seguro de Continuar?');
         if (isGood) {
@@ -178,6 +178,7 @@
     $('#Search').click(function () {
         $('#modal_search').modal('show');
     });
+
     function workAjaxListItems(_url,_data) {
         $.ajax({
             url: _url,
@@ -215,10 +216,42 @@
             workAjaxNit(url,nit)
         }
     });
+    /*
+     abro el modal confirmar venta
+     */
+    $('#showModalVenta').click(function () {
+        $('#modal_venta_ok').modal('show');
+        $('#modal_venta_ok').on('shown.bs.modal', function () {
+            if($('#cid').val()=="")
+                $('#xnit').focus();
+        });
+    });
+    /*
+     abro el modal confirmar venta
+     */
+    /*
+    * modificaciones para modals
+    */
+    function RegistrarCliente(_data) {
+        $('#modal_venta_ok')
+            .modal('hide')
+            .on('hidden.bs.modal', function (e) {
+                $('#xxNit').val(_data);
+                $('#modal_cliente').modal('show');
+                $('#modal_cliente').on('shown.bs.modal', function () {
+                    $('#xxNombreCliente').focus();
+                });
+                $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+            });
 
-    function RegistrarCliente() {
-        $('#modal_cliente').modal('show');
     }
+
+    $("#modal_cliente").on("hidden.bs.modal", function () {
+       $('#modal_venta_ok').modal('show');
+    });
+    /*
+     * fin modificaciones para modals
+     */
     function genCliente(item) {
         $('#crazon').val(item['razon_social']);
         $('#cid').val(item['id']);
@@ -236,7 +269,7 @@
             },
             error: function (data) {
                 clean();
-                RegistrarCliente();
+                RegistrarCliente(_data);
             }
         });
     }

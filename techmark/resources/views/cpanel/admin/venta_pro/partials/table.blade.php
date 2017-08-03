@@ -33,10 +33,11 @@
                         <td>{{$row->cantidad}}</td>
                         <td>{{\App\Tool::convertMoney(($row->precio*$row->cantidad))}}</td>
                         <td>
+                            @if(Request::segment(5)!='edit')
                             {!! Form::open(['route'=>['vpd.destroyItemCar',$row->id],'method'=>'delete']) !!}
                             <button class="btn btn-danger btn-sm" ><i class=" icon-trash fa-2x"></i> </button>
                             {!! Form::close() !!}
-
+                            @endif
                         </td>
                     </tr>
                 @endforeach
