@@ -10,14 +10,14 @@
                 {!! Form::close() !!}
         <div class="row m-b-15 col-lg-12">
             <div class="pull-left">
-                        <span class="btn btn-primary waves-effect waves-light m-r-5" id="btnConfirmar">
+                        <span class="btn btn-primary waves-effect waves-light m-r-5" id="showModalVenta">
                             <i class="fa fa-check-square-o"></i>
                             Registrar Venta
                         </span>
             </div>
             <div class="pull-right">
-                {!! Form::open(['route'=>['s.venta_art.destroy',$venta->id],'method'=>'delete']) !!}
-                <button  class="btn btn-warning waves-effect waves-light" onclick="return confirm('Esta Seguro de Anular la Venta?')">
+                {!! Form::open(['route'=>['s.venta_art.destroy',$venta->id],'method'=>'post']) !!}
+                <button  class="btn btn-warning waves-effect waves-light m-r-5" onclick="return confirm('Esta Seguro de Anular la Venta?')">
                     <i class="ti-close"></i>
                     Anular Venta
                 </button>
@@ -40,7 +40,7 @@
             </div>
         </div>
     </div>
-    @include('cpanel.admin.venta_art.partials.modals')
+    @include('cpanel.sucursal.venta_art.partials.modals')
 @endsection
 
 @section('css')

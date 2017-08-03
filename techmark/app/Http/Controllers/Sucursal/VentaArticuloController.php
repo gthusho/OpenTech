@@ -30,8 +30,7 @@ class VentaArticuloController extends Controller
     }
 
     function validarCaja(){
-        $user=User::find(Auth::user()->id);
-        $query = Caja::where('usuario_id',Auth::user()->id)->where('sucursal_id',$user->sucursal_id)->where('estado','p')->get();
+        $query = Caja::where('usuario_id',Auth::user()->id)->where('sucursal_id',Auth::user()->sucursal_id)->where('estado','p')->get();
         if(!Tool::existe($query)){
             \Session::flash('message','No abriste caja ');
             return redirect('dashboard');
@@ -44,10 +43,9 @@ class VentaArticuloController extends Controller
         if(Tool::existe($query)){
             $this->venta = $query->first();
         }else{
-            $user=User::find(Auth::user()->id);
             $this->venta = new  VentaArticulo();
-            $this->venta->usuario_id = $user->id;
-            $this->venta->sucursal_id=$user->sucursal_id;
+            $this->venta->usuario_id = Auth::user()->id;
+            $this->venta->sucursal_id=Auth::user()->sucursal_id;
             $this->venta->save();
             $this->venta->almacen_id=$this->venta->sucursal->almacen->id;
             $this->venta->save();
@@ -250,12 +248,6 @@ class VentaArticuloController extends Controller
             $this->venta->cliente_id = $request->get('cliente_id');
             $this->venta->tipo_pago = $request->get('tipo_pago');
             $this->venta->observaciones = $request->get('observaciones');
-
-
-            //valido si me envias un articulo id
-            if($request->get('articulo_id')!=''){
-                $this->setArticulo($request->get('articulo_id'),$request->get('xCantidad'),$request->get('xPrecio'));
-            }
 
 
             return redirect()->back();
