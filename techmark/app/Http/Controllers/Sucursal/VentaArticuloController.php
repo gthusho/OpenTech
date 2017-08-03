@@ -134,6 +134,7 @@ class VentaArticuloController extends Controller
             $this->datos['ventas'] = VentaArticulo::with('cliente','usuario','sucursal','almacen')
                 ->fecha($request->get('fecha'))
                 ->where('estado','t')
+                ->orWhere('estado','c')
                 ->codigo($request->get('s'))
                 ->usuario(Auth::user()->id)
                 ->cliente($request->get('cliente'))
@@ -274,15 +275,21 @@ class VentaArticuloController extends Controller
     {
 
         if(Auth::user()->can('allow-delete')) {
-            $venta =  VentaArticulo::find($id);
-            \DB::table('detalles_ventas_articulos')->where('venta_articulo_id',$venta->id)->delete();
-            \DB::table('ventas_credito_articulos')->where('venta_articulo_id',$venta->id)->delete();
-            VentaArticulo::destroy($id);
-            $mensaje = 'La Venta fue Cancelada ';
+            $anulado=VentaArticulo::find($id);
+            if($anulado->estado == 't') {
+                $articulos = DetalleVentaArticulo::where('venta_articulo_id', $id);
+                foreach ($articulos as $art) {
+                    $existencia = new IAManager($art->articulo_id, $this->venta->sucursal_id, $this->venta->almacen_id);
+                    $existencia->add($art->cantidad);
+                }
+            }
+            $anulado->estado='c';
+            $anulado->save();
+            $mensaje = 'La Venta fue Anulada ';
             \Session::flash('message',$mensaje);
             return redirect()->route('s.venta_art.index');
         }
-        \Session::flash('message','No tienes Permisos para Borrar informacion');
+        \Session::flash('message','No tienes Permisos para eliminar ');
         return redirect('dashboard');
 
     }

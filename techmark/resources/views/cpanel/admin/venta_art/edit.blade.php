@@ -24,13 +24,21 @@
             <div class="pull-right">
                 {!! Form::open(['route'=>['admin.venta_art.destroy',$venta->id],'method'=>'delete']) !!}
                 <button  class="btn btn-danger waves-effect waves-light" onclick="return confirm('Esta Seguro de Cancelar la Venta?')">
-                    <i class="ti-close"></i>
                     Eliminar Venta
+                    <i class="ti-trash"></i>
+                </button>
+                {!! Form::close() !!}
+            </div>
+            <div class="pull-right">
+                {!! Form::open(['route'=>['confirmVentaArticulo',$venta->id,'c'],'method'=>'post']) !!}
+                <button  class="btn btn-warning waves-effect waves-light m-r-5" onclick="return confirm('Esta Seguro de Anular la Venta?')">
+                    <i class="ti-close"></i>
+                    Anular Venta
                 </button>
                 {!! Form::close() !!}
             </div>
         </div>
-        {!! Form::open(['route'=>['confirmVentaArticulo',$venta->id],'method'=>'post','id'=>'confirmar']) !!}
+        {!! Form::open(['route'=>['confirmVentaArticulo',$venta->id, 't'],'method'=>'post','id'=>'confirmar']) !!}
         {!! Form::close() !!}
         <div class="row">
             <div class="col-lg-12">

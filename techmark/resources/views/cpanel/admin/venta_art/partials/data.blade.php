@@ -24,35 +24,36 @@
     }
 </style>
 <div class="row">
-    <div class="col-lg-5">
-        @include('cpanel.admin.venta_art.partials.infoVenta')
-    </div>
-    <div class="col-lg-7">
-        <div class="panel panel-border panel-custom">
-            <div class="panel-heading">
+    <div class="col-lg-12">
+        @if(Request::segment(4)!='edit')
+            <div class="panel panel-border panel-custom">
+                <div class="panel-heading">
 
-                <h3 class="panel-title">INFORMACION ARTICULOS</h3>
+                    <h3 class="panel-title">INFORMACION PRODUCTO</h3>
 
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-12">
-                        @include('cpanel.admin.venta_art.partials.buscarArticulo')
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @include('cpanel.admin.venta_art.partials.buscarArticulo')
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-7">
+                            @include('cpanel.admin.venta_art.partials.infoArticulo')
+                        </div>
+                        <div class="col-lg-3">
+                            @include('cpanel.admin.venta_art.partials.infoPrecios')
+                        </div>
+                        <div class="col-lg-2">
+                            @include('cpanel.admin.venta_art.partials.operaciones')
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-7">
-                        @include('cpanel.admin.venta_art.partials.infoArticulo')
-                    </div>
-                    <div class="col-lg-3">
-                        @include('cpanel.admin.venta_art.partials.infoPrecios')
-                    </div>
-                    <div class="col-lg-2">
-                        @include('cpanel.admin.venta_art.partials.operaciones')
-                    </div>
-                </div>
             </div>
-        </div>
+        @else
+            @include('cpanel.admin.venta_art.partials.infoVenta')
+        @endif
     </div>
 </div>
 

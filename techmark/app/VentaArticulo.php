@@ -9,7 +9,7 @@ class VentaArticulo extends Model
 {
     protected $table = 'ventas_articulos';
     protected $fillable = [
-        'cliente_id','registro','observaciones','estado','usuario_id','tipo_pago','sucursal_id','almacen_id'
+        'cliente_id','registro','observaciones','estado','usuario_id','tipo_pago','sucursal_id','almacen_id','abono'
     ];
 
 

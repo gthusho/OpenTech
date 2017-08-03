@@ -118,7 +118,11 @@
             },
             error: function (data) {
                 clean();
-                RegistrarCliente();
+                @if(Request::segment(5)=='edit')
+                RegistrarClienteEdit(_data);
+                @else
+                RegistrarCliente(_data);
+                @endif
             }
         });
     }
@@ -158,9 +162,32 @@
     /*
     fin registrar cliente
      */
-    function RegistrarCliente() {
+    function RegistrarClienteEdit(_data) {
+        $('#xxNit').val(_data);
         $('#modal_cliente').modal('show');
+        $('#modal_cliente').on('shown.bs.modal', function () {
+            $('#xxNombreCliente').focus();
+        });
     }
+    function RegistrarCliente(_data) {
+        $('#modal_venta_ok')
+            .modal('hide')
+            .on('hidden.bs.modal', function (e) {
+                $('#xxNit').val(_data);
+                $('#modal_cliente').modal('show');
+                $('#modal_cliente').on('shown.bs.modal', function () {
+                    $('#xxNombreCliente').focus();
+                });
+                $(this).off('hidden.bs.modal'); // Remove the 'on' event binding
+            });
+
+    }
+
+    $("#modal_cliente").on("hidden.bs.modal", function () {
+        @if(Request::segment(5)!='edit') // solo funciono si no estoy editando
+        $('#modal_venta_ok').modal('show');
+        @endif
+    });
     function onOffBtnCart($xx) {
         if(!$xx){
             $('#AddItemCart').attr('disabled', true);
@@ -213,6 +240,13 @@
             $('#confirmar').submit();
         }
     });
+    $('#showModalVenta').click(function () {
+        $('#modal_venta_ok').modal('show');
+        $('#modal_venta_ok').on('shown.bs.modal', function () {
+            if($('#cid').val()=="")
+                $('#xnit').focus();
+        });
+    });
     $('#btnActualizar').click(function () {
         clean();
         $('#form-venta-articulo').submit();
@@ -221,6 +255,7 @@
     $('#Search').click(function () {
         $('#modal_search').modal('show');
     });
+
     function workAjaxListItems(_url,_data) {
         $.ajax({
             url: _url,
@@ -248,4 +283,38 @@
       var url = "{{route('showArticle')}}";
       workAjax(url,codigo,"id");
   }
+    function fncRestar(){
+        var numero1 = Number({!! $venta->totalPrecio() !!});
+        var numero2 = Number(document.getElementById("abono").value);
+        var cambio = numero2 - numero1;
+        if(cambio<0){
+
+            if($('#tipo_pago').val()=="Credito"){
+                document.getElementById("cambio").value = "A Credito " + (cambio*-1) + " Bs.";
+                onOffsuperStart(true);
+            }else {
+                document.getElementById("cambio").value = "Efectivo Insuficiente ";
+                onOffsuperStart(false);
+            }
+
+        }else {
+            onOffsuperStart(true);
+            document.getElementById("cambio").value = cambio  + " Bs.";
+        }
+
+
+    }
+    $("#tipo_pago").on("change", function(e) {
+        fncRestar();
+    });
+    function onOffsuperStart($xx) {
+        if(!$xx){
+            $('#superStart').attr('disabled', true);
+        }else {
+            $('#superStart').removeAttr('disabled');
+        }
+    }
+    $("#abono").on('input',function () {
+        fncRestar();
+    });
 </script>
