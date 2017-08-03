@@ -329,5 +329,38 @@
     /*
     calculo de cambio
      */
+    function fncRestar(){
+        var numero1 = Number({!! $venta->totalPrecio() !!});
+        var numero2 = Number(document.getElementById("abono").value);
+        var cambio = numero2 - numero1;
+        if(cambio<0){
 
+            if($('#tipo_pago').val()=="Credito"){
+                document.getElementById("cambio").value = "A Credito " + (cambio*-1) + " Bs.";
+                onOffsuperStart(true);
+            }else {
+                document.getElementById("cambio").value = "Efectivo Insuficiente ";
+                onOffsuperStart(false);
+            }
+
+        }else {
+            onOffsuperStart(true);
+            document.getElementById("cambio").value = cambio  + " Bs.";
+        }
+
+
+    }
+    $("#tipo_pago").on("change", function(e) {
+        fncRestar();
+    });
+    function onOffsuperStart($xx) {
+        if(!$xx){
+            $('#superStart').attr('disabled', true);
+        }else {
+            $('#superStart').removeAttr('disabled');
+        }
+    }
+    $("#abono").on('input',function () {
+        fncRestar();
+    });
 </script>
