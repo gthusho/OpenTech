@@ -13,7 +13,7 @@
     </table>
 </h3>
 <br>
-<table width="40%">
+<table width="50%" style="line-height:20pt;">
     <tr>
         <td><strong>SUCURSAL:</strong></td>
         <td>{{$venta->sucursal->nombre}}</td>
@@ -30,10 +30,7 @@
         <td><strong>NIT:</strong></td>
         <td>{{$venta->cliente->nit}}</td>
     </tr>
-    <tr>
-        <td><strong>CANTIDAD:</strong></td>
-        <td>{{ucwords($venta->totalCantidad())}}</td>
-    </tr>
+
     <tr>
         <td><strong>TOTAL PRECIO</strong></td>
         <td>{{\App\Tool::convertMoney($venta->totalPrecio())}}</td>

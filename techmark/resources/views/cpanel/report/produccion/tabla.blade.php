@@ -1,14 +1,13 @@
 <br>
 <br>
-<table width="80%">
+<table width="80%" style="line-height:20pt;">
     <br>
     <tr>
         <td ><strong>CODIGO</strong></td>
         <td >{{$produccion->getCode()}}</td>
     </tr>
     <tr> <td><strong>ESTADO PRODUCCION:</strong></td>
-        <td>
-            @if($produccion->checkState()[1]=='p'&& $produccion->terminado==0)<B>En Produccion </B>
+        <td>@if($produccion->checkState()[1]=='p'&& $produccion->terminado==0)<B>En Produccion </B>
             @elseif($produccion->checkState()[1]=='t' && $produccion->terminado==1) <b>En Inventario</b>
 
             @elseif($produccion->checkState()[1]=='c' && $produccion->terminado==1)<b>Cancelada</b>
@@ -45,7 +44,7 @@
 </table>
 
 <P></P>
-<table  e(llspacing="5">
+<table >
     <tr>
         <th width="3%" ><strong>#</strong></th>
         <th width="15%" ><strong>ARTICULOS</strong></th>
@@ -102,7 +101,7 @@
 
 
 @if($produccion->checkState()[1]=='t' && $produccion->terminado==1)
-    <h3>PRODUCTOS INVENTARIADOS</h3>
+    <h3>PRODUCTOS TERMINADOS DE LA PRODUCCION</h3>
 <table  cellspacing="5"  >
     <tr>
         <th width="8%" ><strong>#</strong></th>
@@ -126,4 +125,15 @@
     @endforeach
 
 </table>
+    <h3>
+        <table align="right">
+
+            <tr>
+                <td ><strong>TOTAL PRODUCTOS TERMINADOS:</strong></td>
+                <td >{{($produccion->totalProduccion())}}  unidades</td>
+            </tr>
+
+
+        </table>
+    </h3>
 @endif

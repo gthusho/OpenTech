@@ -49,6 +49,10 @@ class Produccion extends Model
         $total =  DetalleProduccion::where('produccion_id',$this->id)->count();
         return $total;
     }
+    function totalProduccion(){
+        $total=IngresosProducto::where('produccion_id',$this->id)->sum('cantidad');
+        return $total;
+    }
     function getCode(){
         return 'P'.sprintf("%06d", $this->id);
     }
