@@ -29,7 +29,7 @@
                         <li><a href="{{route('admin.venta-credito-art.index')}}">Ventas al Credito</a></li>
                         <li class="text-muted menu-title">PRODUCTOS</li>
                         <li><a href="{{route('admin.ventas.productos.index')}}">Vender Productos</a></li>
-                        <li><a href="{{route('admin.ventas.productos.credito.index')}}">Ventas al Credito</a></li>
+                        <li><a href="{{route('admin.ventas.creditos.productos.index')}}">Ventas al Credito</a></li>
                     </ul>
                 </li>
                 <li class="has_sub">

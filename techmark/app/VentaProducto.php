@@ -57,11 +57,11 @@ class VentaProducto extends Model
         }
     }
     function  getTotalAbonos(){
-        $total = VentaCreditoProducto::where('venta_producto_id',$this->id)->sum('abono');
+        $total = VentaCreditoProducto::where('venta_producto_id',$this->id)->sum('abono') ;
         if($total == '' || $total ==null){
-            return 0;
+            return 0 + $this->abono;
         }else{
-            return $total;
+            return $total + $this->abono;
 
         }
     }
@@ -71,7 +71,7 @@ class VentaProducto extends Model
         }
     }
     function getTotalDeuda(){
-        return $this->totalPrecio() - $this->getTotalAbonos();
+        return $this->totalPrecio() - $this->getTotalAbonos() ;
     }
     function totalVenta($query,$fecha){
         $total = DetalleVentaProducto::where('DetalleVentaProducto',$this->id)->where('registro',$this->caja->registro)->sum(totalPrecio());

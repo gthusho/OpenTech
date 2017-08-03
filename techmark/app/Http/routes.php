@@ -78,10 +78,9 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin','user_on'],'nam
     Route::post('ingresar/productos/changeStateP/{id}',['as' => 'produccion.changeStateP', 'uses' => 'IngresosProductosController@changeStateP']);
 
     Route::resource('ventas/productos','VentasProductosController');
-    Route::resource('ventas/productos/credito','VentasProductosController');
     Route::post('confirmVentaProducto/{id}/{stado}',['as' => 'confirmVentaProducto', 'uses' => 'VentasProductosController@confirmVenta']);
     Route::delete('destroyItemCar/{id}',['as' => 'vpd.destroyItemCar', 'uses' => 'VentasProductosController@destroyItemCar']);
-
+    Route::resource('ventas/creditos/productos','VentaProductoCreditoController');
 
 });
 
