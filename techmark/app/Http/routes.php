@@ -76,6 +76,13 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin','user_on'],'nam
     Route::resource('ingresar/productos','IngresosProductosController');
     Route::post('ingresar/productos/workProduccion/{id}/{action}',['as' => 'produccion.workProduccion', 'uses' => 'IngresosProductosController@workProduccion']);
     Route::post('ingresar/productos/changeStateP/{id}',['as' => 'produccion.changeStateP', 'uses' => 'IngresosProductosController@changeStateP']);
+
+    Route::resource('ventas/productos','VentasProductosController');
+    Route::resource('ventas/productos/credito','VentasProductosController');
+    Route::post('confirmVentaProducto/{id}/{stado}',['as' => 'confirmVentaProducto', 'uses' => 'VentasProductosController@confirmVenta']);
+    Route::delete('destroyItemCar/{id}',['as' => 'vpd.destroyItemCar', 'uses' => 'VentasProductosController@destroyItemCar']);
+
+
 });
 
 Route::group(['prefix'=>'reportes','middleware'=>['auth'],'namespace'=>'Report'], function(){
@@ -142,6 +149,7 @@ Route::post('service/priceByIdProduct',['as' => 'priceByIdProduct', 'uses' => 'S
 Route::get('service/productByRowId',['as' => 'productByRowId', 'uses' => 'ServiceProductosController@productByRowId']);
 Route::get('service/getListProductos',['as' => 'getListProductos', 'uses' => 'ServiceProductosController@getListProductos']);
 Route::get('service/showProductoSearch',['as' => 'showProductoSearch', 'uses' => 'ServiceProductosController@showProductoSearch']);
+Route::get('service/ventaProductobyRow',['as' => 'ventaProductobyRow', 'uses' => 'ServiceProductosController@ventaProductobyRow']);
 /*
  * rutas sucursal
  */

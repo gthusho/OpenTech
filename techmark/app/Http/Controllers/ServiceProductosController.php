@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Articulo;
 use App\Clientes;
+use App\DetalleVentaProducto;
 use App\Ingresos;
 use App\IngresosProducto;
 use App\Producto;
@@ -51,6 +52,7 @@ class ServiceProductosController extends Controller
                 'precio1'=>Tool::convertMoney($this->precio[0]),
                 'precio2'=>Tool::convertMoney($this->precio[1]),
                 'precio3'=>Tool::convertMoney($this->precio[2]),
+                'dp'=>'P1'
             ];
 
             return $data;
@@ -130,7 +132,7 @@ class ServiceProductosController extends Controller
                 'precio1'=>Tool::convertMoney($productoTalla->precio1),
                 'precio2'=>Tool::convertMoney($productoTalla->precio2),
                 'precio3'=>Tool::convertMoney($productoTalla->precio3),
-                'xcantidad'=>$ingreso->cantidad
+                'xcantidad'=>$ingreso->cantidad,
             ];
             return $data;
         }else{
@@ -181,7 +183,36 @@ class ServiceProductosController extends Controller
                 'precio1'=>Tool::convertMoney($productoTalla->precio1),
                 'precio2'=>Tool::convertMoney($productoTalla->precio2),
                 'precio3'=>Tool::convertMoney($productoTalla->precio3),
-                'xcantidad'=>''
+                'xcantidad'=>'',
+                'dp'=>'P1'
+            ];
+            return $data;
+        }else{
+            abort(1000);
+        }
+    }
+    /*
+     * busco de una venta ya registrada row
+     */
+    function ventaProductobyRow(Request $request){
+
+        $productoVenta = DetalleVentaProducto::find($request->get('data'));
+
+
+        if($productoVenta != null || $productoVenta !=''){
+            $productoTalla = ProductoTalla::where('producto_id',$productoVenta->producto_id)->where('talla_id',$productoVenta->talla_id)->get()->first();
+            $data = [
+                'producto_id'=>$productoVenta->producto_id,
+                'talla_id'=>$productoVenta->talla_id,
+                'nombre'=>$productoVenta->producto->descripcion,
+                'tallas'=>$this->tallasRowToHtml($productoVenta->producto->tallas,$productoVenta->talla_id),
+                'imagen'=>$productoVenta->producto->getImagen(),
+                'stock'=>$this->stock,
+                'precio1'=>Tool::convertMoney($productoTalla->precio1),
+                'precio2'=>Tool::convertMoney($productoTalla->precio2),
+                'precio3'=>Tool::convertMoney($productoTalla->precio3),
+                'xcantidad'=>$productoVenta->cantidad,
+                'dp'=>$productoVenta->dp
             ];
             return $data;
         }else{

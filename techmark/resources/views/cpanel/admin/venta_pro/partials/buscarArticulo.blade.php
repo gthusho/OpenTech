@@ -9,7 +9,7 @@
         {!! Form::text('codigobarra',null,['class'=>'form-control cleanclean','autocomplete'=>'of','id'=>'xcodigobarra'])!!}
     </div>
     <div class="form-group col-lg-2">
-        <span class="btn btn-inverse waves-effect waves-light  btn-sm pull-right m-t-30"  id="Search"><i class=" icon-magnifier"></i>  Producto</span>
+        <span class="btn btn-inverse waves-effect waves-light  btn-sm pull-right m-t-30"  id="Search"><i class=" icon-magnifier"></i>  Articulo</span>
 
     </div>
 </fieldset>
