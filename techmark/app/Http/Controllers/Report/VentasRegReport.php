@@ -27,6 +27,7 @@ class VentasRegReport extends Controller
     {
         $this->datos['ventas'] = VentaArticulo::fecha($request->get('fecha'))
             ->where('estado','t')
+            ->orwhere('estado','c')
             ->codigo($request->get('s'))
             ->sucursal($request->get('sucursal'))
             ->usuario($request->get('usuario'))

@@ -16,7 +16,7 @@
         @foreach($ventas as $row)
             <tr >
                 <td style="border-bottom: 1px dashed black;">{{$i++}}</td>
-                <td style="border-bottom: 1px dashed black;">{{$row->tipo_pago}}</td>
+                <td style="border-bottom: 1px dashed black;">@if($row->estado=='c')<b>Anulado</b>@else{{$row->tipo_pago}}@endif</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->getcode())}}</td>
                 <td style="border-bottom: 1px dashed black;">{{$row->registro}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->sucursal->nombre)}}</td>

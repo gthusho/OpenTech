@@ -32,7 +32,7 @@
     </tr>
     <tr>
         <td><strong>TIPO DE VENTA:</strong></td>
-        <td>{{$venta->tipo_compra}}</td>
+        <td>@if($venta->estado=='c')<b>Anulado</b>@else{{$venta->tipo_pago}}@endif</td>
     </tr>
 
     <tr>
@@ -50,12 +50,12 @@
 <table  cellspacing="5">
     <tr>
         <th width="3%" ><strong>#</strong></th>
-        <th width="15%" ><strong>ARTICULOS</strong></th>
+        <th width="20%" ><strong>ARTICULOS</strong></th>
         <th width="15%" ><strong>CATEGORIA</strong></th>
-        <th width="15%" ><strong>MARCA</strong></th>
+        <th width="10%" ><strong>MARCA</strong></th>
         <th width="15%" ><strong>MATERIAL</strong></th>
+        <th width="10%" ><strong>PRECIO U</strong></th>
         <th width="12%" ><strong>CANTIDAD</strong></th>
-        <th width="10%" ><strong>UNIDAD</strong></th>
         <th width="15%" ><strong>PRECIO</strong></th>
 
     </tr>
@@ -76,10 +76,13 @@
                 {{\App\ToolArticuloCart::getNombreById($row->articulo->marca_id,"marca")}}
             </td>
             <td style="border-bottom: 1px dashed black;"> {{\App\ToolArticuloCart::getNombreById($row->articulo->material_id,"material")}}</td>
-            <td style="border-bottom: 1px dashed black;">{{number_format((float)$row->cantidad, 2, '.', '')}}</td>
-            <td style="border-bottom: 1px dashed black;">{{\App\ToolArticuloCart::getNombreById($row->articulo->unidad_id,"unidad")}}</td>
             <td style="border-bottom: 1px dashed black;">
                 {{\App\Tool::convertMoney($row->articulo->getPrecio($row->dp))}}
+            </td>
+            <td style="border-bottom: 1px dashed black;">{{number_format((float)$row->cantidad, 2, '.', '')}}</td>
+
+            <td style="border-bottom: 1px dashed black;">
+                {{\App\Tool::convertMoney($row->precio)}}
             </td>
 
         </tr>
@@ -88,15 +91,50 @@
 </table>
 
 <P></P>
+@if($venta->estado=='c')
+    <h2 ALIGN="right">
+        VENTA ANULADA
+    </h2>
+@elseif($venta->tipo_pago=='Credito')
+    <h3 >
+        <table   width="95%" style="line-height:20pt;">
 
-<h3>
-    <table align="right">
+            <tr>
+                <td align="right" ><strong>TOTAL PAGAR:</strong></td>
+                <td align="right">{{\App\Tool::convertMoney($venta->totalPrecio())}}</td>
+            </tr>
+            <tr>
+                <td align="right"><strong>TOTAL PAGADO:</strong></td>
+                <td align="right" style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($venta->totalPrecio() - $venta->getTotalDeuda())}}</td>
+            </tr>
+            <tr>
+                <td align="right"  ><strong>SALDO:</strong></td>
+                <td align="right">{{\App\Tool::convertMoney($venta->getTotalDeuda())}}</td>
+            </tr>
 
-        <tr>
-            <td ><strong>TOTAL PRECIO:</strong></td>
-            <td>{{\App\Tool::convertMoney($venta->totalPrecio())}}</td>
-        </tr>
+        </table>
+    </h3>
 
+@else
+    <h3 >
+        <table   width="95%" style="line-height:20pt;">
 
-    </table>
-</h3>
+            <tr>
+                <td align="right" ><strong>TOTAL PAGAR:</strong></td>
+                <td align="right">{{\App\Tool::convertMoney($venta->totalPrecio())}}</td>
+            </tr>
+            <tr>
+                <td align="right"><strong>IMPORTE:</strong></td>
+                <td align="right" style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($venta->abono)}}</td>
+            </tr>
+            <tr>
+                <td align="right"  ><strong>CAMBIO:</strong></td>
+                <td align="right">{{\App\Tool::convertMoney(($venta->abono)-($venta->totalPrecio()))}}</td>
+            </tr>
+
+        </table>
+    </h3>
+    <p></p>
+
+@endif
+

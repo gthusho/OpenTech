@@ -97,6 +97,25 @@
     <h2 ALIGN="right">
         VENTA ANULADA
     </h2>
+@elseif($venta->tipo_pago=='Credito')
+    <h3 >
+        <table   width="95%" style="line-height:20pt;">
+
+            <tr>
+                <td align="right" ><strong>TOTAL PAGAR:</strong></td>
+                <td align="right">{{\App\Tool::convertMoney($venta->totalPrecio())}}</td>
+            </tr>
+            <tr>
+                <td align="right"><strong>TOTAL PAGADO:</strong></td>
+                <td align="right" style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($venta->totalPrecio() - $venta->getTotalDeuda())}}</td>
+            </tr>
+            <tr>
+                <td align="right"  ><strong>SALDO:</strong></td>
+                <td align="right">{{\App\Tool::convertMoney($venta->getTotalDeuda())}}</td>
+            </tr>
+
+        </table>
+    </h3>
     @else
 <h3 >
     <table   width="95%" style="line-height:20pt;">
