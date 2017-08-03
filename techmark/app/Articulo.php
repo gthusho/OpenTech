@@ -166,7 +166,11 @@ class Articulo extends Model
             return true;
     }
     function getStockAll(){
-        return ExistenciaArticulo::where('articulo_id',$this->id)->sum('cantidad');
+        $cantidad =  ExistenciaArticulo::where('articulo_id',$this->id)->sum('cantidad');
+        if($cantidad!='')
+            return $cantidad;
+        else
+            return 0;
     }
     function activo(){
         if($this->estado==1)

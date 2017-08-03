@@ -24,8 +24,12 @@
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="icon-basket"></i><span class="label label-primary pull-right">2</span> <span> Ventas </span>  </a>
                     <ul class="list-unstyled">
-                        <li><a href="{{route('admin.venta_art.index')}}">Articulos</a></li>
+                        <li class="text-muted menu-title">ARTICULOS</li>
+                        <li><a href="{{route('admin.venta_art.index')}}">Vender Articulos</a></li>
                         <li><a href="{{route('admin.venta-credito-art.index')}}">Ventas al Credito</a></li>
+                        <li class="text-muted menu-title">PRODUCTOS</li>
+                        <li><a href="{{route('admin.ventas.productos.index')}}">Vender Productos</a></li>
+                        <li><a href="{{route('admin.ventas.productos.credito.index')}}">Ventas al Credito</a></li>
                     </ul>
                 </li>
                 <li class="has_sub">

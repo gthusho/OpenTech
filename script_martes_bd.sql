@@ -246,7 +246,7 @@ CREATE TABLE `clientes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,7 +255,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,'Open Red','1236547897','78969696','plaza 25 de mayo','email@gmail.com','2017-06-22 17:31:45','2017-06-22 17:31:45'),(2,'Juan Perez','789658745 ','78987878','junin # 488','juan@gmail.com','2017-06-22 17:32:55','2017-06-22 17:32:55'),(3,'Jose Jose','123632365','69698789','arenales # 789','josejose@gmail.com','2017-06-22 17:33:39','2017-06-22 17:33:39'),(4,'Amelia Hurtado','12365456321','78987873','S/N','email2@gmail.com','2017-06-22 17:34:28','2017-06-22 17:34:28'),(5,'Textil Sucre','1212121212','78475825','junin # 789','textilSucre@gmail.com','2017-06-22 17:35:25','2017-06-22 17:35:25'),(6,'Juanita Lopez','12323213654','78965478','S/N','juanita@gmail.com','2017-06-22 17:36:53','2017-06-22 17:36:53'),(7,'empresa Textil','1236545632','784578693','S/N','empresa@gmail.com','2017-06-22 17:37:35','2017-06-22 17:37:35'),(8,'Carlos Cabezas ','123365343','78212354','hernando siles # 789','carlos@gmail.com','2017-06-22 17:38:23','2017-06-22 17:38:23'),(9,'Jose Coronados','121212123','7898975','junin #785','josecoronado@gmail.com','2017-06-22 17:38:44','2017-06-22 18:07:37'),(10,'guido Barrientos','56799778s','78747512','S/N','guido@gmail.com','2017-06-22 17:43:24','2017-06-22 19:27:05'),(11,'Ikarus Inc','56799778','67619','','','2017-06-22 18:20:57','2017-06-22 18:20:57'),(17,'katerine ferrufino','105059',NULL,NULL,NULL,'2017-07-06 11:40:14','2017-07-06 11:40:14'),(18,'Guido Barrientos','5679778',NULL,NULL,NULL,'2017-07-07 18:27:57','2017-07-07 18:27:57'),(19,'Carlos comenzague','7896587450',NULL,NULL,NULL,'2017-07-07 20:23:19','2017-07-07 20:23:19'),(20,'ailson cabezas','10309020','75787924','','','2017-07-28 01:36:39','2017-07-28 01:56:33');
+INSERT INTO `clientes` VALUES (1,'Open Red','1236547897','78969696','plaza 25 de mayo','email@gmail.com','2017-06-22 17:31:45','2017-06-22 17:31:45'),(2,'Juan Perez','789658745 ','78987878','junin # 488','juan@gmail.com','2017-06-22 17:32:55','2017-06-22 17:32:55'),(3,'Jose Jose','123632365','69698789','arenales # 789','josejose@gmail.com','2017-06-22 17:33:39','2017-06-22 17:33:39'),(4,'Amelia Hurtado','12365456321','78987873','S/N','email2@gmail.com','2017-06-22 17:34:28','2017-06-22 17:34:28'),(5,'Textil Sucre','1212121212','78475825','junin # 789','textilSucre@gmail.com','2017-06-22 17:35:25','2017-06-22 17:35:25'),(6,'Juanita Lopez','12323213654','78965478','S/N','juanita@gmail.com','2017-06-22 17:36:53','2017-06-22 17:36:53'),(7,'empresa Textil','1236545632','784578693','S/N','empresa@gmail.com','2017-06-22 17:37:35','2017-06-22 17:37:35'),(8,'Carlos Cabezas ','123365343','78212354','hernando siles # 789','carlos@gmail.com','2017-06-22 17:38:23','2017-06-22 17:38:23'),(9,'Jose Coronados','121212123','7898975','junin #785','josecoronado@gmail.com','2017-06-22 17:38:44','2017-06-22 18:07:37'),(10,'guido Barrientos','56799778s','78747512','S/N','guido@gmail.com','2017-06-22 17:43:24','2017-06-22 19:27:05'),(11,'Ikarus Inc','56799778','67619','','','2017-06-22 18:20:57','2017-06-22 18:20:57'),(17,'katerine ferrufino','105059',NULL,NULL,NULL,'2017-07-06 11:40:14','2017-07-06 11:40:14'),(18,'Guido Barrientos','5679778',NULL,NULL,NULL,'2017-07-07 18:27:57','2017-07-07 18:27:57'),(19,'Carlos comenzague','7896587450',NULL,NULL,NULL,'2017-07-07 20:23:19','2017-07-07 20:23:19'),(20,'ailson cabezas','10309020','75787924','','','2017-07-28 01:36:39','2017-07-28 01:56:33'),(22,'lalo garza','123456123',NULL,NULL,NULL,'2017-08-03 05:07:56','2017-08-03 05:07:56');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -639,16 +639,19 @@ CREATE TABLE `detalles_ventas_productos` (
   `sucursal_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `talla_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_producto_id_detalles_Ventas_productos_idx` (`producto_id`),
   KEY `fk_usuario_id_detalles_ventas_productos_idx` (`usuario_id`),
   KEY `fk_venta_producto_id_detalles_ventas_productos_idx` (`venta_producto_id`),
   KEY `fk_sucursal_id_detalles_ventas_productos_idx` (`sucursal_id`),
+  KEY `fk_talla_id_detalles_venta_productos_idx` (`talla_id`),
   CONSTRAINT `fk_producto_id_detalles_Ventas_productos` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sucursal_id_detalles_ventas_productos` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursales` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_talla_id_detalles_venta_productos` FOREIGN KEY (`talla_id`) REFERENCES `tallas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_usuario_id_detalles_ventas_productos` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_venta_producto_id_detalles_ventas_productos` FOREIGN KEY (`venta_producto_id`) REFERENCES `ventas_productos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -657,6 +660,7 @@ CREATE TABLE `detalles_ventas_productos` (
 
 LOCK TABLES `detalles_ventas_productos` WRITE;
 /*!40000 ALTER TABLE `detalles_ventas_productos` DISABLE KEYS */;
+INSERT INTO `detalles_ventas_productos` VALUES (2,1,2,200,'2017-08-02 22:17:29',1,'P1',2,2,'2017-08-03 06:17:29','2017-08-03 06:17:29',3),(3,1,1,100,'2017-08-02 22:22:02',1,'P1',2,2,'2017-08-03 06:22:02','2017-08-03 06:22:02',2),(4,4,1,1,'2017-08-02 22:22:18',1,'P1',2,2,'2017-08-03 06:22:18','2017-08-03 06:22:18',4),(5,2,1,85,'2017-08-02 22:49:55',1,'P3',3,4,'2017-08-03 06:49:55','2017-08-03 06:49:55',3),(7,5,1,150,'2017-08-02 23:50:44',1,'P1',4,2,'2017-08-03 07:50:44','2017-08-03 08:19:45',6),(8,6,1,80,'2017-08-02 23:52:16',1,'P1',4,2,'2017-08-03 07:52:16','2017-08-03 08:20:27',3);
 /*!40000 ALTER TABLE `detalles_ventas_productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -719,7 +723,7 @@ CREATE TABLE `existencia_producto` (
   CONSTRAINT `fk_producto_id_existencia_producto_id` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sucursal_id_existencia_producto` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursales` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_talla_id_existencia_producto` FOREIGN KEY (`talla_id`) REFERENCES `tallas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -728,7 +732,7 @@ CREATE TABLE `existencia_producto` (
 
 LOCK TABLES `existencia_producto` WRITE;
 /*!40000 ALTER TABLE `existencia_producto` DISABLE KEYS */;
-INSERT INTO `existencia_producto` VALUES (3,0.00,'2017-08-02 07:42:21','2017-08-02 07:43:31',4,15,1,2),(4,5.00,'2017-08-02 07:42:21','2017-08-02 07:51:23',4,15,1,9),(5,15.00,'2017-08-02 07:46:11','2017-08-02 07:51:22',4,15,1,3),(6,3.00,'2017-08-02 07:46:11','2017-08-02 07:51:23',4,15,8,3),(7,19.00,'2017-08-02 07:52:50','2017-08-02 08:01:57',4,15,4,4);
+INSERT INTO `existencia_producto` VALUES (3,0.00,'2017-08-02 07:42:21','2017-08-02 07:43:31',4,15,1,2),(4,5.00,'2017-08-02 07:42:21','2017-08-02 07:51:23',4,15,1,9),(5,15.00,'2017-08-02 07:46:11','2017-08-02 07:51:22',4,15,1,3),(6,3.00,'2017-08-02 07:46:11','2017-08-02 07:51:23',4,15,8,3),(7,19.00,'2017-08-02 07:52:50','2017-08-02 08:01:57',4,15,4,4),(8,12.00,'2017-08-03 06:47:47','2017-08-03 06:47:47',2,2,1,3),(9,3.00,'2017-08-03 06:47:47','2017-08-03 06:47:47',2,2,1,2),(10,50.00,'2017-08-03 06:47:47','2017-08-03 06:47:47',2,2,4,4),(11,0.00,'2017-08-03 07:23:05','2017-08-03 07:50:04',2,2,6,9),(12,33.00,'2017-08-03 07:50:44','2017-08-03 08:19:45',2,2,5,6),(13,6.00,'2017-08-03 07:52:16','2017-08-03 08:20:27',2,2,6,3);
 /*!40000 ALTER TABLE `existencia_producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -849,7 +853,7 @@ CREATE TABLE `ingresos_productos` (
 
 LOCK TABLES `ingresos_productos` WRITE;
 /*!40000 ALTER TABLE `ingresos_productos` DISABLE KEYS */;
-INSERT INTO `ingresos_productos` VALUES (1,1,1,15,3,'2017-07-31 21:09:26',1,'2017-08-01 05:09:26','2017-08-01 05:18:48',4,'t'),(3,1,1,5,9,'2017-07-31 21:19:16',1,'2017-08-01 05:19:16','2017-08-01 05:19:16',4,'t'),(4,8,1,3,3,'2017-07-31 23:39:46',1,'2017-08-01 07:39:46','2017-08-01 07:39:46',4,'t'),(5,1,4,10,2,'2017-08-01 09:45:07',1,'2017-08-01 17:45:07','2017-08-01 22:38:03',4,'c'),(6,1,4,10,9,'2017-08-01 09:45:20',1,'2017-08-01 17:45:20','2017-08-01 17:45:20',4,'c');
+INSERT INTO `ingresos_productos` VALUES (1,1,1,15,3,'2017-07-31 21:09:26',1,'2017-08-01 05:09:26','2017-08-01 05:18:48',4,'t'),(3,1,1,5,9,'2017-07-31 21:19:16',1,'2017-08-01 05:19:16','2017-08-01 05:19:16',4,'t'),(4,8,1,3,3,'2017-07-31 23:39:46',1,'2017-08-01 07:39:46','2017-08-01 07:39:46',4,'t'),(5,1,4,10,2,'2017-08-01 09:45:07',1,'2017-08-01 17:45:07','2017-08-01 22:38:03',4,'p'),(6,1,4,10,9,'2017-08-01 09:45:20',1,'2017-08-01 17:45:20','2017-08-01 17:45:20',4,'p');
 /*!40000 ALTER TABLE `ingresos_productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1007,7 +1011,7 @@ CREATE TABLE `producciones` (
 
 LOCK TABLES `producciones` WRITE;
 /*!40000 ALTER TABLE `producciones` DISABLE KEYS */;
-INSERT INTO `producciones` VALUES (1,'60 poleras promocion colegio San Juanillo National School','2017/07/10 - 2017/07/15','2017-07-14 13:37:00',1,1,'2017-07-10','2017-07-15',4,'2017-07-14 21:37:00','2017-08-02 07:51:23','t',1),(2,'70 cortinas para la corte','2017/07/27 - 2017/08/21','2017-07-14 13:38:41',1,1,'2017-07-27','2017-08-21',4,'2017-07-14 21:38:41','2017-08-02 07:44:08','t',0),(3,NULL,NULL,'2017-07-27 15:05:11',NULL,1,NULL,NULL,NULL,'2017-07-27 23:05:11','2017-07-27 23:05:11','p',0),(4,'','2017/07/27 - 2017/07/31','2017-07-27 19:11:28',1,3,'2017-07-27','2017-07-31',4,'2017-07-28 03:11:28','2017-08-02 07:43:31','c',1);
+INSERT INTO `producciones` VALUES (1,'60 poleras promocion colegio San Juanillo National School','2017/07/10 - 2017/07/15','2017-07-14 13:37:00',1,1,'2017-07-10','2017-07-15',4,'2017-07-14 21:37:00','2017-08-02 07:51:23','t',1),(2,'70 cortinas para la corte','2017/07/27 - 2017/08/21','2017-07-14 13:38:41',1,1,'2017-07-27','2017-08-21',4,'2017-07-14 21:38:41','2017-08-02 07:44:08','t',0),(3,NULL,NULL,'2017-07-27 15:05:11',NULL,1,NULL,NULL,NULL,'2017-07-27 23:05:11','2017-07-27 23:05:11','p',0),(4,'','2017/07/27 - 2017/07/31','2017-07-27 19:11:28',1,3,'2017-07-27','2017-07-31',4,'2017-07-28 03:11:28','2017-08-02 22:11:23','t',0);
 /*!40000 ALTER TABLE `producciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1433,7 +1437,7 @@ DROP TABLE IF EXISTS `ventas_credito_productos`;
 CREATE TABLE `ventas_credito_productos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `venta_producto_id` int(11) NOT NULL,
-  `abono` decimal(19,4) DEFAULT '0.0000',
+  `abono` decimal(19,2) DEFAULT '0.00',
   `registro` datetime DEFAULT CURRENT_TIMESTAMP,
   `usuario_id` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1464,15 +1468,16 @@ DROP TABLE IF EXISTS `ventas_productos`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ventas_productos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cliente_id` int(11) NOT NULL,
+  `cliente_id` int(11) DEFAULT NULL,
   `registro` datetime DEFAULT CURRENT_TIMESTAMP,
   `observaciones` text,
-  `estado` int(11) DEFAULT '0',
+  `estado` char(1) DEFAULT 'p',
   `usuario_id` int(11) NOT NULL,
   `tipo_pago` varchar(45) DEFAULT NULL,
-  `sucursal_id` int(11) NOT NULL,
+  `sucursal_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `abono` decimal(19,2) DEFAULT '0.00',
   PRIMARY KEY (`id`),
   KEY `fk_cliente_id_ventas_productos_idx` (`cliente_id`),
   KEY `fk_usuario_id_ventas_productos_idx` (`usuario_id`),
@@ -1480,7 +1485,7 @@ CREATE TABLE `ventas_productos` (
   CONSTRAINT `fk_cliente_id_ventas_productos` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sucursal_id_ventas_productos` FOREIGN KEY (`sucursal_id`) REFERENCES `sucursales` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_usuario_id_ventas_productos` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1489,6 +1494,7 @@ CREATE TABLE `ventas_productos` (
 
 LOCK TABLES `ventas_productos` WRITE;
 /*!40000 ALTER TABLE `ventas_productos` DISABLE KEYS */;
+INSERT INTO `ventas_productos` VALUES (2,18,'2017-08-02 13:26:29','102040','t',1,'Contado',2,'2017-08-02 21:26:29','2017-08-03 06:47:47',0.00),(3,18,'2017-08-02 22:47:47','','c',1,'Credito',4,'2017-08-03 06:47:47','2017-08-03 06:52:35',0.00),(4,18,'2017-08-02 22:52:36','','t',1,'Contado',2,'2017-08-03 06:52:36','2017-08-03 07:49:24',0.00),(5,NULL,'2017-08-02 23:23:06',NULL,'p',1,NULL,NULL,'2017-08-03 07:23:06','2017-08-03 07:23:06',0.00);
 /*!40000 ALTER TABLE `ventas_productos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1501,4 +1507,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-08-02  0:11:55
+-- Dump completed on 2017-08-03  0:28:24
