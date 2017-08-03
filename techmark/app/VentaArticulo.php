@@ -78,7 +78,7 @@ class VentaArticulo extends Model
         }
     }
     function getTotalDeuda(){
-        return $this->totalPrecio() - $this->getTotalAbonos();
+        return $this->totalPrecio() - $this->getTotalAbonos() - $this->abono;
     }
     function totalVenta($query,$fecha){
         $total = DetalleVentaArticulo::where('venta_articulo_id',$this->id)->where('registro',$this->caja->registro)->sum(totalPrecio());

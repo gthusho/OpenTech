@@ -263,9 +263,10 @@ class VentasProductosController extends Controller
             //actualizo la compra de ser necesario
             $this->venta = VentaProducto::find($id);
             $this->venta->cliente_id = $request->get('cliente_id');
-            $this->venta->tipo_pago = $request->get('tipo_pago');
+//            $this->venta->tipo_pago = $request->get('tipo_pago');
             $this->venta->observaciones = $request->get('observaciones');
             $this->venta->sucursal_id = $request->get('sucursal_id');
+            $this->venta->abono = $request->get('abono');
             $this->venta->save();
 
             //valido si me envias un articulo id

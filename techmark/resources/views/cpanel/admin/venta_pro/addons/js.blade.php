@@ -232,6 +232,13 @@
     /*
     * modificaciones para modals
     */
+    function RegistrarClienteEdit(_data) {
+        $('#xxNit').val(_data);
+        $('#modal_cliente').modal('show');
+        $('#modal_cliente').on('shown.bs.modal', function () {
+            $('#xxNombreCliente').focus();
+        });
+    }
     function RegistrarCliente(_data) {
         $('#modal_venta_ok')
             .modal('hide')
@@ -247,7 +254,9 @@
     }
 
     $("#modal_cliente").on("hidden.bs.modal", function () {
+        @if(Request::segment(5)!='edit') // solo funciono si no estoy editando
        $('#modal_venta_ok').modal('show');
+       @endif
     });
     /*
      * fin modificaciones para modals
@@ -269,7 +278,11 @@
             },
             error: function (data) {
                 clean();
+                @if(Request::segment(5)=='edit')
+                RegistrarClienteEdit(_data);
+                @else
                 RegistrarCliente(_data);
+                @endif
             }
         });
     }
@@ -312,5 +325,42 @@
     $('#btnActualizar').click(function () {
         clean();
         $('#form-venta-producto').submit();
+    });
+    /*
+    calculo de cambio
+     */
+    function fncRestar(){
+        var numero1 = Number({!! $venta->totalPrecio() !!});
+        var numero2 = Number(document.getElementById("abono").value);
+        var cambio = numero2 - numero1;
+        if(cambio<0){
+
+            if($('#tipo_pago').val()=="Credito"){
+                document.getElementById("cambio").value = "A Credito " + (cambio*-1) + " Bs.";
+                onOffsuperStart(true);
+            }else {
+                document.getElementById("cambio").value = "Efectivo Insuficiente ";
+                onOffsuperStart(false);
+            }
+
+        }else {
+            onOffsuperStart(true);
+            document.getElementById("cambio").value = cambio  + " Bs.";
+        }
+
+
+    }
+    $("#tipo_pago").on("change", function(e) {
+        fncRestar();
+    });
+    function onOffsuperStart($xx) {
+        if(!$xx){
+            $('#superStart').attr('disabled', true);
+        }else {
+            $('#superStart').removeAttr('disabled');
+        }
+    }
+    $("#abono").on('input',function () {
+        fncRestar();
     });
 </script>

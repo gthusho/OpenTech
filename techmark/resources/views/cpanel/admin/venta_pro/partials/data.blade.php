@@ -28,31 +28,35 @@
         {{--@include('cpanel.admin.venta_pro.partials.infoVenta')--}}
     {{--</div>--}}
     <div class="col-lg-12">
-        <div class="panel panel-border panel-custom">
-            <div class="panel-heading">
+        @if(Request::segment(5)!='edit')
+            <div class="panel panel-border panel-custom">
+                <div class="panel-heading">
 
-                <h3 class="panel-title">INFORMACION PRODUCTO</h3>
+                    <h3 class="panel-title">INFORMACION PRODUCTO</h3>
 
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-12">
-                        @include('cpanel.admin.venta_pro.partials.buscarArticulo')
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            @include('cpanel.admin.venta_pro.partials.buscarArticulo')
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-7">
+                            @include('cpanel.admin.venta_pro.partials.infoArticulo')
+                        </div>
+                        <div class="col-lg-3">
+                            @include('cpanel.admin.venta_pro.partials.infoPrecios')
+                        </div>
+                        <div class="col-lg-2">
+                            @include('cpanel.admin.venta_pro.partials.operaciones')
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-7">
-                        @include('cpanel.admin.venta_pro.partials.infoArticulo')
-                    </div>
-                    <div class="col-lg-3">
-                        @include('cpanel.admin.venta_pro.partials.infoPrecios')
-                    </div>
-                    <div class="col-lg-2">
-                        @include('cpanel.admin.venta_pro.partials.operaciones')
-                    </div>
-                </div>
             </div>
-        </div>
+        @else
+            @include('cpanel.admin.venta_pro.partials.infoVenta')
+        @endif
     </div>
 </div>
 

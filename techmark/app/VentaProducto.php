@@ -8,7 +8,7 @@ class VentaProducto extends Model
 {
     protected $table = 'ventas_productos';
     protected $fillable = [
-      'cliente_id','observaciones','usuario_id','sucursal_id','tipo_pago'
+      'cliente_id','observaciones','usuario_id','sucursal_id','tipo_pago','abono'
     ];
     function detalleventas(){
         return $this->hasMany('App\DetalleVentaProducto','venta_producto_id','id');

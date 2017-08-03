@@ -85,9 +85,8 @@
                 <div class="row">
                     {!! Form::open(['route'=>['confirmVentaProducto',$venta->id,'t'],'method'=>'post']) !!}
                     @include('cpanel.admin.venta_pro.partials.infoVenta')
-                    <button  class="btn btn-primary waves-effect waves-light" onclick="return confirm('Esta Seguro confirmar la venta?')">
-                        <i class="ti-check"></i>
-                        Confirmar Venta
+                    <button  class="btn btn-primary waves-effect waves-light" onclick="return confirm('Esta Seguro confirmar la venta?')" id="superStart" disabled>
+                        <i class=" fa fa-opencart fa-2x"></i> Terminar
                     </button>
                     {!! Form::close() !!}
 
