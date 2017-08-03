@@ -28,7 +28,7 @@ class ProduccionesReport extends Controller
     {
         $this->datos['producciones'] = Produccion::with('trabajador','usuario','sucursal'/*,'almacen'*/)
             //->fecha($request->get('fecha'))
-            ->where('estado','t')
+            ->where('estado','t') ->orwhere('estado','c')
             ->fecha($request->get('fecha'))
             ->sucursal($request->get('sucursal'))
             ->trabajador($request->get('trabajador'))

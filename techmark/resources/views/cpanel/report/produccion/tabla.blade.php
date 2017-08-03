@@ -1,21 +1,20 @@
-<h3>
-    <table>
-        <br>
-        <tr>
-            <td width="20%">FECHA</td>
-            <td width="35%">{{$produccion->fecha}}</td>
-        </tr>
-
-        <tr>
-            <td width="20%">CODIGO</td>
-            <td width="20%">{{$produccion->getCode()}}</td>
-        </tr>
-    </table>
-</h3>
-
 <br>
+<br>
+<table width="80%" style="line-height:20pt;">
+    <br>
+    <tr>
+        <td ><strong>CODIGO</strong></td>
+        <td >{{$produccion->getCode()}}</td>
+    </tr>
+    <tr> <td><strong>ESTADO PRODUCCION:</strong></td>
+        <td>@if($produccion->checkState()[1]=='p'&& $produccion->terminado==0)<B>En Produccion </B>
+            @elseif($produccion->checkState()[1]=='t' && $produccion->terminado==1) <b>En Inventario</b>
 
-<table width="80%">
+            @elseif($produccion->checkState()[1]=='c' && $produccion->terminado==1)<b>Cancelada</b>
+            @elseif($produccion->checkState()[1]=='e')<b>Pendiente a Inventariar</b>
+            @endif
+        </td>
+    </tr>
     <tr>
         <td><strong>SUCURSAL:</strong></td>
         <td>{{$produccion->sucursal->nombre}}</td>
@@ -26,28 +25,26 @@
     </tr>
     <tr>
         <td><strong>FECHA DE INICIO PRODUCCION:</strong></td>
-        <td>{{$produccion->inicio}}</td>
+        <td>{{date('d/m/Y',strtotime($produccion->inicio))}}</td>
 
     </tr>
     <tr>
         <td><strong>FECHA FIN DE PRODUCCION:</strong></td>
-        <td>{{$produccion->fin}}</td>
+        <td>{{date('d/m/Y',strtotime($produccion->fin))}}</td>
     </tr>
     <tr>
-        <td><strong>CANTIDAD:</strong></td>
-        <td>{{ucwords($produccion->totalCantidad())}}</td>
-    </tr>
-    <tr>
-        <td><strong>TOTAL PRECIO</strong></td>
+        <td><strong>TOTAL COSTO</strong></td>
         <td>{{\App\Tool::convertMoney($produccion->totalPrecio())}}</td>
     </tr>
     <tr>
         <td><strong>DESTINO A:</strong></td>
         <td>{{$produccion->destino}}</td>
     </tr>
+
 </table>
+
 <P></P>
-<table  cellspacing="5">
+<table >
     <tr>
         <th width="3%" ><strong>#</strong></th>
         <th width="15%" ><strong>ARTICULOS</strong></th>
@@ -92,10 +89,51 @@
     <table align="right">
 
         <tr>
-            <td ><strong>TOTAL COMPRA:</strong></td>
+            <td ><strong>COSTO PRODUCCION:</strong></td>
             <td>{{\App\Tool::convertMoney($produccion->totalPrecio())}}</td>
         </tr>
 
 
     </table>
 </h3>
+<br>
+<br>
+
+
+@if($produccion->checkState()[1]=='t' && $produccion->terminado==1)
+    <h3>PRODUCTOS TERMINADOS DE LA PRODUCCION</h3>
+<table  cellspacing="5"  >
+    <tr>
+        <th width="8%" ><strong>#</strong></th>
+        <th width="18%" ><strong>FECHA</strong></th>
+        <th width="40%"><strong>PRODUCTO</strong></th>
+        <th width="20%"><strong>TALLA</strong></th>
+        <th width="15%"><strong>CANTIDAD</strong></th>
+    </tr>
+    <?php
+    $i=1;
+    ?>
+    @foreach($produccion->productos_terminados as $row)
+        <tr >
+            <td style="border-bottom: 1px dashed black;">{{$i++}}</td>
+            <td style="border-bottom: 1px dashed black;">{{date('d/m/Y',strtotime($row->registro))}}</td>
+            <td style="border-bottom: 1px dashed black;">{{ucwords($row->producto->descripcion)}}</td>
+            <td style="border-bottom: 1px dashed black;">{{ucwords($row->talla->nombre)}}</td>
+            <td style="border-bottom: 1px dashed black;">{{ucwords($row->cantidad)}}</td>
+
+        </tr>
+    @endforeach
+
+</table>
+    <h3>
+        <table align="right">
+
+            <tr>
+                <td ><strong>TOTAL PRODUCTOS TERMINADOS:</strong></td>
+                <td >{{($produccion->totalProduccion())}}  unidades</td>
+            </tr>
+
+
+        </table>
+    </h3>
+@endif
