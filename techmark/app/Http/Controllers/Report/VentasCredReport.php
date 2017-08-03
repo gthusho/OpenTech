@@ -2,37 +2,36 @@
 /**
  * Created by PhpStorm.
  * User: LisCL
- * Date: 06/07/2017
- * Time: 04:05 AM
+ * Date: 02/08/2017
+ * Time: 11:50 PM
  */
 
 namespace App\Http\Controllers\Report;
 
+
+use App\VentaArticulo;
 use App\ToolPDF;
-use App\User;
 use Elibyy\TCPDF\TCPDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
-use App\VentaArticulo;
 
-class VentasRegReport extends Controller
+class VentasCredReport extends Controller
 {
     private $datos = null;
     private $horientacion = 'l';//'l';
-    private $titulo = "REPORTE VENTAS REGISTRADAS";
+    private $titulo = "REPORTE VENTAS AL CREDITO";
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['ventas'] = VentaArticulo::fecha($request->get('fecha'))
-            ->where('estado','t')
+        $this->datos['ventas'] = VentaArticulo::with('sucursal','cliente')
+            ->fecha($request->get('fecha'))
+            ->where('estado','t')->where('tipo_pago','Credito')
+            ->fecha($request->get('f'))
             ->codigo($request->get('s'))
             ->sucursal($request->get('sucursal'))
-            ->usuario($request->get('usuario'))
             ->cliente($request->get('cliente'))
-            ->cliente($request->get('c'))
-            ->usuario($request->get('reportsuc'))
             ->orderBy('id','desc')->get();
 
     }
@@ -48,8 +47,8 @@ class VentasRegReport extends Controller
             $pdf->AddPage($this->horientacion);
             $pdf->SetFont('helvetica', 'B', 25);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
-            $pdf->SetFont('helvetica', '', 9);
-            $pdf->writeHTML(view('cpanel.report.ventasregistradas.tabla',$this->datos)->render(), true, false, true, false, '');
+            $pdf->SetFont('helvetica', '', 10);
+            $pdf->writeHTML(view('cpanel.report.ventascredito.tabla',$this->datos)->render(), true, false, true, false, '');
             $pdf->Output('detalles_productos.pdf', 'i');
         }else{
             \Session::flash('message','No tienes Permiso para visualizar informacion ');
@@ -62,7 +61,7 @@ class VentasRegReport extends Controller
             Excel::create($this->titulo, function ($excel) {
                 $excel->sheet('ventas', function ($sheet) {
                     $sheet->row(1, array($this->titulo));
-                    $sheet->loadView('cpanel.report.ventasregistradas.tabla', $this->datos);
+                    $sheet->loadView('cpanel.report.ventascredito.tabla', $this->datos);
                 });
             })->export('xls');
         } else{
@@ -70,4 +69,5 @@ class VentasRegReport extends Controller
             return redirect('dashboard');
         }
     }
+
 }
