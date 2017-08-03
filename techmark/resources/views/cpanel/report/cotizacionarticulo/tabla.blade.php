@@ -20,7 +20,7 @@
 
 <br>
 
-<table width="40%">
+<table width="40%" style="line-height:20pt;">
     <tr>
         <td><strong>CLIENTE:</strong></td>
         <td>{{$venta->cliente->razon_social}}</td>

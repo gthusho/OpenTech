@@ -17,7 +17,7 @@
         </tr>
     </table>
 </h3>
-<table width="40%">
+<table width="40%"  style="line-height:20pt;">
     <tr>
         <td><strong>CLIENTE:</strong></td>
         <td>{{$cotizacion->cliente->razon_social}}</td>

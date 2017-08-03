@@ -3,12 +3,11 @@
             <th width="3%" ><strong>#</strong></th>
             <th width="10%" ><strong>TIPO PAGO</strong></th>
             <th width="10%" ><strong>CODIGO</strong></th>
-            <th width="10%" ><strong>FECHA</strong></th>
+            <th width="15%" ><strong>FECHA</strong></th>
             <th width="15%" ><strong>SUCURSAL</strong></th>
             <th width="15%"><strong>ALMACEN</strong></th>
-            <th width="15%"><strong>CLIENTE</strong></th>
-            <th width="13%" ><strong>CANTIDAD ARTICULOS</strong></th>
-            <th width="10%" ><strong>PRECIO TOTAL</strong></th>
+            <th width="20%"><strong>CLIENTE</strong></th>
+            <th width="12%" ><strong>PRECIO TOTAL</strong></th>
         </tr>
         <?php
         $i=1;
@@ -23,7 +22,6 @@
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->sucursal->nombre)}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->almacen->nombre)}}</td>
                 <td style="border-bottom: 1px dashed black;">{{ucwords($row->cliente->razon_social)}}</td>
-                <td style="border-bottom: 1px dashed black;">{{$row->totalCantidad()}}</td>
                 <td style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($row->totalPrecio())}}</td>
             </tr>
         @endforeach

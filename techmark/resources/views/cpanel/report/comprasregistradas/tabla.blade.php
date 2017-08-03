@@ -4,11 +4,10 @@
         <th width="12%" ><strong>TIPO COMPRA</strong></th>
         <th width="10%" ><strong>CODIGO</strong></th>
         <th width="10%" ><strong>FECHA</strong></th>
-        <th width="15%" ><strong>SUCURSAL</strong></th>
+        <th width="18%" ><strong>SUCURSAL</strong></th>
         <th width="12%"><strong>ALMACEN</strong></th>
-        <th width="15%"><strong>POVEEDOR</strong></th>
-        <th width="12%" ><strong>CANTIDAD ARTICULOS</strong></th>
-        <th width="8%" ><strong>COSTO TOTAL</strong></th>
+        <th width="20%"><strong>POVEEDOR</strong></th>
+        <th width="15%" ><strong>COSTO TOTAL</strong></th>
 
     </tr>
     <?php
@@ -24,7 +23,6 @@
             <td style="border-bottom: 1px dashed black;">{{ucwords($row->sucursal->nombre)}}</td>
             <td style="border-bottom: 1px dashed black;">{{ucwords($row->almacen->nombre)}}</td>
             <td style="border-bottom: 1px dashed black;">{{ucwords($row->proveedor->razon_social)}}</td>
-            <td style="border-bottom: 1px dashed black;">{{ucwords($row->totalCantidad())}}</td>
             <td style="border-bottom: 1px dashed black;">{{\App\Tool::convertMoney($row->totalCosto())}}</td>
         </tr>
     @endforeach

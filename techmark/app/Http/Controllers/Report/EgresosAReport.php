@@ -22,7 +22,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class EgresosAReport extends Controller
 {
     private $datos = null;
-    private $horientacion = 'p';//'l';
+    private $horientacion = 'l';//'l';
     private $titulo = "REPORTE DETALLE EGRESOS";
     private $request =  null;
     function __construct(Request $request)

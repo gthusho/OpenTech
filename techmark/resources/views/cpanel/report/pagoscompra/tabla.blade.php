@@ -12,7 +12,7 @@
     </table>
 </h3>
 <br>
-<table width="40%">
+<table width="40%" style="line-height:20pt;">
     <tr>
         <td><strong>SUCURSAL:</strong></td>
         <td>{{$compra->sucursal->nombre}}</td>
