@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Report;
 
 
 use App\Http\Controllers\Controller;
+use App\IngresosProducto;
 use App\Produccion;
 use App\ToolPDF;
 use App\User;
