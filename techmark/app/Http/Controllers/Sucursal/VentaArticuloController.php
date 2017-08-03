@@ -180,8 +180,9 @@ class VentaArticuloController extends Controller
 
 
     }
-    public function confirmVenta($id){
+    public function confirmVenta($id, Request $request){
         $venta = VentaArticulo::find($id);
+        $venta->fill($request->all());
         $venta->estado = 't';
         $venta->save();
         /*
