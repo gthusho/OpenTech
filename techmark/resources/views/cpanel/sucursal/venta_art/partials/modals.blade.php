@@ -81,7 +81,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    {!! Form::open(['route'=>['confirmVentaArticulo',$venta->id,'t'],'method'=>'post']) !!}
+                    {!! Form::open(['route'=>['s.confirmVentaArticulo',$venta->id],'method'=>'post']) !!}
                     @include('cpanel.sucursal.venta_art.partials.infoVenta')
                     <button  class="btn btn-primary waves-effect waves-light" onclick="return confirm('Esta Seguro confirmar la venta?')" id="superStart" disabled>
                         <i class=" fa fa-opencart fa-2x"></i> Terminar
