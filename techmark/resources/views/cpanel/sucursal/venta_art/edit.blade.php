@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-@include('cpanel.admin.venta_art.partials.modals')
+@include('cpanel.sucursal.venta_art.partials.modals')
 @endsection
 
 @section('css')
