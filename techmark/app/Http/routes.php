@@ -54,7 +54,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin','user_on'],'nam
     Route::get('egresos/articulos',['as' => 'egresos.articulos.index', 'uses' => 'DetalleVentaArticuloController@index']);
 
     Route::get('ingresos/productos',['as' => 'ingresos.productos.index', 'uses' => 'IngresosProductosController@index']);
-    Route::get('egresos/productos',['as' => 'egresos.productos.index', 'uses' => 'DetalleVentaArticuloController@index']);
+    Route::get('egresos/productos',['as' => 'egresos.productos.index', 'uses' => 'DetalleVentaProductoController@index']);
     Route::get('inventario/productos',['as' => 'inventario.productos', 'uses' => 'InventarioController@productos']);
 
     require __DIR__ . '/routes/diego.php';

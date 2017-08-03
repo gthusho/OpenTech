@@ -16,7 +16,7 @@
                 </button>
             </div>
             <div class="pull-left">
-                <button onclick="printJS('{{url('reportes/venta').'?id='.$venta->id}}')"
+                <button onclick="printJS('{{url('reportes/venta/producto').'?id='.$venta->id}}')"
                         class="btn btn-inverse  waves-effect waves-light" >Imprimir
                     <span class="m-l-5"><i class=" icon-printer"></i></span></button>
             </div>
