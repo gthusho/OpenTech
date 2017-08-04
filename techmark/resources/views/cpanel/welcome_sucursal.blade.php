@@ -1,13 +1,16 @@
 @extends('theme.ubold.layout_cpanel')
 @section('content')
-    @include('cpanel.partials.brand')
-    <div class="row">
-        @include('cpanel.admin.caja.partials.general')
-    </div>
-    <button type="button" onclick="printJS('http://techmark.me/reportes/cotizacion/articulo?id=8')">
-        Print PDF
-    </button>
 
+    @if($atm->check()==true && $atm->isClosed()==false)
+        <h3>
+            <a href="{{route('s.caja.index')}}" class="btn btn-danger"><i class="icon-calculator"></i> <span> Cerrar Caja </span> </a>
+        </h3>
+    @endif
+    <div class="row">
+        @if($atm->check()==true && $atm->isClosed()==false)
+             @include('cpanel.admin.caja.partials.general')
+        @endif
+    </div>
 @endsection
 @section('css')
     @if(Session::has('message'))

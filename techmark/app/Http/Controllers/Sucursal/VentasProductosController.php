@@ -31,16 +31,9 @@ class VentasProductosController extends Controller
     function __construct()
     {
         $this->middleware('observador:'.$this->permiso);
-        $this->validarCaja();
+        $this->middleware('atm', ['except' => 'index']);
+        $this->middleware('isCloseatm',['except' => 'index']);
         $this->setVenta();
-    }
-
-    function validarCaja(){
-        $query = Caja::where('usuario_id',Auth::user()->id)->where('sucursal_id',Auth::user()->sucursal_id)->where('estado','p')->get();
-        if(!Tool::existe($query)){
-            \Session::flash('message','No abriste caja ');
-            return redirect('dashboard');
-        }
     }
 
     /**

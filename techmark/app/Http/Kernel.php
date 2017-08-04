@@ -52,5 +52,7 @@ class Kernel extends HttpKernel
         'is_admin' => \App\Http\Middleware\isAdmin::class,
         'user_on' => \App\Http\Middleware\UserOn::class,
         'observador' => \App\Http\Middleware\Observador::class,
+        'atm' => \App\Http\Middleware\ATM::class,
+        'isCloseatm' => \App\Http\Middleware\ClosedATM::class
     ];
 }

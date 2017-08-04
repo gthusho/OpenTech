@@ -1,8 +1,10 @@
 <div class="row">
-    <div class="form-group col-lg-3">
+    @if(Request::segment(3)=='create')
+    <div class="form-group col-lg-12">
         {!! Form::label('Total Apertura: (*)')!!}
         {!! Form::text('apertura',null,['class'=>'form-control autonumber','required'])!!}
     </div>
+     @endif
 </div>
 <div class="row">
     <div class="form-group col-lg-12">

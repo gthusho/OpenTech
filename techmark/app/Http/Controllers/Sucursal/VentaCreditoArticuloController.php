@@ -19,6 +19,8 @@ class VentaCreditoArticuloController extends Controller
     function __construct()
     {
         $this->middleware('observador:'.$this->permiso);
+        $this->middleware('atm', ['except' => 'index']);
+        $this->middleware('isCloseatm',['except' => 'index']);
     }
 
     public function index(Request $request)

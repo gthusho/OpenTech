@@ -19,6 +19,9 @@ class GastoController extends Controller
     function __construct()
     {
         $this->middleware('observador:'.$this->permiso);
+        $this->middleware('atm', ['except' => 'index']);
+        $this->middleware('isCloseatm',['except' => 'index']);
+
     }
 
 
@@ -52,11 +55,11 @@ class GastoController extends Controller
     public function store(Request $request)
     {
         if(Auth::user()->can('allow-insert')){
-            $user=User::find(Auth::user()->id);
             $gasto=new Gasto();
             $gasto->fill($request->all());
-            $gasto->usuario_id=$user->id;
-            $gasto->sucursal_id=$user->sucursal_id;
+            $gasto->usuario_id=Auth::user()->id;
+            $gasto->sucursal_id=Auth::user()->sucursal_id;
+            $gasto->fecha =  date('Y-m-d');
             $gasto->save();
             return redirect()->route('s.gasto.index');
         }

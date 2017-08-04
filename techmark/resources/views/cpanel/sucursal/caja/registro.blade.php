@@ -1,6 +1,5 @@
 @extends('theme.ubold.layout_cpanel')
 @section('content')
-    @include('cpanel.partials.brand')
     <div class="row">
         <div class="col-lg-12">
             <div class="card-box">
@@ -9,7 +8,7 @@
                     * Los campos con (*) son obligatorios
                 </p>
                 @include('cpanel.partials.errors')
-                {!! Form::open(['route'=>'caja.store','method'=>'POST','files'=>true,'id'=>'form-caja']) !!}
+                {!! Form::open(['route'=>'s.caja.store','method'=>'POST','files'=>true,'id'=>'form-caja']) !!}
                     @include('cpanel.sucursal.caja.partials.fields')
                     <div class="form-group text-right m-b-0">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">
@@ -27,8 +26,24 @@
 @endsection
 
 @section('css')
-    @include('cpanel.admin.caja.addons.css')
+    <link href="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.css')}}" rel="stylesheet" type="text/css">
 @endsection
 @section('js')
-    @include('cpanel.admin.caja.addons.js')
+    <script src="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.min.js')}}"></script>
+    <script>
+        $(window).load(function(){
+            @if(Session::has('message'))
+            swal("{!! Session::get('message') !!}", " ", "success");
+            @endif
+        });
+    </script>
+    <script src="{{url('assets/plugins/bootstrap-inputmask/bootstrap-inputmask.min.js')}}" type="text/javascript"></script>
+    <script src="{{url('assets/plugins/autoNumeric/autoNumeric.js')}}" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        jQuery(function($) {
+            $('.autonumber').autoNumeric('init');
+        });
+    </script>
 @endsection

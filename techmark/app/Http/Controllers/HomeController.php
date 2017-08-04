@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ATMBranchOffice;
 use App\Caja;
 use App\Http\Requests;
 use App\Tool;
@@ -30,7 +31,12 @@ class HomeController extends Controller
     {
         if(Auth::user()->can('isSucursal',Auth::user()->rol))   {
             $this->datos['brand'] = Tool::brand('Sucursal '.Auth::user()->sucursal->nombre,url(''),'Informacion Rápida');
-            $this->datos['caja'] = Caja::find(1);
+            $atm = new ATMBranchOffice(Auth::user());
+            if($atm->check()){
+                $this->datos['caja'] = $atm->getAtm();
+            }
+            $this->datos['atm'] = $atm;
+
             return view('cpanel.welcome_sucursal',$this->datos);
         }
         elseif (Auth::user()->can('isAdmin',Auth::user()->rol))   {
