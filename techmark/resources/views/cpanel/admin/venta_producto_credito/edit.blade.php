@@ -4,14 +4,14 @@
     <div class="row">
 
         @include('cpanel.partials.errors')
-        @include('cpanel.admin.compra-credito.partials.data')
+        @include('cpanel.admin.venta_producto_credito.partials.data')
 
     </div>
 @endsection
 
 @section('css')
-    @include('cpanel.admin.compra-credito.addons.css')
+    @include('cpanel.admin.venta_producto_credito.addons.css')
 @endsection
 @section('js')
-    @include('cpanel.admin.compra-credito.addons.js')
+    @include('cpanel.admin.venta_producto_credito.addons.js')
 @endsection

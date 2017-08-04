@@ -66,7 +66,7 @@
     }
 
         $("#abono").on("keyup keypress change paste", function(){
-           var saldo = "{{$compra->getTotalDeuda()}}";
+           var saldo = "{{$venta->getTotalDeuda()}}";
             var ret = parseCurrency(saldo) - parseCurrency(($(this).val()));
             $("#saldo").val(ret);
         })

@@ -31,7 +31,7 @@
                         @else
                             {{$row->tipo_pago}}
                             @if($row->tipo_pago == "Credito" && $row->getTotalDeuda()!=0)
-                                <a href="{{route('admin.venta-credito-art.show',$row->id)}}" class="btn btn-xs btn-white pull-right" target="_blank"> <i class="fa fa-money"></i> Pagar</a>
+                                <a href="{{route('admin.ventas.creditos.productos.show',$row->id)}}" class="btn btn-xs btn-white pull-right" target="_blank"> <i class="fa fa-money"></i> Pagar</a>
                             @endif
                         @endif
 

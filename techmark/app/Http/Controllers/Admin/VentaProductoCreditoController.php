@@ -55,7 +55,7 @@ class VentaProductoCreditoController extends Controller
     {
         if(Auth::user()->can('allow-insert')){
 
-           $abono = new CompraCredito($request->all());
+           $abono = new VentaCreditoProducto($request->all());
            $abono->usuario_id = Auth::user()->id;
             $abono->save();
             return redirect()->back();
@@ -70,11 +70,11 @@ class VentaProductoCreditoController extends Controller
     public function show($id)
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Pago Compra Credito',route('admin.compra-credito.index'),'Compras al Credito');
+            $this->datos['brand'] = Tool::brand('Pago Venta Credito',route('admin.ventas.creditos.productos.index'),'Venta Producto al Credito');
 
-            $this->datos['compra'] = Compra::find($id);
+            $this->datos['venta'] = VentaProducto::find($id);
 
-            return view('cpanel.admin.compra-credito.edit',$this->datos);
+            return view('cpanel.admin.venta_producto_credito.edit',$this->datos);
         }
 
 
@@ -85,7 +85,7 @@ class VentaProductoCreditoController extends Controller
     {
 
         if(Auth::user()->can('allow-delete')) {
-            CompraCredito::destroy($id);
+            VentaCreditoProducto::destroy($id);
             return redirect()->back();
         }
         \Session::flash('message','No tienes Permisos para Borrar informacion');

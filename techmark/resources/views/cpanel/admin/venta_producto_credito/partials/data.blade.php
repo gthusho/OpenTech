@@ -26,7 +26,7 @@
 </style>
 <div class="row">
     <div class="col-lg-5">
-        @include('cpanel.admin.compra-credito.partials.infoCompra')
+        @include('cpanel.admin.venta_producto_credito.partials.infoVenta')
     </div>
     <div class="col-lg-7">
         <div class="panel panel-border panel-custom">
@@ -36,7 +36,7 @@
 
             </div>
             <div class="panel-body">
-                @include('cpanel.admin.compra-credito.partials.table')
+                @include('cpanel.admin.venta_producto_credito.partials.table')
             </div>
         </div>
     </div>

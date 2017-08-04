@@ -13,7 +13,7 @@
 
             <tbody>
                 <?php $i=1; ?>
-                @foreach($compra->pagos as $row)
+                @foreach($venta->pagos as $row)
                     <tr class="rows" data-id="{{$row->id}}">
                         <td>{{$i++}}</td>
                         <td>
@@ -26,7 +26,7 @@
                             {{$row->usuario->nombre}}
                         </td>
                         <td class="text-center">
-                            {!! Form::open(['route'=>['admin.compra-credito.destroy',$row->id],'method'=>'delete']) !!}
+                            {!! Form::open(['route'=>['admin.ventas.creditos.productos.destroy',$row->id],'method'=>'delete']) !!}
                             <button class="btn btn-danger btn-sm" ><i class=" icon-trash"></i> </button>
                             {!! Form::close() !!}
 
@@ -38,16 +38,16 @@
     </div>
     <div class="row" style="border-radius: 0px;">
         <div class="col-md-5 col-md-offset-7">
-            <p class="text-right"><b>Costo Compra :</b> {{\App\Tool::convertMoney($compra->totalCosto())}}</p>
-            <p class="text-right">Total Pagado: {{\App\Tool::convertMoney($compra->totalCosto() - $compra->getTotalDeuda())}}</p>
+            <p class="text-right"><b>Costo Compra :</b> {{\App\Tool::convertMoney($venta->totalPrecio())}}</p>
+            <p class="text-right">Total Pagado: {{\App\Tool::convertMoney($venta->totalPrecio() - $venta->getTotalDeuda())}}</p>
             <hr>
-            <h3 class="text-right">Saldo {{\App\Tool::convertMoney($compra->getTotalDeuda())}}</h3>
+            <h3 class="text-right">Saldo {{\App\Tool::convertMoney($venta->getTotalDeuda())}}</h3>
         </div>
     </div>
     <hr>
     <div class="hidden-print">
         <div class="pull-right">
-            <button onclick="printJS('{{url('reportes/pagos/compra').'?id='.$compra->id}}')"
+            <button onclick="printJS('{{url('reportes/pagos/compra').'?id='.$venta->id}}')"
                class="btn btn-inverse  waves-effect waves-light">Imprimir Pagos
                 <span class="m-l-5"><i class=" icon-printer"></i></span></button>
         </div>
