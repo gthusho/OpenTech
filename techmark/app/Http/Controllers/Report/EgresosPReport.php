@@ -32,6 +32,7 @@ class EgresosPReport extends Controller
             ->sucursal($request->get('sucursal'))
             ->producto($request->get('producto'))
             ->talla($request->get('talla'))
+            ->sucursal($request->get('reportsuc'))
             ->orderBy('id','desc')->get();
     }
 

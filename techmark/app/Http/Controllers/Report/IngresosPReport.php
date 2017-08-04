@@ -33,6 +33,7 @@ class IngresosPReport extends Controller
             ->sucursal($request->get('sucursal'))
             ->producto($request->get('producto'))
             ->talla($request->get('talla'))
+            ->sucursal($request->get('reportsuc'))
             ->where('estado','t')
             ->orderBy('id','desc')->get();
     }

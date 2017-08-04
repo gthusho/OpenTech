@@ -27,3 +27,12 @@ Route::get('inventario/articulos',['as' => 's.inventario.articulos', 'uses' => '
 Route::get('ingresos/articulos',['as' => 's.ingresos.articulos.index', 'uses' => 'IngresosController@index']);
 Route::get('egresos/articulos',['as' => 's.egresos.articulos.index', 'uses' => 'DetalleVentaArticuloController@index']);
 
+Route::resource('ventas/productos','VentasProductosController');
+Route::post('confirmVentaProducto/{id}/{stado}',['as' => 's.confirmVentaProducto', 'uses' => 'VentasProductosController@confirmVenta']);
+Route::delete('destroyItemCar/{id}',['as' => 's.destroyItemCar', 'uses' => 'VentasProductosController@destroyItemCar']);
+Route::resource('ventas/creditos/productos','VentaProductoCreditoController');
+
+Route::get('ingresos/productos',['as' => 's.ingresos.productos.index', 'uses' => 'IngresosProductosController@index']);
+Route::get('egresos/productos',['as' => 's.egresos.productos.index', 'uses' => 'DetalleVentaProductoController@index']);
+Route::get('inventario/productos',['as' => 's.inventario.productos', 'uses' => 'InventarioController@productos']);
+

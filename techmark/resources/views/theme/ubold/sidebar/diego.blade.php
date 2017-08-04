@@ -43,4 +43,8 @@
 <li><a href="{{route('s.inventario.articulos')}}">Inventario Articulos</a></li>
 <li><a href="{{route('s.ingresos.articulos.index')}}">Ingresos Articulos</a></li>
 <li><a href="{{route('s.egresos.articulos.index')}}">Egresos Articulos</a></li>
-
+<li><a href="{{route('s.ventas.productos.index')}}">Venta Productos</a></li>
+<li><a href="{{route('s.ventas.creditos.productos.index')}}">Venta Credito Productos</a></li>
+<li><a href="{{route('s.ingresos.productos.index')}}">Ingresos Productos</a></li>
+<li><a href="{{route('s.egresos.productos.index')}}">Egresos Productos</a></li>
+<li><a href="{{route('s.inventario.productos')}}">Inventario Productos</a></li>

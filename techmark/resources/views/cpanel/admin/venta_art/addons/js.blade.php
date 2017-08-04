@@ -184,7 +184,7 @@
     }
 
     $("#modal_cliente").on("hidden.bs.modal", function () {
-        @if(Request::segment(5)!='edit') // solo funciono si no estoy editando
+        @if(Request::segment(4)!='edit') // solo funciono si no estoy editando
         $('#modal_venta_ok').modal('show');
         @endif
     });
