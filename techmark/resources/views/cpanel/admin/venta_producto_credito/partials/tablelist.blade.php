@@ -31,7 +31,7 @@
                             <a href="{{route('admin.ventas.creditos.productos.show',$row->id)}}" class="btn btn-primary btn-sm"> <i class="fa  fa-money fa-2x"></i></a>
                         </td>
                         <td class="text-center">
-                            <button onclick="printJS('{{url('reportes/pagos/compra').'?id='.$row->id}}')" class="btn btn-primary btn-sm"> <i class=" icon-printer fa-2x"></i> </button>
+                            <button onclick="printJS('{{url('reportes/pagos/venta/productos').'?id='.$row->id}}')" class="btn btn-primary btn-sm"> <i class=" icon-printer fa-2x"></i> </button>
                         </td>
                     </tr>
                 @endforeach

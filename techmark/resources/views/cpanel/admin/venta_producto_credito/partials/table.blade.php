@@ -47,7 +47,7 @@
     <hr>
     <div class="hidden-print">
         <div class="pull-right">
-            <button onclick="printJS('{{url('reportes/pagos/compra').'?id='.$venta->id}}')"
+            <button onclick="printJS('{{url('reportes/pagos/venta/productos').'?id='.$venta->id}}')"
                class="btn btn-inverse  waves-effect waves-light">Imprimir Pagos
                 <span class="m-l-5"><i class=" icon-printer"></i></span></button>
         </div>
