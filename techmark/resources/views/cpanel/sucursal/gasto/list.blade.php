@@ -10,7 +10,7 @@
     <br>
     <div class="row">
       <div class="col-sm-12">
-          @include('cpanel.sucursal.gasto.partials.search')
+          {{--@include('cpanel.sucursal.gasto.partials.search')--}}
       </div>
     </div>
     <div class="row">

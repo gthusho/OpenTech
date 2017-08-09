@@ -32,7 +32,8 @@ class ClosedATM
     public function handle($request, Closure $next)
     {
         $atm = new ATMBranchOffice($this->auth->user());
-        if ($atm->isClosed()) {
+        $atm->check();
+        if ($atm->getEstado()!='p') {
             \Session::flash('message','TU CAJA SE ENCUENTRA CERRADA!');
             return redirect('dashboard');
 

@@ -16,7 +16,12 @@ class Gasto extends Model
     function usuario(){
         return $this->belongsTo('App\User','usuario_id','id');
     }
+    public  function  setMontoAttribute($value){
+        if(!empty($value)){
+            $this->attributes['monto']=\str_replace(",","",$value);
+        }
 
+    }
     function sucursal(){
         return $this->belongsTo('App\Sucursal','sucursal_id','id');
     }

@@ -31,7 +31,7 @@ class GastoController extends Controller
         {
             $this->datos['brand'] = Tool::brand('Gastos',route('s.gasto.index'),'Caja');
             $this->datos['gastos'] = Gasto::with('sucursal','usuario')
-                ->fecha($request->get('fecha'))
+                ->where(\DB::raw("DATE(fecha)"),date('Y-m-d'))
                 ->usuario(Auth::user()->id)
                 ->orderBy('id','desc')
                 ->paginate();

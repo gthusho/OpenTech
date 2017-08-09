@@ -40,8 +40,6 @@
                 {!! Form::close() !!}
             </div>
         </div>
-        {!! Form::open(['route'=>['confirmVentaProducto',$venta->id],'method'=>'post','id'=>'confirmar']) !!}
-        {!! Form::close() !!}
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-border panel-custom">

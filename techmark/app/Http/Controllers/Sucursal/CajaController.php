@@ -31,12 +31,13 @@ class CajaController extends Controller
         if(Auth::user()->can('allow-read'))
         {
             $caja = New ATMBranchOffice(Auth::user());
-            if($caja->check()){
+            if($caja->check()==True && $caja->getEstado()=='p'){
                 $this->datos['caja'] = $caja->getAtm();
+                return view('cpanel.sucursal.caja.edit',$this->datos);
             }else{
+                \Session::flash('message','TU CAJA SE ENCUENTRA CERRADA');
                 return redirect('dashboard');
             }
-            return view('cpanel.sucursal.caja.edit',$this->datos);
         }
         \Session::flash('message','No tienes Permiso para visualizar informacion ');
         return redirect('dashboard');
@@ -73,7 +74,8 @@ class CajaController extends Controller
     {
         if(Auth::user()->can('allow-edit')){
            $caja = new  ATMBranchOffice(Auth::user());
-           $caja->close($request->get('observaciones'));
+
+            $caja->close($request->get('cierre'),$request->get('observaciones'));
             \Session::flash('message','Se Cerro Correctamente Caja!');
             return redirect('dashboard');
         }else{

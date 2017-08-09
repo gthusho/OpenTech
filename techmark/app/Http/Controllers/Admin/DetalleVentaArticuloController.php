@@ -23,6 +23,7 @@ class DetalleVentaArticuloController extends Controller
         if(Auth::user()->can('allow-read')){
             $this->datos['brand'] = Tool::brand('Listado de Ingresos ',route('egresos.articulos.index'),'Egresos Articulos');
             $this->datos['egresos'] = DetalleVentaArticulo::with('articulo','sucursal','almacen')
+                ->where('sucursal_id','<>','')
                 ->fecha($request->get('fecha'))
                 ->sucursal($request->get('sucursal'))
                 ->articulo($request->get('articulo'))

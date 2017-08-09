@@ -33,9 +33,8 @@ class ATM
     {
         $atm = new ATMBranchOffice($this->auth->user());
         if (!$atm->check()) {
-            \Session::flash('message','Primero debes Aperturar Caja');
+          \Session::flash('message','Primero debes Aperturar Caja');
             return redirect()->route('s.caja.create');
-
         }
 
         return $next($request);

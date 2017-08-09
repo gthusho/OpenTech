@@ -21,7 +21,7 @@ class ATMBranchOffice
     private $amtReady = false;
     private $atm = null;
     private $dateNow = null;
-    private $dateAtm =  null;
+    public $estado =  'p';
     private $deserted = true;
 
     /**
@@ -31,7 +31,7 @@ class ATMBranchOffice
     public function __construct(User $user)
     {
         $this->user = $user;
-        $this->dateNow = Carbon::now();
+        $this->dateNow = Carbon::now('America/La_Paz');
     }
     function desertedCheck(){
         $oldCaja = null;
@@ -42,6 +42,7 @@ class ATMBranchOffice
         if(Tool::existe($query)){
             $oldCaja =  $query->first();
             $oldCaja->fcierre = date('Y/m/d',strtotime($oldCaja->registro)).' 23:59';
+            $oldCaja->observaciones .= "\n Cerrado Por el Sistema ya que no se cerro caja";
             $oldCaja->estado = 't';
             $oldCaja->save();
 
@@ -61,22 +62,16 @@ class ATMBranchOffice
         $this->atm->save();
     }
 
-    public function close($obs){
+    public function close($montoc,$obs){
         if($this->check()){
             $this->atm->estado = 't';
+            $this->atm->cierre = $montoc;
             $this->atm->observaciones = $obs;
             $this->atm->fcierre = date('Y/m/d H:i');
             $this->atm->save();
         }
 
     }
-
-//    public function checkState(){
-//       if($this->atm->estado =='t')
-//           $this->amtReady = false;
-//       else
-//           $this->amtReady = true;
-//    }
 
     public function check(){
         $query = Caja::where('sucursal_id',$this->user->sucursal_id)
@@ -87,26 +82,23 @@ class ATMBranchOffice
         {
             $this->atm = $query->first();
             $this->amtReady = true;
+            $this->estado = $this->atm->estado;
         }else
             $this->amtReady = false;
         return $this->amtReady;
     }
-    function isClosed(){
-        if($this->check()){
-            if($this->atm->estado=='t'){
-                return true;
-            }
-            return false;
-        }else
-            return false;
-    }
-    /**
-     * @return null
-     */
+
     public function getAtm()
     {
         return $this->atm;
     }
 
+    /**
+     * @return string
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
 
 }

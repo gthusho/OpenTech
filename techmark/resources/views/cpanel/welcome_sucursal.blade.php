@@ -1,13 +1,13 @@
 @extends('theme.ubold.layout_cpanel')
 @section('content')
 
-    @if($atm->check()==true && $atm->isClosed()==false)
+    @if($atm->check()==True && $atm->getEstado()=='p')
         <h3>
             <a href="{{route('s.caja.index')}}" class="btn btn-danger"><i class="icon-calculator"></i> <span> Cerrar Caja </span> </a>
         </h3>
     @endif
     <div class="row">
-        @if($atm->check()==true && $atm->isClosed()==false)
+        @if($atm->check())
              @include('cpanel.admin.caja.partials.general')
         @endif
     </div>
