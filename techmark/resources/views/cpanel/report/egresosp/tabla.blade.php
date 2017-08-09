@@ -20,7 +20,7 @@
             <td style="border-bottom: 1px dashed black;">{{ucwords($row->producto->descripcion)}}</td>
             <td style="border-bottom: 1px dashed black;">{{ucwords($row->talla->nombre)}}</td>
             <td style="border-bottom: 1px dashed black;">{{ucwords($row->cantidad)}}</td>
-            <td style="border-bottom: 1px dashed black;">{{ucwords($row->sucursal->nombre)}}</td>
+            <td style="border-bottom: 1px dashed black;">{{$row->sucursal->nombre}}</td>
 
         </tr>
     @endforeach

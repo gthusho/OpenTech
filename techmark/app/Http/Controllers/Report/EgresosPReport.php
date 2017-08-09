@@ -28,11 +28,11 @@ class EgresosPReport extends Controller
     function __construct(Request $request)
     {
         $this->datos['egresos'] = DetalleVentaProducto::with('producto','sucursal','ventaproducto','talla')
+            ->where('sucursal_id','<>','')
             ->fecha($request->get('fecha'))
             ->sucursal($request->get('sucursal'))
             ->producto($request->get('producto'))
             ->talla($request->get('talla'))
-            ->sucursal($request->get('reportsuc'))
             ->orderBy('id','desc')->get();
     }
 
