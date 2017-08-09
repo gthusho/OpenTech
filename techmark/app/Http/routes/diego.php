@@ -27,4 +27,6 @@ Route::resource('produccion','ProduccionController');
 Route::post('deleteItemsProduccion/{id}',['as' => 'deleteItemsProduccion', 'uses' => 'DetalleProduccionController@deleteItemsProduccion']);
 Route::post('confirmProduccion/{id}',['as' => 'confirmProduccion', 'uses' => 'ProduccionController@confirmProduccion']);
 
+Route::post('archivoAgenda/{id}',['as'=>'archivoAgenda','uses'=>'AgendaController@archivoAgenda']);
+
 

@@ -171,4 +171,14 @@ class AgendaController extends Controller
         return redirect('dashboard');
 
     }
+
+    public function archivoAgenda(Request $request,$id)
+    {
+        $actividad = Agenda::find($id);
+        \File::Delete(\Config::get('upload.archivos').$actividad->archivo);
+        $actividad->archivo='';
+        $actividad->fill($request->all());
+        $actividad->save();
+        return redirect()->back();
+    }
 }

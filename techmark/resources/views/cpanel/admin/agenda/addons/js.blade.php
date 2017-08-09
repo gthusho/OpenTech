@@ -1,4 +1,3 @@
-
 @if(Request::segment(4)=='edit')
 <script src="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.min.js')}}"></script>
 <script>
@@ -29,6 +28,17 @@
         @endif
     });
 </script>
+    <script>
+        $('#btn-file').click(function () {
+            var isGood=confirm('Esta Seguro de Eliminar?');
+            if (isGood) {
+                $('#delete-file').submit();
+            }
+        })
+        $('#btn-actualizar').click(function () {
+            $('#form-update').submit();
+        })
+    </script>
 @endif
 <script src="{{url('assets/plugins/moment/moment.js')}}"></script>
 

@@ -9,17 +9,23 @@
         </div>
     </div>
     <div class="row">
-
-                @include('cpanel.partials.errors')
-                {!! Form::model($actividad,['route'=>['admin.agenda.update',$actividad->id],'method'=>'PUT','files'=>true]) !!}
-                    @include('cpanel.admin.agenda.partials.fields')
-                    <div class="form-group text-right m-b-0">
-                        <button class="btn btn-primary waves-effect waves-light" type="submit">
-                            Actualizar
-                        </button>
-                    </div>
-
+        @include('cpanel.partials.errors')
+        {!! Form::model($actividad,['route'=>['admin.agenda.update',$actividad->id],'method'=>'PUT','files'=>true, 'id'=>'form-update']) !!}
+        <div class="row">
+            @include('cpanel.admin.agenda.partials.fields')
+            <div class="col-lg-6">
+            @include('cpanel.admin.agenda.partials.fieldotros')
                 {!! Form::close() !!}
+                @if($actividad->archivo!='')
+                    @include('cpanel.admin.agenda.partials.fieldfile')
+                @endif
+            </div>
+        </div>
+        <div class="form-group text-right m-b-0">
+            <button class="btn btn-primary waves-effect waves-light" id="btn-actualizar" >
+                Actualizar
+            </button>
+        </div>
     </div>
 
 @endsection

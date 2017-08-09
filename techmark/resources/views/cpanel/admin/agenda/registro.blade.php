@@ -2,23 +2,23 @@
 @section('content')
     @include('cpanel.partials.brand')
     <div class="row">
-
-                @include('cpanel.partials.errors')
-                {!! Form::open(['route'=>'admin.agenda.store','method'=>'POST','files'=>true]) !!}
-                    @include('cpanel.admin.agenda.partials.fields')
-                    <div class="form-group text-right m-b-0">
-                        <button class="btn btn-primary waves-effect waves-light" type="submit" >
-                            Registrar
-                        </button>
-                        <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
-                            Cancelar
-                        </button>
-                    </div>
-
-                {!! Form::close() !!}
-
-
-
+        @include('cpanel.partials.errors')
+        {!! Form::open(['route'=>'admin.agenda.store','method'=>'POST','files'=>true]) !!}
+        <div class="row">
+            @include('cpanel.admin.agenda.partials.fields')
+            <div class="col-lg-6">
+                @include('cpanel.admin.agenda.partials.fieldotros')
+            </div>
+        </div>
+        <div class="form-group text-right m-b-0">
+            <button class="btn btn-primary waves-effect waves-light" type="submit" >
+                Registrar
+            </button>
+            <button type="reset" class="btn btn-default waves-effect waves-light m-l-5">
+                Cancelar
+            </button>
+        </div>
+        {!! Form::close() !!}
     </div>
 
 @endsection
