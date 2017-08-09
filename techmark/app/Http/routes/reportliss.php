@@ -95,3 +95,4 @@ Route::get('ventas/productos/credito','VentasPCredReport@index');
 Route::get('ventas/productos/credito/excel','VentasPCredReport@excel');
 
 Route::get('pagos/venta/productos','PagosVentaPReport@index');
+

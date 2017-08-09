@@ -48,7 +48,7 @@
         </tr>
         <tr>
             <td align="right" colspan="8"><strong>TOTAL</strong></td>
-            <td align="center"><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td align="center"><strong>{{\App\Tool::convertMoney($caja->totalVentasArticulosByType('Contado'))}}</strong></td>
         </tr>
 
         <?php
@@ -75,7 +75,7 @@
         </tr>
         <tr>
             <td align="right" colspan="8"><strong>TOTAL</strong></td>
-            <td align="center"><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td align="center"><strong>{{\App\Tool::convertMoney($caja->totalVentasArticulosByType('Tarjeta Credito'))}}</strong></td>
         </tr>
 
         <?php
@@ -102,7 +102,7 @@
         </tr>
         <tr>
             <td align="right" colspan="8"><strong>TOTAL</strong></td>
-            <td align="center"><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td align="center"><strong>{{\App\Tool::convertMoney($caja->totalVentasArticulosByType('Cheque'))}}</strong></td>
         </tr>
 
         <?php
@@ -129,7 +129,7 @@
         </tr>
         <tr>
             <td align="right" colspan="8"><strong>TOTAL</strong></td>
-            <td align="center"><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td align="center"><strong>{{\App\Tool::convertMoney($caja->totalVentasArticulosByType('Credito'))}}</strong></td>
         </tr>
 
         <?php
@@ -270,7 +270,7 @@
         </tr>
         <tr>
             <td align="right" colspan="7"><strong>TOTAL</strong></td>
-            <td align="center"><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td align="center"><strong>{{\App\Tool::convertMoney($caja->totalPagoCreArt())}}</strong></td>
         </tr>
         <?php
         $i=1;
@@ -293,7 +293,7 @@
         </tr>
         <tr>
             <td align="right" colspan="7"><strong>TOTAL</strong></td>
-            <td align="center"><strong>{{\App\Tool::convertMoney(0)}}</strong></td>
+            <td align="center"><strong>{{\App\Tool::convertMoney($caja->totalPgVntCredit())}}</strong></td>
         </tr>
         <?php
         $i=1;
@@ -342,11 +342,11 @@
         </tr>
         <tr>
             <td width="50%"><strong>TOTAL (I - G)</strong></td>
-            <th width="15%" ><strong>{{\App\Tool::convertMoney(0)}}</strong></th>
+            <th width="15%" ><strong>{{\App\Tool::convertMoney($caja->totalIG())}}</strong></th>
         </tr>
         <tr>
             <td width="50%"><strong>EFECTIVO EN CAJA</strong></td>
-            <th width="15%" ><strong>{{\App\Tool::convertMoney(1000)}}</strong></th>
+            <th width="15%" ><strong>{{\App\Tool::convertMoney(($caja->totalIG() + $caja->apertura))}}</strong></th>
         </tr>
     </table>
 </div>

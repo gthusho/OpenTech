@@ -24,3 +24,5 @@ Route::get('service/getListArticulos',['as' => 'getListArticulos', 'uses' => 'Co
 Route::get('service/showArticle',['as' => 'showArticle', 'uses' => 'ArticuloController@showArticle']);
 
 Route::resource('cajavistas','vistasCajaController');
+
+Route::get('informe/ingresos',['as' => 'informe.ingresos', 'uses' => 'vistasCajaController@ingresos']);
