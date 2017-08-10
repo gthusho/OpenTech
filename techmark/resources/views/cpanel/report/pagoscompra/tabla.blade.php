@@ -1,18 +1,13 @@
-<h3>
-    <table>
-        <P></P>
-        <tr>
-            <td width="30%">FECHA COMPRA</td>
-            <td width="35%">{{$compra->fecha}}</td>
-        </tr>
-        <tr>
-            <td width="30%">CODIGO</td>
-            <td width="20%">{{$compra->getCode()}}</td>
-        </tr>
-    </table>
-</h3>
-<br>
-<table width="40%" style="line-height:20pt;">
+<table width="40%" >
+    <tr>
+        <td ><strong>FECHA</strong></td>
+        <td >{{$compra->fecha}}</td>
+    </tr>
+
+    <tr>
+        <td ><strong>CODIGO</strong></td>
+        <td >{{$compra->getCode()}}</td>
+    </tr>
     <tr>
         <td><strong>SUCURSAL:</strong></td>
         <td>{{$compra->sucursal->nombre}}</td>
@@ -43,8 +38,7 @@
     </tr>
 
 </table>
-<P></P>
-
+<br>
 <table  cellspacing="5">
     <tr>
         <th width="10%" ><strong>#</strong></th>
@@ -73,19 +67,24 @@
     @endforeach
 
 </table>
-<P></P>
 <table>
     <tr>
-        <td width="72%" ><strong>TOTAL PAGADO:</strong></td>
-        <td>{{\App\Tool::convertMoney($compra->totalCosto() - $compra->getTotalDeuda())}}</td>
+        <td width="50%" align="righ"><strong>TOTAL PAGADO: </strong></td>
+        <td align="center">{{\App\Tool::convertMoney($compra->totalCosto() - $compra->getTotalDeuda())}}</td>
     </tr>
     <tr>
-        <td width="72%" ><strong>SALDO:</strong></td>
-        <td><b>{{\App\Tool::convertMoney($compra->getTotalDeuda())}}</b></td>
+        <td width="50%" align="right"><strong>SALDO: </strong></td>
+        <td align="center"><b>{{\App\Tool::convertMoney($compra->getTotalDeuda())}}</b></td>
     </tr>
-
-
 </table>
-
-
-
+<table width="40%">
+    <tr>
+        <td align="center">{{$compra->sucursal->nombre}}- {{$compra->sucursal->ciudad->nombre}}</td>
+    </tr>
+    <tr>
+        <td align="center">Tel: {{$compra->sucursal->telefono}} - Dir: {{$compra->sucursal->direccion}}</td>
+    </tr>
+    <tr >
+        <td align="center"> <b>Gracias por su Preferencia!!</b></td>
+    </tr>
+</table>

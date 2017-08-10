@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Report;
 
 
 use App\DetalleVentaProducto;
+use App\Sucursal;
 use Elibyy\TCPDF\TCPDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,9 +32,11 @@ class EgresosPReport extends Controller
             ->where('sucursal_id','<>','')
             ->fecha($request->get('fecha'))
             ->sucursal($request->get('sucursal'))
+            ->sucursal($request->get('reportsuc'))
             ->producto($request->get('producto'))
             ->talla($request->get('talla'))
             ->orderBy('id','desc')->get();
+
     }
 
     public function index(Request $request)

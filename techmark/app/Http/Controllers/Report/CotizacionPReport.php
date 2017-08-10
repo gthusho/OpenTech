@@ -40,7 +40,7 @@ class CotizacionPReport extends Controller
             ToolPDF::setMargen($pdf);
             $pdf->SetTitle('OpenRed By Liseth');
             $pdf->AddPage($this->horientacion);
-            $pdf->SetFont('helvetica', 'B', 20);
+            $pdf->SetFont('helvetica', 'B', 15);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
             $pdf->SetFont('helvetica', '', 9);
 
@@ -49,9 +49,9 @@ class CotizacionPReport extends Controller
              */
             $y = $pdf->GetY(); //obtengo la posicion en Y
             $style = array('width' => 0.6, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
-            $code = $this->datos['cotizacion']->getCode().' | '.$this->datos['cotizacion']->cliente->nit.' | '.$this->datos['cotizacion']->registro;
+            $code = 'http://texmarckbolivia.com/';
             $pdf->writeHTML(view('cpanel.report.cotizacionproducto.tabla', $this->datos)->render(), true, false, true, false, '');
-            $pdf->write2DBarcode($code, 'QRCODE,Q', 150, $y, 30, 30, $style, 'N');
+            $pdf->write2DBarcode($code, 'QRCODE,Q', 150, $y, 25, 25, $style, 'N');
 
             $pdf->Output('cotizacionproducto.pdf', 'i');
 

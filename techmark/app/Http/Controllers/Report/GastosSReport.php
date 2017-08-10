@@ -2,13 +2,11 @@
 /**
  * Created by PhpStorm.
  * User: LisCL
- * Date: 14/07/2017
- * Time: 11:38 AM
+ * Date: 10/08/2017
+ * Time: 10:08 AM
  */
 
 namespace App\Http\Controllers\Report;
-
-use App\DetalleVentaArticulo;
 use App\Http\Controllers\Controller;
 use App\ToolPDF;
 use App\User;
@@ -19,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Gasto;
 
-class GastosReport extends Controller
+class GastosSReport extends Controller
 {
     private $datos = null;
     private $horientacion = 'p';//'l';
@@ -28,12 +26,10 @@ class GastosReport extends Controller
 
     function __construct(Request $request)
     {
-        $this->datos['gastos'] = Gasto::with('sucursal','usuario')
-            ->fecha($request->get('fecha'))
-            ->fecha($request->get('f'))
-            ->usuario($request->get('usuario'))
-            ->sucursal($request->get('sucursal'))
-            ->orderBy('id','desc')->get();
+            $this->datos['gastos'] = Gasto::with('sucursal','usuario')
+                ->where(\DB::raw("DATE(fecha)"),date('Y-m-d'))
+                ->usuario($request->get('reportsuc'))
+                ->orderBy('id','desc')->get();
     }
 
     public function index(Request $request)

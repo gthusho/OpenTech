@@ -50,7 +50,10 @@ class DetalleVentaProductoController extends Controller
     }
     function genDatos(){
         $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
-        $this->datos['productos']=Producto::where('estado',true)->orderBy('descripcion')->pluck('descripcion','id');
+        $this->datos{'productos'}=[];
+
+        foreach (Producto::where('estado',true)->orderBy('descripcion')->get() as $row)
+            $this->datos['productos'][$row->id] = $row->codigo .' - '.$row->descripcion;
         $this->datos['tallas']=Talla::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
     }
     public function deleteItemsVentaProducto($id)

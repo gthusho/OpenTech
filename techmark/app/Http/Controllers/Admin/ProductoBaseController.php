@@ -20,7 +20,7 @@ class ProductoBaseController extends Controller
     {
         if(Auth::user()->can('allow-read'))
         {
-            $this->datos['brand'] = Tool::brand('Productos Base',route('admin.prodbase.index'),'Productos');
+            $this->datos['brand'] = Tool::brand('Nombre Productos Base',route('admin.prodbase.index'),'Productos Cotizacion');
             $this->datos['productos'] = ProductoBase::with('usuario','detprodbase.material')
                 ->prodBase($request->get('s'))
                 ->orderBy('estado','desc')

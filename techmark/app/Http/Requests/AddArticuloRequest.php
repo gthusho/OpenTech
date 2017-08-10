@@ -25,7 +25,7 @@ class AddArticuloRequest extends Request
     {
         return [
             'nombre' => 'required|unique:articulos,nombre|min:4',
-            'codigo'=>'required|min:4|max:45|unique:articulos,codigo',
+            'codigo'=>'required|max:45|unique:articulos,codigo',
             'categoria_articulo_id' => 'integer|required',
             'marca_id'=>'integer|required',
             'material_id'=>'integer|required',

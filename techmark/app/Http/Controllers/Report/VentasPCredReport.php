@@ -31,6 +31,7 @@ class VentasPCredReport extends Controller
             ->where('estado','t')->where('tipo_pago','Credito')
             ->codigo($request->get('s'))
             ->sucursal($request->get('sucursal'))
+            ->usuario($request->get('reportsuc'))
             ->orderBy('id','desc')->get();
 
     }

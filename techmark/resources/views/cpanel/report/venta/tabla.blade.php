@@ -1,21 +1,13 @@
-<h3>
-    <table>
-        <br>
-        <tr>
-            <td width="20%">FECHA</td>
-            <td width="35%">{{$venta->registro}}</td>
-        </tr>
+<table width="60%" >
+    <tr>
+        <td ><strong>FECHA</strong></td>
+        <td >{{$venta->registro}}</td>
+    </tr>
 
-        <tr>
-            <td width="20%">CODIGO</td>
-            <td width="20%">{{$venta->getCode()}}</td>
-        </tr>
-    </table>
-</h3>
-
-<br>
-
-<table width="40%" style="line-height:20pt;">
+    <tr>
+        <td ><strong>CODIGO</strong></td>
+        <td >{{$venta->getCode()}}</td>
+    </tr>
     <tr>
         <td><strong>CLIENTE:</strong></td>
         <td>{{$venta->cliente->razon_social}}</td>
@@ -44,9 +36,6 @@
         <td>{{$venta->observaciones}}</td>
     </tr>
 </table>
-
-<P></P>
-
 <table  cellspacing="5">
     <tr>
         <th width="3%" ><strong>#</strong></th>
@@ -89,8 +78,6 @@
     @endforeach
 
 </table>
-
-<P></P>
 @if($venta->estado=='c')
     <h2 ALIGN="right">
         VENTA ANULADA
@@ -114,11 +101,8 @@
 
         </table>
     </h3>
-
 @else
-    <h3 >
-        <table   width="95%" style="line-height:20pt;">
-
+        <table   width="95%">
             <tr>
                 <td align="right" ><strong>TOTAL PAGAR:</strong></td>
                 <td align="right">{{\App\Tool::convertMoney($venta->totalPrecio())}}</td>
@@ -133,8 +117,18 @@
             </tr>
 
         </table>
-    </h3>
-    <p></p>
-
 @endif
+<table width="40%">
+    <tr>
+        <td align="center">{{$venta->sucursal->nombre}}- {{$venta->sucursal->ciudad->nombre}}</td>
+    </tr>
+    <tr>
+        <td align="center">Tel: {{$venta->sucursal->telefono}} - Dir: {{$venta->sucursal->direccion}}</td>
+    </tr>
+    <tr >
+       <td align="center"> <b>Gracias por su Preferencia!!</b></td>
+    </tr>
+</table>
+
+
 

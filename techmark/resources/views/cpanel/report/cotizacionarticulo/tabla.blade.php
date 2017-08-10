@@ -1,26 +1,17 @@
-<h3>
-    <br>
-    <table>
-        <br>
-        <tr>
-            <td width="20%">FECHA</td>
-            <td width="35%">{{date('d/m/Y',strtotime($venta->registro))}}</td>
-        </tr>
+<table width="60%" >
+    <tr>
+        <td ><strong>FECHA</strong></td>
+        <td >{{date('d/m/Y',strtotime($venta->registro))}}</td>
+    </tr>
 
-        <tr>
-            <td width="20%">CODIGO</td>
-            <td width="20%">{{$venta->getCode()}}</td>
-        </tr>
-        <tr>
-            <td width="20%">VALIDO HASTA</td>
-            <td width="35%">{{date('d/m/Y',strtotime($venta->fvalides))}}</td>
-        </tr>
-    </table>
-</h3>
-
-<br>
-
-<table width="40%" style="line-height:20pt;">
+    <tr>
+        <td><strong>CODIGO</strong></td>
+        <td >{{$venta->getCode()}}</td>
+    </tr>
+    <tr>
+        <td><strong>VALIDO HASTA</strong></td>
+        <td >{{date('d/m/Y',strtotime($venta->fvalides))}}</td>
+    </tr>
     <tr>
         <td><strong>CLIENTE:</strong></td>
         <td>{{$venta->cliente->razon_social}}</td>
@@ -45,9 +36,6 @@
     </tr>
 
 </table>
-
-<P></P>
-
 <table  cellspacing="5">
     <tr>
         <th width="3%" ><strong>#</strong></th>
@@ -85,17 +73,23 @@
 
         </tr>
     @endforeach
-
 </table>
-
-<h3>
     <table align="right">
 
         <tr>
             <td ><strong>TOTAL PRECIO:</strong></td>
             <td>{{\App\Tool::convertMoney($venta->totalPrecio())}}</td>
         </tr>
-
-
     </table>
-</h3>
+<br>
+<table width="40%">
+    <tr>
+        <td align="center">{{$venta->sucursal->nombre}}- {{$venta->sucursal->ciudad->nombre}}</td>
+    </tr>
+    <tr>
+        <td align="center">Tel: {{$venta->sucursal->telefono}} - Dir: {{$venta->sucursal->direccion}}</td>
+    </tr>
+    <tr >
+        <td align="center"> <b>Gracias por su Preferencia!!</b></td>
+    </tr>
+</table>

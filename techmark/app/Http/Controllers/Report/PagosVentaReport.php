@@ -22,7 +22,7 @@ class PagosVentaReport extends Controller
 {
     private $datos = null;
     private $horientacion = 'p';//'l';
-    private $titulo = "REPORTE PAGOS";
+    private $titulo = "COMPROBANTE C";
     private $request =  null;
 
     function __construct(Request $request)
@@ -39,9 +39,9 @@ class PagosVentaReport extends Controller
             ToolPDF::setMargen($pdf);
             $pdf->SetTitle('OpenRed By Liss');
             $pdf->AddPage($this->horientacion);
-            $pdf->SetFont('helvetica', 'B', 20);
+            $pdf->SetFont('helvetica', 'B', 15);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
-            $pdf->SetFont('helvetica', '', 10);
+            $pdf->SetFont('helvetica', '', 9);
 
             /*
        * QR
@@ -52,7 +52,7 @@ class PagosVentaReport extends Controller
             $code = $this->datos['venta']->getCode().' | '.$this->datos['venta']->cliente->razon_social.' | '.$this->datos['venta']->registro;
 
             $pdf->writeHTML(view('cpanel.report.pagosventa.tabla', $this->datos)->render(), true, false, true, false, '');
-            $pdf->write2DBarcode($code, 'QRCODE,Q', 150, $y, 30, 30, $style, 'N');
+            $pdf->write2DBarcode($code, 'QRCODE,Q', 150, $y, 25, 25, $style, 'N');
 
             $pdf->Output('pagos.pdf', 'i');
         } else {

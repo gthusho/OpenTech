@@ -1,21 +1,13 @@
-<h3>
-    <table>
-        <br>
-        <tr>
-            <td width="20%">FECHA</td>
-            <td width="35%">{{$compra->fecha}}</td>
-        </tr>
+<table width="60%">
+    <tr>
+        <td ><strong>FECHA</strong></td>
+        <td >{{$compra->fecha}}</td>
+    </tr>
 
-        <tr>
-            <td width="20%">CODIGO</td>
-            <td width="20%">{{$compra->getCode()}}</td>
-        </tr>
-    </table>
-</h3>
-
-<br>
-
-<table width="40%">
+    <tr>
+        <td ><strong>CODIGO</strong></td>
+        <td >{{$compra->getCode()}}</td>
+    </tr>
     <tr>
         <td><strong>SUCURSAL:</strong></td>
         <td>{{$compra->sucursal->nombre}}</td>
@@ -43,7 +35,7 @@
     </tr>
 
 </table>
-<P></P>
+<br>
 <table  cellspacing="5">
     <tr>
         <th width="3%" ><strong>#</strong></th>
@@ -58,7 +50,6 @@
     <?php
     $i=1;
     ?>
-
     @foreach($compra->articulos as $row)
         <tr >
             <td style="border-bottom: 1px dashed black;">{{$i++}}</td>
@@ -78,17 +69,22 @@
             
         </tr>
     @endforeach
-
 </table>
-
-<h3>
     <table align="right">
 
         <tr>
             <td ><strong>TOTAL COMPRA:</strong></td>
             <td>{{\App\Tool::convertMoney($compra->totalCosto())}}</td>
         </tr>
-
-
     </table>
-</h3>
+<table width="40%">
+    <tr>
+        <td align="center">{{$compra->sucursal->nombre}}- {{$compra->sucursal->ciudad->nombre}}</td>
+    </tr>
+    <tr>
+        <td align="center">Tel: {{$compra->sucursal->telefono}} - Dir: {{$compra->sucursal->direccion}}</td>
+    </tr>
+    <tr >
+        <td align="center"> <b>Gracias por su Preferencia!!</b></td>
+    </tr>
+</table>

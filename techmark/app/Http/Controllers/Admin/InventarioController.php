@@ -31,7 +31,10 @@ class InventarioController extends Controller
     }
     function genDatos(){
         $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
-        $this->datos['articuloss']=Articulo::orderBy('nombre')->pluck('nombre','id');
+        $this->datos{'atticuloss'}=[];
+
+        foreach (Articulo::orderBy('nombre')->get() as $row)
+            $this->datos['articuloss'][$row->id] = $row->codigo .' - '.$row->nombre;
     }
     function productos(Request $request){
         $this->datos['brand'] = Tool::brand('Stock Productos',route('inventario.productos'),'Inventario');
@@ -46,7 +49,10 @@ class InventarioController extends Controller
     }
     function genDatosp(){
         $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
-        $this->datos['productoss']=Producto::where('estado',true)->orderBy('descripcion')->pluck('descripcion','id');
         $this->datos['tallas']=Talla::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+        $this->datos{'productoss'}=[];
+
+        foreach (Producto::where('estado',true)->orderBy('descripcion')->get() as $row)
+            $this->datos['productoss'][$row->id] = $row->codigo .' - '.$row->descripcion;
     }
 }

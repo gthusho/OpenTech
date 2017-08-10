@@ -51,7 +51,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('Monto a Abonar ')!!}
-            <input name="abono" type="text" class="form-control autonumber cleanclean" autocomplete="off" id="abono" data-parsley-max="{{$venta->getTotalDeuda()}}" required>
+            <input name="abono" type="text" class="form-control autonumber cleanclean" autocomplete="off" id="abono" data-parsley-max="{{$venta->getTotalDeuda()}}" data-parsley-min="0" required>
         </div>
         <div class="form-group">
             {!! Form::label('Saldo  ')!!}

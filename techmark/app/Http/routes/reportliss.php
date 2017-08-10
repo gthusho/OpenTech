@@ -57,6 +57,9 @@ Route::get('cotizacion/articulo/excel','CotizacionAReport@excel');
 Route::get('gastos','GastosReport@index');
 Route::get('gastos/excel','GastosReport@excel');
 
+Route::get('gastos/sucursal','GastosSReport@index');
+Route::get('gastos/sucursal/excel','GastosSReport@excel');
+
 Route::get('cajas','CajasReport@index');
 Route::get('cajas/excel','CajasReport@excel');
 

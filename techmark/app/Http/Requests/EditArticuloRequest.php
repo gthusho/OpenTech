@@ -26,7 +26,7 @@ class EditArticuloRequest extends Request
     {
         return [
             'nombre' => 'required|unique:articulos,nombre,'.$this->route()->getParameter('articulo').'|min:4',
-            'codigo'=>'required|unique:articulos,codigo,'.$this->route()->getParameter('articulo').'|min:4|max:45',
+            'codigo'=>'required|unique:articulos,codigo,'.$this->route()->getParameter('articulo').'|max:45',
             'categoria_articulo_id' => 'integer|required',
             'marca_id'=>'integer|required',
             'material_id'=>'integer|required',

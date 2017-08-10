@@ -55,7 +55,7 @@
                         <li class="text-muted menu-title">PRODUCTOS VENTA</li>
                         <li><a href="{{route('admin.producto.index')}}">Producto</a></li>
                         <li class="text-muted menu-title">PRODUCTOS COTIZACIONES</li>
-                        <li><a href="{{route('admin.prodbase.index')}}">Producto Base</a></li>
+                        <li><a href="{{route('admin.prodbase.index')}}">Nombre Producto Base</a></li>
                         <li><a href="{{route('admin.detprodbase.index')}}">Detallar Producto Base</a></li>
                         <li class="text-muted menu-title">MANTENIMIENTO</li>
                         <li><a href="{{route('admin.talla.index')}}">Tallas</a></li>

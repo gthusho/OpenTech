@@ -34,6 +34,7 @@ class IngresosReport extends Controller
             ->fecha($request->get('fecha'))
             ->sucursal($request->get('sucursal'))
             ->articulo($request->get('articulo'))
+            ->sucursal($request->get('reportsuc'))
             ->orderBy('id','desc')->get();
     }
 

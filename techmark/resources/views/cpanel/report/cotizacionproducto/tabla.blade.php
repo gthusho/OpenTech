@@ -1,23 +1,18 @@
-<h3>
-    <br>
-    <table>
-        <br>
-        <tr>
-            <td width="20%">FECHA</td>
-            <td width="35%">{{date('d/m/Y',strtotime($cotizacion->fvalides))}}</td>
-        </tr>
 
-        <tr>
-            <td width="20%">CODIGO</td>
-            <td width="20%">{{$cotizacion->getCode()}}</td>
-        </tr>
-        <tr>
-            <td width="20%">VALIDO HASTA</td>
-            <td width="35%">{{date('d/m/Y',strtotime($cotizacion->fvalides))}}</td>
-        </tr>
-    </table>
-</h3>
-<table width="40%"  style="line-height:20pt;">
+<table width="60%" >
+    <tr>
+        <td ><strong>FECHA</strong></td>
+        <td >{{date('d/m/Y',strtotime($cotizacion->registro))}}</td>
+    </tr>
+
+    <tr>
+        <td><strong>CODIGO</strong></td>
+        <td >{{$cotizacion->getCode()}}</td>
+    </tr>
+    <tr>
+        <td><strong>VALIDO HASTA</strong></td>
+        <td >{{date('d/m/Y',strtotime($cotizacion->fvalides))}}</td>
+    </tr>
     <tr>
         <td><strong>CLIENTE:</strong></td>
         <td>{{$cotizacion->cliente->razon_social}}</td>
@@ -42,8 +37,6 @@
     </tr>
 
 </table>
-<p></p>
-
 <table  cellspacing="5">
     <tr>
         <th width="5%" ><strong>#</strong></th>
@@ -78,16 +71,22 @@
     @endforeach
 
 </table>
-
-
-<h3>
     <table align="right">
 
         <tr>
             <td ><strong>TOTAL PRECIO COTIZACION:</strong></td>
             <td>{{\App\Tool::convertMoney($cotizacion->totalPrecio())}}</td>
         </tr>
-
-
     </table>
-</h3>
+<br><br>
+<table width="40%">
+    <tr>
+        <td align="center">{{$cotizacion->sucursal->nombre}}- {{$cotizacion->sucursal->ciudad->nombre}}</td>
+    </tr>
+    <tr>
+        <td align="center">Tel: {{$cotizacion->sucursal->telefono}} - Dir: {{$cotizacion->sucursal->direccion}}</td>
+    </tr>
+    <tr >
+        <td align="center"> <b>Gracias por su Preferencia!!</b></td>
+    </tr>
+</table>

@@ -1,7 +1,5 @@
 <br>
-<br>
-<table width="80%" style="line-height:20pt;">
-    <br>
+<table width="80%" >
     <tr>
         <td ><strong>CODIGO</strong></td>
         <td >{{$produccion->getCode()}}</td>
@@ -42,8 +40,8 @@
     </tr>
 
 </table>
-
-<P></P>
+<br>
+<br>
 <table >
     <tr>
         <th width="3%" ><strong>#</strong></th>
@@ -82,10 +80,9 @@
             </td>
         </tr>
     @endforeach
-
+    <br>
 </table>
 
-<h3>
     <table align="right">
 
         <tr>
@@ -95,13 +92,10 @@
 
 
     </table>
-</h3>
 <br>
-<br>
-
 
 @if($produccion->checkState()[1]=='t' && $produccion->terminado==1)
-    <h3>PRODUCTOS TERMINADOS DE LA PRODUCCION</h3>
+    <h4>PRODUCTOS TERMINADOS DE LA PRODUCCION</h4>
 <table  cellspacing="5"  >
     <tr>
         <th width="8%" ><strong>#</strong></th>
@@ -123,9 +117,8 @@
 
         </tr>
     @endforeach
-
+    <br>
 </table>
-    <h3>
         <table align="right">
 
             <tr>
@@ -135,5 +128,17 @@
 
 
         </table>
-    </h3>
 @endif
+<br>
+<br>
+<table width="40%">
+    <tr>
+        <td align="center">{{$produccion->sucursal->nombre}}- {{$produccion->sucursal->ciudad->nombre}}</td>
+    </tr>
+    <tr>
+        <td align="center">Tel: {{$produccion->sucursal->telefono}} - Dir: {{$produccion->sucursal->direccion}}</td>
+    </tr>
+    <tr >
+        <td align="center"> <b>Gracias por su Preferencia!!</b></td>
+    </tr>
+</table>

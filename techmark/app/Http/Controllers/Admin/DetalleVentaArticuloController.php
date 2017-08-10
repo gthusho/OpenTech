@@ -21,7 +21,7 @@ class DetalleVentaArticuloController extends Controller
     {
 
         if(Auth::user()->can('allow-read')){
-            $this->datos['brand'] = Tool::brand('Listado de Ingresos ',route('egresos.articulos.index'),'Egresos Articulos');
+            $this->datos['brand'] = Tool::brand('Listado de Egresos ',route('egresos.articulos.index'),'Egresos Articulos');
             $this->datos['egresos'] = DetalleVentaArticulo::with('articulo','sucursal','almacen')
                 ->where('sucursal_id','<>','')
                 ->fecha($request->get('fecha'))
@@ -39,7 +39,10 @@ class DetalleVentaArticuloController extends Controller
     }
     function genDatos(){
         $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
-        $this->datos['articulos']=Articulo::orderBy('nombre')->pluck('nombre','id');
+        $this->datos{'articulos'}=[];
+
+        foreach (Articulo::orderBy('nombre')->get() as $row)
+            $this->datos['articulos'][$row->id] = $row->codigo .' - '.$row->nombre;
     }
     public function deleteItemsVentaArticulo($id)
     {

@@ -41,7 +41,10 @@ class IngresosController extends Controller
     function genDatos(){
         $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
         $this->datos['compras']=Compra::pluck('fecha');
-        $this->datos['articulos']=Articulo::orderBy('nombre')->pluck('nombre','id');
+        $this->datos{'articulos'}=[];
+
+        foreach (Articulo::orderBy('nombre')->get() as $row)
+            $this->datos['articulos'][$row->id] = $row->codigo .' - '.$row->nombre;
     }
 
 

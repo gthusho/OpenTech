@@ -31,6 +31,7 @@ class VentasCredReport extends Controller
             ->fecha($request->get('f'))
             ->codigo($request->get('s'))
             ->sucursal($request->get('sucursal'))
+            ->usuario($request->get('reportsuc'))
             ->cliente($request->get('cliente'))
             ->orderBy('id','desc')->get();
 
