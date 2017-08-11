@@ -25,6 +25,11 @@ class Trabajador extends Model
                 ->orwhere('ci','like',"%$name%");
         }
     }
+    function scopeSucursal($query,$x){
+        if(trim($x) != ''){
+            $query->where('sucursal_id',"$x");
+        }
+    }
     function sucursal(){
         return $this->belongsTo('App\Sucursal','sucursal_id','id');
     }

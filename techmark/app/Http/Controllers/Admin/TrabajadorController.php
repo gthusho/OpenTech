@@ -31,8 +31,10 @@ class TrabajadorController extends Controller
             {
                 $this->datos['brand'] = Tool::brand('Trabajador',route('admin.trabajador.index'),'Trabajadores');
                 $this->datos['trabajadores'] = Trabajador::name($request->get('s'))
+                    ->sucursal($request->get('sucursal'))
                     ->orderBy('id','desc')
                     ->paginate();
+                $this->genDatos();
                 return view('cpanel.admin.trabajador.list')->with($this->datos);
             }
             else {
@@ -44,11 +46,14 @@ class TrabajadorController extends Controller
         return redirect('dashboard');
 
     }
+    function genDatos(){
+        $this->datos['sucursales']=Sucursal::where('estado',true)->orderBy('nombre')->pluck('nombre','id');
+    }
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
             $this->datos['brand'] = Tool::brand('Crear trabajador',route('admin.trabajador.index'),'Trabajador');
-            $this->datos['sucursales'] = Sucursal::where('estado',1)->get()->lists('nombre','id');
+            $this->genDatos();
             return view('cpanel.admin.trabajador.registro',$this->datos);
         }
 
@@ -98,7 +103,7 @@ class TrabajadorController extends Controller
         if(Auth::user()->can('allow-edit')){
             $this->datos['brand'] = Tool::brand('Editar Trabajador',route('admin.trabajador.index'),'Trabajadores');
             $this->datos['trabajador'] = Trabajador::find($id);
-            $this->datos['sucursales'] = Sucursal::where('estado',1)->get()->lists('nombre','id');
+            $this->genDatos();
             return view('cpanel.admin.trabajador.edit',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para editar ');
