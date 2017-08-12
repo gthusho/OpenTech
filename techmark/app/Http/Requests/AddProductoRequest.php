@@ -24,7 +24,7 @@ class AddProductoRequest extends Request
     public function rules()
     {
         return [
-            'descripcion'=>'required|min:4|unique:productos,descripcion',
+            'descripcion'=>'required|unique:productos,descripcion',
             'usuario_id'=>'',
             'fecha'=>'date'
         ];

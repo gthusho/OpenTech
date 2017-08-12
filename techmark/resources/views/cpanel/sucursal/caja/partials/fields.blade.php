@@ -11,11 +11,11 @@
         </div>
         <div class="form-group col-lg-12">
             {!! Form::label('Total Efectivo en Caja Caja (*)')!!}
-            {!! Form::text('cierre',null,['class'=>'form-control autonumber','required'])!!}
+            {!! Form::text('cierre',null,['class'=>'form-control autonumber','required','id'=>'mcierre'])!!}
         </div>
         <div class="form-group col-lg-12">
             {!! Form::label('Diferencia en Caja')!!}
-            {!! Form::text('direferencia',null,['class'=>'form-control autonumber','id'=>'diferencia','disabled'])!!}
+            {!! Form::text('direferencia',null,['class'=>'form-control ','id'=>'diferencia','disabled'])!!}
         </div>
      @endif
 </div>

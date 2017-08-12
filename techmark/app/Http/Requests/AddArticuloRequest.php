@@ -24,7 +24,7 @@ class AddArticuloRequest extends Request
     public function rules()
     {
         return [
-            'nombre' => 'required|unique:articulos,nombre|min:4',
+            'nombre' => 'required|unique:articulos,nombre',
             'codigo'=>'required|max:45|unique:articulos,codigo',
             'categoria_articulo_id' => 'integer|required',
             'marca_id'=>'integer|required',

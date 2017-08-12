@@ -25,7 +25,7 @@ class EditArticuloRequest extends Request
     public function rules()
     {
         return [
-            'nombre' => 'required|unique:articulos,nombre,'.$this->route()->getParameter('articulo').'|min:4',
+            'nombre' => 'required|unique:articulos,nombre,'.$this->route()->getParameter('articulo').'',
             'codigo'=>'required|unique:articulos,codigo,'.$this->route()->getParameter('articulo').'|max:45',
             'categoria_articulo_id' => 'integer|required',
             'marca_id'=>'integer|required',

@@ -24,7 +24,7 @@ class EditProductoBaseRequest extends Request
     public function rules()
     {
         return [
-            'descripcion'=>'required|min:4|unique:productos_base,descripcion,'.$this->route()->getParameter('prodbase'),
+            'descripcion'=>'required|unique:productos_base,descripcion,'.$this->route()->getParameter('prodbase'),
             'usuario_id'=>''
         ];
     }

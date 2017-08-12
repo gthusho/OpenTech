@@ -46,4 +46,16 @@
             $('.autonumber').autoNumeric('init');
         });
     </script>
+
+    <script>
+        function parseCurrency( num ) {
+            return parseFloat( num.replace( /,/g, '') );
+        }
+
+        $("#mcierre").on("keyup keypress change paste", function(){
+            var saldo = "{{($caja->totalIG() + $caja->apertura)}}";
+            var ret =  parseCurrency(($(this).val())) - parseCurrency(saldo);
+            $("#diferencia").val(ret);
+        })
+    </script>
 @endsection

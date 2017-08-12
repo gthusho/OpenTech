@@ -24,7 +24,7 @@ class EditProductoRequest extends Request
     public function rules()
     {
         return [
-            'descripcion'=>'required|min:4|unique:productos,descripcion,'.$this->route()->getParameter('producto'),
+            'descripcion'=>'required|unique:productos,descripcion,'.$this->route()->getParameter('producto'),
             'usuario_id'=>'',
             'fecha'=>'date'
         ];
