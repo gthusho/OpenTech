@@ -81,7 +81,19 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin','user_on'],'nam
     Route::post('confirmVentaProducto/{id}/{stado}',['as' => 'confirmVentaProducto', 'uses' => 'VentasProductosController@confirmVenta']);
     Route::delete('destroyItemCar/{id}',['as' => 'vpd.destroyItemCar', 'uses' => 'VentasProductosController@destroyItemCar']);
     Route::resource('ventas/creditos/productos','VentaProductoCreditoController');
+    /*
+     * todo produccion
+     */
+    Route::resource('produccion','ProduccionController');
 
+    Route::post('deleteItemsProduccion/{id}',['as' => 'deleteItemsProduccion', 'uses' => 'ProduccionClienteController@deleteItemsProduccion']);
+    Route::post('confirmProduccion/{id}',['as' => 'confirmProduccion', 'uses' => 'ProduccionClienteController@confirmProduccion']);
+
+    Route::resource('clientes/produccion','ProduccionClienteController');
+    Route::post('clientes/deleteItemsProduccion/{id}',['as' => 'clientes.deleteItemsProduccion', 'uses' => 'ProduccionClienteController@deleteItemsProduccion']);
+    Route::post('clientes/confirmProduccion/{id}/{estado}',['as' => 'clientes.confirmProduccion', 'uses' => 'ProduccionClienteController@confirmProduccion']);
+    Route::get('clientes/entregarProduccion/{id}',['as' => 'clientes.entregarProduccion', 'uses' => 'ProduccionClienteController@entregar']);
+    Route::post('clientes/entregarProduccion/{id}',['as' => 'clientes.entregarProduccion.ok', 'uses' => 'ProduccionClienteController@entregarOk']);
 });
 
 Route::group(['prefix'=>'reportes','middleware'=>['auth'],'namespace'=>'Report'], function(){
@@ -94,19 +106,13 @@ Route::group(['prefix'=>'reportes','middleware'=>['auth'],'namespace'=>'Report']
     require __DIR__ . '/routes/reportdiego.php';
     require __DIR__ . '/routes/reportliss.php';
 
-});
-
-
-
-Route::group(['prefix'=>'sucursal','middleware'=>['auth'],'namespace'=>'BranchOffice'], function(){
+    Route::get('clientes/producciones','ProduccionesReport@indexClientes');
 
 });
-Route::group(['prefix'=>'produccion','middleware'=>['auth'],'namespace'=>'Production'], function(){
 
-});
-Route::group(['prefix'=>'ventas','middleware'=>['auth'],'namespace'=>'Sales'], function(){
 
-});
+
+
 
 /*
  * servicios para articulos
@@ -139,7 +145,7 @@ Route::get('service/showArticleByCotizacionId/{id}',['as' => 'showArticleByCotiz
  * produccion
  */
 Route::get('service/showArticleByProduccionId/{id}',['as' => 'showArticleByProduccionId', 'uses' => 'ServiceProduccionController@showArticleByProduccionId']);
-
+Route::get('service/showArticleByProduccionId/{id}',['as' => 'clientes.showArticleByProduccionId', 'uses' => 'ServiceProduccionController@CArticleByProduccionId']);
 /*
  * servicios ingresos productos producidos
  */

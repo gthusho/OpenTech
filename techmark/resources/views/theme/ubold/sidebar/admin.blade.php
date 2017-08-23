@@ -105,7 +105,11 @@
                     </ul>
                 </li>
                 <li class="has_sub">
-                    <a href="{{route('admin.produccion.index')}}" class="waves-effect"><i class="fa fa-cog fa-spin"></i><span> Produccción </span> </a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-cog fa-spin"></i><span class="label label-primary pull-right">2</span> <span> Producción </span>  </a>
+                    <ul class="list-unstyled">
+                        <a href="{{route('admin.produccion.index')}}">Productos Venta</a>
+                        <a href="{{route('admin.clientes.produccion.index')}}">Productos Cliente</a>
+                    </ul>
                 </li>
                 <li class="text-muted menu-title">Configuraciones Sistemas</li>
                 <li class="has_sub">

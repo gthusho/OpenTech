@@ -22,10 +22,6 @@ Route::post('confirmCotizacionProducto/{id}',['as' => 'confirmCotizacionProducto
 Route::resource('venta-credito-art','VentaCreditoArticuloController');
 Route::resource('caja','CajaController');
 Route::resource('gasto','GastoController');
-Route::resource('produccion','ProduccionController');
-
-Route::post('deleteItemsProduccion/{id}',['as' => 'deleteItemsProduccion', 'uses' => 'DetalleProduccionController@deleteItemsProduccion']);
-Route::post('confirmProduccion/{id}',['as' => 'confirmProduccion', 'uses' => 'ProduccionController@confirmProduccion']);
 
 Route::post('archivoAgenda/{id}',['as'=>'archivoAgenda','uses'=>'AgendaController@archivoAgenda']);
 

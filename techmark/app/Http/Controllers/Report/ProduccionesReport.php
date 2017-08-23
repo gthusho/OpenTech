@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Report;
 
 use App\Http\Controllers\Controller;
 use App\Produccion;
+use App\ProduccionCliente;
 use App\ToolPDF;
 use App\Trabajador;
 use Elibyy\TCPDF\TCPDF;
@@ -69,4 +70,27 @@ class ProduccionesReport extends Controller
             return redirect('dashboard');
         }
     }
+
+
+    public function indexClientes(Request $request)
+    {
+        if(Auth::user()->can('allow-read')){
+            $pdf = new TCPDF('p','mm','Letter', true, 'UTF-8', false);
+            ToolPDF::footerPDF($pdf);
+            ToolPDF::headerPDF($pdf);
+            ToolPDF::setMargen($pdf);
+            $pdf->SetTitle('OpenRed By LDiego');
+            $pdf->AddPage($this->horientacion);
+            $pdf->SetFont('helvetica', 'B', 25);
+            $pdf->Cell(0, 0, "NOTA DE PRODUCCION", '', 1, 'C', 0, '');
+            $pdf->SetFont('helvetica', '', 10);
+            $produccion = ProduccionCliente::find($request->get('code'));
+            $pdf->writeHTML(view('cpanel.report.producciones.tablapc',['produccion'=>$produccion])->render(), true, false, true, false, '');
+            $pdf->Output('produccion.pdf', 'i');
+        }else{
+            \Session::flash('message','No tienes Permiso para visualizar informacion ');
+            return redirect('dashboard');
+        }
+    }
+
 }
