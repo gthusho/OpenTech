@@ -80,17 +80,12 @@ class VentasProductosController extends Controller
             /*
             * modifico la existencia al modificar una venta
             */
-            if ($this->venta->estado=='t'){
-                $existencia = new IPManager($producto_talla->producto_id,$producto_talla->talla_id, $this->venta->sucursal_id);
-                $existencia->UpdateSale($productoVenta->cantidad,$cantidad);
-            }
 
             $productoVenta->cantidad = $cantidad;
             $productoVenta->save();
         }else{
             $productoVenta = new  DetalleVentaProducto();
             $productoVenta->venta_producto_id = $this->venta->id;
-            $productoVenta->sucursal_id = $this->venta->sucursal_id;
             $productoVenta->producto_id = $producto_id;
             $productoVenta->usuario_id = Auth::user()->id;
             $productoVenta->cantidad = $cantidad;
@@ -111,10 +106,6 @@ class VentasProductosController extends Controller
             }
 
             $productoVenta->save();
-            if ($this->venta->estado=='t'){
-                $existencia = new IPManager($producto_talla->producto_id,$producto_talla->talla_id, $this->venta->sucursal_id);
-                $existencia->down($producto_talla->cantidad);
-            }
         }
     }
 
@@ -184,6 +175,9 @@ class VentasProductosController extends Controller
             foreach ($venta->detalleventas as $row){
                 $existencia = new IPManager($row->producto_id,$row->talla_id, $venta->sucursal_id);
                 $existencia->down($row->cantidad);
+                $det=DetalleVentaProducto::find($row->id);
+                $det->sucursal_id=$venta->sucursal_id;
+                $det->save();
             }
         }elseif ($stado=='c'){
             if($venta->estado == 't'){

@@ -153,12 +153,12 @@
     });
 
     $('td').css('cursor','crosshair');
-    $(".rows").click(function (){
+    /*$(".rows").click(function (){
         var codigo = $(this).attr('data-id');
-        var url = "{{route('showArticleByProduccionId','GTHUSHO')}}";
+        var url = "";
         url = url.replace('GTHUSHO',codigo);
         workAjax(url,codigo,"id")
-    });
+    });*/
 
     $('#btnConfirmar').click(function () {
         var isGood=confirm('Esta Seguro de Continuar?');

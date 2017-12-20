@@ -65,9 +65,38 @@ class CotizacionProducto extends Model
 
         }
     }
+    function scopeEstado($query,$x){
+        if(trim($x) != ''){
+            $query->where('estado', $x);
+        }
+    }
     function scopeUsuario($query,$x){
         if(trim($x) != ''){
             $query->where('usuario_id', $x);
+        }
+    }
+    function getDestino(){
+        $det=DetalleCotizacionProducto::where('cotizacion_producto_id',$this->id);
+        $mensaje='';
+        foreach (DetalleCotizacionProducto::where('cotizacion_producto_id',$this->id)->paginate(200) as $row){
+            if($row->descripcion!='' || $row->descripcion!=null)
+                $mensaje=$mensaje.$row->cantidad.' '.$row->productobase->descripcion.' '.$row->talla->nombre.' de '.$row->material->nombre.' '.$row->descripcion."\n";
+            else
+                $mensaje=$mensaje.$row->cantidad.' '.$row->productobase->descripcion.' '.$row->talla->nombre.' de '.$row->material->nombre."\n";
+        }
+        return $mensaje;
+    }
+
+    function estado(){
+        $dateFinish = Carbon::createFromDate(date('Y',strtotime($this->fvalides)),date('m',strtotime($this->fvalides)),date('d',strtotime($this->fvalides)));
+        $dateCurrent = Carbon::now('America/La_Paz');
+        if($this->estado=='a')
+            return ['warning','Adjudicado'];
+        else {
+            if ($dateCurrent->lessThanOrEqualTo($dateFinish))
+                return ['default', 'Activo'];
+            else
+                return ['danger','Plazo terminado'];
         }
     }
 }

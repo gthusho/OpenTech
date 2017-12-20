@@ -85,7 +85,7 @@
     });
     jQuery(function($) {
         $('#Pprecio').autoNumeric('init');
-        $('#Padelando').autoNumeric('init');
+        $('#PSaldo').autoNumeric('init');
     });
 </script>
 

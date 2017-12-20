@@ -22,7 +22,6 @@
             <div class="form-group col-lg-6">
                 <label class=" control-label">Cliente *</label>
                 {!! Form::select('cliente_id',$clientes,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione un Cliente'])!!}
-
             </div>
             <div class="form-group col-lg-6">
                 <label class=" control-label">Fecha Realizacion de la produccion *</label>
@@ -50,14 +49,14 @@
                         <div class="form-group">
                             <label for="" class="col-md-3 control-label">Precio</label>
                             <div class="col-md-9">
-                                {!! Form::text('precio',null,['class'=>'form-control autonumber','id'=>'Pprecio','required'])!!}
+                                {!! Form::text('precio',null,['class'=>'form-control autonumber','id'=>'Pprecio'])!!}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="" class="col-md-3
                              control-label">Efectivo</label>
                             <div class="col-md-9">
-                                {!! Form::text('adelanto',null,['class'=>'form-control autonumber','id'=>'Padelando','required'])!!}
+                                {!! Form::text('adelanto',null,['class'=>'form-control','id'=>'Padelando'])!!}
 
                             </div>
                         </div>

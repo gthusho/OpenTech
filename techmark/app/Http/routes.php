@@ -86,8 +86,8 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','is_admin','user_on'],'nam
      */
     Route::resource('produccion','ProduccionController');
 
-    Route::post('deleteItemsProduccion/{id}',['as' => 'deleteItemsProduccion', 'uses' => 'ProduccionClienteController@deleteItemsProduccion']);
-    Route::post('confirmProduccion/{id}',['as' => 'confirmProduccion', 'uses' => 'ProduccionClienteController@confirmProduccion']);
+    Route::post('deleteItemsProduccion/{id}',['as' => 'deleteItemsProduccion', 'uses' => 'DetalleProduccionController@deleteItemsProduccion']);
+    Route::post('confirmProduccion/{id}',['as' => 'confirmProduccion', 'uses' => 'ProduccionController@confirmProduccion']);
 
     Route::resource('clientes/produccion','ProduccionClienteController');
     Route::post('clientes/deleteItemsProduccion/{id}',['as' => 'clientes.deleteItemsProduccion', 'uses' => 'ProduccionClienteController@deleteItemsProduccion']);

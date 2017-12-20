@@ -25,7 +25,6 @@
                                     {!! Form::text('fecha_entrega',null,['class'=>'form-control','required','autocomplete'=>"off",'id'=>"datepicker-autoclose",'data-date-format'=>'yyyy/mm/dd'])!!}
                                     <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
                                 </div>
-                                <div clas
                             </div>
                             <div id="mensaje" class="col-lg-12">
                             </div>

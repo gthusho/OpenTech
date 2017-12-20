@@ -171,16 +171,29 @@ class ProduccionClienteController extends Controller
             return redirect('dashboard');
         }
     }
-    public function confirmProduccion($id){
+    public function confirmProduccion($id,$estado,Request $request){
         $produccion = ProduccionCliente::find($id);
-        $produccion->estado = 't';
-        $produccion->save();
-        /*
-      * egreso items a existencia una vez terminado la venta
-      */
-        foreach ($produccion->detalle as $row){
-            $existencia = new IAManager($row->articulo_id, $produccion->sucursal_id, 0);
-            $existencia->down($row->cantidad);
+        $produccion->fill($request->all());
+        if ($estado=='t') {
+            $produccion->estado = 't';
+            $produccion->save();
+            /*
+          * egreso items a existencia una vez terminado la venta
+          */
+            foreach ($produccion->detalle as $row) {
+                $existencia = new IAManager($row->articulo_id, $produccion->sucursal_id, 0);
+                $existencia->down($row->cantidad);
+            }
+        }
+        elseif ($estado=='c'){
+            $produccion->estado = 'c';
+            $produccion->save();
+            if ($produccion->estado=='t'){
+                foreach ($produccion->detalle as $row) {
+                    $existencia = new IAManager($row->articulo_id, $produccion->sucursal_id, 0);
+                    $existencia->add($row->cantidad);
+                }
+            }
         }
         return redirect()->route('admin.clientes.produccion.index');
     }
@@ -217,7 +230,29 @@ class ProduccionClienteController extends Controller
 
     public function show($id)
     {
-        //
+        if(Auth::user()->can('allow-insert')){
+            $this->setProduccion();
+            $this->datos['brand'] = Tool::brand('Registrar una Produccion',route('admin.clientes.produccion.index'),'Producciones');
+            //inicializo loscombos
+            $this->genDataIni();
+            //mando la compra pre-registrada y/o obtenida en el constructor
+
+            $cot=CotizacionProducto::find($id);
+            $cot->estado='a';
+            $cot->save();
+            $this->produccion->destino=$cot->getDestino();
+            $this->produccion->precio=$cot->totalPrecio();
+            $this->produccion->cliente_id=$cot->cliente_id;
+            $this->produccion->sucursal_id=$cot->sucursal_id;
+            $this->produccion->save();
+
+            $this->datos['produccion'] = $this->produccion;
+
+            return view('cpanel.admin.produccion_cli.registro',$this->datos);
+        }else{
+            \Session::flash('message','No tienes Permisos para agregar registros ');
+            return redirect('dashboard');
+        }
     }
 
 
@@ -289,7 +324,7 @@ class ProduccionClienteController extends Controller
         $itemProduction = DetProduccionCliente::find($id);
         if ($this->produccion->estado=='t'){
             $existencia = new IAManager($itemProduction->articulo_id, $this->produccion->sucursal_id);
-            $existencia->add($cantidad);
+            $existencia->add($itemProduction->cantidad);
         }
         DetProduccionCliente::destroy($id);
         return redirect()->back();

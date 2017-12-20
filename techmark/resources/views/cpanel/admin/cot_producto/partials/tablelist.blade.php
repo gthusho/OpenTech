@@ -3,6 +3,7 @@
         <table class="table table-hover" id="tabla">
             <thead>
             <tr>
+                <th>ESTADO</th>
                 <th class='bg-primary'>CODIGO</th>
                 <th>FECHA</th>
                 <th>SUCURSAL</th>
@@ -21,6 +22,7 @@
                         $cl="class='bg-primary'" ;
                     ?>
                     <tr >
+                        <td><span class="label label-{{$row->estado()[0]}}">{{$row->estado()[1]}}</span></td>
                         <td  >{{$row->getCode()}}</td>
                         <td>
                             {{date('d/m/Y',strtotime($row->registro))}}
@@ -40,6 +42,11 @@
                         <td>
                             <button onclick="printJS('{{url('reportes/cotizacion/producto').'?id='.$row->id}}')" class="btn btn-primary btn-sm"> <i class=" icon-printer fa-2x"></i> </button>
                         </td>
+                        @if($row->estado()==['default', 'Activo'])
+                            <td>
+                                <a href="{{route('admin.clientes.produccion.show',$row->id)}}" class="btn btn-warning btn-sm"> <i class="ti-announcement fa-2x"></i>  Adjudicada</a>
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>

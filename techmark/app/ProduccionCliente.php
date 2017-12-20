@@ -83,6 +83,9 @@ class ProduccionCliente extends Model
     }
     function checkState(){
         $state = '';
+        if($this->estado=='c'){
+            return $state = ['CANCELADA','c','warning'];
+        }
         $fechas=explode('-',$this->fecha);
         $inicio=$fechas[0];
         $fin=$fechas[1];

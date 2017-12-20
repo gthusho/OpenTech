@@ -9,6 +9,10 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="sr-only" for="type">Estado</label>
+        {!! Form::select('estado',['t'=>'Realizado','a'=>'Adjudicado'],null,['class'=>'form-control select2','placeholder'=>'Seleccione un Estado'])!!}
+    </div>
+    <div class="form-group">
         <label class="sr-only" for="sucursal">Cliente</label>
         {!! Form::select('cliente',$clientes,null,['class'=>'form-control select2','placeholder'=>'Seleccione un Nit...'])!!}
     </div>

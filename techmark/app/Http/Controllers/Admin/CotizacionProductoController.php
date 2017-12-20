@@ -28,7 +28,7 @@ class CotizacionProductoController extends Controller
      * metodo me devuelve o crea una venta
      */
     function setCotizacion(){
-        //estados = t=>terminado , p=>pendiente
+        //estados = t=>terminado, p=>pendiente, a=>adjudicada
         $query = CotizacionProducto::where('usuario_id',Auth::user()->id)->where('estado','p')->get();
         if(Tool::existe($query)){
             $this->cotizacion = $query->first();
@@ -90,10 +90,12 @@ class CotizacionProductoController extends Controller
             $this->datos['cotizaciones'] = CotizacionProducto::with('cliente','usuario','sucursal')
                 ->fecha($request->get('fecha'))
                 ->where('estado','t')
+                ->orWhere('estado','a')
                 ->codigo($request->get('s'))
                 ->sucursal($request->get('sucursal'))
                 ->cliente($request->get('cliente'))
                 ->cliente($request->get('c'))
+                ->estado($request->get('estado'))
                 ->orderBy('id','desc')
                 ->paginate();
             $this->genDatos();
