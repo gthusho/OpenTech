@@ -36,3 +36,5 @@ Route::get('ingresos/productos',['as' => 's.ingresos.productos.index', 'uses' =>
 Route::get('egresos/productos',['as' => 's.egresos.productos.index', 'uses' => 'DetalleVentaProductoController@index']);
 Route::get('inventario/productos',['as' => 's.inventario.productos', 'uses' => 'InventarioController@productos']);
 
+Route::resource('medida','TomarMedidasController');
+Route::resource('medida/detalle','DetalleMedidaController');

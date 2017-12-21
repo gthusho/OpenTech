@@ -57,9 +57,22 @@ class ClienteController extends Controller
     public function store(AddClienteRequest $request)
     {
         if(Auth::user()->can('allow-insert')){
-            $cliente = new  Clientes($request->all());
-            $cliente->save();
-            return redirect()->route('admin.cliente.index');
+            if($request->ajax()){
+                $combo = "";
+                foreach (Clientes::where('estado',1)->get() as $row)
+                {
+                    $combo.="<option value='{$row->id}'>{$row->razon_social}</option>";
+                }
+                $cliente = new  Clientes($request->all());
+                $cliente->save();
+                $combo.="<option value='{$cliente->id}' selected>{$cliente->razon_social}</option>";
+                echo $combo;
+                exit;
+            }else {
+                $cliente = new  Clientes($request->all());
+                $cliente->save();
+                return redirect()->route('admin.cliente.index');
+            }
         }
 
         \Session::flash('message','No tienes Permisos para agregar registros ');

@@ -40,6 +40,9 @@
                 </ul>
                 </li>
                 <li class="has_sub">
+                    <a href="{{route('s.medida.index')}}" class="waves-effect"><i class=" icon-folder-alt"></i> <span> Tomar Medidas </span> </a>
+                </li>
+                <li class="has_sub">
                     <a href="{{route('s.cliente.index')}}" class="waves-effect"><i class="icon-people"></i> <span> Cliente </span> </a>
                 </li>
 

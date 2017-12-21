@@ -40,6 +40,9 @@
                     </ul>
                 </li>
                 <li class="has_sub">
+                    <a href="{{route('admin.medida.index')}}" class="waves-effect"><i class=" icon-folder-alt"></i> <span> Tomar Medidas </span> </a>
+                </li>
+                <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class=" icon-handbag"></i><span class="label label-primary pull-right">5</span> <span> Articulos </span>  </a>
                     <ul class="list-unstyled">
                         <li><a href="{{route('admin.articulo.index')}}">Articulos</a></li>
