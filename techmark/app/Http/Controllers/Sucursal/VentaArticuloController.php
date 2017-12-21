@@ -10,6 +10,7 @@ use App\IAManager;
 use App\Rol;
 use App\User;
 use App\VentaArticulo;
+use App\VentaCreditoArticulo;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Tool;
@@ -178,6 +179,14 @@ class VentaArticuloController extends Controller
         $venta->fill($request->all());
         $venta->estado = 't';
         $venta->save();
+        if($venta->tipo_pago=='Credito') {
+            $credito = new VentaCreditoArticulo();
+            $credito->usuario_id = $venta->usuario_id;
+            $credito->venta_articulo_id = $venta->id;
+            $credito->abono = $venta->abono;
+            $credito->fecha = $venta->registro;
+            $credito->save();
+        }
         /*
        * egreso items a existencia una vez terminado la venta
        */

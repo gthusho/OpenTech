@@ -14,6 +14,7 @@ use App\ProductoTalla;
 use App\Sucursal;
 use App\Tool;
 use App\VentaArticulo;
+use App\VentaCreditoProducto;
 use App\VentaProducto;
 use Illuminate\Http\Request;
 
@@ -191,6 +192,15 @@ class VentasProductosController extends Controller
         }
 
         $venta->save();
+
+        if($venta->tipo_pago=='Credito') {
+            $credito = new VentaCreditoProducto();
+            $credito->usuario_id = $venta->usuario_id;
+            $credito->venta_producto_id = $venta->id;
+            $credito->abono = $venta->abono;
+            $credito->fecha = $venta->registro;
+            $credito->save();
+        }
         /*
        * egreso items a existencia una vez terminado la venta
        */

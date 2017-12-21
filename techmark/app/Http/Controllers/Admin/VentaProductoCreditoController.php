@@ -54,7 +54,6 @@ class VentaProductoCreditoController extends Controller
     public function store(Request $request)
     {
         if(Auth::user()->can('allow-insert')){
-
            $abono = new VentaCreditoProducto($request->all());
            $abono->usuario_id = Auth::user()->id;
             $abono->save();

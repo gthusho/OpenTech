@@ -53,9 +53,12 @@
 <script src="{{url('assets/plugins/autoNumeric/autoNumeric.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
 
-    jQuery(function($) {
-        $('#xcantidad').autoNumeric('init');
-    });
+    function isNumberKey(evt){
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
 </script>
 
 <script type="text/javascript">

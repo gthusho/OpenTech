@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class VentaCreditoProducto extends Model
 {
     protected $table = 'ventas_credito_productos';
-    protected $fillable = ['usuario_id','venta_producto_id','abono'];
+    protected $fillable = ['usuario_id','venta_producto_id','abono','fecha'];
     function detalleventas(){
         return $this->belongsTo('App\VentaProducto','venta_producto_id','id');
     }

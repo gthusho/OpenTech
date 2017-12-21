@@ -59,9 +59,9 @@ class VentaProducto extends Model
     function  getTotalAbonos(){
         $total = VentaCreditoProducto::where('venta_producto_id',$this->id)->sum('abono') ;
         if($total == '' || $total ==null){
-            return 0 + $this->abono;
+            return 0;
         }else{
-            return $total + $this->abono;
+            return $total;
 
         }
     }
@@ -84,7 +84,8 @@ class VentaProducto extends Model
     function activo(){
         switch ($this->estado){
             case '1':{
-                return ['default','Activo'];
+                return ['default','Act
+                ivo'];
             }
             case '0' :{
                 return ['danger','Inactivo'];

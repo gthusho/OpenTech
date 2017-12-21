@@ -10,6 +10,7 @@ use App\IAManager;
 use App\Sucursal;
 use App\Tool;
 use App\VentaArticulo;
+use App\VentaCreditoArticulo;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -212,6 +213,15 @@ class VentaArticuloController extends Controller
             $venta->estado='c';
         }
         $venta->save();
+
+        if($venta->tipo_pago=='Credito') {
+            $credito = new VentaCreditoArticulo();
+            $credito->usuario_id = $venta->usuario_id;
+            $credito->venta_articulo_id = $venta->id;
+            $credito->abono = $venta->abono;
+            $credito->fecha = $venta->registro;
+            $credito->save();
+        }
 
         $this->venta = $venta;
         $this->updateVenta();

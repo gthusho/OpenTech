@@ -9,6 +9,15 @@
     //validation
 
 </script>
+<script type="text/javascript">
+
+    function isNumberKey(evt){
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode != 46 &&(charCode < 48 || charCode > 57)))
+            return false;
+        return true;
+    }
+</script>
 @if(Request::segment(4)=='edit')
 <script src="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.min.js')}}"></script>
 <script>
@@ -54,7 +63,6 @@
 <script type="text/javascript">
 
     jQuery(function($) {
-        $('#abono').autoNumeric('init');
         $('#saldo').autoNumeric('init');
     });
 </script>
@@ -77,5 +85,6 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('form').parsley();
+        $('#datepicker-autoclose').datepicker().datepicker('setDate', new Date());
     });
 </script>

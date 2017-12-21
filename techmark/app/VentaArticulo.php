@@ -66,9 +66,9 @@ class VentaArticulo extends Model
     function  getTotalAbonos(){
         $total = VentaCreditoArticulo::where('venta_articulo_id',$this->id)->sum('abono');
         if($total == '' || $total ==null){
-            return 0 + $this->abono;
+            return 0;
         }else{
-            return $total + $this->abono;
+            return $total;
 
         }
     }

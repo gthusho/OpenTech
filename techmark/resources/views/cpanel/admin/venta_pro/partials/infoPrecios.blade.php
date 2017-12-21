@@ -6,7 +6,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('Cantidad ')!!}
-        <input name="xCantidad" type="text" class="form-control autonumber cleanclean" autocomplete="off" id="xcantidad" required>
+        <input name="xCantidad" type="numbre" class="form-control cleanclean" autocomplete="off" id="xcantidad" required onkeypress="return isNumberKey(event)">
     </div>
     <div class="form-group">
         {!! Form::label('Precios (*) ')!!}
