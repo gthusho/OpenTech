@@ -42,6 +42,8 @@
                         <th>PRECIO 1</th>
                         <th>PRECIO 2</th>
                         <th>PRECIO 3</th>
+                        <th>PRECIO 4</th>
+                        <th>PRECIO 5</th>
                         <th COLSPAN="2">ACCIONES</th>
 
                     </tr>
@@ -53,6 +55,8 @@
                             <td>{{\App\Tool::convertMoney($fila->precio1)}}</td>
                             <td>{{\App\Tool::convertMoney($fila->precio2)}}</td>
                             <td>{{\App\Tool::convertMoney($fila->precio3)}}</td>
+                            <td>{{\App\Tool::convertMoney($fila->precio4)}}</td>
+                            <td>{{\App\Tool::convertMoney($fila->precio5)}}</td>
                             <td><a href="{{route('admin.producto.asignacion.talla.edit',$fila->id)}}" class="btn btn-inverse btn-sm" ><i class=" ti-angle-double-right"></i> Editar </a></td>
                             <td>
                                 {!! Form::open(['route'=>['admin.producto.asignacion.talla.destroy',$fila->id],'method'=>'delete']) !!}

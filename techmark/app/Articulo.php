@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Articulo extends Model
 {
@@ -25,6 +26,8 @@ class Articulo extends Model
         'precio1',
         'precio2',
         'precio3',
+        'precio4',
+        'precio5',
         'codigobarra',
         'stockmin'
     ];
@@ -100,6 +103,12 @@ class Articulo extends Model
             case 'P3':{
                 return $this->precio3;
             }
+            case 'P4':{
+                return $this->precio4;
+            }
+            case 'P5':{
+                return $this->precio5;
+            }
             default: return 0;
         }
     }
@@ -166,11 +175,23 @@ class Articulo extends Model
             return true;
     }
     function getStockAll(){
-        $cantidad =  ExistenciaArticulo::where('articulo_id',$this->id)->sum('cantidad');
-        if($cantidad!='')
-            return $cantidad;
-        else
-            return 0;
+        $cantidad = 0;
+        if(Auth::user()->rol_id==1){
+            $cantidad =  ExistenciaArticulo::where('articulo_id',$this->id)->sum('cantidad');
+            if($cantidad!='')
+                return $cantidad;
+            else
+                return 0;
+        }else{
+            $cantidad =  ExistenciaArticulo::where('articulo_id',$this->id)->where('sucursal_id',Auth::user()->sucursal_id)->sum('cantidad');
+            if($cantidad!='')
+                return $cantidad;
+            else
+                return 0;
+        }
+
+
+
     }
     function activo(){
         if($this->estado==1)
@@ -178,4 +199,7 @@ class Articulo extends Model
         else
             return ['danger','Inactivo'];
     }
+//    function codigoL(){
+//         return str_pad(this.co, 10, "-=", STR_PAD_LEFT)
+//    }
 }

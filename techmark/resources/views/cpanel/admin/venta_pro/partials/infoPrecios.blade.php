@@ -24,5 +24,13 @@
             <input type="radio"  value="3" name="xPrecio" required id="P3" class="cRemove ">
             <label for="P3"> P3 </label>
         </div>
+        <div class="radio radio-primary radio-inline">
+            <input type="radio"  value="4" name="xPrecio" required id="P4" class="cRemove ">
+            <label for="P4"> P4 </label>
+        </div>
+        <div class="radio radio-primary radio-inline">
+            <input type="radio"  value="5" name="xPrecio" required id="P5" class="cRemove ">
+            <label for="P5"> P5 </label>
+        </div>
     </div>
 </fieldset>

@@ -22,19 +22,27 @@
         {!! Form::text('material',null,['class'=>'form-control cleanclean','disabled','id'=>'amaterial'])!!}
     </div>
 
-    <div class="form-group col-lg-4">
+    <div class="form-group col-lg-3">
         {!! Form::label('Precio 1')!!}
         {!! Form::text('precio1',null,['class'=>'form-control cleanclean','disabled','id'=>'aprecio1'])!!}
     </div>
-    <div class="form-group col-lg-4">
+    <div class="form-group col-lg-2">
         {!! Form::label('Precio 2')!!}
         {!! Form::text('precio2',null,['class'=>'form-control cleanclean','disabled','id'=>'aprecio2'])!!}
     </div>
-    <div class="form-group col-lg-4">
+    <div class="form-group col-lg-2">
         {!! Form::label('Precio 3')!!}
         {!! Form::text('precio3',null,['class'=>'form-control cleanclean','disabled','id'=>'aprecio3'])!!}
     </div>
-    <div class="form-group col-lg-4">
+    <div class="form-group col-lg-2">
+        {!! Form::label('Precio 4')!!}
+        {!! Form::text('precio3',null,['class'=>'form-control cleanclean','disabled','id'=>'aprecio4'])!!}
+    </div>
+    <div class="form-group col-lg-3">
+        {!! Form::label('Precio 5')!!}
+        {!! Form::text('precio5',null,['class'=>'form-control cleanclean','disabled','id'=>'aprecio5'])!!}
+    </div>
+    <div class="form-group col-lg-12">
         {!! Form::hidden('articulo_id',null,['class'=>'form-control cleanclean','id'=>'aid'])!!}
 
     </div>

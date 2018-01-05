@@ -43,6 +43,22 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="form-group m-t-5">
+                    <label for="aprecio4" class="col-md-2 control-label">P 4</label>
+                    <div class="col-md-10">
+                        {!! Form::text('precio4',null,['class'=>'form-control cleanclean','disabled','id'=>'aprecio4'])!!}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group m-t-5">
+                    <label for="aprecio5" class="col-md-2 control-label">P 5</label>
+                    <div class="col-md-10">
+                        {!! Form::text('precio5',null,['class'=>'form-control cleanclean','disabled','id'=>'aprecio5'])!!}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

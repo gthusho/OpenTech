@@ -32,6 +32,8 @@ class ServiceCotizacionArticulosController extends Controller
             'precio1'=>Tool::convertMoney($item->precio1),
             'precio2'=>Tool::convertMoney($item->precio2),
             'precio3'=>Tool::convertMoney($item->precio3),
+            'precio4'=>Tool::convertMoney($item->precio4),
+            'precio5'=>Tool::convertMoney($item->precio5),
             'stockIventario'=>$item->getStockAll(),
 
         ];

@@ -103,6 +103,23 @@
             }
         });
     }
+    function workAjaxClose(_url,_data,_type) {
+        $.ajax({
+            url: _url,
+            type: 'GET',
+            data: { data: _data,type:_type} ,
+            success: function (json) {
+                genItem(json);
+                onOffBtnCart(true);
+                $('#modal_search').modal('hide');
+            },
+            error: function (data) {
+                clean();
+                onOffBtnCart(false);
+                alert("El codigo no Existe!!");
+            }
+        });
+    }
     function workAjaxNit(_url,_data) {
         $.ajax({
             url: _url,
@@ -203,7 +220,7 @@
     function genListSubData(key) {
         var codigo = key;
         var url = "{{route('showArticle')}}";
-        workAjax(url,codigo,"id");
+        workAjaxClose(url,codigo,"id");
     }
     /*
      todo para registrar cliente

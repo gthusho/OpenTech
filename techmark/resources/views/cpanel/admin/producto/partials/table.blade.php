@@ -29,6 +29,8 @@
                             <th class="text-white">PRECIO 1</th>
                             <th class="text-white">PRECIO 2</th>
                             <th class="text-white">PRECIO 3</th>
+                            <th class="text-white">PRECIO 4</th>
+                            <th class="text-white">PRECIO 5</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,6 +40,8 @@
                                 <td>{{\App\Tool::convertMoney($fila->precio1)}}</td>
                                 <td>{{\App\Tool::convertMoney($fila->precio2)}}</td>
                                 <td>{{\App\Tool::convertMoney($fila->precio3)}}</td>
+                                <td>{{\App\Tool::convertMoney($fila->precio4)}}</td>
+                                <td>{{\App\Tool::convertMoney($fila->precio5)}}</td>
                             </tr>
                         @endforeach
                         </tbody>

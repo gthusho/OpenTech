@@ -73,9 +73,25 @@ class VentaArticuloController extends Controller
                     $articulo->dp="P2";
                     $articulo->precio=$parametro->precio2* $cantidad;
                     break;
-                default:
+                case ("2"):
+                    $articulo->dp="P2";
+                    $articulo->precio=$parametro->precio2* $cantidad;
+                    break;
+                case ("3"):
                     $articulo->dp="P3";
                     $articulo->precio=$parametro->precio3* $cantidad;
+                    break;
+                case ("4"):
+                    $articulo->dp="P2";
+                    $articulo->precio=$parametro->precio4* $cantidad;
+                    break;
+                case ("5"):
+                    $articulo->dp="P5";
+                    $articulo->precio=$parametro->precio5* $cantidad;
+                    break;
+                default:
+                    $articulo->dp="P1";
+                    $articulo->precio=$parametro->precio1* $cantidad;
             }
             /*
             * modifico la existencia al modificar una venta
@@ -106,6 +122,18 @@ class VentaArticuloController extends Controller
                 case ("3"):
                     $articulo->dp="P3";
                     $articulo->precio=$parametro->precio3* $cantidad;
+                    break;
+                case ("4"):
+                    $articulo->dp="P4";
+                    $articulo->precio=$parametro->precio4* $cantidad;
+                    break;
+                case ("5"):
+                    $articulo->dp="P5";
+                    $articulo->precio=$parametro->precio5* $cantidad;
+                    break;
+                default:
+                    $articulo->dp="P1";
+                    $articulo->precio=$parametro->precio1* $cantidad;
                     break;
             }
             $articulo->almacen_id = $this->venta->almacen_id;

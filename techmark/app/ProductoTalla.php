@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductoTalla extends Model
 {
     protected $table = 'producto_tallas';
-    protected $fillable = ['producto_id','talla_id','precio1','precio2','precio3'];
+    protected $fillable = ['producto_id','talla_id','precio1','precio2','precio3','precio4','precio5'];
     function talla(){
         return $this->belongsTo('App\Talla','talla_id','id');
     }

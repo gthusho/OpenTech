@@ -36,21 +36,27 @@
 
                 </div>
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            @include('cpanel.admin.venta_pro.partials.buscarArticulo')
-                        </div>
-                    </div>
+
                     <div class="row">
                         <div class="col-lg-7">
                             @include('cpanel.admin.venta_pro.partials.infoArticulo')
                         </div>
-                        <div class="col-lg-3">
-                            @include('cpanel.admin.venta_pro.partials.infoPrecios')
+                        <div class="col-lg-5">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    @include('cpanel.admin.venta_pro.partials.buscarArticulo')
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    @include('cpanel.admin.venta_pro.partials.infoPrecios')
+                                </div>
+                                <div class="col-lg-4">
+                                    @include('cpanel.admin.venta_pro.partials.operaciones')
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-lg-2">
-                            @include('cpanel.admin.venta_pro.partials.operaciones')
-                        </div>
+
                     </div>
                 </div>
             </div>

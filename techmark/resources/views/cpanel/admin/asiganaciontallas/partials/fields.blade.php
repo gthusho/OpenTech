@@ -31,4 +31,12 @@
         {!! Form::label('Precio 3 * ')!!}
         {!! Form::text('precio3',null,['class'=>'form-control autonumber precio','required'])!!}
     </div>
+    <div class="form-group col-lg-6">
+        {!! Form::label('Precio 4 * ')!!}
+        {!! Form::text('precio4',null,['class'=>'form-control autonumber precio','required'])!!}
+    </div>
+    <div class="form-group col-lg-6">
+        {!! Form::label('Precio 5 * ')!!}
+        {!! Form::text('precio5',null,['class'=>'form-control autonumber precio','required'])!!}
+    </div>
 </div>

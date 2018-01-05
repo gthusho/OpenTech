@@ -63,13 +63,23 @@ class ServiceArticulosController extends Controller
         if(Tool::existe($query)){
             $data = "";
             foreach ($query as $row){
-                $data .= "
-                    <tr data-id='{$row->id}'>
+                /*
+                 *   $data .= "
+                    <tr data-id='{$row->id}' onclick='genListSubData({$row->id})'>
                     <td>{$row->nombre}</td>
                     <td>{$row->categoria->nombre}</td>
                     <td>{$row->marca->nombre}</td>
                     <td>{$row->material->nombre}</td>
-                    <td><button class='btn btn-primary btn-sm' onclick='genListSubData({$row->id})'><i class=' icon-action-redo'></i></button></td>
+//                    <td><button class='btn btn-primary btn-sm' onclick='genListSubData({$row->id})'><i class=' icon-action-redo'></i></button></td>
+                    </tr>
+                ";
+                 */
+                $data .= "
+                    <tr data-id='{$row->id}' onclick='genListSubData({$row->id})'>
+                    <td>{$row->nombre}</td>
+                    <td>{$row->categoria->nombre}</td>
+                    <td>{$row->marca->nombre}</td>
+                    <td>{$row->material->nombre}</td>
                     </tr>
                 ";
             }
@@ -118,6 +128,8 @@ class ServiceArticulosController extends Controller
             'precio1'=>Tool::convertMoney($item->precio1),
             'precio2'=>Tool::convertMoney($item->precio2),
             'precio3'=>Tool::convertMoney($item->precio3),
+            'precio4'=>Tool::convertMoney($item->precio4),
+            'precio5'=>Tool::convertMoney($item->precio5),
             'dp'=>'P1'
         ];
         return $data;

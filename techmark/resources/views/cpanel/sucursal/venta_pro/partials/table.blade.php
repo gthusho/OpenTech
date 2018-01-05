@@ -47,6 +47,14 @@
                                         $punitario = $pt->precio3;
                                         break;
                                     }
+                                    case 'P4':{
+                                        $punitario = $pt->precio4;
+                                        break;
+                                    }
+                                    case 'P5':{
+                                        $punitario = $pt->precio5;
+                                        break;
+                                    }
                                     default: break;
                                 }
 

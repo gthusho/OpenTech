@@ -52,6 +52,8 @@ class ServiceProductosController extends Controller
                 'precio1'=>Tool::convertMoney($this->precio[0]),
                 'precio2'=>Tool::convertMoney($this->precio[1]),
                 'precio3'=>Tool::convertMoney($this->precio[2]),
+                'precio4'=>Tool::convertMoney($this->precio[3]),
+                'precio5'=>Tool::convertMoney($this->precio[4]),
                 'dp'=>'P1'
             ];
 
@@ -77,6 +79,8 @@ class ServiceProductosController extends Controller
                 $this->precio[0]= $row->precio1;
                 $this->precio[1]= $row->precio2;
                 $this->precio[2]= $row->precio3;
+                $this->precio[3]= $row->precio4;
+                $this->precio[4]= $row->precio5;
                 $b=true;
             }
             $data .= "<option value='{$row->id}'>{$row->talla->nombre}</option>";
@@ -107,6 +111,8 @@ class ServiceProductosController extends Controller
                 'precio1'=>Tool::convertMoney($item->precio1),
                 'precio2'=>Tool::convertMoney($item->precio2),
                 'precio3'=>Tool::convertMoney($item->precio3),
+                'precio4'=>Tool::convertMoney($item->precio4),
+                'precio5'=>Tool::convertMoney($item->precio5),
             ];
 
             return $data;
@@ -132,6 +138,8 @@ class ServiceProductosController extends Controller
                 'precio1'=>Tool::convertMoney($productoTalla->precio1),
                 'precio2'=>Tool::convertMoney($productoTalla->precio2),
                 'precio3'=>Tool::convertMoney($productoTalla->precio3),
+                'precio4'=>Tool::convertMoney($productoTalla->precio4),
+                'precio5'=>Tool::convertMoney($productoTalla->precio5),
                 'xcantidad'=>$ingreso->cantidad,
             ];
             return $data;
@@ -147,11 +155,10 @@ class ServiceProductosController extends Controller
                 $productoTalla = ProductoTalla::where('producto_id',$producto->id)->get();
                 foreach ($productoTalla as $row){
                     $data .= "
-                    <tr data-id='{$row->id}'>
+                    <tr data-id='{$row->id}' onclick='genListSubData({$row->id})'>
                     <td><img src='{$row->producto->getImagen()}' alt='' class='img img-thumbnail thumb-sm'></td>
                     <td>{$row->producto->descripcion}</td>
                     <td>{$row->talla->nombre}</td>
-                    <td><button class='btn btn-primary btn-sm' onclick='genListSubData({$row->id})'><i class=' icon-action-redo'></i></button></td>
                     </tr>
                 ";
                 }
@@ -183,6 +190,8 @@ class ServiceProductosController extends Controller
                 'precio1'=>Tool::convertMoney($productoTalla->precio1),
                 'precio2'=>Tool::convertMoney($productoTalla->precio2),
                 'precio3'=>Tool::convertMoney($productoTalla->precio3),
+                'precio4'=>Tool::convertMoney($productoTalla->precio4),
+                'precio5'=>Tool::convertMoney($productoTalla->precio5),
                 'xcantidad'=>'',
                 'dp'=>'P1'
             ];
@@ -211,6 +220,8 @@ class ServiceProductosController extends Controller
                 'precio1'=>Tool::convertMoney($productoTalla->precio1),
                 'precio2'=>Tool::convertMoney($productoTalla->precio2),
                 'precio3'=>Tool::convertMoney($productoTalla->precio3),
+                'precio4'=>Tool::convertMoney($productoTalla->precio4),
+                'precio5'=>Tool::convertMoney($productoTalla->precio5),
                 'xcantidad'=>$productoVenta->cantidad,
                 'dp'=>$productoVenta->dp
             ];

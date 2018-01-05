@@ -74,9 +74,21 @@ class VentasProductosController extends Controller
                     $productoVenta->dp="P2";
                     $productoVenta->precio=$producto_talla->precio2* $cantidad;
                     break;
-                default:
+                case ("3"):
                     $productoVenta->dp="P3";
                     $productoVenta->precio=$producto_talla->precio3* $cantidad;
+                    break;
+                case ("4"):
+                    $productoVenta->dp="P4";
+                    $productoVenta->precio=$producto_talla->precio4* $cantidad;
+                    break;
+                case ("5"):
+                    $productoVenta->dp="P5";
+                    $productoVenta->precio=$producto_talla->precio5* $cantidad;
+                    break;
+                default:
+                    $productoVenta->dp="P1";
+                    $productoVenta->precio=$producto_talla->precio1* $cantidad;
             }
             /*
             * modifico la existencia al modificar una venta
@@ -108,6 +120,18 @@ class VentasProductosController extends Controller
                 case ("3"):
                     $productoVenta->dp="P3";
                     $productoVenta->precio=$producto_talla->precio3* $cantidad;
+                    break;
+                case ("4"):
+                    $productoVenta->dp="P4";
+                    $productoVenta->precio=$producto_talla->precio4* $cantidad;
+                    break;
+                case ("5"):
+                    $productoVenta->dp="P5";
+                    $productoVenta->precio=$producto_talla->precio5* $cantidad;
+                    break;
+                default:
+                    $productoVenta->dp="P1";
+                    $productoVenta->precio=$producto_talla->precio1* $cantidad;
                     break;
             }
 
