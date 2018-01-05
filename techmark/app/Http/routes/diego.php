@@ -25,7 +25,7 @@ Route::resource('gasto','GastoController');
 
 Route::post('archivoAgenda/{id}',['as'=>'archivoAgenda','uses'=>'AgendaController@archivoAgenda']);
 
-Route::resource('medida','TomarMedidasController');
-Route::resource('medida/detalle','DetalleMedidaController');
+Route::resource('visita','VisitaCotizacionController');
+Route::resource('visita/detalle','DetalleMedidaController');
 
 

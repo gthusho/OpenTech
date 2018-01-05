@@ -9,15 +9,15 @@ class DetalleMedida extends Model
     protected $table = 'detalle_medida';
     protected $fillable = [
         'usuario_id', 'ubicacion', 'descripcion',
-        'alto', 'ancho', 'largo', 'registro', 'medida_id', 'cantidad', 'producto_id', 'precio', 'estado'
+        'alto', 'ancho', 'largo', 'registro', 'visita_cotizacion_id', 'cantidad', 'precio', 'estado'
     ];
 
     function usuario(){
         return $this->belongsTo('App\User','usuario_id','id');
     }
 
-    function medida(){
-        return $this->belongsTo('App\Medidas','medida_id','id');
+    function visita(){
+        return $this->belongsTo('App\VisitaCotizacion','visita_cotizacion_id','id');
     }
 
     function producto(){

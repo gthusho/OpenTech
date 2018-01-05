@@ -2,15 +2,23 @@
     <thead>
     <tr>
         <th>CLIENTE</th>
+        <th>FECHA</th>
+        <th>DIRECCION</th>
         <th>PRODUCTOS</th>
         <th class="text-center">ACCIONES</th>
     </tr>
     </thead>
     <tbody>
-    @foreach($medidas as $row)
+    @foreach($visitas as $row)
         <tr>
             <td>
                 {{($row->cliente->razon_social)}}
+            </td>
+            <td>
+                {{$row->fecha}}
+            </td>
+            <td>
+                {{$row->direccion}}
             </td>
             <td >
                 <table class="table table-hover">
@@ -31,7 +39,7 @@
                 </table>
             </td>
             <td class="text-center">
-                <a href="{{route('admin.medida.edit',$row->id)}}" class="btn btn-primary btn-sm"><i class=" icon-pencil fa-2x"></i> Tomar Medidas</a>
+                <a href="{{route('admin.visita.edit',$row->id)}}" class="btn btn-primary btn-sm"><i class=" icon-pencil fa-2x"></i> Tomar Medidas</a>
             </td>
         </tr>
     @endforeach

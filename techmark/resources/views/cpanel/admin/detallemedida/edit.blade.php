@@ -10,7 +10,7 @@
                 </p>
 
                 @include('cpanel.partials.errors')
-                {!! Form::model($dm,['route'=>['admin.medida.detalle.update',$dm->id],'method'=>'PUT','files'=>true,'id'=>'form-detalle']) !!}
+                {!! Form::model($dm,['route'=>['admin.visita.detalle.update',$dm->id],'method'=>'PUT','files'=>true,'id'=>'form-detalle']) !!}
                     @include('cpanel.admin.detallemedida.partials.fields')
                     <div class="form-group text-right m-b-0">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">

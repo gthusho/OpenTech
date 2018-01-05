@@ -29,7 +29,7 @@
 
     <div class="col-lg-12">
         <div class="pull-left">
-            {{$medidas->appends(Request::only(['s']))->render()}}
+            {{$visitas->appends(Request::only(['s']))->render()}}
         </div>
     </div>
 @endsection

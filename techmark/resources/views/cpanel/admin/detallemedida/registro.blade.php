@@ -9,7 +9,7 @@
                     * Los campos con (*) son obligatorios
                 </p>
                 @include('cpanel.partials.errors')
-                {!! Form::open(['route'=>'admin.medida.detalle.store','method'=>'POST','files'=>true]) !!}
+                {!! Form::open(['route'=>'admin.visita.detalle.store','method'=>'POST','files'=>true]) !!}
                     @include('cpanel.admin.detallemedida.partials.fields')
                     <div class="form-group text-right m-b-0">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">
@@ -33,4 +33,7 @@
 @endsection
 @section('js')
     @include('cpanel.admin.detallemedida.addons.js')
+    <script>
+        $('#cant').val('1');
+    </script>
 @endsection
