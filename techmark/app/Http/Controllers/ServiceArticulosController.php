@@ -63,25 +63,24 @@ class ServiceArticulosController extends Controller
         if(Tool::existe($query)){
             $data = "";
             foreach ($query as $row){
-                /*
-                 *   $data .= "
-                    <tr data-id='{$row->id}' onclick='genListSubData({$row->id})'>
-                    <td>{$row->nombre}</td>
-                    <td>{$row->categoria->nombre}</td>
-                    <td>{$row->marca->nombre}</td>
-                    <td>{$row->material->nombre}</td>
-//                    <td><button class='btn btn-primary btn-sm' onclick='genListSubData({$row->id})'><i class=' icon-action-redo'></i></button></td>
-                    </tr>
-                ";
-                 */
-                $data .= "
-                    <tr data-id='{$row->id}' onclick='genListSubData({$row->id})'>
+
+                    $data .= "
+                    <tr data-id='{$row->id}'  onclick='genListSubData({$row->id})'>
                     <td>{$row->nombre}</td>
                     <td>{$row->categoria->nombre}</td>
                     <td>{$row->marca->nombre}</td>
                     <td>{$row->material->nombre}</td>
                     </tr>
                 ";
+
+//                $data .= "
+//                    <tr data-id='{$row->id}' onclick='genListSubData({$row->id})'>
+//                    <td>{$row->nombre}</td>
+//                    <td>{$row->categoria->nombre}</td>
+//                    <td>{$row->marca->nombre}</td>
+//                    <td>{$row->material->nombre}</td>
+//                    </tr>
+//                ";
             }
             echo $data;
         }else{

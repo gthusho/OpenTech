@@ -24,10 +24,10 @@
     }
 </style>
 <div class="row">
-    <div class="col-lg-5">
+    <div class="col-lg-4">
         @include('cpanel.admin.cotizacionarticulo.partials.infoCompra')
     </div>
-    <div class="col-lg-7">
+    <div class="col-lg-8">
         <div class="panel panel-border panel-custom">
             <div class="panel-heading">
 
@@ -41,13 +41,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-7">
+
+                    <div class="col-lg-12">
                         @include('cpanel.admin.cotizacionarticulo.partials.infoArticulo')
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-9">
                         @include('cpanel.admin.cotizacionarticulo.partials.infoCostos')
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-3">
                         @include('cpanel.admin.cotizacionarticulo.partials.operaciones')
                     </div>
                 </div>

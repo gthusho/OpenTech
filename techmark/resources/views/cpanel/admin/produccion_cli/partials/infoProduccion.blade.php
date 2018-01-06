@@ -6,13 +6,13 @@
         <div class="row">
             <div class="col-lg-6">
                 <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">SUCURSAL QUE REALIZA LA PRODUCCION</legend>
+                    <legend class="scheduler-border">SUCURSAL PRODUCCION</legend>
                     {!! Form::select('sucursal_id',$sucursales,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione una sucursal'])!!}
                 </fieldset>
             </div>
             <div class="col-lg-6">
                 <fieldset class="scheduler-border">
-                    <legend class="scheduler-border">TRABAJADOR QUE REALIZA LA PRODUCCION</legend>
+                    <legend class="scheduler-border">TRABAJADOR PRODUCCION</legend>
                     {!! Form::select('trabajador_id',$trabajadores,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione un trabajador'])!!}
 
                 </fieldset>
@@ -24,7 +24,7 @@
                 {!! Form::select('cliente_id',$clientes,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione un Cliente'])!!}
             </div>
             <div class="form-group col-lg-6">
-                <label class=" control-label">Fecha Realizacion de la produccion *</label>
+                <label class=" control-label">Fecha de la produccion *</label>
                 {!! Form::text('fecha',null,['class'=>'form-control input-daterange-timepicker','required'])!!}
             </div>
         </div>
@@ -32,7 +32,7 @@
             <div class="col-lg-6">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">DESTINADO A</legend>
-                    {!! Form::textarea('destino',null,['class'=>'form-control','rows'=>'8'])!!}
+                    {!! Form::textarea('destino',null,['class'=>'form-control','rows'=>'7'])!!}
                 </fieldset>
             </div>
             <div class="col-lg-6">

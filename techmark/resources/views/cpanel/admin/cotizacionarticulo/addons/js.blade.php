@@ -71,6 +71,8 @@
         $('#aprecio1').val(item['precio1']);
         $('#aprecio2').val(item['precio2']);
         $('#aprecio3').val(item['precio3']);
+        $('#aprecio4').val(item['precio4']);
+        $('#aprecio5').val(item['precio5']);
         $('#astock').val(item['stockIventario']);
         $('#aid').val(item['id']);
         $('#amedida').val(item['unidad']);

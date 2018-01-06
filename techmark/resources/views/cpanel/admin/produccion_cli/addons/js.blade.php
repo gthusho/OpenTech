@@ -102,6 +102,8 @@
         $('#aprecio1').val(item['precio1']);
         $('#aprecio2').val(item['precio2']);
         $('#aprecio3').val(item['precio3']);
+        $('#aprecio4').val(item['precio4']);
+        $('#aprecio5').val(item['precio5']);
         $('#astock').val(item['stockIventario']);
         $('#aid').val(item['id']);
         $('#amedida').val(item['unidad']);
@@ -124,6 +126,23 @@
             success: function (json) {
                 genItem(json);
                 onOffBtnCart(true);
+            },
+            error: function (data) {
+                clean();
+                onOffBtnCart(false);
+                alert("El codigo no Existe!!");
+            }
+        });
+    }
+    function workAjaxClose(_url,_data,_type) {
+        $.ajax({
+            url: _url,
+            type: 'GET',
+            data: { data: _data,type:_type} ,
+            success: function (json) {
+                genItem(json);
+                onOffBtnCart(true);
+                $('#modal_search').modal('hide');
             },
             error: function (data) {
                 clean();
@@ -205,11 +224,11 @@
             workAjaxListItems(url,key);
         }
     });
-  function genListSubData(key) {
-      var codigo = key;
-      var url = "{{route('showArticle')}}";
-      workAjax(url,codigo,"id");
-  }
+    function genListSubData(key) {
+        var codigo = key;
+        var url = "{{route('showArticle')}}";
+        workAjaxClose(url,codigo,"id");
+    }
 </script>
 <script>
     function parseCurrency( num ) {

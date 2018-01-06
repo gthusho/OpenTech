@@ -20,11 +20,10 @@ class ServiceDetalleProductoBaseController extends Controller
             $data = "";
             foreach ($query as $row){
                 $data .= "
-                    <tr data-id='{$row->id}'>
+                    <tr data-id='{$row->id}' onclick='genListSubData({$row->id})'>
                     <td>{$row->prodbase->descripcion}</td>
                     <td>{$row->material->nombre}</td>
                     <td>{$row->talla->nombre}</td>
-                    <td><button class='btn btn-primary btn-sm' onclick='genListSubData({$row->id})'><i class=' icon-action-redo'></i></button></td>
                     </tr>
                 ";
             }
