@@ -6,3 +6,4 @@
 @endif
 <link href="{{url('assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css')}}" rel="stylesheet" />
 <link href="{{url('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
+<link href="{{url('assets/plugins/clockpicker/css/bootstrap-clockpicker.min.css')}}" rel="stylesheet">

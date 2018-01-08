@@ -15,7 +15,7 @@ class VisitaCotizacion extends Model
 {
     protected $table = 'visita_cotizacion';
     protected $fillable = [
-        'registro', 'cliente_id', 'fecha', 'usuario_id', 'x', 'y', 'direccion', 'zona', 'barrio', 'observaciones'
+        'registro', 'cliente_id', 'fecha', 'hora', 'usuario_id', 'x', 'y', 'direccion', 'zona', 'barrio', 'observacion'
     ];
 
     function cliente(){

@@ -3,8 +3,6 @@
     @include('cpanel.partials.brand')
     <div class="row">
         <div class="col-lg-12">
-            <div class="card-box">
-                <h4 class="m-t-0 header-title"><b>Formulario de Registro</b></h4>
                 <p class="text-danger font-13 m-b-30">
                     * Los campos con (*) son obligatorios
                 </p>
@@ -21,7 +19,6 @@
                     </div>
 
                 {!! Form::close() !!}
-            </div>
         </div>
 
     </div>

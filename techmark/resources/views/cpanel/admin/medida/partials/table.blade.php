@@ -15,7 +15,7 @@
                 {{($row->cliente->razon_social)}}
             </td>
             <td>
-                {{$row->fecha}}
+                {{date('d/m/Y',strtotime($row->fecha)) .' '. $row->hora}}
             </td>
             <td>
                 {{$row->direccion}}

@@ -1,6 +1,6 @@
 <script src="{{url('assets/plugins/bootstrap-select/js/bootstrap-select.min.js')}}" type="text/javascript"></script>
-
 <script src="{{url('assets/plugins/select2/js/select2.min.js')}}" type="text/javascript"></script>
+<script src="{{url('assets/plugins/clockpicker/js/bootstrap-clockpicker.min.js')}}" type="text/javascript"></script>
 
 <script>
     // Select2
@@ -88,6 +88,49 @@
     jQuery('#datepicker-autoclose').datepicker({
         autoclose: true,
         todayHighlight: true,
-        language: 'es'
+        language: 'es',
+    });
+
+    jQuery('#clockpicker').clockpicker({
+        placement: 'bottom',
+        align: 'left',
+        autoclose: true,
+        'default': 'now'
+    });
+</script>
+<script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key=AIzaSyA0D_4taQugJG4JHAVIZXe0XZvkY24rJx8&sensor=false&libraries=places'></script>
+<script  src="{{url('map/locationpicker.jquery.min.js')}}"></script>
+<script>
+    var x ;
+    var y;
+    var _location;
+    @if(Request::segment(4)=='edit')
+        x = {{$visita->x}};
+        y = {{$visita->y}};
+    _location = '{{$visita->direccion}}';
+    @else
+        x = -19.047677;
+    y = -65.25894019999998;
+    _location = 'Casco Viejo';
+    @endif
+    $('#map_canvas').locationpicker({
+        location: {
+            latitude: x,
+            longitude: y
+        },
+        radius: 0,
+        zoom: 15,
+        mapOptions: {
+            markerTitle:_location
+        },
+
+        inputBinding: {
+            latitudeInput: $('#x'),
+            longitudeInput: $('#y'),
+            locationNameInput: $('#us3-address')
+        },
+        enableAutocomplete: true
+        //  markerIcon: '{{url('map-marker-2-xl.png')}}'
+
     });
 </script>
