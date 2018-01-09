@@ -25,8 +25,8 @@ class VisitaCotizacionReport extends Controller
             ->cliente($request->get('cliente'))
             ->fecha2($request->get('fecha'))
             ->direccion($request->get('type'),$request->get('s'))
-            ->orderBy('fecha','desc')
-            ->orderBy('hora','desc')->get();
+            ->orderBy('fecha')
+            ->orderBy('hora')->get();
     }
 
     public function index(Request $request)

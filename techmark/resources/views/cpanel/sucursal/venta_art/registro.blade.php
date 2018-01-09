@@ -15,14 +15,6 @@
                             Registrar Venta
                         </span>
             </div>
-            <div class="pull-right">
-                {!! Form::open(['route'=>['s.venta_art.destroy',$venta->id],'method'=>'post']) !!}
-                <button  class="btn btn-warning waves-effect waves-light m-r-5" onclick="return confirm('Esta Seguro de Anular la Venta?')">
-                    <i class="ti-close"></i>
-                    Anular Venta
-                </button>
-                {!! Form::close() !!}
-            </div>
         </div>
         {!! Form::open(['route'=>['s.confirmVentaArticulo',$venta->id],'method'=>'post','id'=>'confirmar']) !!}
         {!! Form::close() !!}

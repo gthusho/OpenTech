@@ -15,14 +15,6 @@
                      Confirmar Venta
                 </button>
             </div>
-            <div class="pull-right m-r-15">
-                {!! Form::open(['route'=>['s.confirmVentaProducto',$venta->id,'c'],'method'=>'post']) !!}
-                <button  class="btn btn-warning waves-effect waves-light" onclick="return confirm('Esta Seguro Anular la venta?')">
-                    <i class="ti-close"></i>
-                    Anular Venta
-                </button>
-                {!! Form::close() !!}
-            </div>
         </div>
         {!! Form::open(['route'=>['s.confirmVentaArticulo',$venta->id],'method'=>'post','id'=>'confirmar']) !!}
         {!! Form::close() !!}
