@@ -34,10 +34,12 @@
     </div>
 @endsection
 @section('css')
+    <link href="{{url('assets/plugins/bootstrap-select/css/bootstrap-select.min.css')}}" rel="stylesheet" />
     @if(Session::has('message'))
         <link href="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.css')}}" rel="stylesheet" type="text/css">
     @endif
     <link href="{{url('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{url('assets/plugins/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
 @endsection
 @section('js')
     @if(Session::has('message'))
@@ -59,13 +61,31 @@
     @endif
     <script src="{{url('assets/plugins/bootstrap-select/js/bootstrap-select.min.js')}}" type="text/javascript"></script>
 
+    <script src="{{url('assets/plugins/moment/moment.js')}}"></script>
     <script src="{{url('assets/plugins/select2/js/select2.min.js')}}" type="text/javascript"></script>
+    <script src="{{url('assets/plugins/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+    <script src="{{url('assets/plugins/es.js')}}" type="text/javascript"></script>
 
     <script>
-        // Select2
-        $(".select2").select2();
-        $('.selectpicker').selectpicker();
-        //validation
+        jQuery(document).ready(function() {
+            $(".select2").select2();
+            $('.selectpicker').selectpicker();
+            moment.locale('es');
+            $('.input-daterange-timepicker').daterangepicker({
+                timePicker: false,
+                timePickerIncrement: 30,
+                @if(!Request::get('fecha'))
+                startDate: moment().startOf('month'),
+                endDate: moment().endOf('month'),
+                @endif
+                locale: {
+                    format: 'DD/MM/YYYY'
+                },
 
+                buttonClasses: ['btn', 'btn-sm'],
+                applyClass: 'btn-default',
+                cancelClass: 'btn-white'
+            });
+        });
     </script>
 @endsection

@@ -72,9 +72,16 @@ class DetalleMedidaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
-        //
+        if($request->ajax()) {
+            $detalles = $request->get('detalles');
+            for($i=0; $i<count($detalles); $i++){
+                $medida=DetalleMedida::find($detalles[$i]);
+                $medida->estado=1;
+                $medida->save();
+            }
+        }
     }
 
     /**

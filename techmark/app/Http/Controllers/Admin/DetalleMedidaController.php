@@ -36,7 +36,6 @@ class DetalleMedidaController extends Controller
     public function create(Request $request)
     {
         if(Auth::user()->can('allow-insert')){
-
             $visita = VisitaCotizacion::find($request->get('id'));
             $this->datos['visita_cotizacion_id'] =  $visita->id;
             $this->datos['productos'] = ProductoBase::where('estado',true)->pluck('descripcion','id');
@@ -71,9 +70,16 @@ class DetalleMedidaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, Request $request)
     {
-        //
+        if($request->ajax()) {
+            $detalles = $request->get('detalles');
+            for($i=0; $i<count($detalles); $i++){
+                $medida=DetalleMedida::find($detalles[$i]);
+                $medida->estado=1;
+                $medida->save();
+            }
+        }
     }
 
     /**

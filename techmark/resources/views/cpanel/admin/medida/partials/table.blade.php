@@ -19,6 +19,12 @@
             </td>
             <td>
                 {{$row->direccion}}
+                @if($row->barrio != null || $row->barrio != '')
+                    <br><b class="text-primary">BARRIO: </b>{{$row->barrio}}
+                @endif
+                @if($row->zona != null || $row->zona != '')
+                    <br><b class="text-primary">ZONA:</b> {{$row->zona}}
+                @endif
             </td>
             <td >
                 <table class="table table-hover">

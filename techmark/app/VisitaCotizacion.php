@@ -36,6 +36,31 @@ class VisitaCotizacion extends Model
         }
     }
 
+    function scopeDireccion($query,$type,$x){
+        if(trim($x) != ''){
+            switch ($type) {
+                case 0:
+                    $query->where('direccion','like',"%$x%");
+                    break;
+                case 1:
+                    $query->where('zona', 'like',"%$x%");
+                    break;
+                case 2:
+                    $query->where('barrio', 'like',"%$x%");
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    function scopeFecha($query,$fecha){
+        if(trim($fecha) != ''){
+            $date = Tool::getArrayDate($fecha);
+            $query->where(\DB::raw('fecha'),'>=',$date[0])->where(\DB::raw('fecha'),'<=',$date[1]);
+        }
+    }
+
     function cantProducidos(){
         return DetalleMedida::where('visita_cotizacion_id',$this->id)->where('estado',true)->count();
     }

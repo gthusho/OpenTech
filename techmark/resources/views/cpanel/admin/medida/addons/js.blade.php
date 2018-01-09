@@ -8,6 +8,45 @@
     $('.selectpicker').selectpicker();
     //validation
 
+    function todo(x) {
+        if(x.checked) {
+            for (i=0; i<document.getElementsByName("ch").length; i++)
+                document.getElementsByName("ch")[i].checked = true;
+        }
+        else{
+            for (i=0; i<document.getElementsByName("ch").length; i++)
+                document.getElementsByName("ch")[i].checked = false;
+        }
+    }
+
+    function confirmar() {
+        var len=document.getElementsByName("ch").length;
+        var ids=[];
+        var c=0;
+        @if(Auth::user()->rol=='1')
+            var url="{{route('admin.visita.detalle.show','Open')}}";
+        @else
+            var url="{{route('s.visita.detalle.show','Open')}}";
+        @endif
+        for (i=0; i<len; i++) {
+            if (document.getElementsByName("ch")[i].checked == true) {
+                ids[c] = document.getElementsByName("ch")[i].getAttribute('id');
+                c++;
+            }
+        }
+        $.ajax({
+            url: url,
+            type: 'GET',
+            data: { detalles: ids} ,
+            success: function (json) {
+                location.reload();
+            },
+            error: function (data) {
+                alert('fallo ' + ids)
+            }
+        });
+    }
+
     $('#addCliente').click(function () {
         $('#modal_cliente').modal('show');
         $('#modal_cliente').on('shown.bs.modal', function () {

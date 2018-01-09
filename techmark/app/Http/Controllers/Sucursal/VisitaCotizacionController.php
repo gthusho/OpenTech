@@ -28,7 +28,8 @@ class VisitaCotizacionController extends Controller
             $this->datos['brand'] = Tool::brand('Visitas Realizadas',route('s.visita.index'),'Medidas');
             $this->datos['visitas'] = VisitaCotizacion::with('cliente')
                 ->cliente($request->get('cliente'))
-                ->where('usuario_id',Auth::user()->id)
+                ->fecha($request->get('fecha'))
+                ->direccion($request->get('type'),$request->get('s'))
                 ->orderBy('registro','desc')
                 ->paginate();
             $this->genDatos();

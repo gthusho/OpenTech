@@ -22,7 +22,10 @@ class VisitaCotizacionController extends Controller
             $this->datos['brand'] = Tool::brand('Visitas Realizadas',route('admin.visita.index'),'Medidas');
             $this->datos['visitas'] = VisitaCotizacion::with('cliente')
                 ->cliente($request->get('cliente'))
-                ->orderBy('registro','desc')
+                ->fecha($request->get('fecha'))
+                ->direccion($request->get('type'),$request->get('s'))
+                ->orderBy('fecha','desc')
+                ->orderBy('hora','desc')
                 ->paginate();
             $this->genDatos();
             return view('cpanel.admin.medida.list')->with($this->datos);
