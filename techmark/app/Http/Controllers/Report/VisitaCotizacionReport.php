@@ -20,9 +20,10 @@ class VisitaCotizacionReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
+
         $this->datos['visitas'] = VisitaCotizacion::with('cliente')
             ->cliente($request->get('cliente'))
-            ->fecha($request->get('fecha'))
+            ->fecha2($request->get('fecha'))
             ->direccion($request->get('type'),$request->get('s'))
             ->orderBy('fecha','desc')
             ->orderBy('hora','desc')->get();

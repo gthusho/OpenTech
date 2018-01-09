@@ -154,6 +154,14 @@ namespace App;
          $fechafinal = implode('-', array_reverse(explode('/', $vector[2])));
          return [$fechaInicio,$fechafinal];
      }
+     public static function getArrayDate2($fecha){
+          $fin = str_replace('%20'," ",$fecha);
+         $vector = str_replace('%2F',"/",$fin);
+         $vector  = explode(' ',$vector);
+         $fechaInicio = implode('-', array_reverse(explode('/', $vector[0])));
+         $fechafinal = implode('-', array_reverse(explode('/', $vector[2])));
+         return [$fechaInicio,$fechafinal];
+     }
      public static function getDataReportQuery($sucursal=false,$id=''){
          if(!$sucursal){
              return str_replace(\Request::url(), '', \Request::fullUrl());

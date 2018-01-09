@@ -57,10 +57,15 @@ class VisitaCotizacion extends Model
     function scopeFecha($query,$fecha){
         if(trim($fecha) != ''){
             $date = Tool::getArrayDate($fecha);
-            $query->where(\DB::raw('fecha'),'>=',$date[0])->where(\DB::raw('fecha'),'<=',$date[1]);
+            $query->where(\DB::raw('date(fecha)'),'>=',\DB::raw('date("'.$date[0].'")'))->where(\DB::raw('date(fecha)'),'<=',\DB::raw('date("'.$date[1].'")'));
         }
     }
-
+    function scopeFecha2($query,$fecha){
+        if(trim($fecha) != ''){
+            $date = Tool::getArrayDate2($fecha);
+            $query->where(\DB::raw('date(fecha)'),'>=',\DB::raw('date("'.$date[0].'")'))->where(\DB::raw('date(fecha)'),'<=',\DB::raw('date("'.$date[1].'")'));
+        }
+    }
     function cantProducidos(){
         return DetalleMedida::where('visita_cotizacion_id',$this->id)->where('estado',true)->count();
     }

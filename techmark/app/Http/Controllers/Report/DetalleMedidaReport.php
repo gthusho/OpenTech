@@ -34,15 +34,16 @@ class DetalleMedidaReport extends Controller
             $pdf->AddPage($this->horientacion);
             $pdf->SetFont('helvetica', 'B', 25);
 
-            $y = $pdf->GetY(); //obtengo la posicion en Y
+
 
             $style = array('width' => 0.6, 'cap' => 'butt', 'join' => 'miter', 'dash' => 0, 'color' => array(0, 0, 0));
             $code = 'http://texmarckbolivia.com/';
 
             $pdf->Cell(0, 0, $this->titulo.strtoupper($this->datos['visita']->cliente->razon_social), '', 1, 'C', 0, '');
+            $y = $pdf->GetY()+5; //obtengo la posicion en Y
             $pdf->SetFont('helvetica', '', 10);
             $pdf->writeHTML(view('cpanel.report.detallemedida.tabla',$this->datos)->render(), true, false, true, false, '');
-            $pdf->write2DBarcode($code, 'QRCODE,Q', 150, $y, 25, 25, $style, 'N');
+            $pdf->write2DBarcode($code, 'QRCODE,Q', 150, $y, 30, 30, $style, 'N');
             $pdf->Output('detallemedidas.pdf', 'i');
         }else{
             \Session::flash('message','No tienes Permiso para visualizar informacion ');
