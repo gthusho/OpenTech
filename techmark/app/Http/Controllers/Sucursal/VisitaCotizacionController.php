@@ -3,25 +3,32 @@
 namespace App\Http\Controllers\Sucursal;
 
 use App\Clientes;
-use App\Medidas;
 use App\Tool;
+use App\VisitaCotizacion;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class TomarMedidasController extends Controller
+class VisitaCotizacionController extends Controller
 {
     private $datos=null;
+    private $permiso = 'visita';
+
+    function __construct()
+    {
+        $this->middleware('observador:'.$this->permiso);
+    }
 
     public function index(Request $request)
     {
         if(Auth::user()->can('allow-read'))
         {
-            $this->datos['brand'] = Tool::brand('Medidas Tomadas',route('s.medida.index'),'Medidas');
-            $this->datos['medidas'] = Medidas::with('cliente')
+            $this->datos['brand'] = Tool::brand('Visitas Realizadas',route('s.visita.index'),'Medidas');
+            $this->datos['visitas'] = VisitaCotizacion::with('cliente')
                 ->cliente($request->get('cliente'))
+                ->where('usuario_id',Auth::user()->id)
                 ->orderBy('registro','desc')
                 ->paginate();
             $this->genDatos();
@@ -38,7 +45,7 @@ class TomarMedidasController extends Controller
     public function create()
     {
         if(Auth::user()->can('allow-insert')){
-            $this->datos['brand'] = Tool::brand('Agregar Nuevas Medidas',route('s.medida.index'),'Medidas');
+            $this->datos['brand'] = Tool::brand('Registrar Nueva Visita',route('s.visita.index'),'Visitas');
             $this->genDatos();
             return view('cpanel.sucursal.medida.registro',$this->datos);
         }else{
@@ -50,9 +57,10 @@ class TomarMedidasController extends Controller
     public function store(Request $request)
     {
         if(Auth::user()->can('allow-insert')){
-            $medida = new Medidas($request->all());
-            $medida->save();
-            return redirect()->route('sucursal.medida.index');
+            $visita = new VisitaCotizacion($request->all());
+            $visita->usuario_id= Auth::user()->id;
+            $visita->save();
+            return redirect()->route('s.visita.index');
         }
         \Session::flash('message','No tienes Permisos para agregar registros ');
         return redirect('dashboard');
@@ -66,8 +74,8 @@ class TomarMedidasController extends Controller
     public function edit($id)
     {
         if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar Medidas',route('s.medida.index'),'Medidas');
-            $this->datos['medida'] = Medidas::find($id);
+            $this->datos['brand'] = Tool::brand('Editar Visita',route('s.visita.index'),'Visitas');
+            $this->datos['visita'] = VisitaCotizacion::find($id);
             $this->genDatos();
             return view('cpanel.sucursal.medida.edit',$this->datos);
         }else{
@@ -79,9 +87,10 @@ class TomarMedidasController extends Controller
     public function update(Request $request, $id)
     {
         if(Auth::user()->can('allow-edit')){
-            $medida = Medidas::find($id);
-            $medida->fill($request->all());
-            $medida->save();
+            $visita = VisitaCotizacion::find($id);
+            $visita->fill($request->all());
+            $visita->usuario_id=Auth::user()->id;
+            $visita->save();
             \Session::flash('message','Se Actualizo Exitosamente la información');
             return redirect()->back();
         }

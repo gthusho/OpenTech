@@ -10,8 +10,8 @@
                 </p>
 
                 @include('cpanel.partials.errors')
-                {!! Form::model($dm,['route'=>['s.medida.detalle.update',$dm->id],'method'=>'PUT','files'=>true,'id'=>'form-detalle']) !!}
-                    @include('cpanel.sucursal.detallemedida.partials.fields')
+                {!! Form::model($dm,['route'=>['s.visita.detalle.update',$dm->id],'method'=>'PUT','files'=>true,'id'=>'form-detalle']) !!}
+                    @include('cpanel.admin.detallemedida.partials.fields')
                     <div class="form-group text-right m-b-0">
                         <button class="btn btn-primary waves-effect waves-light" type="submit">
                             Actualizar
@@ -29,5 +29,5 @@
     @include('cpanel.admin.detallemedida.addons.css')
 @endsection
 @section('js')
-    @include('cpanel.sucursal.detallemedida.addons.js')
+    @include('cpanel.admin.detallemedida.addons.js')
 @endsection

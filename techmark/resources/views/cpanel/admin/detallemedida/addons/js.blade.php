@@ -34,12 +34,6 @@
 </script>
 <script src="{{url('assets/plugins/bootstrap-inputmask/bootstrap-inputmask.min.js')}}" type="text/javascript"></script>
 <script src="{{url('assets/plugins/autoNumeric/autoNumeric.js')}}" type="text/javascript"></script>
-<script type="text/javascript">
-
-    jQuery(function($) {
-        $('.precio').autoNumeric('init');
-    });
-</script>
 <script>
 
 </script>

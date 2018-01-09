@@ -3,14 +3,14 @@
     @include('cpanel.partials.brand')
     <div class="row">
         <div class="col-sm-12">
-            @include('cpanel.admin.medida.partials.report')
+            @include('cpanel.sucursal.medida.partials.report')
 
         </div>
     </div>
     <br>
     <div class="row">
       <div class="col-sm-12">
-          @include('cpanel.admin.medida.partials.search')
+          @include('cpanel.sucursal.medida.partials.search')
       </div>
     </div>
     <div class="row">
@@ -29,7 +29,7 @@
 
     <div class="col-lg-12">
         <div class="pull-left">
-            {{$medidas->appends(Request::only(['s']))->render()}}
+            {{$visitas->appends(Request::only(['s']))->render()}}
         </div>
     </div>
 @endsection

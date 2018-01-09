@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Sucursal;
 
 use App\DetalleMedida;
-use App\Medidas;
 use App\Producto;
 use App\ProductoBase;
 use App\Tool;
+use App\VisitaCotizacion;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -19,7 +19,7 @@ class DetalleMedidaController extends Controller
     public function index(Request $request)
     {
         if(Auth::user()->can('allow-read')){
-            $this->datos['brand'] = Tool::brand('Detalle de Medidas Tomadas',route('s.medida.detalle.index'),'Medicion');
+            $this->datos['brand'] = Tool::brand('Detalle de Medidas Tomadas',route('s.visita.detalle.index'),'Medicion');
             $this->datos['medidas'] = DetalleMedida::orderBy('medida_id','desc')->paginate(50);
             return view('cpanel.sucursal.detallemedida.list')->with($this->datos);
         }else{
@@ -37,10 +37,10 @@ class DetalleMedidaController extends Controller
     {
         if(Auth::user()->can('allow-insert')){
 
-            $medida = Medidas::find($request->get('id'));
-            $this->datos['medida_id'] =  $medida->id;
+            $visita = VisitaCotizacion::find($request->get('id'));
+            $this->datos['visita_cotizacion_id'] =  $visita->id;
             $this->datos['productos'] = ProductoBase::where('estado',true)->pluck('descripcion','id');
-            $this->datos['brand'] = Tool::brand('Toma de medidas para '.$medida->cliente->razon_social ,route('s.medida.edit',$medida->id),'Retornar al cliente');
+            $this->datos['brand'] = Tool::brand('Toma de medidas para '.$visita->cliente->razon_social ,route('s.visita.edit',$visita->id),'Retornar al cliente');
             return view('cpanel.sucursal.detallemedida.registro',$this->datos);
         }
         \Session::flash('message','No tienes Permisos para agregar registros ');
@@ -55,6 +55,7 @@ class DetalleMedidaController extends Controller
         if(Auth::user()->can('allow-insert')){
             //dd($request);
             $medida =  new  DetalleMedida($request->all());
+            $medida->usuario_id=Auth::user()->id;
             $medida->save();
             \Session::flash('message','Se Registro Exitosamente la toma de medidas ');
             return redirect()->back();
@@ -86,12 +87,12 @@ class DetalleMedidaController extends Controller
     {
         // dd(User::find($id));
         if(Auth::user()->can('allow-edit')){
-            $this->datos['brand'] = Tool::brand('Editar  Medidas ',route('s.medida.detalle.index'),'Toma de Medidas');
+            $this->datos['brand'] = Tool::brand('Editar  Medidas ',route('s.visita.detalle.index'),'Toma de Medidas');
             $this->datos['dm'] =  DetalleMedida::find($id);
-            $medida = $this->datos['dm']->medida;
-            $this->datos['medida_id'] =  $medida->id;
+            $visita = $this->datos['dm']->visita;
+            $this->datos['visita_cotizacion_id'] =  $visita->id;
             $this->datos['productos'] = ProductoBase::where('estado',true)->pluck('descripcion','id');
-            $this->datos['brand'] = Tool::brand('Medidas para '.$medida->cliente->razon_social ,route('s.medida.edit',$medida->id),'Retornar al Cliente');
+            $this->datos['brand'] = Tool::brand('Medidas para '.$visita->cliente->razon_social ,route('s.visita.edit',$visita->id),'Retornar al Cliente');
             return view('cpanel.sucursal.detallemedida.edit',$this->datos);
         }
 
@@ -107,6 +108,7 @@ class DetalleMedidaController extends Controller
         if(Auth::user()->can('allow-edit')){
             $medida = DetalleMedida::find($id);
             $medida->fill($request->all());
+            $medida->usuario_id=Auth::user()->id;
             $medida->save();
             \Session::flash('message','Se Actualizo Exitosamente la información');
             return $this->edit($medida->id);
