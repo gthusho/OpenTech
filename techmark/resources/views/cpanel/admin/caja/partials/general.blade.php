@@ -14,10 +14,24 @@
                        class="btn btn-inverse  waves-effect waves-light">Imprimir
                         <span class="m-l-5"><i class="icon-printer"></i></span></button>
                 </div>
+                @if($atm->check()==True && $atm->getEstado()=='p')
+                    <div class="btn-group pull-right m-t-15 m-l-5">
+                        <a href="{{route('s.caja.index')}}" class="btn btn-danger"><i class="icon-calculator"></i> <span> Cerrar Caja </span> </a>
+
+                    </div>
+                @endif
             </div>
         </div>
     </div>
     <div class="col-lg-7">
-                @include('cpanel.admin.caja.partials.detalle')
+        <div class="col-md-12">
+            <div class="card-box">
+                <div id="calendar"></div>
+            </div>
+        </div>
     </div>
+</div>
+<div class="row">
+    @include('cpanel.admin.caja.partials.detalle')
+
 </div>

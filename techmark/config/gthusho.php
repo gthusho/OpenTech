@@ -7,7 +7,7 @@ return [
         'Reunión'=>'Reunión',
         'Tarea a realizar'=>'Tarea a realizar',
         'Personal'=>'Personal',
-        'Visita'=>'Visita',
+        //'Visita'=>'Visita',
         'Otros'=>'Otros'],
 
     'colores_categorias_agenda'=>[
@@ -15,7 +15,7 @@ return [
         'Reunión'=>'primary',
         'Tarea a realizar'=>'danger',
         'Personal'=>'inverse',
-        'Visita'=>'purple',
+        //'Visita'=>'purple',
         'Otros'=>'warning'],
 
     'colores_calendario'=>[
