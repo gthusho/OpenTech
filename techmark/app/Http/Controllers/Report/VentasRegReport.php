@@ -25,7 +25,7 @@ class VentasRegReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['ventas'] = VentaArticulo::fecha($request->get('fecha'))
+        $this->datos['ventas'] = VentaArticulo::fecha2($request->get('fecha'))
             ->where('estado','t')
             ->orwhere('estado','c')
             ->codigo($request->get('s'))

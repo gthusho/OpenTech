@@ -28,8 +28,7 @@ class CajasReport extends Controller
     function __construct(Request $request)
     {
         $this->datos['cajas'] = Caja::with('sucursal','usuario')
-            ->fecha($request->get('fecha'))
-            ->fecha($request->get('f'))
+            ->fecha2($request->get('fecha'))
             ->usuario($request->get('usuario'))
             ->sucursal($request->get('sucursal'))
             ->orderBy('id','desc')->get();

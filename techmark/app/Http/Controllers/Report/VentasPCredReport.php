@@ -27,7 +27,7 @@ class VentasPCredReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['ventas'] = VentaProducto::fecha($request->get('fecha'))
+        $this->datos['ventas'] = VentaProducto::fecha2($request->get('fecha'))
             ->where('estado','t')->where('tipo_pago','Credito')
             ->codigo($request->get('s'))
             ->sucursal($request->get('sucursal'))

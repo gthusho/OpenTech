@@ -27,7 +27,7 @@ class CotizacionesProdReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['cotizaciones'] = CotizacionProducto::fecha($request->get('fecha'))
+        $this->datos['cotizaciones'] = CotizacionProducto::fecha2($request->get('fecha'))
             ->where('estado','t')
             ->codigo($request->get('s'))
             ->sucursal($request->get('sucursal'))

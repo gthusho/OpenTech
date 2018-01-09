@@ -26,7 +26,7 @@
                         </td>
                         <td  >{{$row->getCode()}}</td>
                         <td>
-                            {{$row->fecha}}
+                            {{date('d/m/Y',strtotime($row->inicio))}} - {{date('d/m/Y',strtotime($row->fin))}}
                         </td>
                         <td>{{$row->sucursal->nombre}}</td>
                         <td>{{$row->destino}}</td>

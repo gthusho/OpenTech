@@ -205,6 +205,9 @@ class ProduccionClienteController extends Controller
 
             //actualizo la compra de ser necesario
             $this->produccion->fill($request->all());
+            $fechas=explode('-',$this->produccion->fecha);
+            $this->produccion->inicio=$fechas[0];
+            $this->produccion->fin=$fechas[1];
             $this->produccion->save();
             //$this->produccion->almacen_id = $this->produccion->sucursal->almacen->id;
             //$this->produccion->save();
@@ -278,6 +281,9 @@ class ProduccionClienteController extends Controller
             //actualizo la compra de ser necesario
             $this->produccion = ProduccionCliente::find($id);
             $this->produccion->fill($request->all());
+            $fechas=explode('-',$this->produccion->fecha);
+            $this->produccion->inicio=$fechas[0];
+            $this->produccion->fin=$fechas[1];
             $this->produccion->save();
             //valido si me envias un articulo id
             if($request->get('articulo_id')!=''){

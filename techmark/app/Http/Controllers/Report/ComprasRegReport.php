@@ -26,9 +26,8 @@ class ComprasRegReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['compras'] = Compra::fecha($request->get('fecha'))
+        $this->datos['compras'] = Compra::fecha2($request->get('fecha'))
             ->where('estado','t')
-            ->fecha($request->get('f'))
             ->codigo($request->get('s'))
             ->sucursal($request->get('sucursal'))
             ->proveedor($request->get('proveedor'))

@@ -52,4 +52,10 @@ class Ingresos extends Model
             $query->whereIn('compra_id',$compra);
         }
     }
+    function scopeFecha2($query,$fecha){
+        if (trim($fecha) != ''){
+            $compra=Compra::fecha2($fecha)->pluck('id');
+            $query->whereIn('compra_id',$compra);
+        }
+    }
 }

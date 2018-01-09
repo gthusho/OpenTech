@@ -29,7 +29,7 @@ class IngresosPReport extends Controller
     function __construct(Request $request)
     {
         $this->datos['ingresos'] = IngresosProducto::with('producto','sucursal','produccion','talla')
-            ->fecha($request->get('fecha'))
+            ->fecha2($request->get('fecha'))
             ->sucursal($request->get('sucursal'))
             ->producto($request->get('producto'))
             ->talla($request->get('talla'))

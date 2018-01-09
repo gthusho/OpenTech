@@ -26,7 +26,7 @@ class ComprasCredReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['compras'] = Compra::fecha($request->get('fecha'))
+        $this->datos['compras'] = Compra::fecha2($request->get('fecha'))
             ->where('estado','t')->where('tipo_compra','Credito')
             ->codigo($request->get('s'))
             ->sucursal($request->get('sucursal'))

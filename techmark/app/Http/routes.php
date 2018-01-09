@@ -106,7 +106,9 @@ Route::group(['prefix'=>'reportes','middleware'=>['auth'],'namespace'=>'Report']
     require __DIR__ . '/routes/reportdiego.php';
     require __DIR__ . '/routes/reportliss.php';
 
-    Route::get('clientes/producciones','ProduccionesReport@indexClientes');
+    Route::get('clientes/producciones','ProduccionesClienteReport@indexClientes');
+    Route::get('produccionesCliente','ProduccionesClienteReport@index');
+    Route::get('produccionesCliente/excel','ProduccionesClienteReport@excel');
 
 });
 

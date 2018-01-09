@@ -119,7 +119,7 @@ class Articulo extends Model
     }
     function scopeMedida($query,$x){
         if(trim($x) != ''){
-            $query->where('medida_id', $x);
+            $query->where('unidad_id', $x);
         }
     }
     function scopeMaterial($query,$x){

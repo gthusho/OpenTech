@@ -97,7 +97,7 @@
                 endDate: moment().endOf('month'),
                 @endif
                 locale: {
-                    format: 'YYYY/MM/DD'
+                    format: 'DD/MM/YYYY'
                 },
                 buttonClasses: ['btn', 'btn-sm'],
                 applyClass: 'btn-default',

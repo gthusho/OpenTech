@@ -30,7 +30,7 @@ class EgresosPReport extends Controller
     {
         $this->datos['egresos'] = DetalleVentaProducto::with('producto','sucursal','ventaproducto','talla')
             ->where('sucursal_id','<>','')
-            ->fecha($request->get('fecha'))
+            ->fecha2($request->get('fecha'))
             ->sucursal($request->get('sucursal'))
             ->sucursal($request->get('reportsuc'))
             ->producto($request->get('producto'))

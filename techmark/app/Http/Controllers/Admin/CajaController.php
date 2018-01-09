@@ -24,7 +24,6 @@ class CajaController extends Controller
             $this->datos['brand'] = Tool::brand('Cajas',route('admin.caja.index'),'Caja');
             $this->datos['cajas'] = Caja::with('sucursal','usuario')
                 ->fecha($request->get('fecha'))
-                ->fecha($request->get('f'))
                 ->usuario($request->get('usuario'))
                 ->sucursal($request->get('sucursal'))
                 ->orderBy('id','desc')

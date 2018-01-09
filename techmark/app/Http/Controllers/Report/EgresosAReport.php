@@ -28,7 +28,7 @@ class EgresosAReport extends Controller
     function __construct(Request $request)
     {
         $this->datos['egresos'] = DetalleVentaArticulo::with('articulo','sucursal','almacen')
-            ->fecha($request->get('fecha'))
+            ->fecha2($request->get('fecha'))
             ->sucursal($request->get('sucursal'))
             ->articulo($request->get('articulo'))
             ->sucursal($request->get('reportsuc'))

@@ -113,7 +113,7 @@ class ComprasController extends Controller
                 ->codigo($request->get('s'))
                 ->sucursal($request->get('sucursal'))
                 ->proveedor($request->get('proveedor'))
-                ->orderBy('id','desc')
+                ->orderBy('fecha','desc')
                 ->paginate();
             $this->genDatos();
             return view('cpanel.admin.compra.list',$this->datos);

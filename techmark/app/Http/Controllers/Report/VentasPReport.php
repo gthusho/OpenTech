@@ -29,7 +29,7 @@ class VentasPReport extends Controller
     function __construct(Request $request)
     {
         $this->datos['ventas'] = VentaProducto::with('cliente','usuario','sucursal')
-            ->fecha($request->get('fecha'))
+            ->fecha2($request->get('fecha'))
             ->whereIn('estado',['t','c'])
             ->codigo($request->get('s'))
             ->sucursal($request->get('sucursal'))

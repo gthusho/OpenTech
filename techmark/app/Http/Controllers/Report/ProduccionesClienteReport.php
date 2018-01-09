@@ -19,7 +19,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
-class ProduccionesReport extends Controller
+class ProduccionesClienteReport extends Controller
 {
     private $datos = null;
     private $horientacion = 'l';//'p';
@@ -27,10 +27,10 @@ class ProduccionesReport extends Controller
     private $request =  null;
     function __construct(Request $request)
     {
-        $this->datos['producciones'] = Produccion::with('trabajador','usuario','sucursal'/*,'almacen'*/)
-            //->fecha($request->get('fecha'))
-            ->where('estado','t') ->orwhere('estado','c')
+        $this->datos['producciones'] = ProduccionCliente::with('trabajador','usuario','sucursal'/*,'almacen'*/)
+            ->whereIn('estado',['t','c'])
             ->fecha2($request->get('fecha'))
+            ->cliente($request->get('cliente'))
             ->sucursal($request->get('sucursal'))
             ->trabajador($request->get('trabajador'))
             ->destino($request->get('s'))
@@ -49,7 +49,7 @@ class ProduccionesReport extends Controller
             $pdf->SetFont('helvetica', 'B', 25);
             $pdf->Cell(0, 0, $this->titulo, '', 1, 'C', 0, '');
             $pdf->SetFont('helvetica', '', 10);
-            $pdf->writeHTML(view('cpanel.report.producciones.tabla',$this->datos)->render(), true, false, true, false, '');
+            $pdf->writeHTML(view('cpanel.report.producciones.tablapc',$this->datos)->render(), true, false, true, false, '');
             $pdf->Output('articulos.pdf', 'i');
         }else{
             \Session::flash('message','No tienes Permiso para visualizar informacion ');
@@ -62,10 +62,32 @@ class ProduccionesReport extends Controller
             Excel::create($this->titulo, function ($excel) {
                 $excel->sheet('produccion', function ($sheet) {
                     $sheet->row(1, array($this->titulo));
-                    $sheet->loadView('cpanel.report.producciones.tabla', $this->datos);
+                    $sheet->loadView('cpanel.report.producciones.tablapc', $this->datos);
                 });
             })->export('xls');
         } else{
+            \Session::flash('message','No tienes Permiso para visualizar informacion ');
+            return redirect('dashboard');
+        }
+    }
+
+
+    public function indexClientes(Request $request)
+    {
+        if(Auth::user()->can('allow-read')){
+            $pdf = new TCPDF('p','mm','Letter', true, 'UTF-8', false);
+            ToolPDF::footerPDF($pdf);
+            ToolPDF::headerPDF($pdf);
+            ToolPDF::setMargen($pdf);
+            $pdf->SetTitle('OpenRed By LDiego');
+            $pdf->AddPage($this->horientacion);
+            $pdf->SetFont('helvetica', 'B', 25);
+            $pdf->Cell(0, 0, "NOTA DE PRODUCCION", '', 1, 'C', 0, '');
+            $pdf->SetFont('helvetica', '', 10);
+            $produccion = ProduccionCliente::find($request->get('code'));
+            $pdf->writeHTML(view('cpanel.report.produccion.tablapc',['produccion'=>$produccion])->render(), true, false, true, false, '');
+            $pdf->Output('produccion.pdf', 'i');
+        }else{
             \Session::flash('message','No tienes Permiso para visualizar informacion ');
             return redirect('dashboard');
         }

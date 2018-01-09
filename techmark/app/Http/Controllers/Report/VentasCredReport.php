@@ -26,7 +26,7 @@ class VentasCredReport extends Controller
     function __construct(Request $request)
     {
         $this->datos['ventas'] = VentaArticulo::with('sucursal','cliente')
-            ->fecha($request->get('fecha'))
+            ->fecha2($request->get('fecha'))
             ->where('estado','t')->where('tipo_pago','Credito')
             ->fecha($request->get('f'))
             ->codigo($request->get('s'))

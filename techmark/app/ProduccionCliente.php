@@ -52,7 +52,14 @@ class ProduccionCliente extends Model
     }
     function scopeFecha($query,$fecha){
         if(trim($fecha) != ''){
-            $query->where('fecha',$fecha);
+            $date = Tool::getArrayDate($fecha);
+            $query->where(\DB::raw('date(fin)'),'>=',\DB::raw('date("'.$date[0].'")'))->where(\DB::raw('date(inicio)'),'<=',\DB::raw('date("'.$date[1].'")'));
+        }
+    }
+    function scopeFecha2($query,$fecha){
+        if(trim($fecha) != ''){
+            $date = Tool::getArrayDate2($fecha);
+            $query->where(\DB::raw('date(fin)'),'>=',\DB::raw('date("'.$date[0].'")'))->where(\DB::raw('date(inicio)'),'<=',\DB::raw('date("'.$date[1].'")'));
         }
     }
     function scopeTrabajador($query,$x){
