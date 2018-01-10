@@ -6,7 +6,7 @@
  * Time: 08:51 AM
  */
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Sucursal;
 
 
 use App\Clientes;
@@ -26,12 +26,12 @@ class HistorialController extends Controller
         if(Auth::user()->can('allow-read')){
             if ($request)
             {
-                $this->datos['brand'] = Tool::brand('Historial de clientes',route('admin.historial.index'),'Historial');
+                $this->datos['brand'] = Tool::brand('Historial de clientes',route('s.historial.index'),'Historial');
                 $this->datos['historial'] = Clientes::id($request->get('cliente'))
                     ->orderBy('razon_social')
                     ->paginate();
                 $this->datos['clientes']=Clientes::pluck('razon_social','id');
-                return view('cpanel.admin.historial.list')->with($this->datos);
+                return view('cpanel.sucursal.historial.list')->with($this->datos);
             }
             else {
                 \Session::flash('message', 'No existen registros de clientes');
@@ -45,7 +45,7 @@ class HistorialController extends Controller
 
     public function edit($id){
         if(Auth::user()->can('allow-read')){
-                $this->datos['brand'] = Tool::brand('Historial detallado',route('admin.historial.index'),'Historial');
+                $this->datos['brand'] = Tool::brand('Historial detallado',route('s.historial.index'),'Historial');
                 $this->datos['historial'] = Clientes::find($id);
                 return view('cpanel.admin.historial.vista')->with($this->datos);
         }

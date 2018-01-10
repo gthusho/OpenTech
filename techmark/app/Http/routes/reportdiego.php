@@ -14,3 +14,6 @@ Route::get('visitas/excel','VisitaCotizacionReport@excel');
 
 Route::get('detallemedida','DetalleMedidaReport@index');
 Route::get('detallemedida/excel','DetalleMedidaReport@excel');
+
+Route::get('historial','HistorialReport@index');
+Route::get('historial/excel','HistorialReport@excel');

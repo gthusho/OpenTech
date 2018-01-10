@@ -49,6 +49,7 @@
         <table class="table table-hover">
             <thead>
             <tr class="bg-custom ">
+                <th class="text-white">CODIGO</th>
                 <th class="text-white">SUCURSAL</th>
                 <th class="text-white">FECHA</th>
                 <th class="text-white">CANTIDAD</th>
@@ -58,6 +59,7 @@
             <tbody>
             @foreach($historial->cotizacionproducto as $fila)
                 <tr>
+                    <td>{{$fila->getCode()}}</td>
                     <td>{{$fila->sucursal->nombre}}</td>
                     <td>{{date('d/m/Y',strtotime($fila->registro))}}</td>
                     <td>{{$fila->totalCantidad()}}</td>
@@ -65,6 +67,7 @@
                 </tr>
             @endforeach
             <tr>
+                <td></td>
                 <td></td>
                 <td class="bg-inverse text-white"><b>TOTAL:</b></td>
                 <td class="bg-inverse text-white"><b>{{$historial->cantCotPrd()}}</b></td>

@@ -22,6 +22,7 @@
             <td class="text-center">
         
                 <a href="{{route('s.cliente.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class="icon-pencil fa-2x"></i></a>
+                <a href="{{route('s.historial.edit',$row->id)}}" class="btn btn-warning btn-sm"> <i class="icon-book-open fa-2x"></i></a>
             </td>
         </tr>
     @endforeach

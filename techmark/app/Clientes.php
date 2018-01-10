@@ -154,4 +154,8 @@ class Clientes extends Model
     function totImg(){
         return $this->totCotArt() + $this->totCotPrd();
     }
+
+    function cantVis(){
+        return VisitaCotizacion::where('cliente_id',$this->id)->count();
+    }
 }

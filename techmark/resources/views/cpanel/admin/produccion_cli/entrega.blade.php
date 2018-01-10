@@ -22,7 +22,7 @@
                             <div class="form-group col-lg-12">
                                 {!! Form::label('Fecha Entrega *')!!}
                                 <div class="input-group">
-                                    {!! Form::text('fecha_entrega',null,['class'=>'form-control','required','autocomplete'=>"off",'id'=>"datepicker-autoclose",'data-date-format'=>'yyyy/mm/dd'])!!}
+                                    {!! Form::text('fecha_entrega',null,['class'=>'form-control','required','autocomplete'=>"off",'id'=>"datepicker-autoclose",'data-date-format'=>'yyyy-mm-dd'])!!}
                                     <span class="input-group-addon bg-custom b-0 text-white"><i class="icon-calender"></i></span>
                                 </div>
                             </div>

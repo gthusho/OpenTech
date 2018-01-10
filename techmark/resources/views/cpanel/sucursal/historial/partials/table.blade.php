@@ -119,7 +119,7 @@
                     </table>
                 </td>
                 <td>
-                    <a href="{{route('admin.historial.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class="icon-book-open fa-2x"></i></a>
+                    <a href="{{route('s.historial.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class="icon-book-open fa-2x"></i></a>
                 </td>
                 <td>
                     <button onclick="printJS('{{url('reportes/historial').'?id='.$row->id}}')"

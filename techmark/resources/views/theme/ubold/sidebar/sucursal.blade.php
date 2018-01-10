@@ -43,11 +43,12 @@
                     <a href="{{route('s.visita.index')}}" class="waves-effect"><i class=" icon-folder-alt"></i> <span> Tomar Medidas </span> </a>
                 </li>
                 <li class="has_sub">
-                    <a href="{{route('s.cliente.index')}}" class="waves-effect"><i class="icon-people"></i> <span> Cliente </span> </a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="icon-user-follow"></i><span class="label label-primary pull-right">2</span> <span> Historial & Clientes </span>  </a>
+                    <ul class="list-unstyled">
+                        <li><a href="{{route('s.cliente.index')}}">Clientes</a></li>
+                        <li><a href="{{route('s.historial.index')}}">Historial</a></li>
+                    </ul>
                 </li>
-
-
-
             </ul>
 
         </div>

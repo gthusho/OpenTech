@@ -7,6 +7,17 @@
     <h3 class="text-custom">HISTORIAL DE {{strtoupper($historial->razon_social)}}</h3>
 </div>
 <div class="row">
+    <div class="col-sm-12">
+        <div class="btn-group pull-right m-t-15">
+            <button onclick="printJS('{{url('reportes/historial').\App\Tool::getDataReportQuery().'?id='.$historial->id}}')" class="btn btn-inverse  waves-effect waves-light">Imprimir <span class="m-l-5"><i class=" icon-printer"></i></span></button>
+        </div>
+        <div class="btn-group pull-right m-t-15 m-r-5">
+            <a href="{{url('reportes/historial/excel').\App\Tool::getDataReportQuery().'?id='.$historial->id}}" class="btn btn-default  waves-effect waves-light" target="_parent">Exportar <span class="m-l-5"><i class="fa fa-file-excel-o"></i></span></a>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
     <div class="col-lg-6">
         @include('cpanel.admin.historial.partials.infArticulos')
     </div>

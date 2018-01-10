@@ -38,3 +38,5 @@ Route::get('inventario/productos',['as' => 's.inventario.productos', 'uses' => '
 
 Route::resource('visita','VisitaCotizacionController');
 Route::resource('visita/detalle','DetalleMedidaController');
+
+Route::resource('historial','HistorialController');
