@@ -28,4 +28,6 @@ Route::post('archivoAgenda/{id}',['as'=>'archivoAgenda','uses'=>'AgendaControlle
 Route::resource('visita','VisitaCotizacionController');
 Route::resource('visita/detalle','DetalleMedidaController');
 
+Route::resource('historial','HistorialController');
+
 

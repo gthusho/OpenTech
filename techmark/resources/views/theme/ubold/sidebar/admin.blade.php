@@ -87,7 +87,11 @@
                     </ul>
                 </li>
                 <li class="has_sub">
-                    <a href="{{route('admin.cliente.index')}}" class="waves-effect"><i class=" icon-user-follow"></i> <span> Clientes </span> </a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="icon-user-follow"></i><span class="label label-primary pull-right">2</span> <span> Historial & Clientes </span>  </a>
+                    <ul class="list-unstyled">
+                        <li><a href="{{route('admin.cliente.index')}}">Clientes</a></li>
+                        <li><a href="{{route('admin.historial.index')}}">Historial</a></li>
+                    </ul>
                 </li>
                 <li class="has_sub">
                     <a href="{{route('admin.trabajador.index')}}" class="waves-effect"><i class=" icon-user-following"></i> <span> Trabajadores </span> </a>
