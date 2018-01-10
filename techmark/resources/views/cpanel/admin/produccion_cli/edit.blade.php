@@ -17,7 +17,6 @@
                         </span>
                 {!! Form::close() !!}
             </div>
-
             <div class="pull-left">
                 {!! Form::open(['route'=>['clientes.confirmProduccion',$produccion->id,'c'],'method'=>'post',]) !!}
                 <button class="btn btn-warning waves-effect waves-light m-r-5" type="submit" onclick="return confirm('Esta Seguro de Anular la Produccion?')">

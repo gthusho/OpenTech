@@ -182,6 +182,14 @@
     $('#btnConfirmar').click(function () {
         var isGood=confirm('Esta Seguro de Continuar?');
         if (isGood) {
+            var h1 = $('#Psucursal').val();
+            var h2 = $('#Ptrabajador').val();
+            var h3 = $('#Pfecha').val();
+            var h4 = $('#Pdestino').val();
+            $('#HPsucursal').val(h1);
+            $('#HPtrabajador').val(h2);
+            $('#HPfecha').val(h3);
+            $('#HPdestino').val(h4);
             $('#confirmar').submit();
         }
     });

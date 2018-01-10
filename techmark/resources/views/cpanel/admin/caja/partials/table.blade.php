@@ -21,9 +21,9 @@
             <td class="text-right">{{\App\Tool::convertMoney($row->cierre)}}</td>
             <td class="text-center">{{$row->usuario->nombre}}</td>
 
-            <td class="text-center">
-                <a href="{{route('admin.cajavistas.edit',$row->id)}}" class="btn btn-success btn-sm"> <i class=" icon-eye fa-2x"></i>  </a>
-            </td>
+            {{--<td class="text-center">--}}
+                {{--<a href="{{route('admin.cajavistas.edit',$row->id)}}" class="btn btn-success btn-sm"> <i class=" icon-eye fa-2x"></i>  </a>--}}
+            {{--</td>--}}
             <td class="text-center">
                 <a href="{{route('admin.caja.edit',$row->id)}}" class="btn btn-primary btn-sm"> <i class=" icon-pencil fa-2x"></i>  </a>
             </td>

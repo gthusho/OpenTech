@@ -171,9 +171,16 @@ class ProduccionClienteController extends Controller
             return redirect('dashboard');
         }
     }
+
     public function confirmProduccion($id,$estado,Request $request){
         $produccion = ProduccionCliente::find($id);
-        $produccion->fill($request->all());
+        $produccion->sucursal_id=$request->get('HPsucursal');
+        $produccion->trabajador_id=$request->get('HPtrabajador');
+        $produccion->cliente_id=$request->get('HPcliente');
+        $produccion->fecha=$request->get('HPfecha');
+        $produccion->destino=$request->get('HPdestino');
+        $produccion->precio=$request->get('HPprecio');
+        $produccion->adelanto=$request->get('HPadelando');
         if ($estado=='t') {
             $produccion->estado = 't';
             $produccion->save();

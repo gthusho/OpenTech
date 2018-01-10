@@ -7,13 +7,13 @@
             <div class="col-lg-6">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">SUCURSAL PRODUCCION</legend>
-                    {!! Form::select('sucursal_id',$sucursales,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione una sucursal'])!!}
+                    {!! Form::select('sucursal_id',$sucursales,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione una sucursal','id'=>'Psucursal'])!!}
                 </fieldset>
             </div>
             <div class="col-lg-6">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">TRABAJADOR PRODUCCION</legend>
-                    {!! Form::select('trabajador_id',$trabajadores,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione un trabajador'])!!}
+                    {!! Form::select('trabajador_id',$trabajadores,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione un trabajador','id'=>'Ptrabajador'])!!}
 
                 </fieldset>
             </div>
@@ -21,18 +21,18 @@
         <div class="row">
             <div class="form-group col-lg-6">
                 <label class=" control-label">Cliente *</label>
-                {!! Form::select('cliente_id',$clientes,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione un Cliente'])!!}
+                {!! Form::select('cliente_id',$clientes,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione un Cliente','id'=>'Pcliente'])!!}
             </div>
             <div class="form-group col-lg-6">
                 <label class=" control-label">Fecha de la produccion *</label>
-                {!! Form::text('fecha',null,['class'=>'form-control input-daterange-timepicker','required'])!!}
+                {!! Form::text('fecha',null,['class'=>'form-control input-daterange-timepicker','required','id'=>'Pfecha'])!!}
             </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">DESTINADO A</legend>
-                    {!! Form::textarea('destino',null,['class'=>'form-control','rows'=>'7'])!!}
+                    {!! Form::textarea('destino',null,['class'=>'form-control','rows'=>'7','id'=>'Pdestino'])!!}
                 </fieldset>
             </div>
             <div class="col-lg-6">

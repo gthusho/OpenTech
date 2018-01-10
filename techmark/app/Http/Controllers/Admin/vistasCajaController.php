@@ -28,6 +28,7 @@ class vistasCajaController extends Controller
             $this->genDatos();
             $this->datos['brand'] = Tool::brand('Ver Caja',route('admin.caja.index'),'Cajas');
             $this->datos['caja'] = Caja::find($id);
+            $this->datos['atm'] = Caja::find($id);
             return view('cpanel.admin.caja.vista',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para editar ');

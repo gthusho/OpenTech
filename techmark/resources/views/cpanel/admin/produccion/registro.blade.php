@@ -25,6 +25,13 @@
             </div>
         </div>
         {!! Form::open(['route'=>['confirmProduccion',$produccion->id],'method'=>'post','id'=>'confirmar']) !!}
+        {!! Form::hidden('HPsucursal',null,['id'=>'HPsucursal']) !!}
+        {!! Form::hidden('HPtrabajador',null,['id'=>'HPtrabajador']) !!}
+        {!! Form::hidden('HPcliente',null,['id'=>'HPcliente']) !!}
+        {!! Form::hidden('HPfecha',null,['id'=>'HPfecha']) !!}
+        {!! Form::hidden('HPdestino',null,['id'=>'HPdestino']) !!}
+        {!! Form::hidden('HPprecio',null,['id'=>'HPprecio']) !!}
+        {!! Form::hidden('HPadelando',null,['id'=>'HPadelando']) !!}
         {!! Form::close() !!}
         <div class="row">
             <div class="col-lg-12">

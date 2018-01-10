@@ -10,20 +10,18 @@
                 {!! Form::close() !!}
         <div class="row m-b-15 col-lg-12">
             <div class="pull-left">
-                {!! Form::open(['route'=>['clientes.confirmProduccion',$produccion->id,'t'],'method'=>'post']) !!}
-                <button class="btn btn-primary waves-effect waves-light m-r-5" type="submit" onclick="return confirm('Esta Seguro de Continuar?')">
+                {!! Form::open(['route'=>['clientes.confirmProduccion',$produccion->id,'t'],'method'=>'post', 'id'=>'confirmar']) !!}
+                {!! Form::hidden('HPsucursal',null,['id'=>'HPsucursal']) !!}
+                {!! Form::hidden('HPtrabajador',null,['id'=>'HPtrabajador']) !!}
+                {!! Form::hidden('HPcliente',null,['id'=>'HPcliente']) !!}
+                {!! Form::hidden('HPfecha',null,['id'=>'HPfecha']) !!}
+                {!! Form::hidden('HPdestino',null,['id'=>'HPdestino']) !!}
+                {!! Form::hidden('HPprecio',null,['id'=>'HPprecio']) !!}
+                {!! Form::hidden('HPadelando',null,['id'=>'HPadelando']) !!}
+                <a class="btn btn-primary waves-effect waves-light m-r-5" id="btnConfirmar">
                     <i class="fa fa-check-square-o"></i>
                     Registrar Producción
-                </button>
-                {!! Form::close() !!}
-
-            </div>
-            <div class="pull-left">
-                {!! Form::open(['route'=>['clientes.confirmProduccion',$produccion->id,'c'],'method'=>'post',]) !!}
-                <button class="btn btn-warning waves-effect waves-light m-r-5" type="submit" onclick="return confirm('Esta Seguro de Anular la Produccion?')">
-                    <i class="fa fa-check-square-o"></i>
-                    Anular Producción
-                </button>
+                </a>
                 {!! Form::close() !!}
 
             </div>

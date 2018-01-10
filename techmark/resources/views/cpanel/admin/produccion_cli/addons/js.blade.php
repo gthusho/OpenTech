@@ -191,6 +191,20 @@
     $('#btnConfirmar').click(function () {
         var isGood=confirm('Esta Seguro de Continuar?');
         if (isGood) {
+            var h1 = $('#Psucursal').val();
+            var h2 = $('#Ptrabajador').val();
+            var h3 = $('#Pcliente').val();
+            var h4 = $('#Pfecha').val();
+            var h5 = $('#Pdestino').val();
+            var h6 = $('#Pprecio').val();
+            var h7 = $('#Padelando').val();
+            $('#HPsucursal').val(h1);
+            $('#HPtrabajador').val(h2);
+            $('#HPcliente').val(h3);
+            $('#HPfecha').val(h4);
+            $('#HPdestino').val(h5);
+            $('#HPprecio').val(h6);
+            $('#HPadelando').val(h7);
             $('#confirmar').submit();
         }
     });

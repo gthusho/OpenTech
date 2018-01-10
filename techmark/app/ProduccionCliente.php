@@ -10,7 +10,7 @@ class ProduccionCliente extends Model
     protected $table = 'producciones_clientes';
     protected $fillable = [
         'destino','fecha','registro','trabajador_id','usuario_id','inicio','fin','sucursal_id','estado',
-        'cliente_id','precio','adelanto'
+        'cliente_id','precio','adelanto','fecha_entrega','recogio'
     ];
 
     function detalle()

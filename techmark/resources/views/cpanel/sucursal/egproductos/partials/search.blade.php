@@ -1,5 +1,5 @@
 <div class=" m-b-30 pull-right">
-    {!! Form::model(Request::all(), ['route' => ['egresos.productos.index'],'method'=>'GET','class'=>'form-inline']) !!}
+    {!! Form::model(Request::all(), ['route' => ['s.egresos.productos.index'],'method'=>'GET','class'=>'form-inline']) !!}
 
     <div class="form-group">
         <div class="input-group">

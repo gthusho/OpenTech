@@ -166,8 +166,12 @@ class ProduccionController extends Controller
 
 
     }
-    public function confirmProduccion($id){
+    public function confirmProduccion($id, Request $request){
         $produccion = Produccion::find($id);
+        $produccion->sucursal_id=$request->get('HPsucursal');
+        $produccion->trabajador_id=$request->get('HPtrabajador');
+        $produccion->fecha=$request->get('HPfecha');
+        $produccion->destino=$request->get('HPdestino');
         $produccion->estado = 't';
         $produccion->save();
         /*
