@@ -199,7 +199,12 @@
     });
 
     $('#Search').click(function () {
+
         $('#modal_search').modal('show');
+        $('#modal_search').on('shown.bs.modal', function () {
+            $('#xkeySearch').val("");
+            $('#xkeySearch').focus();
+        });
     });
     function workAjaxListItems(_url,_data) {
         $.ajax({

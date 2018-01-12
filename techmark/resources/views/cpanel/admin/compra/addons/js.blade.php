@@ -125,7 +125,23 @@
             workAjax(url,codigo,"barra")
         }
     });
-
+    function workAjaxClose(_url,_data,_type) {
+        $.ajax({
+            url: _url,
+            type: 'GET',
+            data: { data: _data,type:_type} ,
+            success: function (json) {
+                genItem(json);
+                onOffBtnCart(true);
+                $('#modal_search').modal('hide');
+            },
+            error: function (data) {
+                clean();
+                onOffBtnCart(false);
+                alert("El codigo no Existe!!");
+            }
+        });
+    }
 
     $('td').css('cursor','crosshair');
     $(".rows").click(function (){
@@ -147,7 +163,12 @@
     });
 
     $('#Search').click(function () {
+
         $('#modal_search').modal('show');
+        $('#modal_search').on('shown.bs.modal', function () {
+            $('#xkeySearch').val("");
+            $('#xkeySearch').focus();
+        });
     });
     function workAjaxListItems(_url,_data) {
         $.ajax({
@@ -174,6 +195,6 @@
   function genListSubData(key) {
       var codigo = key;
       var url = "{{route('showArticle')}}";
-      workAjax(url,codigo,"id");
+      workAjaxClose(url,codigo,"id");
   }
 </script>

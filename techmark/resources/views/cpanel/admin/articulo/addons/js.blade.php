@@ -58,6 +58,10 @@
          */
         $('#addCategoria').click(function () {
             $('#modal_categoria').modal('show');
+            $('#modal_categoria').on('shown.bs.modal', function () {
+                $('#categoria_nombre').focus();
+
+            });
         });
         $('#categoria_registrar').click(function () {
             $(this).attr("disabled", true);
@@ -72,6 +76,10 @@
          */
         $('#addMaterial').click(function () {
             $('#modal_material').modal('show');
+            $('#modal_material').on('shown.bs.modal', function () {
+                $('#material_nombre').focus();
+
+            });
         });
         $('#material_registrar').click(function () {
             $(this).attr("disabled", true);
@@ -86,6 +94,10 @@
         */
         $('#addMarca').click(function () {
             $('#modal_marca').modal('show');
+            $('#modal_marca').on('shown.bs.modal', function () {
+                $('#marca_nombre').focus();
+
+            });
         });
         $('#marca_registrar').click(function () {
             $(this).attr("disabled", true);
@@ -100,6 +112,10 @@
          */
         $('#addMedida').click(function () {
             $('#modal_medida').modal('show');
+            $('#modal_medida').on('shown.bs.modal', function () {
+                $('#medida_nombre').focus();
+
+            });
         });
         $('#medida_registrar').click(function () {
             $(this).attr("disabled", true);

@@ -229,7 +229,8 @@
         var codigo = $(this).val();
         var url = "{{route('getArticuloForVenta')}}";
         if (e.keyCode == 13) {
-            workAjax(url,codigo,"codigo")
+            workAjax(url,codigo,"codigo");
+
         }
     });
     $("#xcodigobarra").on('keyup', function (e) {
@@ -275,7 +276,12 @@
     });
 
     $('#Search').click(function () {
+
         $('#modal_search').modal('show');
+        $('#modal_search').on('shown.bs.modal', function () {
+            $('#xkeySearch').val("");
+            $('#xkeySearch').focus();
+        });
     });
 
     function workAjaxListItems(_url,_data) {
@@ -304,6 +310,7 @@
       var codigo = key;
       var url = "{{route('showArticle')}}";
       workAjaxClose(url,codigo,"id");
+
   }
     function fncRestar(){
         var numero1 = Number({!! $venta->totalPrecio() !!});
