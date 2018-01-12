@@ -40,7 +40,7 @@
     <tr>
         <th width="3%" ><strong>#</strong></th>
         <th width="30%" ><strong>ARTICULOS</strong></th>
-        <th width="20%" ><strong>MARCA</strong></th>
+        <th width="20%" ><strong>UNIDAD</strong></th>
         <th width="13%" ><strong>PRECIO U</strong></th>
         <th width="13%" ><strong>CANTIDAD</strong></th>
         <th width="15%" ><strong>PRECIO</strong></th>
@@ -57,7 +57,7 @@
 
             </td>
             <td style="border-bottom: 1px dashed black;">
-                {{\App\ToolArticuloCart::getNombreById($row->articulo->marca_id,"marca")}}
+                {{\App\ToolArticuloCart::getNombreById($row->articulo->unidad_id,"unidad")}}
             </td>
             <td style="border-bottom: 1px dashed black;">
                 {{\App\Tool::convertMoney($row->articulo->getPrecio($row->dp))}}
