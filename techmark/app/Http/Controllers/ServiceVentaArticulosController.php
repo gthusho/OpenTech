@@ -82,6 +82,9 @@ class ServiceVentaArticulosController extends Controller
         $cliente = new Clientes();
         $cliente->razon_social = $request->get('nombre');
         $cliente->nit = $request->get('nit');
+        $cliente->telefono = $request->get('telefono');
+        $cliente->direccion = $request->get('direccion');
+        $cliente->email = $request->get('email');
         $cliente->save();
 
 

@@ -315,11 +315,11 @@
             }
         });
     }
-    function workAjaxCliente(_url,_nit,_nombre) {
+    function workAjaxCliente(_url,_nit,_nombre,_telefono,_direccion,_email) {
         $.ajax({
             url: _url,
             type: 'POST',
-            data: { nit: _nit,nombre:_nombre} ,
+            data: { nit: _nit,nombre:_nombre,telefono:_telefono,direccion:_direccion,email:_email} ,
             success: function (json) {
                 $('.mAlert').html("");
                 $('.mAlert').removeClass('alert alert-danger');
@@ -345,9 +345,13 @@
     $('#cliente_registrar').click(function () {
         var nit = $('#xxNit').val();
         var nombre = $('#xxNombreCliente').val();
+        var telefono = $('#xtelefono').val();
+        var direccion = $('#xdireccion').val();
+        var email = $('#xemail').val();
         var url = "{{route('registrarCliente')}}";
-        workAjaxCliente(url,nit,nombre);
+        workAjaxCliente(url,nit,nombre,telefono,direccion,email);
     });
+
     /*
      fin registrar cliente
      */

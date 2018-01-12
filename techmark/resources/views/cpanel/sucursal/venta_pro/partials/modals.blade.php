@@ -64,6 +64,25 @@
                             <input type="text" class="form-control limpiar"  name="xNombreCliente" id="xxNombreCliente" required autofocus>
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <div class="form-group ">
+                            {!! Form::label('Teléfono')!!}
+                            {!! Form::text('xtelefono',null,['class'=>'form-control limpiar','id'=>'xtelefono'])!!}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group ">
+                            {!! Form::label('Dirección')!!}
+                            {!! Form::text('xdireccion',null,['class'=>'form-control limpiar','id'=>'xdireccion'])!!}
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            {!! Form::label('Email')!!}
+                            {!! Form::text('xemail',null,['class'=>'form-control limpiar','id'=>'xemail'])!!}
+                        </div>
+                    </div>
+
                 </div>
             </div>
             <div class="modal-footer">
