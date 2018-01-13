@@ -87,8 +87,18 @@ class ServiceVentaArticulosController extends Controller
         $cliente->email = $request->get('email');
         $cliente->save();
 
+        if($request->get('combo')=='si')
+        {
+            $combo = "";
+            foreach (Clientes::where('estado',1)->get() as $row)
+            {
+                $combo.="<option value='{$row->id}'>{$row->razon_social}</option>";
+            }
 
-
+            $combo.="<option value='{$cliente->id}' selected>{$cliente->razon_social}</option>";
+            echo $combo;
+            exit;
+        }else
         return ['razon_social'=>$cliente->razon_social,'nit'=>$cliente->nit,'id'=>$cliente->id];
 
     }

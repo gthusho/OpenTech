@@ -242,7 +242,7 @@
             },
             error: function (data) {
                 clean();
-                RegistrarCliente();
+                RegistrarCliente(_data);
             }
         });
     }
@@ -282,7 +282,12 @@
     /*
      fin registrar cliente
      */
-    function RegistrarCliente() {
+    function RegistrarCliente(_data) {
+
         $('#modal_cliente').modal('show');
+        $('#modal_cliente').on('shown.bs.modal', function () {
+            $('#xxNit').val(_data);
+            $('#xxNombreCliente').focus();
+        });
     }
 </script>

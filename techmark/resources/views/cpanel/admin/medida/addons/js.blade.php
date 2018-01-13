@@ -55,18 +55,21 @@
     });
     $('#cliente_registrar').click(function () {
         $(this).attr("disabled", true);
-        var url = "{{route('admin.cliente.store')}}";
+        var url = "{{route('registrarCliente')}}";
         var nit = $('#xxNit').val();
         var nombre = $('#xxNombreCliente').val();
         var combo = $('#cliente');
-        registrar(url,nombre,nit,combo,this);
+        var telefono = $('#xtelefono').val();
+        var direccion = $('#xdireccion').val();
+        var email = $('#xemail').val();
+        registrar(url,nombre,nit,combo,this,telefono,direccion,email);
     });
 
-    function registrar(_url,_name,_nit,_combo,_boton) {
+    function registrar(_url,_name,_nit,_combo,_boton,_telefono,_direccion,_email) {
         $.ajax({
             url: _url,
             type: 'POST',
-            data: { razon_social: _name, nit: _nit} ,
+            data: { nit: _nit,nombre:_name,telefono:_telefono,direccion:_direccion,email:_email ,combo:"si"} ,
             success: function (json) {
                 $('.mAlert').html("");
                 $('.mAlert').removeClass('alert alert-danger');

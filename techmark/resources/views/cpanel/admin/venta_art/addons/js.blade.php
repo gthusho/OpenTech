@@ -148,11 +148,11 @@
             }
         });
     }
-    function workAjaxCliente(_url,_nit,_nombre,_telefono,_direccion,_email) {
+    function workAjaxCliente(_url,_nit,_nombre) {
         $.ajax({
             url: _url,
             type: 'POST',
-            data: { nit: _nit,nombre:_nombre,telefono:_telefono,direccion:_direccion,email:_email} ,
+            data: { nit: _nit,nombre:_nombre} ,
             success: function (json) {
                 $('.mAlert').html("");
                 $('.mAlert').removeClass('alert alert-danger');
