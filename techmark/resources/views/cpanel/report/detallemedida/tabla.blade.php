@@ -42,12 +42,13 @@
 <br>
 <table cellpadding="5">
     <tr>
-        <th width="5%">#</th>
+        <th width="4%">#</th>
         <th width="12%">ESTADO</th>
-        <th width="27%">DESCRIPCION</th>
-        <th width="20%">UBICACION</th>
+        <th width="26%">PRODUCTO</th>
+        <th width="20%">DESCRIPCION</th>
+        <th width="10%">LUGAR</th>
         <th width="8%">CANT</th>
-        <th width="28%">DIMENSIONES</th>
+        <th width="20%">DIMENSIONES</th>
     </tr>
     <?php
     $i=1;
@@ -60,6 +61,7 @@
             @else
                 <td style="border-bottom: 1px dashed black;">Producido</td>
             @endif
+            <td style="border-bottom: 1px dashed black;">{{$fila->producto->descripcion.' talla '.$fila->talla->nombre.' de '.$fila->material->nombre}}</td>
             <td style="border-bottom: 1px dashed black;">{{$fila->descripcion}}</td>
             <td style="border-bottom: 1px dashed black;">{{$fila->ubicacion}}</td>
             <td style="border-bottom: 1px dashed black;">{{$fila->cantidad}}</td>

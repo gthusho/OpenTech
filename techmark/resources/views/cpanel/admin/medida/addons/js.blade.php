@@ -19,33 +19,22 @@
         }
     }
 
-    function confirmar() {
-        var len=document.getElementsByName("ch").length;
-        var ids=[];
-        var c=0;
-        @if(Auth::user()->rol=='1')
-            var url="{{route('admin.visita.detalle.show','Open')}}";
-        @else
-            var url="{{route('s.visita.detalle.show','Open')}}";
-        @endif
-        for (i=0; i<len; i++) {
-            if (document.getElementsByName("ch")[i].checked == true) {
-                ids[c] = document.getElementsByName("ch")[i].getAttribute('id');
-                c++;
+    $('#btnConfirmMed').click(function () {
+        var isGood=confirm('Esta Seguro de Continuar?');
+        if (isGood) {
+            var len = document.getElementsByName("ch").length;
+            var ids = [];
+            var c = 0;
+            for (i = 0; i < len; i++) {
+                if (document.getElementsByName("ch")[i].checked == true) {
+                    ids[c] = document.getElementsByName("ch")[i].getAttribute('id');
+                    c++;
+                }
             }
+            $('#detallemed').val(ids);
+            $('#confirmMedidas').submit();
         }
-        $.ajax({
-            url: url,
-            type: 'GET',
-            data: { detalles: ids} ,
-            success: function (json) {
-                location.reload();
-            },
-            error: function (data) {
-                alert('fallo ' + ids)
-            }
-        });
-    }
+    });
 
     $('#addCliente').click(function () {
         $('#modal_cliente').modal('show');

@@ -25,6 +25,9 @@
             </div>
         </div>
         {!! Form::open(['route'=>['confirmCotizacionProducto',$cotizacion->id],'method'=>'post','id'=>'confirmar']) !!}
+        {!! Form::hidden('HCcliente',null,['id'=>'HCcliente']) !!}
+        {!! Form::hidden('HCsucursal',null,['id'=>'HCsucursal']) !!}
+        {!! Form::hidden('HCfecha',null,['id'=>'HCfecha']) !!}
         {!! Form::close() !!}
         <div class="row">
             <div class="col-lg-12">

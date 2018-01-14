@@ -86,9 +86,9 @@ class CotizacionProducto extends Model
         $mensaje='';
         foreach (DetalleCotizacionProducto::where('cotizacion_producto_id',$this->id)->paginate(200) as $row){
             if($row->descripcion!='' || $row->descripcion!=null)
-                $mensaje=$mensaje.$row->cantidad.' '.$row->productobase->descripcion.' '.$row->talla->nombre.' de '.$row->material->nombre.' '.$row->descripcion."\n";
+                $mensaje=$mensaje.$row->cantidad.' '.$row->productobase->descripcion.' '.$row->talla->nombre.' de '.$row->material->nombre.' '.$row->descripcion."\n\n";
             else
-                $mensaje=$mensaje.$row->cantidad.' '.$row->productobase->descripcion.' '.$row->talla->nombre.' de '.$row->material->nombre."\n";
+                $mensaje=$mensaje.$row->cantidad.' '.$row->productobase->descripcion.' '.$row->talla->nombre.' de '.$row->material->nombre."\n\n";
         }
         return $mensaje;
     }

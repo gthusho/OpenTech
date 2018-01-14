@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Sucursal;
 
+use App\CotizacionProducto;
+use App\DetalleCotizacionProducto;
 use App\DetalleMedida;
+use App\DetalleProductoBase;
 use App\Producto;
 use App\ProductoBase;
 use App\Tool;
@@ -72,15 +75,61 @@ class DetalleMedidaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, Request $request)
+    public function confirmarMedidas(Request $request)
     {
-        if($request->ajax()) {
-            $detalles = $request->get('detalles');
-            for($i=0; $i<count($detalles); $i++){
-                $medida=DetalleMedida::find($detalles[$i]);
-                $medida->estado=1;
-                $medida->save();
-            }
+        $detalles = explode(',',$request->get('medidas'));
+        $det_medida=DetalleMedida::find($detalles[0]);
+        $cotizacion_id=$this->setCotizacion($det_medida->visita->cliente->id);
+        for($i=0; $i<count($detalles); $i++){
+            $medida=DetalleMedida::find($detalles[$i]);
+            $this->existeproducto($medida->producto_base_id,$medida->talla_id,$medida->material_id);
+            $medida->estado=1;
+            $medida->save();
+            $det_cot=new DetalleCotizacionProducto();
+            $det_cot->cotizacion_producto_id=$cotizacion_id;
+            $det_cot->productos_base_id=$medida->producto_base_id;
+            $det_cot->cantidad=$medida->cantidad;
+            $det_cot->precio=1;
+            $det_cot->usuario_id=Auth::user()->id;
+            $det_cot->sucursal_id=Auth::user()->sucursal_id;
+            $det_cot->material_id=$medida->material_id;
+            $det_cot->talla_id=$medida->talla_id;
+            $det_cot->descripcion=$medida->descripcion."\n".'Medidas: '.$medida->alto.' largo x '.$medida->ancho.' ancho';
+            $det_cot->save();
+        }
+        return redirect()->route('s.cot_producto.create');
+    }
+
+    public function setCotizacion($id){
+        $query = CotizacionProducto::where('usuario_id',Auth::user()->id)->where('estado','p')->get();
+        if(Tool::existe($query)){
+            $cotizacion = $query->first();
+            $cotizacion->cliente_id=$id;
+            $cotizacion->save();
+            \DB::table('detalle_cotizaciones_productos')->where('cotizacion_producto_id',$cotizacion->id)->delete();
+            return $cotizacion->id;
+        }else{
+            $cotizacion = new  CotizacionProducto();
+            $cotizacion->usuario_id = Auth::user()->id;
+            $cotizacion->sucursal_id=Auth::user()->sucursal_id;
+            $cotizacion->estado='p';
+            $cotizacion->cliente_id=$id;
+            $cotizacion->save();
+            return $cotizacion->id;
+        }
+    }
+
+    public function existeproducto($producto,$talla,$material){
+        $detalle=DetalleProductoBase::where('producto_base_id',$producto)->where('material_id',$material)->where('talla_id',$talla)->get();
+        if(!Tool::existe($detalle)) {
+            $detalle=new DetalleProductoBase();
+            $detalle->producto_base_id=$producto;
+            $detalle->talla_id=$talla;
+            $detalle->material_id=$material;
+            $detalle->usuario_id=Auth::user()->id;
+            $detalle->costo=0;
+            $detalle->precio=0;
+            $detalle->save();
         }
     }
 
