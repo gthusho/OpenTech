@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Almacen;
 use App\Articulo;
 use App\Clientes;
+use App\CotizacionProducto;
 use App\DetalleProduccion;
 use App\DetProduccionCliente;
 use App\IAManager;
@@ -363,6 +364,20 @@ class ProduccionClienteController extends Controller
             $produccion->terminado=1;
             $produccion->save();
             return redirect()->route('admin.clientes.produccion.index');
+        }else{
+            \Session::flash('message','No tienes Permisos para editar ');
+            return redirect('dashboard');
+        }
+    }
+
+    public function saldar($id){
+        if(Auth::user()->can('allow-edit')){
+            $produccion=ProduccionCliente::find($id);
+            $produccion->adelanto=$produccion->precio;
+            $produccion->save();
+            $mensaje = 'La produccion fue saldada en su totalidad ';
+            \Session::flash('message',$mensaje);
+            return redirect()->back();
         }else{
             \Session::flash('message','No tienes Permisos para editar ');
             return redirect('dashboard');

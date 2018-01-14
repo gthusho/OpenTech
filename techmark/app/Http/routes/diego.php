@@ -30,4 +30,6 @@ Route::resource('visita/detalle','DetalleMedidaController');
 
 Route::resource('historial','HistorialController');
 
+Route::get('saldar/{id}',['as'=>'clientes.saldar','uses'=>'ProduccionClienteController@saldar']);
+Route::post('confirmarMedidas',['as'=>'admin.confirmarMedidas','uses'=>'DetalleMedidaController@confirmarMedidas']);
 

@@ -42,7 +42,7 @@ class DetalleProductoBaseController extends Controller
     {
         if(Auth::user()->can('allow-insert')){
             $this->genDatos();
-            $this->datos['brand'] = Tool::brand('Agragar Nuevo Detalle de Producto Base',route('admin.detprodbase.index'),' Detalle Productos Base');
+            $this->datos['brand'] = Tool::brand('Agregar Nuevo Detalle de Producto Base',route('admin.detprodbase.index'),' Detalle Productos Base');
             return view('cpanel.admin.detprodbase.registro',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
@@ -55,7 +55,9 @@ class DetalleProductoBaseController extends Controller
         if(Auth::user()->can('allow-insert')){
             $request['usuario_id']=Auth::id();
             DetalleProductoBase::create($request->all());
-            return redirect()->route('admin.detprodbase.index');
+            $mensaje = 'El Producto fue agregado ';
+            \Session::flash('message',$mensaje);
+            return redirect()->back();
         }
 
         \Session::flash('message','No tienes Permisos para agregar registros ');

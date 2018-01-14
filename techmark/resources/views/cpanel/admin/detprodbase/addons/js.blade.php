@@ -9,6 +9,22 @@
     //validation
 
 </script>
+@if(Session::has('message'))
+    <script src="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.min.js')}}"></script>
+    <script>
+        $(window).load(function(){
+            swal({
+                title: "{!! Session::get('produccion-dead') !!}",
+                text: "{!! Session::get('message') !!}",
+                type: "info",
+                showCancelButton: false,
+                cancelButtonClass: 'btn-white btn-md waves-effect',
+                confirmButtonClass: 'btn-info btn-md waves-effect waves-light',
+                confirmButtonText: 'Info!'
+            });
+        });
+    </script>
+@endif
 @if(Request::segment(4)=='edit')
 <script src="{{url('assets/plugins/bootstrap-sweetalert/sweet-alert.min.js')}}"></script>
 <script>

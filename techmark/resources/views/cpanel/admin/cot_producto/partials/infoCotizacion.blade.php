@@ -25,7 +25,7 @@
             <div class="col-lg-12">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">SUCURSAL QUE REALIZA LA COTIZACION</legend>
-                    {!! Form::select('sucursal_id',$sucursales,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione una sucursal'])!!}
+                    {!! Form::select('sucursal_id',$sucursales,null,['class'=>'form-control select2','required','placeholder'=>'Seleccione una sucursal','id'=>'Csucursal'])!!}
 
                 </fieldset>
             </div>

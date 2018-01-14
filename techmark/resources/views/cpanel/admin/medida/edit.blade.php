@@ -18,23 +18,28 @@
 
                 {!! Form::close() !!}
         </div>
-
     </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="card-box">
+                {!! Form::open(['route'=>['admin.confirmarMedidas'],'method'=>'post', 'id'=>'confirmMedidas']) !!}
                 <div class="pull-right">
                     <a class="btn btn-sm btn-inverse" href="{{route('admin.visita.detalle.create',['id'=>$visita->id])}}" ><i class="fa fa-plus"></i> Tomar Medidas</a>
-                    <a class="btn btn-sm btn-success" onclick="confirmar()">Confirmar</a>
+                    <a class="btn btn-sm btn-success" id="btnConfirmMed">Confirmar</a>
                     <a onclick="printJS('{{url('reportes/detallemedida').\App\Tool::getDataReportQuery().'?visita='.$visita->id}}')" class="btn btn-inverse btn-sm  waves-effect waves-light">Pdf <span class="m-l-5"><i class=" icon-printer"></i></span></a>
                     <a href="{{url('reportes/detallemedida/excel').\App\Tool::getDataReportQuery().'?visita='.$visita->id}}" class="btn btn-default btn-sm  waves-effect waves-light" target="_parent">Excel <span class="m-l-5"><i class="fa fa-file-excel-o"></i></span></a>
                 </div>
+                {!! Form::hidden('medidas',null,['id'=>'detallemed']) !!}
+                {!! Form::close() !!}
                 <h4 class="m-t-0 header-title"><b>MEDIDAS TOMADAS AL CLIENTE</b></h4>
                 <table class="table table-actions-bar">
                     <thead>
                     <tr>
                         <th><input onclick="todo(this)" type="checkbox"></th>
                         <th>ESTADO</th>
+                        <th>PRODUCTO</th>
+                        <th>MATERIAL</th>
+                        <th>TALLA</th>
                         <th>DESCRIPCION</th>
                         <th>UBICACION</th>
                         <th>CANTIDAD</th>
@@ -46,12 +51,11 @@
                     <tbody>
                     @foreach($visita->detalle as $fila)
                         <tr>
-                            @if($fila->estado==0)
                             <td><input name="ch" value="{!! $fila->estado !!}" id="{{$fila->id}}" type="checkbox" class="selected"></td>
-                            @else
-                                <td> </td>
-                            @endif
                             <td><span class="label label-{{$fila->activo()[0]}}">{{$fila->activo()[1]}}</span></td>
+                                <td>{{$fila->producto->descripcion}}</td>
+                                <td>{{$fila->material->nombre}}</td>
+                                <td>{{$fila->talla->nombre}}</td>
                             <td>{{$fila->descripcion}}</td>
                             <td>{{$fila->ubicacion}}</td>
                             <td>{{$fila->cantidad}}</td>
@@ -69,14 +73,13 @@
                 <br>
                 <div class="row">
                     <div class="form-group text-right m-b-0">
-                        <button class="btn btn-success waves-effect waves-light" onclick="confirmar()">
+                        <button class="btn btn-success waves-effect waves-light" id="btnConfirmMed">
                             Confirmar
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
 

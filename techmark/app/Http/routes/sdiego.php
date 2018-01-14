@@ -40,3 +40,4 @@ Route::resource('visita','VisitaCotizacionController');
 Route::resource('visita/detalle','DetalleMedidaController');
 
 Route::resource('historial','HistorialController');
+Route::post('confirmarMedidas',['as'=>'s.confirmarMedidas','uses'=>'DetalleMedidaController@confirmarMedidas']);

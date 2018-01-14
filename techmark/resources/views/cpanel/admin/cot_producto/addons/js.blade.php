@@ -214,6 +214,12 @@
     $('#btnConfirmar').click(function () {
         var isGood=confirm('Esta Seguro de Continuar?');
         if (isGood) {
+            var h1 = $('#cid').val();
+            var h2 = $('#Csucursal').val();
+            var h3 = $('#datepicker-autoclose').val();
+            $('#HCcliente').val(h1);
+            $('#HCsucursal').val(h2);
+            $('#HCfecha').val(h3);
             $('#confirmar').submit();
         }
     });

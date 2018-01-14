@@ -124,9 +124,11 @@ class CotizacionProductoController extends Controller
 
 
     }
-    public function confirmCotizacionProducto($id){
+    public function confirmCotizacionProducto($id, Request $request){
         $cotizacion = CotizacionProducto::find($id);
         $cotizacion->estado = 't';
+        $cotizacion->cliente_id=$request->get('HCcliente');
+        $cotizacion->fvalides=$request->get('HCfecha');
         $cotizacion->save();
         return redirect()->route('s.cot_producto.index');
     }
