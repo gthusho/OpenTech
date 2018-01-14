@@ -35,7 +35,7 @@ class DetalleMedida extends Model
     function activo(){
         switch ($this->estado){
             case '1':{
-                return ['default','Producido'];
+                return ['default','Confirmado'];
             }
             case '0' :{
                 return ['danger','En Espera'];
