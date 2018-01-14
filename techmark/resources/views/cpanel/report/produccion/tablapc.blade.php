@@ -21,7 +21,7 @@
         <td>{{$produccion->trabajador->nombre}}</td>
     </tr>
     <tr>
-        <td><strong>Cliente:</strong></td>
+        <td><strong>CLIENTE:</strong></td>
         <td>{{$produccion->cliente->razon_social}}</td>
     </tr>
     <?php
@@ -116,7 +116,7 @@
 
     </table>
 
-<br>
+<br><br><br>
 <table width="40%">
     <tr>
         <td align="center">{{$produccion->sucursal->nombre}}- {{$produccion->sucursal->ciudad->nombre}}</td>

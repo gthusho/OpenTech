@@ -22,7 +22,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class ProduccionesClienteReport extends Controller
 {
     private $datos = null;
-    private $horientacion = 'l';//'p';
+    private $horientacion = 'p';//'p';
     private $titulo = "REPORTE PRODUCCIONES";
     private $request =  null;
     function __construct(Request $request)
@@ -86,6 +86,11 @@ class ProduccionesClienteReport extends Controller
             $pdf->SetFont('helvetica', '', 10);
             $produccion = ProduccionCliente::find($request->get('code'));
             $pdf->writeHTML(view('cpanel.report.produccion.tablapc',['produccion'=>$produccion])->render(), true, false, true, false, '');
+            $pdf->AddPage($this->horientacion);
+            $pdf->SetFont('helvetica', 'B', 25);
+            $pdf->Cell(0, 0, "NOTA DE TRABAJO", '', 1, 'C', 0, '');
+            $pdf->SetFont('helvetica', '', 10);
+            $pdf->writeHTML(view('cpanel.report.produccion.tablapc2',['produccion2'=>$produccion])->render(), true, false, true, false, '');
             $pdf->Output('produccion.pdf', 'i');
         }else{
             \Session::flash('message','No tienes Permiso para visualizar informacion ');
