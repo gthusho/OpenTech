@@ -19,7 +19,7 @@
         }
     }
 
-    $('#btnConfirmMed').click(function () {
+    $('.btnConfirmMed').click(function () {
         var isGood=confirm('Esta Seguro de Continuar?');
         if (isGood) {
             var len = document.getElementsByName("ch").length;

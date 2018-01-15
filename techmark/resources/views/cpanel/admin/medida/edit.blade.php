@@ -25,7 +25,7 @@
                 {!! Form::open(['route'=>['admin.confirmarMedidas'],'method'=>'post', 'id'=>'confirmMedidas']) !!}
                 <div class="pull-right">
                     <a class="btn btn-sm btn-inverse" href="{{route('admin.visita.detalle.create',['id'=>$visita->id])}}" ><i class="fa fa-plus"></i> Tomar Medidas</a>
-                    <a class="btn btn-sm btn-success" id="btnConfirmMed">Confirmar</a>
+                    <a class="btn btn-sm btn-success btnConfirmMed">Confirmar</a>
                     <a onclick="printJS('{{url('reportes/detallemedida').\App\Tool::getDataReportQuery().'?visita='.$visita->id}}')" class="btn btn-inverse btn-sm  waves-effect waves-light">Pdf <span class="m-l-5"><i class=" icon-printer"></i></span></a>
                     <a href="{{url('reportes/detallemedida/excel').\App\Tool::getDataReportQuery().'?visita='.$visita->id}}" class="btn btn-default btn-sm  waves-effect waves-light" target="_parent">Excel <span class="m-l-5"><i class="fa fa-file-excel-o"></i></span></a>
                 </div>
@@ -73,7 +73,7 @@
                 <br>
                 <div class="row">
                     <div class="form-group text-right m-b-0">
-                        <button class="btn btn-success waves-effect waves-light" id="btnConfirmMed">
+                        <button class="btn btn-success waves-effect waves-light btnConfirmMed">
                             Confirmar
                         </button>
                     </div>
