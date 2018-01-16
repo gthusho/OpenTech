@@ -65,7 +65,7 @@
             <td style="border-bottom: 1px dashed black;">{{$fila->descripcion}}</td>
             <td style="border-bottom: 1px dashed black;">{{$fila->ubicacion}}</td>
             <td style="border-bottom: 1px dashed black;">{{$fila->cantidad}}</td>
-            <td style="border-bottom: 1px dashed black;">{{$fila->alto}} largo x {{$fila->ancho}} ancho</td>
+            <td style="border-bottom: 1px dashed black;">{{$fila->ancho}} ancho x {{$fila->alto}} largo</td>
         </tr>
     @endforeach
 </table>

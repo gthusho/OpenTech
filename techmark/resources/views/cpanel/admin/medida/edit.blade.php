@@ -59,7 +59,7 @@
                             <td>{{$fila->descripcion}}</td>
                             <td>{{$fila->ubicacion}}</td>
                             <td>{{$fila->cantidad}}</td>
-                            <td>{{$fila->alto}} largo x {{$fila->ancho}} ancho</td>
+                            <td>{{$fila->ancho}} ancho x {{$fila->alto}} largo</td>
                             <td><a href="{{route('admin.visita.detalle.edit',$fila->id)}}" class="btn btn-inverse btn-sm" ><i class=" ti-angle-double-right"></i> Editar </a></td>
                             <td>
                                 {!! Form::open(['route'=>['admin.visita.detalle.destroy',$fila->id],'method'=>'delete']) !!}

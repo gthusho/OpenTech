@@ -31,12 +31,12 @@
         {!! Form::text('ubicacion',null,['class'=>'form-control'])!!}
     </div>
     <div class="form-group col-lg-2">
-        {!! Form::label('Largo (*) ')!!}
-        {!! Form::text('alto',null,['class'=>'form-control autonumber precio','required','onkeypress'=>'return isNumberKeyDec(event)'])!!}
-    </div>
-    <div class="form-group col-lg-2">
         {!! Form::label('Ancho (*) ')!!}
         {!! Form::text('ancho',null,['class'=>'form-control autonumber precio','required','onkeypress'=>'return isNumberKeyDec(event)'])!!}
+    </div>
+    <div class="form-group col-lg-2">
+        {!! Form::label('Largo (*) ')!!}
+        {!! Form::text('alto',null,['class'=>'form-control autonumber precio','required','onkeypress'=>'return isNumberKeyDec(event)'])!!}
     </div>
     <div class="form-group col-lg-2">
         {!! Form::label('Cantidad (*) ')!!}

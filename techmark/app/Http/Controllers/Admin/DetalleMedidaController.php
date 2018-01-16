@@ -99,7 +99,7 @@ class DetalleMedidaController extends Controller
             $det_cot->usuario_id=Auth::user()->id;
             $det_cot->material_id=$medida->material_id;
             $det_cot->talla_id=$medida->talla_id;
-            $det_cot->descripcion=$medida->descripcion."\n".'Medidas: '.$medida->alto.' largo x '.$medida->ancho.' ancho';
+            $det_cot->descripcion=$medida->descripcion."\n".'Medidas: '.$medida->ancho.' ancho x'.$medida->alto.' largo';
             $det_cot->save();
         }
         return redirect()->route('admin.cot_producto.create');
