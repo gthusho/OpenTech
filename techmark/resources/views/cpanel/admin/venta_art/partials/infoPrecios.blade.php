@@ -6,7 +6,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('Cantidad ')!!}
-        <input step="0.25" name="xCantidad" type="number" class="form-control cleanclean" autocomplete="off" id="xcantidad" required onkeypress="return isNumberKey(event)">
+        <input step="0.01" name="xCantidad" type="number" class="form-control cleanclean" autocomplete="off" id="xcantidad" required onkeypress="return isNumberKey(event)">
     </div>
     <div class="form-group">
         {!! Form::label('Precios (*) ')!!}

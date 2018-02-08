@@ -27,14 +27,14 @@ namespace App;
      }
      public static function headerPDF($pdf){
          $pdf->setHeaderCallback(function($pdf){
-             $image_file = url('logo_dark.png');
-             $pdf->Image($image_file, 15, 7, 25, '', '', '', 'T', false, 500, '', false, false, 0, false, false, false);
+             $image_file = url('texmarck2.png');
+             $pdf->Image($image_file, 15, 7, 50, '', '', '', 'T', false, 500, '', false, false, 0, false, false, false);
              // Set font
              $pdf->SetFont('times', 'I', 10);
              // Title
 
              $pdf->Write(0, 'TexMarck
-                            64646565
+                            (+591)(4)6464962
             ',0,false,'R');
              $pdf->Ln();
              $pdf->Cell(0, 0, '', 'T', 1, 'C', 0, '',2);

@@ -11,7 +11,8 @@ use App\ProductoBase;
 use App\Tool;
 use App\VisitaCotizacion;
 use Illuminate\Http\Request;
-
+use App\Material;
+use App\Talla;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,11 @@ class DetalleMedidaController extends Controller
             return redirect('dashboard');
         }
     }
-
+	public function genDatos(){
+        $this->datos['productos'] = ProductoBase::where('estado',true)->pluck('descripcion','id');
+        $this->datos['materiales'] = Material::where('estado',true)->pluck('nombre','id');
+        $this->datos['tallas']=Talla::where('estado',true)->pluck('nombre','id');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -41,6 +46,7 @@ class DetalleMedidaController extends Controller
         if(Auth::user()->can('allow-insert')){
 
             $visita = VisitaCotizacion::find($request->get('id'));
+			 $this->genDatos();
             $this->datos['visita_cotizacion_id'] =  $visita->id;
             $this->datos['productos'] = ProductoBase::where('estado',true)->pluck('descripcion','id');
             $this->datos['brand'] = Tool::brand('Toma de medidas para '.$visita->cliente->razon_social ,route('s.visita.edit',$visita->id),'Retornar al cliente');
@@ -143,6 +149,7 @@ class DetalleMedidaController extends Controller
     {
         // dd(User::find($id));
         if(Auth::user()->can('allow-edit')){
+			 $this->genDatos();
             $this->datos['brand'] = Tool::brand('Editar  Medidas ',route('s.visita.detalle.index'),'Toma de Medidas');
             $this->datos['dm'] =  DetalleMedida::find($id);
             $visita = $this->datos['dm']->visita;
