@@ -9,6 +9,7 @@ use App\DetalleCotizacion;
 use App\Http\Controllers\Controller;
 use App\Sucursal;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Tool;
 use Illuminate\Support\Facades\Auth;
@@ -205,6 +206,9 @@ class CotizacionArticuloController extends Controller
             }
             $user=User::find(Auth::user()->id);
             $this->datos['sucursal']=$this->cotizacion->sucursal->nombre;
+            $this->datos['todos_clientes']=[];
+            foreach (Clientes::where('estado',true)->orderBy('razon_social')->get() as $row)
+                $this->datos['todos_clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
             return view('cpanel.sucursal.cotizacionarticulo.registro',$this->datos);
         }
 
@@ -217,6 +221,8 @@ class CotizacionArticuloController extends Controller
     public function confirmCotizacion($id){
         $cotizacion = CotizacionArticulo::find($id);
         $cotizacion->estado = 't';
+        $now=Carbon::now();
+        $cotizacion->registro=$now->toDateTimeString();
         $cotizacion->save();
         return redirect()->route('s.cotizacion.index');
     }
@@ -259,6 +265,9 @@ class CotizacionArticuloController extends Controller
             $this->datos['razon_social'] = $this->datos['cotizacion']->cliente->razon_social;
             $this->datos['nit'] = $this->datos['cotizacion']->cliente->nit;
             $this->datos['sucursal']=$user->sucursal->nombre;
+            $this->datos['todos_clientes']=[];
+            foreach (Clientes::where('estado',true)->orderBy('razon_social')->get() as $row)
+                $this->datos['todos_clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
             return view('cpanel.sucursal.cotizacionarticulo.edit',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para editar ');

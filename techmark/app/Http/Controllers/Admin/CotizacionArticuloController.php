@@ -8,6 +8,7 @@ use App\CotizacionArticulo;
 use App\DetalleCotizacion;
 use App\Http\Controllers\Controller;
 use App\Sucursal;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Tool;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,9 @@ class CotizacionArticuloController extends Controller
 
     function genDataIni(){
         $this->datos['sucursales'] = Sucursal::where('estado',1)->orderBy('nombre')->get()->lists('nombre','id');
+        $this->datos['todos_clientes']=[];
+        foreach (Clientes::where('estado',true)->orderBy('razon_social')->get() as $row)
+            $this->datos['todos_clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
     }
 
 
@@ -222,6 +226,8 @@ class CotizacionArticuloController extends Controller
     public function confirmCotizacion($id){
         $venta = CotizacionArticulo::find($id);
         $venta->estado = 't';
+        $now=Carbon::now();
+        $venta->registro=$now->toDateTimeString();
         $venta->save();
         return redirect()->route('admin.cotizacion.index');
     }

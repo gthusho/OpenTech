@@ -4,7 +4,7 @@
     <div class="row">
 
         @include('cpanel.partials.errors')
-        {!! Form::model($venta,['route'=>['s.venta_art.update',$venta->id],'method'=>'PUT','files'=>true,'id'=>'form-venta-articulo']) !!}
+        {!! Form::model($venta,['route'=>['s.venta_art.update',$venta->id],'method'=>'PUT','id'=>'form-venta-articulo']) !!}
         @include('cpanel.sucursal.venta_art.partials.data')
 
         {!! Form::close() !!}

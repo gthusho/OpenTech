@@ -16,6 +16,7 @@ use App\Tool;
 use App\VentaArticulo;
 use App\VentaCreditoProducto;
 use App\VentaProducto;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -54,6 +55,9 @@ class VentasProductosController extends Controller
      */
     function genDataIni(){
         $this->datos['sucursales'] = Sucursal::where('estado',1)->orderBy('nombre')->get()->lists('nombre','id');
+        $this->datos['todos_clientes']=[];
+        foreach (Clientes::where('estado',true)->orderBy('razon_social')->get() as $row)
+            $this->datos['todos_clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
     }
 
 
@@ -198,6 +202,8 @@ class VentasProductosController extends Controller
         if($stado=='t'){
             $venta->fill($request->all());//aumentar esto
             $venta->estado = 't';
+            $now=Carbon::now();
+            $venta->registro=$now->toDateTimeString();
             foreach ($venta->detalleventas as $row){
                 $existencia = new IPManager($row->producto_id,$row->talla_id, $venta->sucursal_id);
                 $existencia->down($row->cantidad);

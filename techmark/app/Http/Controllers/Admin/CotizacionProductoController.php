@@ -8,6 +8,7 @@ use App\DetalleCotizacionProducto;
 use App\DetalleProductoBase;
 use App\Sucursal;
 use App\Tool;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -49,11 +50,14 @@ class CotizacionProductoController extends Controller
      */
     function genDataIni(){
         $this->datos['sucursales'] = Sucursal::where('estado',1)->orderBy('nombre')->get()->lists('nombre','id');
+        $this->datos['todos_clientes']=[];
+        foreach (Clientes::where('estado',true)->orderBy('razon_social')->get() as $row)
+            $this->datos['todos_clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
     }
 
     function setProducto($producto_base_id, $cantidad, $precio, $material_id, $talla_id, $descripcion){
         $producto = null;
-        $query = DetalleCotizacionProducto::where('cotizacion_producto_id',$this->cotizacion->id)->where('productos_base_id',$producto_base_id)->where('material_id',$material_id)->where('talla_id',$talla_id)->get();
+        $query = DetalleCotizacionProducto::where('cotizacion_producto_id',$this->cotizacion->id)->where('productos_base_id',$producto_base_id)->where('material_id',$material_id)->where('talla_id',$talla_id)->where('descripcion',$descripcion)->get();
         if(Tool::existe($query)){
             $producto = $query->first();
             $producto->cantidad = $cantidad;
@@ -146,6 +150,8 @@ class CotizacionProductoController extends Controller
         $cotizacion->cliente_id=$request->get('HCcliente');
         $cotizacion->sucursal_id=$request->get('HCsucursal');
         $cotizacion->fvalides=$request->get('HCfecha');
+        $now=Carbon::now();
+        $cotizacion->registro=$now->toDateTimeString();
         $cotizacion->save();
         return redirect()->route('admin.cot_producto.index');
     }

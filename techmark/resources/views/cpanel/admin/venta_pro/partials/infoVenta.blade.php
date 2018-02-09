@@ -21,16 +21,30 @@ if(Request::segment(5)=='edit'){
             <div class="col-lg-12">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border">DATOS CLIENTE</legend>
-                    <div class="form-group col-lg-6">
-                        {!! Form::label('NIT ')!!}
-                        {!! Form::text('nit',$nit,['class'=>'form-control','autocomplete'=>'of','id'=>'xnit'])!!}
+                    <div id="ci_1" style="display: block">
+                        <div class="form-group col-lg-5">
+                            {!! Form::label('NIT ')!!}
+                            {!! Form::text('nit',$nit,['class'=>'form-control','autocomplete'=>'of','id'=>'xnit'])!!}
+                        </div>
+                        <div class="form-group col-lg-5">
+                            {!! Form::label('Cliente ')!!}
+                            {!! Form::text('razon_social',$razon_social,['class'=>'form-control','disabled','id'=>'crazon'])!!}
+                        </div>
+                        <div class="form-group col-lg-1">
+                            <span class="btn btn-primary waves-effect waves-light m-t-30 btn-sm"  id="changeCombo"><i class="icon-reload"></i></span>
+                        </div>
+                        <div class="form-group col-lg-4">
+                            {!! Form::hidden('cliente_id',null,['class'=>'form-control ','id'=>'cid'])!!}
+                        </div>
                     </div>
-                    <div class="form-group col-lg-6">
-                        {!! Form::label('Cliente ')!!}
-                        {!! Form::text('razon_social',$razon_social,['class'=>'form-control','disabled','id'=>'crazon'])!!}
-                    </div>
-                    <div class="form-group col-lg-4">
-                        {!! Form::hidden('cliente_id',null,['class'=>'form-control ','id'=>'cid'])!!}
+                    <div id="ci_2" style="display: none">
+                        <div class="form-group col-lg-10">
+                            {!! Form::label('Cliente ')!!}
+                            {!! Form::select('clientes',$todos_clientes,null,['class'=>'form-control select2','placeholder'=>'Seleccione un cliente','id'=>'combocliente'])!!}
+                        </div>
+                        <div class="form-group col-lg-1">
+                            <span class="btn btn-primary waves-effect waves-light m-t-30 btn-sm"  id="changeNit"><i class="icon-reload"></i></span>
+                        </div>
                     </div>
                 </fieldset>
             </div>

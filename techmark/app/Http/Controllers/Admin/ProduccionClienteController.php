@@ -14,6 +14,7 @@ use App\ProduccionCliente;
 use App\Sucursal;
 use App\Tool;
 use App\Trabajador;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -182,6 +183,8 @@ class ProduccionClienteController extends Controller
         $produccion->destino=$request->get('HPdestino');
         $produccion->precio=$request->get('HPprecio');
         $produccion->adelanto=$request->get('HPadelando');
+        $now=Carbon::now();
+        $produccion->registro=$now->toDateTimeString();
         if ($estado=='t') {
             $produccion->estado = 't';
             $produccion->save();

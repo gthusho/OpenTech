@@ -42,7 +42,7 @@
                         </td>
                         <td>
                             @if(Request::segment(4)!='edit')
-                            {!! Form::open(['route'=>['deleteItemsVentaArticulo',$row->id],'method'=>'post']) !!}
+                            {!! Form::open(['route'=>['s.deleteItemsVentaArticulo',$row->id],'method'=>'post']) !!}
                             <button class="btn btn-danger btn-sm" ><i class=" icon-trash"></i> Remover</button>
                             {!! Form::close() !!}
                             @endif

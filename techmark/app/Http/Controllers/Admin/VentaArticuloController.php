@@ -11,6 +11,7 @@ use App\Sucursal;
 use App\Tool;
 use App\VentaArticulo;
 use App\VentaCreditoArticulo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -49,7 +50,9 @@ class VentaArticuloController extends Controller
      */
     function genDataIni(){
         $this->datos['sucursales'] = Sucursal::where('estado',1)->orderBy('nombre')->get()->lists('nombre','id');
-        $this->datos['almacenes'] = Almacen::where('estado',1)->orderBy('nombre')->get()->lists('nombre','id');
+        $this->datos['todos_clientes']=[];
+        foreach (Clientes::where('estado',true)->orderBy('razon_social')->get() as $row)
+            $this->datos['todos_clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
     }
 
     /**
@@ -218,6 +221,8 @@ class VentaArticuloController extends Controller
         $venta = VentaArticulo::find($id);
         if ($estado == 't') {
             $venta->fill($request->all());
+            $now=Carbon::now();
+            $venta->registro=$now->toDateTimeString();
             $venta->save();
             $venta->almacen_id=$venta->sucursal->almacen->id;
             $venta->estado = 't';

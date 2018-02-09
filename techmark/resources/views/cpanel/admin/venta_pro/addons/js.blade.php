@@ -77,6 +77,19 @@
             onOffBtnCart(true);
         });
     });
+    $('#changeCombo').on('click', function() {
+        $('#ci_2').prop("style", "display: block");
+        $('#ci_1').prop("style", "display: none");
+        $('#combocliente').prop("required",true);
+    });
+    $('#changeNit').on('click', function() {
+        $('#ci_2').prop("style", "display: none");
+        $('#ci_1').prop("style", "display: block");
+        $('#combocliente').prop("required",false);
+    });
+    $('#combocliente').on('change', function() {
+        $('#cid').val(this.value);
+    });
     function genPrice(item) {
         $('#aprecio1').val(item['precio1']);
         $('#aprecio2').val(item['precio2']);

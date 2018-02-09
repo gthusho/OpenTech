@@ -17,6 +17,7 @@ use App\Tool;
 use App\VentaArticulo;
 use App\VentaCreditoProducto;
 use App\VentaProducto;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -191,6 +192,9 @@ class VentasProductosController extends Controller
                 $this->datos['nit'] = $this->venta->cliente->nit;
             }
             $this->datos['venta'] = $this->venta;
+            $this->datos['todos_clientes']=[];
+            foreach (Clientes::where('estado',true)->orderBy('razon_social')->get() as $row)
+                $this->datos['todos_clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
             return view('cpanel.sucursal.venta_pro.registro',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para agregar registros ');
@@ -202,6 +206,8 @@ class VentasProductosController extends Controller
         if($stado=='t'){
             $venta->fill($request->all());//aumentar esto
             $venta->estado = 't';
+            $now=Carbon::now();
+            $venta->registro=$now->toDateTimeString();
             foreach ($venta->detalleventas as $row){
                 $existencia = new IPManager($row->producto_id,$row->talla_id, $venta->sucursal_id);
                 $existencia->down($row->cantidad);
@@ -278,6 +284,9 @@ class VentasProductosController extends Controller
             $this->datos['sucursal']=Sucursal::find(Auth::user()->sucursal_id)->nombre;
             $this->datos['razon_social'] = $this->datos['venta']->cliente->razon_social;
             $this->datos['nit'] = $this->datos['venta']->cliente->nit;
+            $this->datos['todos_clientes']=[];
+            foreach (Clientes::where('estado',true)->orderBy('razon_social')->get() as $row)
+                $this->datos['todos_clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
             return view('cpanel.sucursal.venta_pro.edit',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para editar ');

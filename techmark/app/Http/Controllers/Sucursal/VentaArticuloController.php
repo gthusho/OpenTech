@@ -11,6 +11,7 @@ use App\Rol;
 use App\User;
 use App\VentaArticulo;
 use App\VentaCreditoArticulo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Tool;
@@ -192,6 +193,9 @@ class VentaArticuloController extends Controller
             $this->datos['sucursal']=$this->venta->sucursal->nombre;
 
             $this->datos['venta'] = $this->venta;
+            $this->datos['todos_clientes']=[];
+            foreach (Clientes::where('estado',true)->orderBy('razon_social')->get() as $row)
+                $this->datos['todos_clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
 
             return view('cpanel.sucursal.venta_art.registro',$this->datos);
         }
@@ -206,6 +210,8 @@ class VentaArticuloController extends Controller
         $venta = VentaArticulo::find($id);
         $venta->fill($request->all());
         $venta->estado = 't';
+        $now=Carbon::now();
+        $venta->registro=$now->toDateTimeString();
         $venta->save();
         if($venta->tipo_pago=='Credito') {
             $credito = new VentaCreditoArticulo();
@@ -263,6 +269,9 @@ class VentaArticuloController extends Controller
             $this->datos['razon_social'] = $this->datos['venta']->cliente->razon_social;
             $this->datos['nit'] = $this->datos['venta']->cliente->nit;
             $this->datos['sucursal']=$this->datos['venta']->sucursal->nombre;
+            $this->datos['todos_clientes']=[];
+            foreach (Clientes::where('estado',true)->orderBy('razon_social')->get() as $row)
+                $this->datos['todos_clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
             return view('cpanel.sucursal.venta_art.edit',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para editar ');
@@ -279,6 +288,7 @@ class VentaArticuloController extends Controller
             $this->venta->cliente_id = $request->get('cliente_id');
             $this->venta->tipo_pago = $request->get('tipo_pago');
             $this->venta->observaciones = $request->get('observaciones');
+            $this->venta->save();
 
 
             return redirect()->back();

@@ -9,6 +9,7 @@ use App\DetalleProductoBase;
 use App\Sucursal;
 use App\Tool;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -47,7 +48,7 @@ class CotizacionProductoController extends Controller
 
     function setProducto($producto_base_id, $cantidad, $precio, $material_id, $talla_id, $descripcion){
         $producto = null;
-        $query = DetalleCotizacionProducto::where('cotizacion_producto_id',$this->cotizacion->id)->where('productos_base_id',$producto_base_id)->where('material_id',$material_id)->where('talla_id',$talla_id)->get();
+        $query = DetalleCotizacionProducto::where('cotizacion_producto_id',$this->cotizacion->id)->where('productos_base_id',$producto_base_id)->where('material_id',$material_id)->where('talla_id',$talla_id)->where('descripcion',$descripcion)->get();
         if(Tool::existe($query)){
             $producto = $query->first();
             $producto->cantidad = $cantidad;
@@ -112,6 +113,9 @@ class CotizacionProductoController extends Controller
                 $this->datos['nit'] = $this->cotizacion->cliente->nit;
             }
             $this->datos['sucursal']=$this->cotizacion->sucursal->nombre;
+            $this->datos['todos_clientes']=[];
+            foreach (Clientes::where('estado',true)->orderBy('razon_social')->get() as $row)
+                $this->datos['todos_clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
 
             $this->datos['cotizacion'] = $this->cotizacion;
 
@@ -129,6 +133,8 @@ class CotizacionProductoController extends Controller
         $cotizacion->estado = 't';
         $cotizacion->cliente_id=$request->get('HCcliente');
         $cotizacion->fvalides=$request->get('HCfecha');
+        $now=Carbon::now();
+        $cotizacion->registro=$now->toDateTimeString();
         $cotizacion->save();
         return redirect()->route('s.cot_producto.index');
     }
@@ -170,6 +176,9 @@ class CotizacionProductoController extends Controller
             $this->datos['razon_social'] = $this->datos['cotizacion']->cliente->razon_social;
             $this->datos['nit'] = $this->datos['cotizacion']->cliente->nit;
             $this->datos['sucursal']=$this->cotizacion->sucursal->nombre;
+            $this->datos['todos_clientes']=[];
+            foreach (Clientes::where('estado',true)->orderBy('razon_social')->get() as $row)
+                $this->datos['todos_clientes'][$row->id] = $row->razon_social .' - '.$row->nit;
             return view('cpanel.sucursal.cot_producto.edit',$this->datos);
         }else{
             \Session::flash('message','No tienes Permisos para editar ');

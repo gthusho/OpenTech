@@ -10,6 +10,7 @@ use App\Produccion;
 use App\Sucursal;
 use App\Tool;
 use App\Trabajador;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -173,6 +174,8 @@ class ProduccionController extends Controller
         $produccion->fecha=$request->get('HPfecha');
         $produccion->destino=$request->get('HPdestino');
         $produccion->estado = 't';
+        $now=Carbon::now();
+        $produccion->registro=$now->toDateTimeString();
         $produccion->save();
         /*
       * egreso items a existencia una vez terminado la venta
